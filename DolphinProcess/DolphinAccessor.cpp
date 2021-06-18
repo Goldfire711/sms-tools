@@ -10,16 +10,13 @@
 #include "../Common/CommonUtils.h"
 #include "../Common/MemoryCommon.h"
 
-namespace DolphinComm
-{
+namespace DolphinComm {
 IDolphinProcess* DolphinAccessor::m_instance = nullptr;
 DolphinAccessor::DolphinStatus DolphinAccessor::m_status = DolphinStatus::unHooked;
-char* DolphinAccessor::m_updatedRAMCache = nullptr;
+u8* DolphinAccessor::m_updatedRAMCache = nullptr;
 
-void DolphinAccessor::init()
-{
-  if (m_instance == nullptr)
-  {
+void DolphinAccessor::init() {
+  if (m_instance == nullptr) {
 #ifdef __linux__
     m_instance = new LinuxDolphinProcess();
 #elif _WIN32
@@ -28,71 +25,58 @@ void DolphinAccessor::init()
   }
 }
 
-void DolphinAccessor::free()
-{
-    delete m_instance;
-    delete[] m_updatedRAMCache;
+void DolphinAccessor::free() {
+  delete m_instance;
+  delete[] m_updatedRAMCache;
 }
 
-void DolphinAccessor::hook()
-{
+void DolphinAccessor::hook() {
   init();
-  if (!m_instance->findPID())
-  {
+  if (!m_instance->findPID()) {
     m_status = DolphinStatus::notRunning;
   }
-  else if (!m_instance->obtainEmuRAMInformations())
-  {
+  else if (!m_instance->obtainEmuRAMInformations()) {
     m_status = DolphinStatus::noEmu;
   }
-  else
-  {
+  else {
     m_status = DolphinStatus::hooked;
     updateRAMCache();
   }
 }
 
-void DolphinAccessor::unHook()
-{
+void DolphinAccessor::unHook() {
   delete m_instance;
   m_instance = nullptr;
   m_status = DolphinStatus::unHooked;
 }
 
-DolphinAccessor::DolphinStatus DolphinAccessor::getStatus()
-{
+DolphinAccessor::DolphinStatus DolphinAccessor::getStatus() {
   return m_status;
 }
 
-bool DolphinAccessor::readFromRAM(const u32 offset, char* buffer, const size_t size,
-                                  const bool withBSwap)
-{
+bool DolphinAccessor::readFromRAM(const u32 offset, u8* buffer, const size_t size,
+                                  const bool withBSwap) {
   return m_instance->readFromRAM(offset, buffer, size, withBSwap);
 }
 
-bool DolphinAccessor::writeToRAM(const u32 offset, const char* buffer, const size_t size,
-                                 const bool withBSwap)
-{
+bool DolphinAccessor::writeToRAM(const u32 offset, const u8* buffer, const size_t size,
+                                 const bool withBSwap) {
   return m_instance->writeToRAM(offset, buffer, size, withBSwap);
 }
 
-int DolphinAccessor::getPID()
-{
+int DolphinAccessor::getPID() {
   return m_instance->getPID();
 }
 
-u64 DolphinAccessor::getEmuRAMAddressStart()
-{
+u64 DolphinAccessor::getEmuRAMAddressStart() {
   return m_instance->getEmuRAMAddressStart();
 }
 
-bool DolphinAccessor::isMEM2Present()
-{
+bool DolphinAccessor::isMEM2Present() {
   return m_instance->isMEM2Present();
 }
 
-bool DolphinAccessor::isValidConsoleAddress(const u32 address)
-{
+bool DolphinAccessor::isValidConsoleAddress(const u32 address) {
   if (getStatus() != DolphinStatus::hooked)
     return false;
 
@@ -102,46 +86,40 @@ bool DolphinAccessor::isValidConsoleAddress(const u32 address)
   return isMem1Address;
 }
 
-Common::MemOperationReturnCode DolphinAccessor::updateRAMCache()
-{
+Common::MemOperationReturnCode DolphinAccessor::updateRAMCache() {
   delete[] m_updatedRAMCache;
   m_updatedRAMCache = nullptr;
 
   // MEM2, if enabled, is read right after MEM1 in the cache so both regions are contigous
-  if (isMEM2Present())
-  {
-    m_updatedRAMCache = new char[Common::MEM1_SIZE + Common::MEM2_SIZE];
+  if (isMEM2Present()) {
+    m_updatedRAMCache = new u8[Common::MEM1_SIZE + Common::MEM2_SIZE];
     // Read Wii extra RAM
-    if (!DolphinComm::DolphinAccessor::readFromRAM(Common::dolphinAddrToOffset(Common::MEM2_START),
-                                                   m_updatedRAMCache + Common::MEM1_SIZE,
-                                                   Common::MEM2_SIZE, false))
+    if (!readFromRAM(Common::dolphinAddrToOffset(Common::MEM2_START),
+                     m_updatedRAMCache + Common::MEM1_SIZE,
+                     Common::MEM2_SIZE, false))
       return Common::MemOperationReturnCode::operationFailed;
   }
-  else
-  {
-    m_updatedRAMCache = new char[Common::MEM1_SIZE];
+  else {
+    m_updatedRAMCache = new u8[Common::MEM1_SIZE];
   }
 
   // Read GameCube and Wii basic RAM
-  if (!DolphinComm::DolphinAccessor::readFromRAM(0, m_updatedRAMCache, Common::MEM1_SIZE, false))
+  if (!readFromRAM(0, m_updatedRAMCache, Common::MEM1_SIZE, false))
     return Common::MemOperationReturnCode::operationFailed;
   return Common::MemOperationReturnCode::OK;
 }
 
 std::string DolphinAccessor::getFormattedValueFromCache(const u32 ramIndex, Common::MemType memType,
                                                         size_t memSize, Common::MemBase memBase,
-                                                        bool memIsUnsigned)
-{
+                                                        bool memIsUnsigned) {
   return Common::formatMemoryToString(&m_updatedRAMCache[ramIndex], memType, memSize, memBase,
                                       memIsUnsigned, Common::shouldBeBSwappedForType(memType));
 }
 
-void DolphinAccessor::copyRawMemoryFromCache(char* dest, const u32 consoleAddress,
-                                             const size_t byteCount)
-{
+void DolphinAccessor::copyRawMemoryFromCache(u8* dest, const u32 consoleAddress,
+                                             const size_t byteCount) {
   if (isValidConsoleAddress(consoleAddress) &&
-      isValidConsoleAddress((consoleAddress + static_cast<u32>(byteCount)) - 1))
-  {
+    isValidConsoleAddress((consoleAddress + static_cast<u32>(byteCount)) - 1)) {
     u32 offset = Common::dolphinAddrToOffset(consoleAddress);
     u32 ramIndex = 0;
     if (offset >= Common::MEM1_SIZE)

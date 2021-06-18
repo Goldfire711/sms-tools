@@ -8,19 +8,17 @@
 
 #include "CommonTypes.h"
 
-namespace Common
-{
+namespace Common {
 #ifdef _WIN32
-inline u16 bSwap16(u16 data)
-{
+inline u16 bSwap16(u16 data) {
   return _byteswap_ushort(data);
 }
-inline u32 bSwap32(u32 data)
-{
+
+inline u32 bSwap32(u32 data) {
   return _byteswap_ulong(data);
 }
-inline u64 bSwap64(u64 data)
-{
+
+inline u64 bSwap64(u64 data) {
   return _byteswap_uint64(data);
 }
 
@@ -39,13 +37,11 @@ inline u64 bSwap64(u64 data)
 }
 #endif
 
-inline u32 dolphinAddrToOffset(u32 addr)
-{
+inline u32 dolphinAddrToOffset(u32 addr) {
   return addr &= 0x7FFFFFFF;
 }
 
-inline u32 offsetToDolphinAddr(u32 offset)
-{
+inline u32 offsetToDolphinAddr(u32 offset) {
   return offset |= 0x80000000;
 }
 } // namespace Common

@@ -12,12 +12,9 @@
 #include <QString>
 #include <QTextCodec>
 
-namespace Common
-{
-size_t getSizeForType(const MemType type, const size_t length)
-{
-  switch (type)
-  {
+namespace Common {
+size_t getSizeForType(const MemType type, const size_t length) {
+  switch (type) {
   case MemType::type_byte:
     return sizeof(u8);
   case MemType::type_halfword:
@@ -37,10 +34,8 @@ size_t getSizeForType(const MemType type, const size_t length)
   }
 }
 
-bool shouldBeBSwappedForType(const MemType type)
-{
-  switch (type)
-  {
+bool shouldBeBSwappedForType(const MemType type) {
+  switch (type) {
   case MemType::type_byte:
     return false;
   case MemType::type_halfword:
@@ -57,45 +52,19 @@ bool shouldBeBSwappedForType(const MemType type)
     return false;
   default:
     return false;
-  }
-}
-
-int getNbrBytesAlignementForType(const MemType type)
-{
-  switch (type)
-  {
-  case MemType::type_byte:
-    return 1;
-  case MemType::type_halfword:
-    return 2;
-  case MemType::type_word:
-    return 4;
-  case MemType::type_float:
-    return 4;
-  case MemType::type_double:
-    return 4;
-  case MemType::type_string:
-    return 1;
-  case MemType::type_byteArray:
-    return 1;
-  default:
-    return 1;
   }
 }
 
 char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLength,
                            const std::string inputString, const MemBase base, const MemType type,
-                           const size_t length)
-{
-  if (inputString.length() == 0)
-  {
+                           const size_t length) {
+  if (inputString.length() == 0) {
     returnCode = MemOperationReturnCode::invalidInput;
     return nullptr;
   }
 
   std::stringstream ss(inputString);
-  switch (base)
-  {
+  switch (base) {
   case MemBase::base_octal:
     ss >> std::oct;
     break;
@@ -108,22 +77,17 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
   }
 
   size_t size = getSizeForType(type, length);
-  char* buffer = new char[size];
+  auto buffer = new char[size];
 
-  switch (type)
-  {
-  case MemType::type_byte:
-  {
+  switch (type) {
+  case MemType::type_byte: {
     u8 theByte = 0;
-    if (base == MemBase::base_binary)
-    {
+    if (base == MemBase::base_binary) {
       unsigned long long input = 0;
-      try
-      {
+      try {
         input = std::bitset<sizeof(u8) * 8>(inputString).to_ullong();
       }
-      catch (std::invalid_argument)
-      {
+      catch (std::invalid_argument) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -131,12 +95,10 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
       }
       theByte = static_cast<u8>(input);
     }
-    else
-    {
+    else {
       int theByteInt = 0;
       ss >> theByteInt;
-      if (ss.fail())
-      {
+      if (ss.fail()) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -150,18 +112,14 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_halfword:
-  {
+  case MemType::type_halfword: {
     u16 theHalfword = 0;
-    if (base == MemBase::base_binary)
-    {
+    if (base == MemBase::base_binary) {
       unsigned long long input = 0;
-      try
-      {
+      try {
         input = std::bitset<sizeof(u16) * 8>(inputString).to_ullong();
       }
-      catch (std::invalid_argument)
-      {
+      catch (std::invalid_argument) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -169,11 +127,9 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
       }
       theHalfword = static_cast<u16>(input);
     }
-    else
-    {
+    else {
       ss >> theHalfword;
-      if (ss.fail())
-      {
+      if (ss.fail()) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -186,18 +142,14 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_word:
-  {
+  case MemType::type_word: {
     u32 theWord = 0;
-    if (base == MemBase::base_binary)
-    {
+    if (base == MemBase::base_binary) {
       unsigned long long input = 0;
-      try
-      {
+      try {
         input = std::bitset<sizeof(u32) * 8>(inputString).to_ullong();
       }
-      catch (std::invalid_argument)
-      {
+      catch (std::invalid_argument) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -205,11 +157,9 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
       }
       theWord = static_cast<u32>(input);
     }
-    else
-    {
+    else {
       ss >> theWord;
-      if (ss.fail())
-      {
+      if (ss.fail()) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -222,13 +172,11 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_float:
-  {
+  case MemType::type_float: {
     float theFloat = 0.0f;
     // 9 digits is the max number of digits in a flaot that can recover any binary format
     ss >> std::setprecision(9) >> theFloat;
-    if (ss.fail())
-    {
+    if (ss.fail()) {
       delete[] buffer;
       buffer = nullptr;
       returnCode = MemOperationReturnCode::invalidInput;
@@ -239,13 +187,11 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_double:
-  {
+  case MemType::type_double: {
     double theDouble = 0.0;
     // 17 digits is the max number of digits in a double that can recover any binary format
     ss >> std::setprecision(17) >> theDouble;
-    if (ss.fail())
-    {
+    if (ss.fail()) {
       delete[] buffer;
       buffer = nullptr;
       returnCode = MemOperationReturnCode::invalidInput;
@@ -256,10 +202,8 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_string:
-  {
-    if (inputString.length() > length)
-    {
+  case MemType::type_string: {
+    if (inputString.length() > length) {
       delete[] buffer;
       buffer = nullptr;
       returnCode = MemOperationReturnCode::inputTooLong;
@@ -270,33 +214,26 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     break;
   }
 
-  case MemType::type_byteArray:
-  {
+  case MemType::type_byteArray: {
     std::vector<std::string> bytes;
     std::string next;
-    for (auto i : inputString)
-    {
-      if (i == ' ')
-      {
-        if (!next.empty())
-        {
+    for (auto i : inputString) {
+      if (i == ' ') {
+        if (!next.empty()) {
           bytes.push_back(next);
           next.clear();
         }
       }
-      else
-      {
+      else {
         next += i;
       }
     }
-    if (!next.empty())
-    {
+    if (!next.empty()) {
       bytes.push_back(next);
       next.clear();
     }
 
-    if (bytes.size() > length)
-    {
+    if (bytes.size() > length) {
       delete[] buffer;
       buffer = nullptr;
       returnCode = MemOperationReturnCode::inputTooLong;
@@ -304,15 +241,13 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
     }
 
     int index = 0;
-    for (const auto& i : bytes)
-    {
+    for (const auto& i : bytes) {
       std::stringstream byteStream(i);
       ss >> std::hex;
       u8 theByte = 0;
       int theByteInt = 0;
       ss >> theByteInt;
-      if (ss.fail())
-      {
+      if (ss.fail()) {
         delete[] buffer;
         buffer = nullptr;
         returnCode = MemOperationReturnCode::invalidInput;
@@ -328,72 +263,60 @@ char* formatStringToMemory(MemOperationReturnCode& returnCode, size_t& actualLen
   return buffer;
 }
 
-std::string formatMemoryToString(const char* memory, const MemType type, const size_t length,
-                                 const MemBase base, const bool isUnsigned, const bool withBSwap)
-{
+std::string formatMemoryToString(const u8* memory, const MemType type, const size_t length,
+                                 const MemBase base, const bool isUnsigned, const bool withBSwap) {
   std::stringstream ss;
-  switch (base)
-  {
-  case Common::MemBase::base_octal:
+  switch (base) {
+  case MemBase::base_octal:
     ss << std::oct;
     break;
-  case Common::MemBase::base_decimal:
+  case MemBase::base_decimal:
     ss << std::dec;
     break;
-  case Common::MemBase::base_hexadecimal:
+  case MemBase::base_hexadecimal:
     ss << std::hex << std::uppercase;
     break;
   }
 
-  switch (type)
-  {
-  case Common::MemType::type_byte:
-  {
-    if (isUnsigned || base == Common::MemBase::base_binary)
-    {
+  switch (type) {
+  case MemType::type_byte: {
+    if (isUnsigned || base == MemBase::base_binary) {
       u8 unsignedByte = 0;
       std::memcpy(&unsignedByte, memory, sizeof(u8));
-      if (base == Common::MemBase::base_binary)
+      if (base == MemBase::base_binary)
         return std::bitset<sizeof(u8) * 8>(unsignedByte).to_string();
       // This has to be converted to an integer type because printing a uint8_t would resolve to a
       // char and print a single character.
       ss << static_cast<unsigned int>(unsignedByte);
       return ss.str();
     }
+    s8 aByte = 0;
+    std::memcpy(&aByte, memory, sizeof(s8));
+    // This has to be converted to an integer type because printing a uint8_t would resolve to a
+    // char and print a single character.  Additionaly, casting a signed type to a larger signed
+    // type will extend the sign to match the size of the destination type, this is required for
+    // signed values in decimal, but must be bypassed for other bases, this is solved by first
+    // casting to u8 then to signed int.
+    if (base == MemBase::base_decimal)
+      ss << static_cast<int>(aByte);
     else
-    {
-      s8 aByte = 0;
-      std::memcpy(&aByte, memory, sizeof(s8));
-      // This has to be converted to an integer type because printing a uint8_t would resolve to a
-      // char and print a single character.  Additionaly, casting a signed type to a larger signed
-      // type will extend the sign to match the size of the destination type, this is required for
-      // signed values in decimal, but must be bypassed for other bases, this is solved by first
-      // casting to u8 then to signed int.
-      if (base == Common::MemBase::base_decimal)
-        ss << static_cast<int>(aByte);
-      else
-        ss << static_cast<int>(static_cast<u8>(aByte));
-      return ss.str();
-    }
+      ss << static_cast<int>(static_cast<u8>(aByte));
+    return ss.str();
   }
-  case Common::MemType::type_halfword:
-  {
-    char* memoryCopy = new char[sizeof(u16)];
+  case MemType::type_halfword: {
+    auto memoryCopy = new char[sizeof(u16)];
     std::memcpy(memoryCopy, memory, sizeof(u16));
-    if (withBSwap)
-    {
+    if (withBSwap) {
       u16 halfword = 0;
       std::memcpy(&halfword, memoryCopy, sizeof(u16));
-      halfword = Common::bSwap16(halfword);
+      halfword = bSwap16(halfword);
       std::memcpy(memoryCopy, &halfword, sizeof(u16));
     }
 
-    if (isUnsigned || base == Common::MemBase::base_binary)
-    {
+    if (isUnsigned || base == MemBase::base_binary) {
       u16 unsignedHalfword = 0;
       std::memcpy(&unsignedHalfword, memoryCopy, sizeof(u16));
-      if (base == Common::MemBase::base_binary)
-      {
+      if (base == MemBase::base_binary) {
         delete[] memoryCopy;
         return std::bitset<sizeof(u16) * 8>(unsignedHalfword).to_string();
       }
@@ -407,24 +330,20 @@ std::string formatMemoryToString(const char* memory, const MemType type, const s
     delete[] memoryCopy;
     return ss.str();
   }
-  case Common::MemType::type_word:
-  {
-    char* memoryCopy = new char[sizeof(u32)];
+  case MemType::type_word: {
+    auto memoryCopy = new char[sizeof(u32)];
     std::memcpy(memoryCopy, memory, sizeof(u32));
-    if (withBSwap)
-    {
+    if (withBSwap) {
       u32 word = 0;
       std::memcpy(&word, memoryCopy, sizeof(u32));
-      word = Common::bSwap32(word);
+      word = bSwap32(word);
       std::memcpy(memoryCopy, &word, sizeof(u32));
     }
 
-    if (isUnsigned || base == Common::MemBase::base_binary)
-    {
+    if (isUnsigned || base == MemBase::base_binary) {
       u32 unsignedWord = 0;
       std::memcpy(&unsignedWord, memoryCopy, sizeof(u32));
-      if (base == Common::MemBase::base_binary)
-      {
+      if (base == MemBase::base_binary) {
         delete[] memoryCopy;
         return std::bitset<sizeof(u32) * 8>(unsignedWord).to_string();
       }
@@ -438,15 +357,13 @@ std::string formatMemoryToString(const char* memory, const MemType type, const s
     delete[] memoryCopy;
     return ss.str();
   }
-  case Common::MemType::type_float:
-  {
-    char* memoryCopy = new char[sizeof(u32)];
+  case MemType::type_float: {
+    auto memoryCopy = new char[sizeof(u32)];
     std::memcpy(memoryCopy, memory, sizeof(u32));
-    if (withBSwap)
-    {
+    if (withBSwap) {
       u32 word = 0;
       std::memcpy(&word, memoryCopy, sizeof(u32));
-      word = Common::bSwap32(word);
+      word = bSwap32(word);
       std::memcpy(memoryCopy, &word, sizeof(u32));
     }
 
@@ -458,15 +375,13 @@ std::string formatMemoryToString(const char* memory, const MemType type, const s
     delete[] memoryCopy;
     return ss.str();
   }
-  case Common::MemType::type_double:
-  {
-    char* memoryCopy = new char[sizeof(u64)];
+  case MemType::type_double: {
+    auto memoryCopy = new char[sizeof(u64)];
     std::memcpy(memoryCopy, memory, sizeof(u64));
-    if (withBSwap)
-    {
+    if (withBSwap) {
       u64 doubleword = 0;
       std::memcpy(&doubleword, memoryCopy, sizeof(u64));
-      doubleword = Common::bSwap64(doubleword);
+      doubleword = bSwap64(doubleword);
       std::memcpy(memoryCopy, &doubleword, sizeof(u64));
     }
 
@@ -478,23 +393,19 @@ std::string formatMemoryToString(const char* memory, const MemType type, const s
     delete[] memoryCopy;
     return ss.str();
   }
-  case Common::MemType::type_string:
-  {
+  case MemType::type_string: {
     int actualLength = 0;
-    for (actualLength; actualLength < length; ++actualLength)
-    {
+    for (actualLength; actualLength < length; ++actualLength) {
       if (*(memory + actualLength) == 0x00)
         break;
     }
     //return std::string(memory, actualLength);
-    return QString::fromLocal8Bit(memory).toStdString();
+    return QString::fromLocal8Bit((char*)memory).toStdString();
   }
-  case Common::MemType::type_byteArray:
-  {
+  case MemType::type_byteArray: {
     // Force Hexadecimal, no matter the base
     ss << std::hex << std::uppercase;
-    for (int i = 0; i < length; ++i)
-    {
+    for (int i = 0; i < length; ++i) {
       u8 aByte = 0;
       std::memcpy(&aByte, memory + i, sizeof(u8));
       ss << std::setfill('0') << std::setw(2) << static_cast<int>(aByte) << " ";

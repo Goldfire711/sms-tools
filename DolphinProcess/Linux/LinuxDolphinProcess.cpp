@@ -95,7 +95,7 @@ bool LinuxDolphinProcess::findPID()
   return true;
 }
 
-bool LinuxDolphinProcess::readFromRAM(const u32 offset, char* buffer, const size_t size,
+bool LinuxDolphinProcess::readFromRAM(const u32 offset, u8* buffer, const size_t size,
                                       const bool withBSwap)
 {
   struct iovec local;
@@ -146,7 +146,7 @@ bool LinuxDolphinProcess::readFromRAM(const u32 offset, char* buffer, const size
   return true;
 }
 
-bool LinuxDolphinProcess::writeToRAM(const u32 offset, const char* buffer, const size_t size,
+bool LinuxDolphinProcess::writeToRAM(const u32 offset, const u8* buffer, const size_t size,
                                      const bool withBSwap)
 {
   struct iovec local;

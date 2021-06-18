@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Common\MemoryCommon.cpp" />
+    <ClCompile Include="DolphinProcess\DolphinAccessor.cpp" />
+    <ClCompile Include="DolphinProcess\Linux\LinuxDolphinProcess.cpp" />
+    <ClCompile Include="DolphinProcess\Windows\WindowsDolphinProcess.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SMS\Spin\Spin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Memory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectViewerItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\CommonTypes.h" />
+    <ClInclude Include="Common\CommonUtils.h" />
+    <ClInclude Include="Common\MemoryCommon.h" />
+    <ClInclude Include="DolphinProcess\DolphinAccessor.h" />
+    <ClInclude Include="DolphinProcess\IDolphinProcess.h" />
+    <ClInclude Include="DolphinProcess\Linux\LinuxDolphinProcess.h" />
+    <ClInclude Include="DolphinProcess\Windows\WindowsDolphinProcess.h" />
+    <ClInclude Include="Memory\Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MainWindow.h" />
+    <QtMoc Include="SMS\Spin\Spin.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\MapViewer\MapViewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resource.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="MainWindow.ui" />
+    <QtUic Include="SMS\Spin\Spin.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SMS\MapViewer\MapViewer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SMS\Resources\ObjectViewer.json" />
+    <None Include="SMS\Resources\test.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SMS\Resources\PinnaBeach.png" />
+  </ItemGroup>
+</Project>

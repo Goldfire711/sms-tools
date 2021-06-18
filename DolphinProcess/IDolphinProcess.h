@@ -15,9 +15,9 @@ public:
   }
   virtual bool findPID() = 0;
   virtual bool obtainEmuRAMInformations() = 0;
-  virtual bool readFromRAM(const u32 offset, char* buffer, const size_t size,
+  virtual bool readFromRAM(const u32 offset, u8* buffer, const size_t size,
                            const bool withBSwap) = 0;
-  virtual bool writeToRAM(const u32 offset, const char* buffer, const size_t size,
+  virtual bool writeToRAM(const u32 offset, const u8* buffer, const size_t size,
                           const bool withBSwap) = 0;
 
   int getPID() const

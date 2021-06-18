@@ -6,20 +6,18 @@
 
 #include "../IDolphinProcess.h"
 
-namespace DolphinComm
-{
-class WindowsDolphinProcess : public IDolphinProcess
-{
+namespace DolphinComm {
+class WindowsDolphinProcess : public IDolphinProcess {
 public:
-  WindowsDolphinProcess()
-  {
+  WindowsDolphinProcess() {
   }
+
   bool findPID() override;
   bool obtainEmuRAMInformations() override;
-  bool readFromRAM(const u32 offset, char* buffer, const size_t size,
-                   const bool withBSwap) override;
-  bool writeToRAM(const u32 offset, const char* buffer, const size_t size,
-                  const bool withBSwap) override;
+  bool readFromRAM(u32 offset, u8* buffer, size_t size,
+                   bool withBSwap) override;
+  bool writeToRAM(u32 offset, const u8* buffer, size_t size,
+                  bool withBSwap) override;
 
 private:
   HANDLE m_hDolphin;

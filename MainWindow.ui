@@ -19,12 +19,12 @@
   <property name="documentMode">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="central_widget_">
+  <widget class="QWidget" name="central_widget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="button_hook_">
+       <widget class="QPushButton" name="button_hook">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -49,7 +49,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_dolphin_status_">
+       <widget class="QLabel" name="label_dolphin_status">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -67,7 +67,7 @@
      </layout>
     </item>
     <item>
-     <widget class="QFrame" name="separator_line_">
+     <widget class="QFrame" name="separator_line">
       <property name="frameShape">
        <enum>QFrame::HLine</enum>
       </property>
@@ -77,30 +77,30 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="button_widget_spin_">
+     <widget class="QPushButton" name="button_widget_spin">
       <property name="text">
        <string>Spin</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="button_widget_map_viewer_">
+     <widget class="QPushButton" name="button_widget_map_viewer">
       <property name="text">
        <string>Map Viewer</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="button_widget_fluff_manipulator_">
+     <widget class="QPushButton" name="button_widget_fluff_manipulator">
       <property name="text">
        <string>Fluff Manipulator</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="button_widget_object_viewer">
+      <property name="text">
+       <string>Object Viewer</string>
       </property>
      </widget>
     </item>
@@ -128,12 +128,12 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_test_">
+   <widget class="QMenu" name="menu_test">
     <property name="title">
      <string>test</string>
     </property>
    </widget>
-   <addaction name="menu_test_"/>
+   <addaction name="menu_test"/>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

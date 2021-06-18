@@ -1,4 +1,7 @@
-﻿<RCC>
-    <qresource prefix="/new/prefix1">
+<RCC>
+    <qresource prefix="/sms">
+        <file alias="ObjectViewer.json">SMS/Resources/ObjectViewer.json</file>
+        <file alias="test.json">SMS/Resources/test.json</file>
+        <file alias="PinnaBeach">SMS/Resources/PinnaBeach.png</file>
     </qresource>
 </RCC>
