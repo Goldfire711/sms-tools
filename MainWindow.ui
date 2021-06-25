@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>235</width>
-    <height>174</height>
+    <height>203</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
          <bool>true</bool>
         </property>
         <property name="checked">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="flat">
          <bool>false</bool>
@@ -91,9 +91,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="button_widget_fluff_manipulator">
+     <widget class="QPushButton" name="button_widget_rng_manipulator">
       <property name="text">
-       <string>Fluff Manipulator</string>
+       <string>RNG Manipulator</string>
       </property>
      </widget>
     </item>

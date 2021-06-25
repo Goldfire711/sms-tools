@@ -12,13 +12,17 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_hook, &QPushButton::clicked, this, &MainWindow::hook_unhook_attempt);
   connect(ui.button_widget_spin, &QPushButton::clicked, this, &MainWindow::show_widget_spin);
   connect(ui.button_widget_object_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_object_viewer);
+  connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
   //connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
-  //connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_fluff_manipulator);
+  //connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
   g_timer = new QTimer(this);
   connect(g_timer, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
+
+  ui.button_hook->setChecked(true);
   hook_unhook_attempt();
 
   show_widget_object_viewer();
+  //show_widget_map_viewer();
 }
 
 void MainWindow::hook_unhook_attempt() {
@@ -35,10 +39,10 @@ void MainWindow::hook_unhook_attempt() {
       QString::number(DolphinComm::DolphinAccessor::getEmuRAMAddressStart(), 16).toUpper());
     ui.button_hook->setText(tr("Unhook"));
     ui.button_hook->setChecked(true);
-    g_timer->start(16);
+    g_timer->start(100);
 
-    QVariant test = memory::read_string(0x8040A4D8, { 0x18, 0, 4, 0 }, 32);
-    ui.button_widget_fluff_manipulator->setText(test.toString());
+    //QVariant test = memory::read_string(0x8040A4D8, { 0x18, 0, 4, 0 }, 32);
+    //ui.button_widget_fluff_manipulator->setText(test.toString());
     break;
   }
   case DolphinComm::DolphinAccessor::DolphinStatus::notRunning: {
@@ -63,14 +67,11 @@ void MainWindow::hook_unhook_attempt() {
 }
 
 void MainWindow::on_update() {
-  count_++;
-  ui.button_widget_fluff_manipulator->setText(QString::number(count_));
-  if (memory::read_string(0, 7) != "GMSJ01" && update_ == true) {
-    g_timer->stop();
+  u8 buffer;
+  //if (DolphinComm::DolphinAccessor::updateRAMCache() == Common::MemOperationReturnCode::operationFailed) {
+  if (!DolphinComm::DolphinAccessor::readFromRAM(0, &buffer, 1, false)) {
+    ui.button_hook->setChecked(false);
     hook_unhook_attempt();
-    update_ = false;
-  } else {
-    update_ = true;
   }
 }
 
@@ -93,5 +94,13 @@ void MainWindow::show_widget_object_viewer() {
   sms_object_viewer_->show();
   sms_object_viewer_->raise();
   sms_object_viewer_->activateWindow();
-  
+}
+
+void MainWindow::show_widget_map_viewer() {
+  if (!sms_map_viewer) {
+    sms_map_viewer = new MapViewer(nullptr);
+  }
+  sms_map_viewer->show();
+  sms_map_viewer->raise();
+  sms_map_viewer->activateWindow();
 }

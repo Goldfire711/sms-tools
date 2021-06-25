@@ -11,7 +11,8 @@ class ObjectViewer : public QWidget {
 public:
   ObjectViewer(QWidget* parent = Q_NULLPTR);
   ~ObjectViewer() override;
-  //void on_update();
+  void scan_managers();
+  void test();
 
 protected:
   void closeEvent(QCloseEvent* event) override;
@@ -19,7 +20,6 @@ protected:
 
 private:
   Ui::ObjectViewer ui;
-  //void test();
 
   ObjectViewerModel* model_;
   s64 number_ = 0;

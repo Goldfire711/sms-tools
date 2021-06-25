@@ -25,6 +25,9 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -53,6 +56,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -90,9 +96,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SMS\Resources\ObjectViewer.json" />
-    <None Include="SMS\Resources\test.json" />
+    <None Include="SMS\Resources\ObjectViewer DT.json" />
+    <None Include="SMS\Resources\ObjectViewer_managers.json" />
+    <None Include="SMS\Resources\ObjectViewer_template.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="SMS\Resources\coin.png" />
+    <Image Include="SMS\Resources\coin_blue.png" />
+    <Image Include="SMS\Resources\coin_red.png" />
+    <Image Include="SMS\Resources\fruit_banana.png" />
+    <Image Include="SMS\Resources\fruit_coconut.png" />
+    <Image Include="SMS\Resources\fruit_durian.png" />
+    <Image Include="SMS\Resources\fruit_papaya.png" />
+    <Image Include="SMS\Resources\fruit_pine.png" />
+    <Image Include="SMS\Resources\mario.png" />
+    <Image Include="SMS\Resources\shine.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
   </ItemGroup>
 </Project>

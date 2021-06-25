@@ -1,0 +1,721 @@
+{
+    "managers": [
+        {
+            "name": "MapObjBaseManager",
+            "p_functions": "803c0740"
+        },
+        {
+            "name": "LightWithDBSetManager",
+            "p_functions": "803b1fd8"
+        },
+        {
+            "name": "MBindShadowManager",
+            "p_functions": "803b2a90"
+        },
+        {
+            "name": "MarioParticleManager",
+            "p_functions": "803b3860"
+        },
+        {
+            "name": "CubeManagerFast",
+            "p_functions": "803b3de0"
+        },
+        {
+            "name": "CubeManagerArea",
+            "p_functions": "803b3e04"
+        },
+        {
+            "name": "CubeManagerMarioIn",
+            "p_functions": "803b3e28"
+        },
+        {
+            "name": "NameKuriLauncherManager",
+            "p_functions": "803b41a8"
+        },
+        {
+            "name": "HamuKuriLauncherManager",
+            "p_functions": "803b41fc"
+        },
+        {
+            "name": "MareWManager",
+            "p_functions": "803b4740"
+        },
+        {
+            "name": "MareMManager",
+            "p_functions": "803b4798"
+        },
+        {
+            "name": "LiveManager",
+            "p_functions": "803b4e58"
+        },
+        {
+            "name": "ObjManager",
+            "p_functions": "803b4ea8"
+        },
+        {
+            "name": "SunflowerSManager",
+            "p_functions": "803b8650"
+        },
+        {
+            "name": "MareWBaseManager",
+            "p_functions": "803b86e0"
+        },
+        {
+            "name": "MareMBaseManager",
+            "p_functions": "803b8738"
+        },
+        {
+            "name": "MonteWBManager",
+            "p_functions": "803b8790"
+        },
+        {
+            "name": "MonteWAManager",
+            "p_functions": "803b87e8"
+        },
+        {
+            "name": "MonteWManager",
+            "p_functions": "803b8840"
+        },
+        {
+            "name": "MonteMEManager",
+            "p_functions": "803b8898"
+        },
+        {
+            "name": "MonteMDManager",
+            "p_functions": "803b88f0"
+        },
+        {
+            "name": "MonteMCManager",
+            "p_functions": "803b8948"
+        },
+        {
+            "name": "MonteMBManager",
+            "p_functions": "803b89a0"
+        },
+        {
+            "name": "MonteMAManager",
+            "p_functions": "803b89f8"
+        },
+        {
+            "name": "MonteMManager",
+            "p_functions": "803b8a50"
+        },
+        {
+            "name": "SunflowerLManager",
+            "p_functions": "803b8aa8"
+        },
+        {
+            "name": "RaccoonDogManager",
+            "p_functions": "803b8b00"
+        },
+        {
+            "name": "PeachManager",
+            "p_functions": "803b8b58"
+        },
+        {
+            "name": "KinojiiManager",
+            "p_functions": "803b8bb0"
+        },
+        {
+            "name": "KinopioManager",
+            "p_functions": "803b8c08"
+        },
+        {
+            "name": "MareWBManager",
+            "p_functions": "803b8c60"
+        },
+        {
+            "name": "MareWAManager",
+            "p_functions": "803b8cb8"
+        },
+        {
+            "name": "MareMDManager",
+            "p_functions": "803b8d10"
+        },
+        {
+            "name": "MareMCManager",
+            "p_functions": "803b8d68"
+        },
+        {
+            "name": "MareMBManager",
+            "p_functions": "803b8dc0"
+        },
+        {
+            "name": "MareMAManager",
+            "p_functions": "803b8e18"
+        },
+        {
+            "name": "MonteWCManager",
+            "p_functions": "803b8e70"
+        },
+        {
+            "name": "MonteMHManager",
+            "p_functions": "803b8ec8"
+        },
+        {
+            "name": "MonteMGManager",
+            "p_functions": "803b8f20"
+        },
+        {
+            "name": "MonteMFManager",
+            "p_functions": "803b8f78"
+        },
+        {
+            "name": "MonteWSpecialManager",
+            "p_functions": "803b8fd0"
+        },
+        {
+            "name": "MonteMSpecialManager",
+            "p_functions": "803b9028"
+        },
+        {
+            "name": "MonteWBaseManager",
+            "p_functions": "803b9080"
+        },
+        {
+            "name": "MonteMBaseManager",
+            "p_functions": "803b90d8"
+        },
+        {
+            "name": "MareBaseManager",
+            "p_functions": "803b9130"
+        },
+        {
+            "name": "NPCManager",
+            "p_functions": "803b9188"
+        },
+        {
+            "name": "MareJellyFishManager",
+            "p_functions": "803b91e0"
+        },
+        {
+            "name": "BoardNpcManager",
+            "p_functions": "803b9210"
+        },
+        {
+            "name": "FluffManager",
+            "p_functions": "803ccb50"
+        },
+        {
+            "name": "PoolManager",
+            "p_functions": "803cdea4"
+        },
+        {
+            "name": "JointModelManager",
+            "p_functions": "803cfbb8"
+        },
+        {
+            "name": "MapModelManager",
+            "p_functions": "803d00b8"
+        },
+        {
+            "name": "PollutionManager",
+            "p_functions": "803d03e4"
+        },
+        {
+            "name": "BathWaterManager",
+            "p_functions": "803d0d28"
+        },
+        {
+            "name": "StickyStainManager",
+            "p_functions": "803d0e50"
+        },
+        {
+            "name": "SelectShineManager",
+            "p_functions": "803d1ca8"
+        },
+        {
+            "name": "EffectModelManager",
+            "p_functions": "803d234c"
+        },
+        {
+            "name": "EffectExplosionManager",
+            "p_functions": "803d23a0"
+        },
+        {
+            "name": "EffectColumSandManager",
+            "p_functions": "803d2508"
+        },
+        {
+            "name": "EffectBombColumWaterManager",
+            "p_functions": "803d2670"
+        },
+        {
+            "name": "EffectColumWaterManager",
+            "p_functions": "803d27d8"
+        },
+        {
+            "name": "EffectObjManager",
+            "p_functions": "803d2940"
+        },
+        {
+            "name": "EMarioManager",
+            "p_functions": "803d2c08"
+        },
+        {
+            "name": "EnemyPolluteModelManager",
+            "p_functions": "803d2ed8"
+        },
+        {
+            "name": "EnemyManager",
+            "p_functions": "803d3048"
+        },
+        {
+            "name": "GessoManager",
+            "p_functions": "803d42ac"
+        },
+        {
+            "name": "GessoPolluteModelManager",
+            "p_functions": "803d432c"
+        },
+        {
+            "name": "DoroHamuKuriManager",
+            "p_functions": "803d543c"
+        },
+        {
+            "name": "FireHamuKuriManager",
+            "p_functions": "803d54b8"
+        },
+        {
+            "name": "BossDangoHamuKuriManager",
+            "p_functions": "803d5510"
+        },
+        {
+            "name": "DangoHamuKuriManager",
+            "p_functions": "803d5568"
+        },
+        {
+            "name": "DoroHaneKuriManager",
+            "p_functions": "803d55c0"
+        },
+        {
+            "name": "HaneHamuKuriManager",
+            "p_functions": "803d5618"
+        },
+        {
+            "name": "HamuKuriManager",
+            "p_functions": "803d5670"
+        },
+        {
+            "name": "Hinokuri2Manager",
+            "p_functions": "803d5c68"
+        },
+        {
+            "name": "MameGessoManager",
+            "p_functions": "803d5f44"
+        },
+        {
+            "name": "DiffusionNameKuriManager",
+            "p_functions": "803d6200"
+        },
+        {
+            "name": "NameKuriManager",
+            "p_functions": "803d6420"
+        },
+        {
+            "name": "PakkunManager",
+            "p_functions": "803d6b10"
+        },
+        {
+            "name": "SmallEnemyManager",
+            "p_functions": "803d6d88"
+        },
+        {
+            "name": "TypicalManager",
+            "p_functions": "803d6e00"
+        },
+        {
+            "name": "BossGessoManager",
+            "p_functions": "803d72e0"
+        },
+        {
+            "name": "ElecNokonokoManager",
+            "p_functions": "803d7a8c"
+        },
+        {
+            "name": "KageMarioModokiManager",
+            "p_functions": "803d7d30"
+        },
+        {
+            "name": "TelesaManager",
+            "p_functions": "803d8670"
+        },
+        {
+            "name": "FireWanwanManager",
+            "p_functions": "803d8a1c"
+        },
+        {
+            "name": "BossPakkunManager",
+            "p_functions": "803d8db8"
+        },
+        {
+            "name": "MoePukuManager",
+            "p_functions": "803d9c88"
+        },
+        {
+            "name": "TobiPukuManager",
+            "p_functions": "803d9ce0"
+        },
+        {
+            "name": "MoePukuLaunchPadManager",
+            "p_functions": "803d9d38"
+        },
+        {
+            "name": "TobiPukuLaunchPadManager",
+            "p_functions": "803d9d90"
+        },
+        {
+            "name": "TinKoopaManager",
+            "p_functions": "803da0a4"
+        },
+        {
+            "name": "CommonLauncherManager",
+            "p_functions": "803da408"
+        },
+        {
+            "name": "LauncherManager",
+            "p_functions": "803da598"
+        },
+        {
+            "name": "BossWanwanManager",
+            "p_functions": "803da96c"
+        },
+        {
+            "name": "ChuuHanaManager",
+            "p_functions": "803db00c"
+        },
+        {
+            "name": "GorogoroManager",
+            "p_functions": "803db2b8"
+        },
+        {
+            "name": "GorogoroPolluteModelManager",
+            "p_functions": "803db338"
+        },
+        {
+            "name": "IgaigaManager",
+            "p_functions": "803db560"
+        },
+        {
+            "name": "IgaigaPolluteModelManager",
+            "p_functions": "803db5e0"
+        },
+        {
+            "name": "PoiHanaManager",
+            "p_functions": "803dbe1c"
+        },
+        {
+            "name": "TamaNokoManager",
+            "p_functions": "803dc10c"
+        },
+        {
+            "name": "BossTelesaManager",
+            "p_functions": "803dc734"
+        },
+        {
+            "name": "BubbleManager",
+            "p_functions": "803dc960"
+        },
+        {
+            "name": "RiccoHookManager",
+            "p_functions": "803dc9c8"
+        },
+        {
+            "name": "BombHeiManager",
+            "p_functions": "803dcec8"
+        },
+        {
+            "name": "CannonManager",
+            "p_functions": "803dd270"
+        },
+        {
+            "name": "BossEelManager",
+            "p_functions": "803ddaf8"
+        },
+        {
+            "name": "BEelTearsManager",
+            "p_functions": "803ddddc"
+        },
+        {
+            "name": "KillerManager",
+            "p_functions": "803de15c"
+        },
+        {
+            "name": "SamboHeadManager",
+            "p_functions": "803de69c"
+        },
+        {
+            "name": "HanaSamboManager",
+            "p_functions": "803de9a0"
+        },
+        {
+            "name": "SamboFlowerManager",
+            "p_functions": "803deb10"
+        },
+        {
+            "name": "PopoManager",
+            "p_functions": "803dee8c"
+        },
+        {
+            "name": "SleepBossHanachanManager",
+            "p_functions": "803df01c"
+        },
+        {
+            "name": "DemoBossHanachanManager",
+            "p_functions": "803df184"
+        },
+        {
+            "name": "FruitsBoatManager",
+            "p_functions": "803df1f8"
+        },
+        {
+            "name": "BossHanachanManager",
+            "p_functions": "803df558"
+        },
+        {
+            "name": "AmiNokoManager",
+            "p_functions": "803dfc04"
+        },
+        {
+            "name": "BiancoGateKeeperManager",
+            "p_functions": "803dff4c"
+        },
+        {
+            "name": "EggGenManager",
+            "p_functions": "803e0160"
+        },
+        {
+            "name": "SealManager",
+            "p_functions": "803e02f8"
+        },
+        {
+            "name": "EffectEnemyManager",
+            "p_functions": "803e0b00"
+        },
+        {
+            "name": "HauntLegManager",
+            "p_functions": "803e0ddc"
+        },
+        {
+            "name": "AreaCylinderManager",
+            "p_functions": "803e0e38"
+        },
+        {
+            "name": "WireTrapManager",
+            "p_functions": "803e0f20"
+        },
+        {
+            "name": "RocketManager",
+            "p_functions": "803e1420"
+        },
+        {
+            "name": "KazekunManager",
+            "p_functions": "803e150c"
+        },
+        {
+            "name": "BossMantaManager",
+            "p_functions": "803e177c"
+        },
+        {
+            "name": "YumboManager",
+            "p_functions": "803e1c14"
+        },
+        {
+            "name": "KoopaJrSubmarineManager",
+            "p_functions": "803e1d3c"
+        },
+        {
+            "name": "KoopaJrManager",
+            "p_functions": "803e1ed4"
+        },
+        {
+            "name": "KumokunManager",
+            "p_functions": "803e2234"
+        },
+        {
+            "name": "KoopaManager",
+            "p_functions": "803e2474"
+        },
+        {
+            "name": "KukkuManager",
+            "p_functions": "803e2c28"
+        },
+        {
+            "name": "AmenboManager",
+            "p_functions": "803e2f3c"
+        },
+        {
+            "name": "BathtubPeachManager",
+            "p_functions": "803e2ff4"
+        },
+        {
+            "name": "BathtubKillerManager",
+            "p_functions": "803e31b0"
+        },
+        {
+            "name": "CoasterKillerManager",
+            "p_functions": "803e3448"
+        },
+        {
+            "name": "DebuTelesaManager",
+            "p_functions": "803e3858"
+        },
+        {
+            "name": "TabePukuManager",
+            "p_functions": "803e3ad4"
+        },
+        {
+            "name": "LimitKoopaManager",
+            "p_functions": "803e3d90"
+        },
+        {
+            "name": "LimitKoopaJrManager",
+            "p_functions": "803e4488"
+        },
+        {
+            "name": "CubeManagerBase",
+            "p_functions": "803e4c38"
+        },
+        {
+            "name": "FishoidManager",
+            "p_functions": "803e5358"
+        },
+        {
+            "name": "MewManager",
+            "p_functions": "803e5868"
+        },
+        {
+            "name": "AnimalManagerBase",
+            "p_functions": "803e58bc"
+        },
+        {
+            "name": "AnimalBirdManager",
+            "p_functions": "803e59d4"
+        },
+        {
+            "name": "BeeHiveManager",
+            "p_functions": "803e5ba0"
+        },
+        {
+            "name": "ButterflyManager",
+            "p_functions": "803e5dc8"
+        }
+    ],
+    "a": [
+        {
+            "name": "QuestionManager",
+            "p_functions": "803b5350"
+        },
+        {
+            "name": "SplashManager",
+            "p_functions": "803b6888"
+        },
+        {
+            "name": "ModelWaterManager",
+            "p_functions": "803b7fec"
+        },
+        {
+            "name": "MapObjManager",
+            "p_functions": "803c08e4"
+        },
+        {
+            "name": "ItemManager",
+            "p_functions": "803c1f20"
+        },
+        {
+            "name": "MapObjFlagManager",
+            "p_functions": "803c97f0"
+        },
+        {
+            "name": "MapObjGrassManager",
+            "p_functions": "803cb598"
+        },
+        {
+            "name": "MapWireManager",
+            "p_functions": "803d0250"
+        },
+        {
+            "name": "MapObjPoleManager",
+            "p_functions": "803cb660"
+        },
+        {
+            "name": "ButterfloidManager",
+            "p_functions": "803e5dc8"
+        },
+        {
+            "name": "BeamManager",
+            "p_functions": "803de398"
+        },
+        {
+            "name": "MirrorModelManager",
+            "p_functions": "803cff4c"
+        }
+    ],
+    "object_template": {
+        "value": "81037da4",
+        "type": "pointer",
+        "name": {
+            "address": "4",
+            "type": "string",
+            "name": "MapObjBaseManager"
+        },
+        "offsets": [
+            {
+                "address": "18",
+                "type": "pointer",
+                "name": "map_obj_pointers",
+                "count": {
+                    "address": "14",
+                    "type": "u32",
+                    "name": "item_count"
+                },
+                "offsets": [
+                    {
+                        "address": [
+                            0,
+                            300
+                        ],
+                        "type": "pointer",
+                        "name": {
+                            "address": "4",
+                            "type": "string",
+                            "name": "item"
+                        },
+                        "offsets": [
+                            {
+                                "address": "0",
+                                "type": "pointer",
+                                "name": "p_functions"
+                            },
+                            {
+                                "address": "10",
+                                "type": "float",
+                                "name": "x"
+                            },
+                            {
+                                "address": "14",
+                                "type": "float",
+                                "name": "y"
+                            },
+                            {
+                                "address": "18",
+                                "type": "float",
+                                "name": "z"
+                            },
+                            {
+                                "address": "fc",
+                                "type": "u16",
+                                "name": "state"
+                            },
+                            {
+                                "address": "134",
+                                "type": "u32",
+                                "name": "SpawnObjID"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

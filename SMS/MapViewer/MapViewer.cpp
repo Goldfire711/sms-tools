@@ -1,11 +1,22 @@
 #include "MapViewer.h"
 
-MapViewer::MapViewer(QWidget *parent)
-    : QWidget(parent)
-{
-    ui.setupUi(this);
+extern QTimer* g_timer;
+
+MapViewer::MapViewer(QWidget* parent)
+  : QWidget(parent) {
+  ui.setupUi(this);
+  map_pinna_ = new MapPinnaBeach(nullptr);
+  ui.verticalLayout->addWidget(map_pinna_);
+  //resize(map_pinna->size());
+  connect(ui.check_center_on, &QCheckBox::stateChanged, this, &MapViewer::center_on_clicked);
 }
 
-MapViewer::~MapViewer()
-{
+MapViewer::~MapViewer() {
+}
+
+void MapViewer::center_on_clicked() {
+  if (ui.check_center_on->checkState() == Qt::Unchecked)
+    map_pinna_->center_on_mario_ = false;
+  else
+    map_pinna_->center_on_mario_ = true;
 }

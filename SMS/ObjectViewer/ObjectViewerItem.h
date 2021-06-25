@@ -13,6 +13,7 @@ public:
   void append_child(ObjectViewerItem* child);
   s64 row() const;
   s64 child_count() const;
+  void update();
   void update_all();
 
   enum {
@@ -37,10 +38,10 @@ private:
   //QVector<QVariant> item_data_;
   s64 type_size_ = 4;
   u32 address_ = 0;
+  u32 p_functions_ = 0;
 
   ObjectViewerItem* memory_name_ = nullptr;
   ObjectViewerItem* memory_count_ = nullptr;
 
-  void update();
 
 };

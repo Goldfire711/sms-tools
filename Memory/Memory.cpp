@@ -158,13 +158,13 @@ u8* memory::read_bytes(u32 address, std::initializer_list<u32> offsets, size_t s
   return bytes;
 }
 
-// shift-jis メモリリーク?
+// shift-jis メモリリーク?->deleteで解消した
 QString memory::read_string(u32 address, size_t size) {
   auto s = new u8[size + 1];
   DolphinComm::DolphinAccessor::readFromRAM(address & 0x7fffffff, s, size, false);
   s[size] = '\0';
   QString qs = QTextCodec::codecForName("Shift-JIS")->toUnicode((char*)s);
-  delete s;
+  delete[] s;
   return qs;
 }
 
@@ -181,7 +181,7 @@ QString memory::read_string(u32 address, std::initializer_list<u32> offsets, siz
   if (DolphinComm::DolphinAccessor::readFromRAM(address & 0x7fffffff, s, size, false)) {
     s[size] = '\0';
     QString qs = QTextCodec::codecForName("Shift-JIS")->toUnicode((char*)s);
-    delete s;
+    delete[] s;
     return qs;
   }
   return "???";

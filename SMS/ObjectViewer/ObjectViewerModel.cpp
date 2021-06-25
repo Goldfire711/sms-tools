@@ -125,8 +125,18 @@ int ObjectViewerModel::rowCount(const QModelIndex& parent) const
 //  parent->append_child(new ObjectViewerItem({ "a", "b" }, parent));
 //}
 
+void ObjectViewerModel::update_all_items(ObjectViewerItem* item, const QModelIndex& parent) {
+  item->update();
+  emit dataChanged(index(item->row(), COLUMN_NAME, parent), index(item->row(), COLUMN_VALUE, parent));
+  for (s32 i = 0; i < item->child_count(); i++) {
+    item->child_items_[i]->update_all();
+  }
+}
+
+
 void ObjectViewerModel::on_update() {
   //time_count_++;
-  root_item_->update_all();
-  emit layoutChanged();
+  //root_item_->update_all();
+  //emit layoutChanged();
+  update_all_items(root_item_);
 }

@@ -1,7 +1,15 @@
 <RCC>
     <qresource prefix="/sms">
-        <file alias="ObjectViewer.json">SMS/Resources/ObjectViewer.json</file>
-        <file alias="test.json">SMS/Resources/test.json</file>
-        <file alias="PinnaBeach">SMS/Resources/PinnaBeach.png</file>
+        <file alias="PinnaBeach.png">SMS/Resources/PinnaBeach.png</file>
+        <file alias="coin.png">SMS/Resources/coin.png</file>
+        <file alias="coin_blue.png">SMS/Resources/coin_blue.png</file>
+        <file alias="coin_red.png">SMS/Resources/coin_red.png</file>
+        <file alias="fruit_banana.png">SMS/Resources/fruit_banana.png</file>
+        <file alias="fruit_coconut.png">SMS/Resources/fruit_coconut.png</file>
+        <file alias="fruit_durian.png">SMS/Resources/fruit_durian.png</file>
+        <file alias="fruit_papaya.png">SMS/Resources/fruit_papaya.png</file>
+        <file alias="fruit_pine.png">SMS/Resources/fruit_pine.png</file>
+        <file alias="mario.png">SMS/Resources/mario.png</file>
+        <file alias="shine.png">SMS/Resources/shine.png</file>
     </qresource>
 </RCC>

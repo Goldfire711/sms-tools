@@ -24,6 +24,7 @@ public:
   int rowCount(const QModelIndex& parent = QModelIndex()) const override;
   int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
+  void update_all_items(ObjectViewerItem* item, const QModelIndex& parent = QModelIndex());
   void on_update();
 
   s64 time_count_ = 0;

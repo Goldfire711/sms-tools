@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerItem.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
     <ClCompile Include="SMS\MapViewer\MapViewer.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="DolphinProcess\IDolphinProcess.h" />
     <ClInclude Include="DolphinProcess\Linux\LinuxDolphinProcess.h" />
     <ClInclude Include="DolphinProcess\Windows\WindowsDolphinProcess.h" />
+    <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
@@ -122,11 +124,23 @@
     <QtMoc Include="SMS\Spin\Spin.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SMS\Resources\ObjectViewer DT.json" />
     <None Include="SMS\Resources\ObjectViewer.json" />
-    <None Include="SMS\Resources\test.json" />
+    <None Include="SMS\Resources\ObjectViewer_managers.json" />
+    <None Include="SMS\Resources\ObjectViewer_template.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="SMS\Resources\coin.png" />
+    <Image Include="SMS\Resources\coin_blue.png" />
+    <Image Include="SMS\Resources\coin_red.png" />
+    <Image Include="SMS\Resources\fruit_banana.png" />
+    <Image Include="SMS\Resources\fruit_coconut.png" />
+    <Image Include="SMS\Resources\fruit_durian.png" />
+    <Image Include="SMS\Resources\fruit_papaya.png" />
+    <Image Include="SMS\Resources\fruit_pine.png" />
+    <Image Include="SMS\Resources\mario.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
+    <Image Include="SMS\Resources\shine.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -111,6 +111,13 @@
                                     "address": "fc",
                                     "type": "u16",
                                     "name": "state"
+                                },
+                                {
+                                    "address": "134",
+                                    "type": "u32",
+                                    "name": "SpawnObjID",
+                                    "p_functions": "813D2D98",
+                                    "obj_name": "水ヒットコイン"
                                 }
                             ]
                         }
