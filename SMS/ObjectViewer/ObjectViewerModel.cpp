@@ -32,7 +32,7 @@ QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
 
   //float mem = memory::read_float(0x8040A378, {0xb0});
   auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
-  //if (item->is_visible_)
+  //if (item->is_attribute_)
   //  return QVariant();
 
   switch (index.column()) {

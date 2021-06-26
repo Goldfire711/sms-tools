@@ -8,52 +8,52 @@
                 "type": "string",
                 "name": "item_manager"
             },
+            "pointer": {
+                "address": "18",
+                "type": "pointer",
+                "name": "p_object_table"
+            },
+            "count": {
+                "address": "14",
+                "type": "u32",
+                "name": "item_count"
+            },
             "offsets": [
                 {
-                    "address": "18",
+                    "address": {
+                        "maximum_count": 300
+                    },
                     "type": "pointer",
-                    "name": "item_pointers",
-                    "count": {
-                        "address": "14",
-                        "type": "u32",
-                        "name": "item_count"
+                    "name": {
+                        "address": "4",
+                        "type": "string",
+                        "name": "item"
                     },
                     "offsets": [
                         {
-                            "address": [0, 300],
+                            "address": "0",
                             "type": "pointer",
-                            "name": {
-                                "address": "4",
-                                "type": "string",
-                                "name": "item"
-                            },
-                            "offsets": [
-                                {
-                                    "address": "0",
-                                    "type": "pointer",
-                                    "name": "p_functions"
-                                },
-                                {
-                                    "address": "10",
-                                    "type": "float",
-                                    "name": "x"
-                                },
-                                {
-                                    "address": "14",
-                                    "type": "float",
-                                    "name": "y"
-                                },
-                                {
-                                    "address": "18",
-                                    "type": "float",
-                                    "name": "z"
-                                },
-                                {
-                                    "address": "fc",
-                                    "type": "u16",
-                                    "name": "state"
-                                }
-                            ]
+                            "name": "p_functions"
+                        },
+                        {
+                            "address": "10",
+                            "type": "float",
+                            "name": "x"
+                        },
+                        {
+                            "address": "14",
+                            "type": "float",
+                            "name": "y"
+                        },
+                        {
+                            "address": "18",
+                            "type": "float",
+                            "name": "z"
+                        },
+                        {
+                            "address": "fc",
+                            "type": "u16",
+                            "name": "state"
                         }
                     ]
                 }
@@ -67,59 +67,57 @@
                 "type": "string",
                 "name": "gpMapObjManager"
             },
+            "pointer": {
+                "address": "18",
+                "type": "pointer",
+                "name": "p_object_table"
+            },
+            "count": {
+                "address": "14",
+                "type": "u32",
+                "name": "object_count"
+            },
             "offsets": [
                 {
-                    "address": "18",
+                    "address": {
+                        "maximum_count": 300
+                    },
                     "type": "pointer",
-                    "name": "map_obj_pointers",
-                    "count": {
-                        "address": "14",
-                        "type": "u32",
-                        "name": "item_count"
+                    "name": {
+                        "address": "4",
+                        "type": "string",
+                        "name": "object"
                     },
                     "offsets": [
                         {
-                            "address": [0, 300],
+                            "address": "0",
                             "type": "pointer",
-                            "name": {
-                                "address": "4",
-                                "type": "string",
-                                "name": "item"
-                            },
-                            "offsets": [
-                                {
-                                    "address": "0",
-                                    "type": "pointer",
-                                    "name": "p_functions"
-                                },
-                                {
-                                    "address": "10",
-                                    "type": "float",
-                                    "name": "x"
-                                },
-                                {
-                                    "address": "14",
-                                    "type": "float",
-                                    "name": "y"
-                                },
-                                {
-                                    "address": "18",
-                                    "type": "float",
-                                    "name": "z"
-                                },
-                                {
-                                    "address": "fc",
-                                    "type": "u16",
-                                    "name": "state"
-                                },
-                                {
-                                    "address": "134",
-                                    "type": "u32",
-                                    "name": "SpawnObjID",
-                                    "p_functions": "813D2D98",
-                                    "obj_name": "水ヒットコイン"
-                                }
-                            ]
+                            "name": "p_functions"
+                        },
+                        {
+                            "address": "10",
+                            "type": "float",
+                            "name": "x"
+                        },
+                        {
+                            "address": "14",
+                            "type": "float",
+                            "name": "y"
+                        },
+                        {
+                            "address": "18",
+                            "type": "float",
+                            "name": "z"
+                        },
+                        {
+                            "address": "fc",
+                            "type": "u16",
+                            "name": "state"
+                        },
+                        {
+                            "address": "134",
+                            "type": "u32",
+                            "name": "SpawnObjID"
                         }
                     ]
                 }

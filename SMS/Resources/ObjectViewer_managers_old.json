@@ -5,18 +5,36 @@
             "p_functions": "803c0740"
         },
         {
+            "name": "LightWithDBSetManager",
+            "p_functions": "803b1fd8"
+        },
+        {
+            "name": "MBindShadowManager",
+            "p_functions": "803b2a90"
+        },
+        {
             "name": "MarioParticleManager",
             "p_functions": "803b3860"
         },
         {
-            "name": "NamekuriLauncherManager",
-            "p_functions": "803b41a8",
-            "name_old": "NameKuriLauncherManager"
+            "name": "CubeManagerFast",
+            "p_functions": "803b3de0"
         },
         {
-            "name": "HamukuriLauncherManager",
-            "p_functions": "803b41fc",
-            "name_old": "HamuKuriLauncherManager"
+            "name": "CubeManagerArea",
+            "p_functions": "803b3e04"
+        },
+        {
+            "name": "CubeManagerMarioIn",
+            "p_functions": "803b3e28"
+        },
+        {
+            "name": "NameKuriLauncherManager",
+            "p_functions": "803b41a8"
+        },
+        {
+            "name": "HamuKuriLauncherManager",
+            "p_functions": "803b41fc"
         },
         {
             "name": "MareWManager",
@@ -143,6 +161,22 @@
             "p_functions": "803b8f78"
         },
         {
+            "name": "MonteWSpecialManager",
+            "p_functions": "803b8fd0"
+        },
+        {
+            "name": "MonteMSpecialManager",
+            "p_functions": "803b9028"
+        },
+        {
+            "name": "MonteWBaseManager",
+            "p_functions": "803b9080"
+        },
+        {
+            "name": "MonteMBaseManager",
+            "p_functions": "803b90d8"
+        },
+        {
             "name": "MareBaseManager",
             "p_functions": "803b9130"
         },
@@ -175,6 +209,18 @@
             "p_functions": "803d00b8"
         },
         {
+            "name": "PollutionManager",
+            "p_functions": "803d03e4"
+        },
+        {
+            "name": "BathWaterManager",
+            "p_functions": "803d0d28"
+        },
+        {
+            "name": "StickyStainManager",
+            "p_functions": "803d0e50"
+        },
+        {
             "name": "SelectShineManager",
             "p_functions": "803d1ca8"
         },
@@ -197,6 +243,10 @@
         {
             "name": "EffectColumWaterManager",
             "p_functions": "803d27d8"
+        },
+        {
+            "name": "EffectObjManager",
+            "p_functions": "803d2940"
         },
         {
             "name": "EMarioManager",
@@ -296,10 +346,6 @@
         },
         {
             "name": "BossPakkunManager",
-            "p_functions": "803d8db8"
-        },
-        {
-            "name": "KBossPakkunManager",
             "p_functions": "803d8db8"
         },
         {
@@ -431,9 +477,8 @@
             "p_functions": "803dfc04"
         },
         {
-            "name": "GateKeeperManager",
-            "p_functions": "803dff4c",
-            "name_old": "BiancoGateKeeperManager"
+            "name": "BiancoGateKeeperManager",
+            "p_functions": "803dff4c"
         },
         {
             "name": "EggGenManager",
@@ -528,6 +573,10 @@
             "p_functions": "803e4488"
         },
         {
+            "name": "CubeManagerBase",
+            "p_functions": "803e4c38"
+        },
+        {
             "name": "FishoidManager",
             "p_functions": "803e5358"
         },
@@ -600,123 +649,6 @@
         {
             "name": "MirrorModelManager",
             "p_functions": "803cff4c"
-        },
-        {
-            "name": "LightWithDBSetManager",
-            "p_functions": "803b1fd8",
-            "gp": "8040a22c"
-        },
-        {
-            "name": "CubeManagerBase",
-            "p_functions": "803e4c38"
-        },
-        {
-            "name": "CubeCamera",
-            "p_functions": "803e4c38",
-            "gp": "8040b398"
-        },
-        {
-            "name": "CubeMirror",
-            "p_functions": "803e4c38",
-            "gp": "8040b39c"
-        },
-        {
-            "name": "CubeWire",
-            "p_functions": "803e4c38",
-            "gp": "8040b3a0"
-        },
-        {
-            "name": "CubeStream",
-            "p_functions": "803e4c38",
-            "gp": "8040b3a4"
-        },
-        {
-            "name": "CubeShadow",
-            "p_functions": "803e4c38",
-            "gp": "8040b3a8"
-        },
-        {
-            "name": "CubeArea",
-            "p_functions": "803e4c38",
-            "gp": "8040b3ac"
-        },
-        {
-            "name": "CubeFastA",
-            "p_functions": "803e4c38",
-            "gp": "8040b3b0"
-        },
-        {
-            "name": "CubeFastB",
-            "p_functions": "803e4c38",
-            "gp": "8040b3b4"
-        },
-        {
-            "name": "CubeFastC",
-            "p_functions": "803e4c38",
-            "gp": "8040b3b8"
-        },
-        {
-            "name": "CubeSoundChange",
-            "p_functions": "803e4c38",
-            "gp": "8040b3bc"
-        },
-        {
-            "name": "CubeSoundEffect",
-            "p_functions": "803e4c38",
-            "gp": "8040b3c0"
-        },
-        {
-            "name": "CubeManagerFast",
-            "p_functions": "803b3de0"
-        },
-        {
-            "name": "CubeManagerArea",
-            "p_functions": "803b3e04"
-        },
-        {
-            "name": "CubeManagerMarioIn",
-            "p_functions": "803b3e28"
-        },
-        {
-            "name": "MonteWSpecialManager",
-            "p_functions": "803b8fd0"
-        },
-        {
-            "name": "MonteMSpecialManager",
-            "p_functions": "803b9028"
-        },
-        {
-            "name": "MonteWBaseManager",
-            "p_functions": "803b9080"
-        },
-        {
-            "name": "MonteMBaseManager",
-            "p_functions": "803b90d8"
-        },
-        {
-            "name": "Pollution",
-            "p_functions": "803d03e4",
-            "name_old": "PollutionManager",
-            "gp": "8040a5a8"
-        },
-        {
-            "name": "BindShadow",
-            "p_functions": "803b2a90",
-            "name_old": "MBindShadowManager"
-        },
-        {
-            "name": "BathWater",
-            "p_functions": "803d0d28",
-            "name_old": "BathWaterManager"
-        },
-        {
-            "name": "StickyStain",
-            "p_functions": "803d0e50",
-            "name_old": "StickyStainManager"
-        },
-        {
-            "name": "EffectObjManager",
-            "p_functions": "803d2940"
         }
     ],
     "object_template": {
@@ -727,57 +659,60 @@
             "type": "string",
             "name": "MapObjBaseManager"
         },
-        "pointer": {
-            "address": "18",
-            "type": "pointer",
-            "name": "p_object_table"
-        },
-        "count": {
-            "address": "14",
-            "type": "u32",
-            "name": "object_count"
-        },
         "offsets": [
             {
-                "address": {
-                    "maximum_count": 300
-                },
+                "address": "18",
                 "type": "pointer",
-                "name": {
-                    "address": "4",
-                    "type": "string",
-                    "name": "object"
+                "name": "map_obj_pointers",
+                "count": {
+                    "address": "14",
+                    "type": "u32",
+                    "name": "item_count"
                 },
                 "offsets": [
                     {
-                        "address": "0",
+                        "address": [
+                            0,
+                            300
+                        ],
                         "type": "pointer",
-                        "name": "p_functions"
-                    },
-                    {
-                        "address": "10",
-                        "type": "float",
-                        "name": "x"
-                    },
-                    {
-                        "address": "14",
-                        "type": "float",
-                        "name": "y"
-                    },
-                    {
-                        "address": "18",
-                        "type": "float",
-                        "name": "z"
-                    },
-                    {
-                        "address": "fc",
-                        "type": "u16",
-                        "name": "state"
-                    },
-                    {
-                        "address": "134",
-                        "type": "u32",
-                        "name": "SpawnObjID"
+                        "name": {
+                            "address": "4",
+                            "type": "string",
+                            "name": "item"
+                        },
+                        "offsets": [
+                            {
+                                "address": "0",
+                                "type": "pointer",
+                                "name": "p_functions"
+                            },
+                            {
+                                "address": "10",
+                                "type": "float",
+                                "name": "x"
+                            },
+                            {
+                                "address": "14",
+                                "type": "float",
+                                "name": "y"
+                            },
+                            {
+                                "address": "18",
+                                "type": "float",
+                                "name": "z"
+                            },
+                            {
+                                "address": "fc",
+                                "type": "u16",
+                                "name": "state"
+                            },
+                            {
+                                "address": "134",
+                                "type": "u32",
+                                "name": "SpawnObjID"
+                            }
+                        ]
                     }
                 ]
             }

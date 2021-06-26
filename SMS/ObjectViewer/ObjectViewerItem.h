@@ -7,7 +7,7 @@
 
 class ObjectViewerItem {
 public:
-  explicit ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item = nullptr);
+  explicit ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item = nullptr, bool is_attribute = false);
   ~ObjectViewerItem();
 
   void append_child(ObjectViewerItem* child);
@@ -30,7 +30,7 @@ public:
   QString name_;
   QVariant value_ = 0;
   s32 column_count_ = 2;
-  bool is_visible_ = true;
+  bool is_attribute_ = false;
 
   QVector<ObjectViewerItem*> child_items_;
   ObjectViewerItem* parent_item_;
@@ -42,6 +42,6 @@ private:
 
   ObjectViewerItem* memory_name_ = nullptr;
   ObjectViewerItem* memory_count_ = nullptr;
-
+  ObjectViewerItem* memory_pointer_ = nullptr;
 
 };

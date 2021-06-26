@@ -3,8 +3,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item)
-  : parent_item_(parent_item) {
+ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item, bool is_attribute)
+  : parent_item_(parent_item), is_attribute_(is_attribute){
   if (parent_item == nullptr) { // header
     QJsonArray objects = json["objects"].toArray();
     name_ = "name";
@@ -56,36 +56,31 @@ ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* pa
     }
 
     if (json["name"].isObject()) {
-      memory_name_ = new ObjectViewerItem(json["name"].toObject(), this);
+      memory_name_ = new ObjectViewerItem(json["name"].toObject(), this, true);
       name_ = memory_name_->name_;
     } else {
       name_ = json["name"].toString();
     }
     
     if (!json["count"].isUndefined() && json["count"].isObject()) {
-        memory_count_ = new ObjectViewerItem(json["count"].toObject(), parent_item_);
+      memory_count_ = new ObjectViewerItem(json["count"].toObject(), this, true);
+    }
+
+    if (!json["pointer"].isUndefined() && json["pointer"].isObject()) {
+      memory_pointer_ = new ObjectViewerItem(json["pointer"].toObject(), this, true);
     }
 
     if (type_ == POINTER && !json["offsets"].isUndefined()) {
       QJsonArray offsets = json["offsets"].toArray();
       for (auto offset : offsets) {
         QJsonObject offset_json = offset.toObject();
-        if (offset_json["address"].isArray()) {
-          QJsonArray loop_count = offset_json["address"].toArray();
-          //if (memory_count_ == nullptr) {
-          for (s64 i = loop_count[0].toInt(); i < loop_count[1].toInt(); i++) {
+        if (offset_json["address"].isObject()) {
+          QJsonObject address = offset_json["address"].toObject();
+          for (s64 i = 0; i < address["maximum_count"].toInt(); i++) {
             offset_json["address"] = QString::number(i * type_size_, 16);
             auto* child = new ObjectViewerItem(offset_json, this);
             append_child(child);
           }
-          //} else {
-          //  for (s64 i = loop_count[0].toInt(); i < loop_count[1].toInt(); i++) {
-          //    offset_json["address"] = QString::number(i * type_size_, 16);
-          //    auto* child = new ObjectViewerItem(offset_json, this);
-          //    child->is_visible_ = false;
-          //    append_child(child);
-          //  }
-          //}
         } else {
           auto* child = new ObjectViewerItem(offset_json, this);
           append_child(child);
@@ -99,6 +94,7 @@ ObjectViewerItem::~ObjectViewerItem() {
   qDeleteAll(child_items_);
   delete memory_name_;
   delete memory_count_;
+  delete memory_pointer_;
 }
 
 void ObjectViewerItem::append_child(ObjectViewerItem* child) {
@@ -127,7 +123,14 @@ void ObjectViewerItem::update() {
     //address = address_;
     return;
   }
-  const u32 pointer = parent_item_->value_.toUInt();
+
+  // get current address
+  u32 pointer;
+  if (!is_attribute_ && parent_item_->memory_pointer_ != nullptr) {
+    pointer = parent_item_->memory_pointer_->value_.toUInt();
+  } else {
+    pointer = parent_item_->value_.toUInt();
+  }
   u32 address = pointer + address_;
 
   if (memory_name_ != nullptr) {
@@ -137,6 +140,10 @@ void ObjectViewerItem::update() {
 
   if (memory_count_ != nullptr) {
     memory_count_->update();
+  }
+
+  if (memory_pointer_ != nullptr) {
+    memory_pointer_->update();
   }
 
   if (address < 0x80000000 || 0x81800000 <= address)
