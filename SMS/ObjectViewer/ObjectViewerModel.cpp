@@ -119,12 +119,6 @@ int ObjectViewerModel::rowCount(const QModelIndex& parent) const
   return parentItem->child_count();
 }
 
-//void ObjectViewerModel::setup_model_data(const QJsonObject& json, ObjectViewerItem* parent) {
-//  QString test = "test";
-//  parent->append_child(new ObjectViewerItem({ test, time_count_ }, parent));
-//  parent->append_child(new ObjectViewerItem({ "a", "b" }, parent));
-//}
-
 void ObjectViewerModel::update_all_items(ObjectViewerItem* item, const QModelIndex& parent) {
   item->update();
   emit dataChanged(index(item->row(), COLUMN_NAME, parent), index(item->row(), COLUMN_VALUE, parent));
@@ -133,10 +127,13 @@ void ObjectViewerModel::update_all_items(ObjectViewerItem* item, const QModelInd
   }
 }
 
-
 void ObjectViewerModel::on_update() {
   //time_count_++;
   //root_item_->update_all();
   //emit layoutChanged();
   update_all_items(root_item_);
+}
+
+ObjectViewerItem* ObjectViewerModel::get_item(const QModelIndex& index) const {
+  return static_cast<ObjectViewerItem*>(index.internalPointer());
 }

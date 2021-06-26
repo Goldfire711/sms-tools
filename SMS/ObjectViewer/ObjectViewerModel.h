@@ -27,6 +27,8 @@ public:
   void update_all_items(ObjectViewerItem* item, const QModelIndex& parent = QModelIndex());
   void on_update();
 
+  ObjectViewerItem* get_item(const QModelIndex& index) const;
+
   s64 time_count_ = 0;
 
 private:

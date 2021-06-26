@@ -21,6 +21,7 @@ private:
   QGraphicsScene* scene_;
   QGraphicsPixmapItem* mario_pix_item_;
   QGraphicsPixmapItem* water_hit_obj_items_[200];
+  QGraphicsPixmapItem* item_manager_items_[100];
   QPixmap coin_pix_;
   QPixmap coin_blue_pix_;
   QPixmap fruit_banana_pix_;

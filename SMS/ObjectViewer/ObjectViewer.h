@@ -12,6 +12,8 @@ public:
   ObjectViewer(QWidget* parent = Q_NULLPTR);
   ~ObjectViewer() override;
   void scan_managers();
+  void show_context_menu(const QPoint& pos);
+  void copy_as_dmw_format();
   //void on_update();
 
 protected:

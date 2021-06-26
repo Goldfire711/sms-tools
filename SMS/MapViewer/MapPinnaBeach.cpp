@@ -47,7 +47,15 @@ void MapPinnaBeach::initialize() {
     water_hit_obj_items_[i]->setScale(200.0 / coin_pix_.width());
     water_hit_obj_items_[i]->setPos(0, 5000);
     water_hit_obj_items_[i]->setOpacity(0.5);
-    water_hit_obj_items_[i]->setVisible(true);
+    water_hit_obj_items_[i]->setVisible(false);
+  }
+
+  // アイテムマネージャー(コイン)
+  for (auto* item : item_manager_items_) {
+    item = scene_->addPixmap(QPixmap());
+    item->setScale(200.0 / coin_pix_.width());
+    item->setPos(0, 5000);
+    item->setVisible(false);
   }
 
   // マリオの画像
@@ -148,6 +156,56 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
     } else {
       water_hit_obj_items_[i]->setPos(0, 5000);
     }
+  }
+
+  // アイテムマネージャー(コイン)
+  const u32 p_map_item_manager = read_u32(0x8040a4d8);
+  const u32 map_items_count = read_u32(p_map_item_manager + 0x14);
+  const u32 p_map_items = read_u32(p_map_item_manager + 0x18);
+  for (s64 i = 0; i < map_items_count; i++) {
+    const u32 p_item = read_u32(p_map_items + i * 4);
+    if (!(0x80000000 <= p_item && p_item <= 0x817fffff))
+      return;
+
+    u16 state = read_u16(p_item + 0xfc);
+    if (state == 0) {
+      item_manager_items_[i]->setVisible(false);
+      item_manager_items_[i]->setPos(0, 5000);
+      continue;
+    }
+
+    item_manager_items_[i]->setVisible(true);
+    const float x = read_float(p_item + 0x10);
+    const float z = read_float(p_item + 0x18);
+    item_manager_items_[i]->setPos(x, z);
+
+    const u32 function_pointer = read_u32(p_item);
+
+    if (function_pointer == 0x80c31b58) { // コイン
+      item_manager_items_[i]->setPixmap(coin_pix_);
+      item_manager_items_[i]->setTransformOriginPoint(coin_pix_.width() / 2.0, coin_pix_.height() / 2.0);
+    } else if (function_pointer == 0x803c13c8) {  // 青コイン
+      item_manager_items_[i]->setPixmap(coin_blue_pix_);
+      item_manager_items_[i]->setTransformOriginPoint(coin_blue_pix_.width() / 2.0, coin_blue_pix_.height() / 2.0);
+    } else if (function_pointer == 0){}
+
+    switch (function_pointer) {
+    case 0x80c31b58:  // コイン
+      item_manager_items_[i]->setPixmap(coin_pix_);
+      item_manager_items_[i]->setTransformOriginPoint(coin_pix_.width() / 2.0, coin_pix_.height() / 2.0);
+      break;
+    case 0x803c13c8:  // 青コイン
+      item_manager_items_[i]->setPixmap(coin_blue_pix_);
+      item_manager_items_[i]->setTransformOriginPoint(coin_blue_pix_.width() / 2.0, coin_blue_pix_.height() / 2.0);
+      break;
+    case 0x803ca434:  // フルーツ
+
+    default:
+      item_manager_items_[i]->setPixmap(QPixmap());
+      item_manager_items_[i]->setPos(0, 5000);
+      break;
+    }
+
   }
 
   //const u32 p_item_obj_manager = read_u32(0x8040a4d0);

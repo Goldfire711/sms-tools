@@ -107,6 +107,8 @@ s64 ObjectViewerItem::child_count() const {
     const s64 memory_count = memory_count_->value_.toUInt();
     if (memory_count < child_count)
       return memory_count;
+    if (1000 < memory_count)
+      return 0;
   }
   return child_count;
 }
@@ -140,6 +142,7 @@ void ObjectViewerItem::update() {
 
   if (memory_count_ != nullptr) {
     memory_count_->update();
+    name_ += " (" + QString::number(memory_count_->value_.toUInt()) + ")";
   }
 
   if (memory_pointer_ != nullptr) {
@@ -183,7 +186,7 @@ void ObjectViewerItem::update() {
     break;
   case STRING:
     address = memory::read_u32(address);
-    value_ = memory::read_string(address, 32);
+    value_ = memory::read_string(address, 38);
     break;
   }
 }
