@@ -160,7 +160,131 @@
         },
         {
             "name": "FluffManager",
-            "p_functions": "803ccb50"
+            "p_functions": "803ccb50",
+            "object": {
+                "value": "",
+                "type": "pointer",
+                "name": {
+                    "address": "4",
+                    "type": "string",
+                    "name": ""
+                },
+                "pointer": {
+                    "address": "168",
+                    "type": "pointer",
+                    "name": "p_fluff_table"
+                },
+                "count": {
+                    "address": "164",
+                    "type": "u32",
+                    "name": "fluff_count"
+                },
+                "offsets": [
+                    {
+                        "address": {
+                            "maximum_count": 32
+                        },
+                        "type": "pointer",
+                        "name": {
+                            "address": "4",
+                            "type": "string",
+                            "name": "fluff"
+                        },
+                        "offsets": [
+                            {
+                                "address": "0",
+                                "type": "pointer",
+                                "name": "p_functions"
+                            },
+                            {
+                                "address": "10",
+                                "type": "float",
+                                "name": "x"
+                            },
+                            {
+                                "address": "14",
+                                "type": "float",
+                                "name": "y"
+                            },
+                            {
+                                "address": "18",
+                                "type": "float",
+                                "name": "z"
+                            },
+                            {
+                                "address": "fc",
+                                "type": "u16",
+                                "name": "state"
+                            },
+                            {
+                                "address": "148",
+                                "type": "float",
+                                "name": "揺れの位相"
+                            },
+                            {
+                                "address": "150",
+                                "type": "float",
+                                "name": "風抵抗"
+                            },
+                            {
+                                "address": "34",
+                                "type": "float",
+                                "name": "次の揺れの方向"
+                            },
+                            {
+                                "address": "10c",
+                                "type": "float",
+                                "name": "x origin"
+                            },
+                            {
+                                "address": "110",
+                                "type": "float",
+                                "name": "y origin"
+                            },
+                            {
+                                "address": "114",
+                                "type": "float",
+                                "name": "z origin"
+                            },
+                            {
+                                "address": "154",
+                                "type": "float",
+                                "name": "x offset"
+                            },
+                            {
+                                "address": "158",
+                                "type": "float",
+                                "name": "y offset"
+                            },
+                            {
+                                "address": "15c",
+                                "type": "float",
+                                "name": "z offset"
+                            },
+                            {
+                                "address": "ac",
+                                "type": "float",
+                                "name": "x pushed"
+                            },
+                            {
+                                "address": "b0",
+                                "type": "float",
+                                "name": "y pushed"
+                            },
+                            {
+                                "address": "b4",
+                                "type": "float",
+                                "name": "z pushed"
+                            },
+                            {
+                                "address": "134",
+                                "type": "u32",
+                                "name": "SpawnObjID"
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "name": "PoolManager",

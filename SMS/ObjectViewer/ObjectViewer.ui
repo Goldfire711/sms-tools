@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>600</height>
+    <width>338</width>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@
    <item>
     <widget class="QTreeView" name="tree_object">
      <attribute name="headerDefaultSectionSize">
-      <number>300</number>
+      <number>212</number>
      </attribute>
     </widget>
    </item>

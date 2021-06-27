@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>235</width>
-    <height>203</height>
+    <width>238</width>
+    <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>sms-tools</string>
   </property>
   <property name="animated">
    <bool>true</bool>
@@ -84,6 +84,13 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="button_widget_object_viewer">
+      <property name="text">
+       <string>Object Viewer</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="button_widget_map_viewer">
       <property name="text">
        <string>Map Viewer</string>
@@ -92,15 +99,11 @@
     </item>
     <item>
      <widget class="QPushButton" name="button_widget_rng_manipulator">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string>RNG Manipulator</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="button_widget_object_viewer">
-      <property name="text">
-       <string>Object Viewer</string>
       </property>
      </widget>
     </item>
@@ -118,22 +121,6 @@
      </spacer>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menu_bar_">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>235</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu_test">
-    <property name="title">
-     <string>test</string>
-    </property>
-   </widget>
-   <addaction name="menu_test"/>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

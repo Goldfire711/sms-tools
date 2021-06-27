@@ -13,6 +13,7 @@ Q_OBJECT
 
 public:
 	MainWindow(QWidget* parent = Q_NULLPTR);
+	void closeEvent(QCloseEvent* event) override;
 	void hook_unhook_attempt();
 
 	void show_widget_spin();

@@ -1,10 +1,13 @@
 #include "MainWindow.h"
 
+#include <qevent.h>
+
 #include "DolphinProcess/DolphinAccessor.h"
 #include "Common/CommonUtils.h"
 #include "Memory/Memory.h"
 
-QTimer* g_timer;
+QTimer* g_timer_100ms;
+QTimer* g_timer_16ms;
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent) {
@@ -15,13 +18,14 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
   //connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
   //connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
-  g_timer = new QTimer(this);
-  connect(g_timer, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
+  g_timer_100ms = new QTimer(this);
+  g_timer_16ms = new QTimer(this);
+  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
 
   ui.button_hook->setChecked(true);
   hook_unhook_attempt();
 
-  show_widget_object_viewer();
+  //show_widget_object_viewer();
   //show_widget_map_viewer();
 }
 
@@ -29,7 +33,8 @@ void MainWindow::hook_unhook_attempt() {
   if (ui.button_hook->isChecked()) {
     DolphinComm::DolphinAccessor::hook();
   } else {
-    g_timer->stop();
+    g_timer_100ms->stop();
+    g_timer_16ms->stop();
     DolphinComm::DolphinAccessor::unHook();
   }
   switch (DolphinComm::DolphinAccessor::getStatus()) {
@@ -39,7 +44,8 @@ void MainWindow::hook_unhook_attempt() {
       QString::number(DolphinComm::DolphinAccessor::getEmuRAMAddressStart(), 16).toUpper());
     ui.button_hook->setText(tr("Unhook"));
     ui.button_hook->setChecked(true);
-    g_timer->start(100);
+    g_timer_100ms->start(100);
+    g_timer_16ms->start(16);
 
     //QVariant test = memory::read_string(0x8040A4D8, { 0x18, 0, 4, 0 }, 32);
     //ui.button_widget_fluff_manipulator->setText(test.toString());
@@ -79,7 +85,7 @@ void MainWindow::on_update() {
 void MainWindow::show_widget_spin() {
   if (!sms_spin_) {
     sms_spin_ = new Spin(nullptr);
-    g_timer->connect(g_timer, SIGNAL(timeout()), sms_spin_, SLOT(update()));
+    g_timer_16ms->connect(g_timer_16ms, SIGNAL(timeout()), sms_spin_, SLOT(update()));
   }
   sms_spin_->show();
   sms_spin_->raise();
@@ -89,7 +95,7 @@ void MainWindow::show_widget_spin() {
 void MainWindow::show_widget_object_viewer() {
   if (!sms_object_viewer_) {
     sms_object_viewer_ = new ObjectViewer(nullptr);
-    //connect(g_timer, &QTimer::timeout, sms_object_viewer_, QOverload<>::of(&ObjectViewer::on_update));
+    //connect(g_timer_100ms, &QTimer::timeout, sms_object_viewer_, QOverload<>::of(&ObjectViewer::on_update));
   }
   sms_object_viewer_->show();
   sms_object_viewer_->raise();
@@ -103,4 +109,14 @@ void MainWindow::show_widget_map_viewer() {
   sms_map_viewer->show();
   sms_map_viewer->raise();
   sms_map_viewer->activateWindow();
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+  if (sms_spin_)
+    sms_spin_->close();
+  if (sms_object_viewer_)
+    sms_object_viewer_->close();
+  if (sms_map_viewer)
+    sms_map_viewer->close();
+  event->accept();
 }

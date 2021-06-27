@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../Common/CommonTypes.h"
 #include <QGraphicsView>
 
 class MapPinnaBeach : public QGraphicsView {
@@ -10,9 +11,11 @@ public:
   ~MapPinnaBeach() override;
 
   bool center_on_mario_ = false;
+  s32 update_interval_ = 33;
 
 protected:
   void timerEvent(QTimerEvent* event) override;
+  void wheelEvent(QWheelEvent* event) override;
 
 private:
   void initialize();
@@ -30,4 +33,5 @@ private:
   QPixmap fruit_papaya_pix_;
   QPixmap fruit_pine_pix_;
 
+  qreal view_scale_;
 };

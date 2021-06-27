@@ -1,6 +1,6 @@
 #include "MapViewer.h"
 
-extern QTimer* g_timer;
+extern QTimer* g_timer_100ms;
 
 MapViewer::MapViewer(QWidget* parent)
   : QWidget(parent) {

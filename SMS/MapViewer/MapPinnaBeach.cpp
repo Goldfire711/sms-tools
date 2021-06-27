@@ -1,16 +1,18 @@
 #include "MapPinnaBeach.h"
-#include "../../Common/CommonTypes.h"
 #include "../../Memory/Memory.h"
 
+#include <algorithm>
 #include <QGraphicsPixmapItem>
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QMouseEvent>
 
 using namespace memory;
 
 MapPinnaBeach::MapPinnaBeach(QWidget* parent)
   : QGraphicsView(parent) {
-  startTimer(16);
+  update_interval_ = 33;
+  startTimer(update_interval_);
 
   initialize();
 }
@@ -19,7 +21,8 @@ MapPinnaBeach::~MapPinnaBeach() {
 }
 
 void MapPinnaBeach::initialize() {
-  scale(1 / 10.0, 1 / 10.0);
+  view_scale_ = 1 / 10.0;
+  scale(view_scale_, view_scale_);
 
   scene_ = new QGraphicsScene(this);
   setScene(scene_);
@@ -46,16 +49,16 @@ void MapPinnaBeach::initialize() {
     water_hit_obj_items_[i] = scene_->addPixmap(QPixmap());
     water_hit_obj_items_[i]->setScale(200.0 / coin_pix_.width());
     water_hit_obj_items_[i]->setPos(0, 5000);
-    water_hit_obj_items_[i]->setOpacity(0.5);
+    water_hit_obj_items_[i]->setOpacity(0.3);
     water_hit_obj_items_[i]->setVisible(false);
   }
 
   // アイテムマネージャー(コイン)
-  for (auto* item : item_manager_items_) {
-    item = scene_->addPixmap(QPixmap());
-    item->setScale(200.0 / coin_pix_.width());
-    item->setPos(0, 5000);
-    item->setVisible(false);
+  for (s64 i = 0; i < 100; i++) {
+    item_manager_items_[i] = scene_->addPixmap(QPixmap());
+    item_manager_items_[i]->setScale(200.0 / coin_pix_.width());
+    item_manager_items_[i]->setPos(0, 5000);
+    item_manager_items_[i]->setVisible(false);
   }
 
   // マリオの画像
@@ -64,6 +67,9 @@ void MapPinnaBeach::initialize() {
   mario_pix_item_->setScale(200.0 / mario_pix.width());
   mario_pix_item_->setPos(0, 5000);
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);
+
+  // ドラッグでスクロール操作
+  setDragMode(ScrollHandDrag);
 }
 
 // 画像の座標とそれに対応するゲーム内の座標2つずつを用いてマップ画像をセットする
@@ -101,10 +107,10 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
   const u32 p_map_obj_manager = read_u32(0x8040a4d0);
   const u32 map_objects_count = read_u32(p_map_obj_manager + 0x14);
   const u32 p_map_objects = read_u32(p_map_obj_manager + 0x18);
-  for (s64 i = 0; i < map_objects_count; i++) {
+  for (s64 i = 0; i < std::min(200, (s32)map_objects_count); i++) {
     const u32 p_object = read_u32(p_map_objects + 4 * i);
     if (!(0x80000000 <= p_object && p_object <= 0x817fffff))
-      return;
+      continue;
 
     u16 state = read_u16(p_object + 0xfc);
     if (state == 0) {
@@ -162,7 +168,7 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
   const u32 p_map_item_manager = read_u32(0x8040a4d8);
   const u32 map_items_count = read_u32(p_map_item_manager + 0x14);
   const u32 p_map_items = read_u32(p_map_item_manager + 0x18);
-  for (s64 i = 0; i < map_items_count; i++) {
+  for (s64 i = 0; i < std::min(100, (s32)map_items_count); i++) {
     const u32 p_item = read_u32(p_map_items + i * 4);
     if (!(0x80000000 <= p_item && p_item <= 0x817fffff))
       return;
@@ -181,16 +187,9 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
 
     const u32 function_pointer = read_u32(p_item);
 
-    if (function_pointer == 0x80c31b58) { // コイン
-      item_manager_items_[i]->setPixmap(coin_pix_);
-      item_manager_items_[i]->setTransformOriginPoint(coin_pix_.width() / 2.0, coin_pix_.height() / 2.0);
-    } else if (function_pointer == 0x803c13c8) {  // 青コイン
-      item_manager_items_[i]->setPixmap(coin_blue_pix_);
-      item_manager_items_[i]->setTransformOriginPoint(coin_blue_pix_.width() / 2.0, coin_blue_pix_.height() / 2.0);
-    } else if (function_pointer == 0){}
-
+    const u32 fruit_type = read_u32(p_item + 0x4c);
     switch (function_pointer) {
-    case 0x80c31b58:  // コイン
+    case 0x803c1b58:  // コイン
       item_manager_items_[i]->setPixmap(coin_pix_);
       item_manager_items_[i]->setTransformOriginPoint(coin_pix_.width() / 2.0, coin_pix_.height() / 2.0);
       break;
@@ -199,7 +198,35 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
       item_manager_items_[i]->setTransformOriginPoint(coin_blue_pix_.width() / 2.0, coin_blue_pix_.height() / 2.0);
       break;
     case 0x803ca434:  // フルーツ
-
+      switch (fruit_type) {
+      case 0x40000390:  // ヤシの実
+        item_manager_items_[i]->setPixmap(fruit_coconut_pix_);
+        item_manager_items_[i]->setTransformOriginPoint(fruit_coconut_pix_.width() / 2.0, fruit_coconut_pix_.height() / 2.0);
+        break;
+      case 0x40000391:  // パパイヤ
+        item_manager_items_[i]->setPixmap(fruit_papaya_pix_);
+        item_manager_items_[i]->setTransformOriginPoint(fruit_papaya_pix_.width() / 2.0, fruit_papaya_pix_.height() / 2.0);
+        break;
+      case 0x40000392:  // パイン
+        item_manager_items_[i]->setPixmap(fruit_pine_pix_);
+        item_manager_items_[i]->setTransformOriginPoint(fruit_pine_pix_.width() / 2.0, fruit_pine_pix_.height() / 2.0);
+        break;
+      case 0x40000393:  // ドリアン
+        item_manager_items_[i]->setPixmap(fruit_durian_pix_);
+        item_manager_items_[i]->setTransformOriginPoint(fruit_durian_pix_.width() / 2.0, fruit_durian_pix_.height() / 2.0);
+        break;
+      case 0x40000394:  // バナナ
+        item_manager_items_[i]->setPixmap(fruit_banana_pix_);
+        item_manager_items_[i]->setTransformOriginPoint(fruit_banana_pix_.width() / 2.0, fruit_banana_pix_.height() / 2.0);
+        break;
+      case 0x40000395:  // 唐辛子
+        item_manager_items_[i]->setPixmap(QPixmap());
+        break;
+      default:
+        item_manager_items_[i]->setPixmap(QPixmap());
+        break;
+      }
+      break;
     default:
       item_manager_items_[i]->setPixmap(QPixmap());
       item_manager_items_[i]->setPos(0, 5000);
@@ -217,4 +244,14 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
     centerOn(mario_pix_item_);
 
   QGraphicsView::timerEvent(event);
+}
+
+void MapPinnaBeach::wheelEvent(QWheelEvent* event) {
+  qreal view_scale = 1;
+  if (event->angleDelta().y() > 0) {
+    view_scale = 1.1;
+  } else if (event->angleDelta().y() < 0) {
+    view_scale = 1 / 1.1;
+  }
+  scale(view_scale, view_scale);
 }
