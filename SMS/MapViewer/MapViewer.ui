@@ -23,6 +23,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="button_capture">
+       <property name="text">
+        <string>capture</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

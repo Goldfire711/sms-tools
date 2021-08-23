@@ -16,4 +16,5 @@ private:
   MapPinnaBeach* map_pinna_;
 
   void center_on_clicked();
+  void button_capture_clicked();
 };

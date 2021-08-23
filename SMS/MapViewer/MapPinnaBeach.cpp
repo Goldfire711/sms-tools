@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QMouseEvent>
+#include <QBitmap>
 
 using namespace memory;
 
@@ -53,6 +54,12 @@ void MapPinnaBeach::initialize() {
     water_hit_obj_items_[i]->setVisible(false);
   }
 
+  //hidden_star_pix_ = QPixmap(":sms/hidden_star.png");
+  QPixmap blue_star_pix = QPixmap(":sms/hidden_star.png");
+  hidden_star_pix_ = QPixmap(blue_star_pix.size());
+  hidden_star_pix_.fill(QColor(0, 0, 255));
+  hidden_star_pix_.setMask(blue_star_pix.createMaskFromColor(Qt::transparent));
+
   // アイテムマネージャー(コイン)
   for (s64 i = 0; i < 100; i++) {
     item_manager_items_[i] = scene_->addPixmap(QPixmap());
@@ -67,6 +74,7 @@ void MapPinnaBeach::initialize() {
   mario_pix_item_->setScale(200.0 / mario_pix.width());
   mario_pix_item_->setPos(0, 5000);
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);
+  //mario_pix_item_->setVisible(false);
 
   // ドラッグでスクロール操作
   setDragMode(ScrollHandDrag);
@@ -82,6 +90,13 @@ QGraphicsPixmapItem* MapPinnaBeach::set_map_image(const QPixmap& pixmap, double 
   // p=0は画像の左上の座標なので、画像上のp=0にあたるゲーム内座標のg0に画像をセットすると丁度いい↓
   pixmap_item->setPos(QPointF(game_x1, game_y1) - scale * QPointF(pix_x1, pix_y1));
   //resize(QSize(3840, 2160) * scale / 10.0);
+
+  rect_map_ = QRectF(QPointF(game_x1, game_y1) - scale * QPointF(pix_x1, pix_y1),
+    QPointF(game_x1, game_y1) + scale * (QPointF(3840, 2160) - QPointF(pix_x1, pix_y1)));
+
+  scale_ = scale;
+  //this->scale(1 / scale_, 1 / scale_);
+
   return pixmap_item;
 }
 
@@ -159,9 +174,14 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
         water_hit_obj_items_[i]->setPos(0, 5000);
         break;
       }
+    } else if (function_pointer == 0x803cebcc) {  // スターの絵
+      water_hit_obj_items_[i]->setPixmap(hidden_star_pix_);
+      water_hit_obj_items_[i]->setTransformOriginPoint(hidden_star_pix_.width() / 2.0, hidden_star_pix_.height() / 2.0);
     } else {
       water_hit_obj_items_[i]->setPos(0, 5000);
     }
+
+
   }
 
   // アイテムマネージャー(コイン)
