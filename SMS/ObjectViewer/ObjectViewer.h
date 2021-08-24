@@ -24,7 +24,7 @@ private:
   Ui::ObjectViewer ui;
 
   ObjectViewerModel* model_;
-  s64 number_ = 0;
-  s8 former_stage_ = -1;
-  s8 former_episode_ = -1;
+  //s64 number_ = 0;
+  //s8 former_stage_ = -1;
+  //s8 former_episode_ = -1;
 };

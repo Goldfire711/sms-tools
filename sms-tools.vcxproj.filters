@@ -112,5 +112,6 @@
     <Image Include="SMS\Resources\mario.png" />
     <Image Include="SMS\Resources\shine.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
+    <Image Include="SMS\Resources\hidden_star.png" />
   </ItemGroup>
 </Project>

@@ -138,6 +138,7 @@
     <Image Include="SMS\Resources\fruit_durian.png" />
     <Image Include="SMS\Resources\fruit_papaya.png" />
     <Image Include="SMS\Resources\fruit_pine.png" />
+    <Image Include="SMS\Resources\hidden_star.png" />
     <Image Include="SMS\Resources\mario.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
     <Image Include="SMS\Resources\shine.png" />
