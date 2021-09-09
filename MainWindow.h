@@ -7,6 +7,7 @@
 #include "SMS/ObjectViewer/ObjectViewer.h"
 #include "SMS/MapViewer/MapViewer.h"
 #include "SMS/MapViewer/MapPinnaBeach.h"
+#include "Test/TestMainWindow.h"
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
@@ -28,4 +29,5 @@ private:
 	Spin* sms_spin_ = nullptr;
 	ObjectViewer* sms_object_viewer_ = nullptr;
 	MapViewer* sms_map_viewer = nullptr;
+	TestMainWindow* test_main_window_ = nullptr;
 };

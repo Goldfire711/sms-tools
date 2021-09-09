@@ -28,6 +28,12 @@
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\TestMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -61,6 +67,12 @@
     <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Test\TestMainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
@@ -74,6 +86,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Test\TestMainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

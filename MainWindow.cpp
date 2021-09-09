@@ -25,6 +25,14 @@ MainWindow::MainWindow(QWidget* parent)
   ui.button_hook->setChecked(true);
   hook_unhook_attempt();
 
+  // test_window
+  if (true) {
+    test_main_window_ = new TestMainWindow(nullptr);
+    test_main_window_->show();
+    test_main_window_->raise();
+    test_main_window_->activateWindow();
+  }
+
   //show_widget_object_viewer();
   //show_widget_map_viewer();
 }
@@ -118,5 +126,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_object_viewer_->close();
   if (sms_map_viewer)
     sms_map_viewer->close();
+
+  if (test_main_window_)
+    test_main_window_->close();
   event->accept();
 }
