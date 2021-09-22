@@ -194,7 +194,7 @@
                             {
                                 "address": "0",
                                 "type": "pointer",
-                                "name": "p_functions"
+                                "name": "*vtable"
                             },
                             {
                                 "address": "10",
@@ -876,7 +876,7 @@
                     {
                         "address": "0",
                         "type": "pointer",
-                        "name": "p_functions"
+                        "name": "*vtable"
                     },
                     {
                         "address": "10",

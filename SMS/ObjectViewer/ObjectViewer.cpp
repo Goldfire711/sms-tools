@@ -115,6 +115,7 @@ void ObjectViewer::scan_managers() {
   for (auto value_ref : json_managers) {
     auto json_manager = value_ref.toObject();
 
+    // todo p_function‚ðvtable‚É•Ï‚¦‚é (json‚àŠÜ‚ß‚Ä)
     u32 p_functions_bswap = Common::bSwap32(json_manager["p_functions"].toString().toUInt(nullptr, 16));
 
     Manager manager;

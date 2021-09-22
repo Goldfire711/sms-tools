@@ -33,7 +33,7 @@
                         {
                             "address": "0",
                             "type": "pointer",
-                            "name": "p_functions"
+                            "name": "*vtable"
                         },
                         {
                             "address": "10",
@@ -70,7 +70,7 @@
             "pointer": {
                 "address": "18",
                 "type": "pointer",
-                "name": "p_object_table"
+                "name": "*object_table"
             },
             "count": {
                 "address": "14",
@@ -92,7 +92,7 @@
                         {
                             "address": "0",
                             "type": "pointer",
-                            "name": "p_functions"
+                            "name": "*vtable"
                         },
                         {
                             "address": "10",

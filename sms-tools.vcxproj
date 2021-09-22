@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Test\RNGManipulator.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerItem.cpp" />
@@ -102,6 +103,7 @@
     <ClCompile Include="DolphinProcess\Windows\WindowsDolphinProcess.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="Test\RNGManipulator.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
     <QtUic Include="SMS\MapViewer\MapViewer.ui" />
     <QtUic Include="SMS\Spin\Spin.ui" />
@@ -121,6 +123,7 @@
     <QtMoc Include="Test\TestMainWindow.h" />
     <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
+    <QtMoc Include="Test\RNGManipulator.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
