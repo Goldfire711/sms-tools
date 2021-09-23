@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>238</width>
-    <height>181</height>
+    <width>230</width>
+    <height>152</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,16 +94,6 @@
      <widget class="QPushButton" name="button_widget_map_viewer">
       <property name="text">
        <string>Map Viewer</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="button_widget_rng_manipulator">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>RNG Manipulator</string>
       </property>
      </widget>
     </item>

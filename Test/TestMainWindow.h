@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include "ui_TestMainWindow.h"
-#include "RNGManipulator.h"
+#include "../SMS/RNGManipulator/RNGManipulator.h"
 
 class TestMainWindow : public QMainWindow
 {

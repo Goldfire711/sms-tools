@@ -34,7 +34,7 @@
     <ClCompile Include="Test\TestMainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test\RNGManipulator.cpp">
+    <ClCompile Include="SMS\RNGManipulator\RNGManipulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -76,7 +76,7 @@
     <QtMoc Include="Test\TestMainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="Test\RNGManipulator.h">
+    <QtMoc Include="SMS\RNGManipulator\RNGManipulator.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -97,7 +97,7 @@
     <QtUic Include="Test\TestMainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Test\RNGManipulator.ui">
+    <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

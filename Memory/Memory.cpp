@@ -158,7 +158,7 @@ u8* memory::read_bytes(u32 address, std::initializer_list<u32> offsets, size_t s
   return bytes;
 }
 
-// shift-jis ÉÅÉÇÉäÉäÅ[ÉN?->deleteÇ≈âè¡ÇµÇΩ
+// shift-jis
 QString memory::read_string(u32 address, size_t size) {
   auto s = new u8[size + 1];
   DolphinComm::DolphinAccessor::readFromRAM(address & 0x7fffffff, s, size, false);

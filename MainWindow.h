@@ -18,7 +18,6 @@ public:
 	void hook_unhook_attempt();
 
 	void show_widget_spin();
-  void show_widget_rng_manipulator();
 	void show_widget_map_viewer();
 	void show_widget_object_viewer();
 	void on_update();
