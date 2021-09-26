@@ -38,7 +38,7 @@ u16 memory::read_u16(u32 address, std::initializer_list<u32> offsets) {
       return 0;
     }
   }
-  DolphinComm::DolphinAccessor::readFromRAM(address & 0x7fffffff, (u8*)&value, 2, false);
+  DolphinComm::DolphinAccessor::readFromRAM(address & 0x7fffffff, (u8*)&value, 2, true);
   return value;
 }
 
@@ -185,4 +185,8 @@ QString memory::read_string(u32 address, std::initializer_list<u32> offsets, siz
     return qs;
   }
   return "???";
+}
+
+bool memory::write_float(u32 address, float value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 4, true);
 }

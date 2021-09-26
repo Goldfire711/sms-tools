@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 
 #include <qevent.h>
+#include <QDesktopWidget>
 
 #include "DolphinProcess/DolphinAccessor.h"
 #include "Common/CommonUtils.h"
@@ -29,8 +30,10 @@ MainWindow::MainWindow(QWidget* parent)
   if (true) {
     test_main_window_ = new TestMainWindow(nullptr);
     test_main_window_->show();
-    test_main_window_->raise();
-    test_main_window_->activateWindow();
+    const auto pos = test_main_window_->pos();
+    test_main_window_->move(pos.x() + 250, pos.y());
+    //test_main_window_->raise();
+    //test_main_window_->activateWindow();
   }
 
   //show_widget_object_viewer();

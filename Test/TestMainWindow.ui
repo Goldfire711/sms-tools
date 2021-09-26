@@ -18,7 +18,14 @@
     <item row="0" column="0">
      <widget class="QPushButton" name="button_rng_manupulator">
       <property name="text">
-       <string>RNG Manipulator</string>
+       <string>RNG Manipulator (WIP)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="button_read_write_test">
+      <property name="text">
+       <string>Read Write Test</string>
       </property>
      </widget>
     </item>

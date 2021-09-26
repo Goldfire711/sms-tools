@@ -8,3 +8,5 @@ ObjectParameters::ObjectParameters(QWidget *parent)
 ObjectParameters::~ObjectParameters()
 {
 }
+
+// wip

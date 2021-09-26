@@ -85,6 +85,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
+    <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
+    <ClCompile Include="Test\ReadWriteTest\ReadWriteTest.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulator.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp" />
@@ -103,6 +106,7 @@
     <ClCompile Include="DolphinProcess\Windows\WindowsDolphinProcess.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
     <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
     <QtUic Include="SMS\MapViewer\MapViewer.ui" />
@@ -124,6 +128,9 @@
     <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulator.h" />
+    <QtMoc Include="Test\ReadWriteTest\ReadWriteTest.h" />
+    <QtMoc Include="Test\ReadWriteTest\ReadWriteTestModel.h" />
+    <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
