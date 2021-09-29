@@ -46,6 +46,15 @@
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -62,6 +71,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\FluffManipulator\SMSData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -95,6 +113,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTestModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\FluffManipulator\FluffManipulator.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

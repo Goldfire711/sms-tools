@@ -85,6 +85,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
+    <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
+    <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTest.cpp" />
@@ -130,6 +133,11 @@
     <QtMoc Include="SMS\RNGManipulator\RNGManipulator.h" />
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTest.h" />
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTestModel.h" />
+    <QtMoc Include="SMS\FluffManipulator\FluffManipulator.h" />
+    <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h" />
+    <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
+    <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
+    <ClInclude Include="SMS\FluffManipulator\SMSData.h" />
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />

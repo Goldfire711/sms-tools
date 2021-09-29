@@ -17,8 +17,7 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_spin, &QPushButton::clicked, this, &MainWindow::show_widget_spin);
   connect(ui.button_widget_object_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_object_viewer);
   connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
-  //connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
-  //connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
+  connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_fluff_manipulator);
   g_timer_100ms = new QTimer(this);
   g_timer_16ms = new QTimer(this);
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
@@ -32,8 +31,6 @@ MainWindow::MainWindow(QWidget* parent)
     test_main_window_->show();
     const auto pos = test_main_window_->pos();
     test_main_window_->move(pos.x() + 250, pos.y());
-    //test_main_window_->raise();
-    //test_main_window_->activateWindow();
   }
 
   //show_widget_object_viewer();
@@ -114,23 +111,37 @@ void MainWindow::show_widget_object_viewer() {
 }
 
 void MainWindow::show_widget_map_viewer() {
-  if (!sms_map_viewer) {
-    sms_map_viewer = new MapViewer(nullptr);
+  if (!sms_map_viewer_) {
+    sms_map_viewer_ = new MapViewer(nullptr);
   }
-  sms_map_viewer->show();
-  sms_map_viewer->raise();
-  sms_map_viewer->activateWindow();
+  sms_map_viewer_->show();
+  sms_map_viewer_->raise();
+  sms_map_viewer_->activateWindow();
 }
+
+void MainWindow::show_widget_fluff_manipulator() {
+  if (!sms_fluff_manipulator_) {
+    sms_data_ = new SMSData();
+    sms_fluff_manipulator_ = new FluffManipulator(nullptr, sms_data_);
+  }
+  sms_fluff_manipulator_->show();
+  sms_fluff_manipulator_->raise();
+  sms_fluff_manipulator_->activateWindow();
+}
+
 
 void MainWindow::closeEvent(QCloseEvent* event) {
   if (sms_spin_)
     sms_spin_->close();
   if (sms_object_viewer_)
     sms_object_viewer_->close();
-  if (sms_map_viewer)
-    sms_map_viewer->close();
+  if (sms_map_viewer_)
+    sms_map_viewer_->close();
+  if (sms_fluff_manipulator_)
+    sms_fluff_manipulator_->close();
 
   if (test_main_window_)
     test_main_window_->close();
+
   event->accept();
 }

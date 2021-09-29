@@ -1,5 +1,7 @@
 #include "TestMainWindow.h"
 
+#include <qevent.h>
+
 TestMainWindow::TestMainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
@@ -26,4 +28,13 @@ void TestMainWindow::show_read_write_test() {
   read_write_test_->show();
   read_write_test_->raise();
   read_write_test_->activateWindow();
+}
+
+void TestMainWindow::closeEvent(QCloseEvent* event) {
+  if (rng_manipulator_)
+    rng_manipulator_->close();
+  if (read_write_test_)
+    read_write_test_->close();
+
+  event->accept();
 }

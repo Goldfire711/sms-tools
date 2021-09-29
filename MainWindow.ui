@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>230</width>
+    <width>235</width>
     <height>152</height>
    </rect>
   </property>
@@ -94,6 +94,13 @@
      <widget class="QPushButton" name="button_widget_map_viewer">
       <property name="text">
        <string>Map Viewer</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="button_widget_fluff_manipulator">
+      <property name="text">
+       <string>Fluff Manipulator</string>
       </property>
      </widget>
     </item>
