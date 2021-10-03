@@ -23,9 +23,6 @@ private:
   QGraphicsScene* scene_;
 
   SMSData* sms_data_;
-  QPoint last_point_;
-  QPoint diff_point_;
-  bool left_button_pressed_;
 
   QGraphicsEllipseItem* target_;
   QGraphicsRectItem* range_;
@@ -37,10 +34,6 @@ private:
   float former_z_[32];
   QGraphicsLineItem* fluff_warp_line_[32];
 
-  QGraphicsTextItem* test_text_;
-  s32 test_num_ = 0;
-
-  QGraphicsEllipseItem* mario_ellipse_;
   QGraphicsPixmapItem* mario_pix_item_;
 
   QRectF scene_rect_;

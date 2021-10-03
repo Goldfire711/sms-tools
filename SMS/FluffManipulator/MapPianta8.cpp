@@ -58,13 +58,6 @@ void MapPianta8::initialize() {
     scene_->addEllipse(-4225 - fixed_fluff_radius, -3020 - fixed_fluff_radius,
                        fixed_fluff_radius * 2, fixed_fluff_radius * 2, fixed_fluff_pen);
 
-  // –È–Ñ‚Ìƒ^[ƒQƒbƒg‚Æ‚»‚Ì”ÍˆÍ‚Ì•`‰æ‰Šú‰»
-  const auto target_radius = 50.0;
-  target_ = scene_->addEllipse(0, 0, target_radius * 2, target_radius * 2, Qt::NoPen, Qt::red);
-  range_ = scene_->addRect(0, 0, 0, 0, red_pen);
-  target_->setVisible(false);
-  range_->setVisible(false);
-
   // –È–Ñx32‰Šú‰»
   for (auto i = 0; i < 32; ++i) {
     // –È–Ñ‚Ì‰~‚Ì‰Šú‰»
@@ -129,6 +122,11 @@ void MapPianta8::initialize() {
   mario_pix_item_ = scene_->addPixmap(mario_pix);
   mario_pix_item_->setScale(200.0 * 2 / 35.0);
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);
+
+  // –È–Ñ‚Ìƒ^[ƒQƒbƒg‚Æ‚»‚Ì”ÍˆÍ‚Ì•`‰æ‰Šú‰»
+  const auto target_radius = 50.0;
+  target_ = scene_->addEllipse(0, 0, target_radius * 2, target_radius * 2, Qt::NoPen, Qt::red);
+  range_ = scene_->addRect(0, 0, 0, 0, red_pen);
 }
 
 void MapPianta8::timerEvent(QTimerEvent* event) {

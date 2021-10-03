@@ -29,17 +29,12 @@ FluffManipulator::FluffManipulator(QWidget* parent, SMSData* sms_data) : QWidget
   m_editedRngIndex = m_currentRngIndex;
   updateRNGTextBox();
 
-  if (!map_pianta_8) {
-    map_pianta_8 = new MapPianta8(nullptr, m_smsData);
-  }
-  map_pianta_8->show();
-  map_pianta_8->raise();
-  map_pianta_8->activateWindow();
+  show_widget_map_pianta_8();
 }
 
 FluffManipulator::~FluffManipulator()
 {
-  map_pianta_8->close();
+  map_pianta_8_->close();
 }
 
 void FluffManipulator::initialiseWidgets()
@@ -189,6 +184,10 @@ void FluffManipulator::initialiseWidgets()
 
   // エリア内に綿毛が出現する確率（大雑把）
   m_lblProbability = new QLabel();
+
+  // show pianta8 map button
+  m_btnShowMap = new QPushButton("Show Map");
+  connect(m_btnShowMap, &QPushButton::clicked, this, &FluffManipulator::show_widget_map_pianta_8);
 }
 
 void FluffManipulator::makeLayouts()
@@ -289,12 +288,17 @@ void FluffManipulator::makeLayouts()
   searchRange_layout->addWidget(new QLabel("Search range"));
   searchRange_layout->addWidget(m_txbSearchRange);
 
+  auto* bottom_layout = new QHBoxLayout();
+  bottom_layout->addWidget(m_lblElapsedTime);
+  bottom_layout->addStretch(0);
+  bottom_layout->addWidget(m_btnShowMap);
+
   QVBoxLayout* mainLayout = new QVBoxLayout;
   mainLayout->addWidget(m_updateButton);
   mainLayout->addLayout(RNGInformation_layout);
   mainLayout->addLayout(searchRange_layout);
   mainLayout->addWidget(m_tblFluffList);
-  mainLayout->addWidget(m_lblElapsedTime);
+  mainLayout->addLayout(bottom_layout);
 
   setLayout(mainLayout);
 }
@@ -647,4 +651,13 @@ void FluffManipulator::onSearchOriginCheckBoxChanged()
   m_txbTargetZ->setToolTip(QString::fromStdString(std::to_string(m_smsData->m_bounds.min.z) +
     " .. " +
     std::to_string(m_smsData->m_bounds.max.z)));
+}
+
+void FluffManipulator::show_widget_map_pianta_8() {
+  if (!map_pianta_8_ || !m_smsData->map_viewer_is_active)
+    map_pianta_8_ = new MapPianta8(nullptr, m_smsData);
+  map_pianta_8_->show();
+  map_pianta_8_->raise();
+  map_pianta_8_->activateWindow();
+  map_pianta_8_->setAttribute(Qt::WA_DeleteOnClose, true);
 }

@@ -50,6 +50,7 @@ private:
   void onSwingDirectionChanged();
   void onSwingDirectionHexChanged();
   void onSearchOriginCheckBoxChanged();
+  void show_widget_map_pianta_8();
   QLabel* m_lblRngSeed;
   QLabel* m_lblRngIndex;
   QRadioButton* m_rdbEditRngSeed;
@@ -97,5 +98,6 @@ private:
 
   QLabel* m_lblProbability;
 
-  MapPianta8* map_pianta_8 = nullptr;
+  MapPianta8* map_pianta_8_ = nullptr;
+  QPushButton* m_btnShowMap;
 };

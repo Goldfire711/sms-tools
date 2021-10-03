@@ -120,10 +120,10 @@ void MainWindow::show_widget_map_viewer() {
 }
 
 void MainWindow::show_widget_fluff_manipulator() {
-  if (!sms_fluff_manipulator_) {
+  if (!sms_data_)
     sms_data_ = new SMSData();
+  if (!sms_fluff_manipulator_)
     sms_fluff_manipulator_ = new FluffManipulator(nullptr, sms_data_);
-  }
   sms_fluff_manipulator_->show();
   sms_fluff_manipulator_->raise();
   sms_fluff_manipulator_->activateWindow();

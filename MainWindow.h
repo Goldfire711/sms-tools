@@ -8,6 +8,7 @@
 #include "SMS/MapViewer/MapViewer.h"
 #include "SMS/MapViewer/MapPinnaBeach.h"
 #include "SMS/FluffManipulator/FluffManipulator.h"
+#include "SMS/FluffManipulator/MapPianta8.h"
 #include "Test/TestMainWindow.h"
 
 class MainWindow : public QMainWindow {
@@ -30,7 +31,8 @@ private:
 	Spin* sms_spin_ = nullptr;
 	ObjectViewer* sms_object_viewer_ = nullptr;
 	MapViewer* sms_map_viewer_ = nullptr;
+	SMSData* sms_data_ = nullptr;
 	FluffManipulator* sms_fluff_manipulator_ = nullptr;
-	SMSData* sms_data_;
+
 	TestMainWindow* test_main_window_ = nullptr;
 };
