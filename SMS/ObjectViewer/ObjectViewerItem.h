@@ -7,7 +7,7 @@
 
 class ObjectViewerItem {
 public:
-  explicit ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item = nullptr, bool is_attribute = false);
+  explicit ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item = nullptr, bool is_attribute = false, s64 index = -1);
   ~ObjectViewerItem();
 
   void append_child(ObjectViewerItem* child);
@@ -28,6 +28,7 @@ public:
     STRING
   } type_;
   QString name_;
+  s64 index_;
   QVariant value_ = 0;
   s32 column_count_ = 2;
   bool is_attribute_ = false;

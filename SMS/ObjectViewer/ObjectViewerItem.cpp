@@ -3,8 +3,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item, bool is_attribute)
-  : parent_item_(parent_item), is_attribute_(is_attribute){
+ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item, bool is_attribute, s64 index)
+  : parent_item_(parent_item), index_(index), is_attribute_(is_attribute){
   if (parent_item == nullptr) { // header
     QJsonArray objects = json["objects"].toArray();
     name_ = "name";
@@ -78,7 +78,7 @@ ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* pa
           QJsonObject address = offset_json["address"].toObject();
           for (s64 i = 0; i < address["maximum_count"].toInt(); i++) {
             offset_json["address"] = QString::number(i * type_size_, 16);
-            auto* child = new ObjectViewerItem(offset_json, this);
+            auto* child = new ObjectViewerItem(offset_json, this, false, i);
             append_child(child);
           }
         } else {
@@ -137,7 +137,10 @@ void ObjectViewerItem::update() {
 
   if (memory_name_ != nullptr) {
     memory_name_->update();
-    name_ = memory_name_->value_.toString();
+    if (index_ != -1)
+      name_ = QString::number(index_) + ": " + memory_name_->value_.toString();
+    else
+      name_ = memory_name_->value_.toString();
   }
 
   if (memory_count_ != nullptr) {
