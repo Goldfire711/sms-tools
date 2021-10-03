@@ -178,7 +178,7 @@ void FluffManipulator::initialiseWidgets()
   m_txbSearchRange->setFixedWidth(100);
 
   // 位相を考慮するチェックボックス
-  m_chbSearchOrigin = new QCheckBox(QString::fromLocal8Bit("原点を検索"));
+  m_chbSearchOrigin = new QCheckBox("Search for x/z origin");
   //m_chbSearchOrigin = new QCheckBox(tr("Search for origin"));
   m_chbSearchOrigin->setCheckState(Qt::Unchecked);
   connect(m_chbSearchOrigin, &QCheckBox::stateChanged, this,

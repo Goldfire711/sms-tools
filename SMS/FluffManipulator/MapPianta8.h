@@ -16,6 +16,7 @@ protected:
   void mouseReleaseEvent(QMouseEvent* event) override;
   */
   void timerEvent(QTimerEvent* event) override;
+  void wheelEvent(QWheelEvent* event) override;
 
 private:
   void initialize();

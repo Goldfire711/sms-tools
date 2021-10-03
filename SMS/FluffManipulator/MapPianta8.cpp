@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QtMath>
+#include <QMouseEvent>
 
 using namespace memory;
 
@@ -17,6 +18,9 @@ MapPianta8::MapPianta8(QWidget* parent, SMSData* sms_data) : QGraphicsView(paren
   resize(1600, 1600);
   initialize();
   sms_data_->map_viewer_is_active = true;
+
+  // ドラッグでスクロール操作
+  setDragMode(ScrollHandDrag);
 }
 
 MapPianta8::~MapPianta8() {
@@ -355,4 +359,15 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
     //centerOn(mario_x, mario_z);
   }
   QGraphicsView::timerEvent(event);
+}
+
+void MapPianta8::wheelEvent(QWheelEvent* event) {
+  qreal view_scale = 1;
+  if (event->angleDelta().y() > 0) {
+    view_scale = 1.1;
+  }
+  else if (event->angleDelta().y() < 0) {
+    view_scale = 1 / 1.1;
+  }
+  scale(view_scale, view_scale);
 }
