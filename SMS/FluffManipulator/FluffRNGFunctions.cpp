@@ -23,10 +23,10 @@ namespace fluff_rng_functions
       rng_values.emplace_back(rng_functions::seed_to_float_value(seed));
       rng_functions::seed_next(&seed);
     }
-    // forループ. float_value値を1個ずつ確保しながら、zyx(風抵抗)位相を最新の5つの
-    // float_value配列から算出して、area内にあればxyz値等を結果の配列に追加. search_range分回す
-    // search_for_origin(原点を検索)がCheckedの場合、初期phaseを考慮しない揺れの原点を検索
-    // Uncheckedの場合、初期phaseを考慮したxyzを検索（これがワープ後の座標になる）
+    // forループ. float_value値を1個ずつ確保しながら、z,y,x,(風抵抗),位相を最新の5つの
+    // rng_values配列から算出して、area内にあればxyz値等を結果の配列に追加. search_range分回す
+    // search_for_origin(原点を検索)がCheckedの場合、初期phaseを考慮しないで揺れの原点を検索
+    // Uncheckedの場合、初期phaseを考慮したxyzを検索（これが実際のワープ後の座標になる）
     if (search_for_origin == Qt::Checked)
     {
 

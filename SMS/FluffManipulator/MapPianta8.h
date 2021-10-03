@@ -2,13 +2,12 @@
 #include "SMSData.h"
 #include <QGraphicsView>
 
-class MapPianta8 : public QGraphicsView
-{
-  Q_OBJECT
+class MapPianta8 : public QGraphicsView {
+Q_OBJECT
 
 public:
   MapPianta8(QWidget* parent, SMSData* sms_data);
-  ~MapPianta8();
+  ~MapPianta8() override;
 
 protected:
   /*
@@ -20,7 +19,6 @@ protected:
 
 private:
   void initialize();
-  void update(s32 i);
   QGraphicsScene* scene_;
 
   SMSData* sms_data_;
