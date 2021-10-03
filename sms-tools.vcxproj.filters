@@ -55,6 +55,9 @@
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -121,6 +124,9 @@
     <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="SMS\FluffManipulator\MapPianta8.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
@@ -182,5 +188,6 @@
     <Image Include="SMS\Resources\shine.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
     <Image Include="SMS\Resources\hidden_star.png" />
+    <Image Include="SMS\Resources\PiantaVillageDay.png" />
   </ItemGroup>
 </Project>

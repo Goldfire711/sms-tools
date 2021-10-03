@@ -85,6 +85,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
@@ -135,6 +141,7 @@
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTestModel.h" />
     <QtMoc Include="SMS\FluffManipulator\FluffManipulator.h" />
     <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h" />
+    <QtMoc Include="SMS\FluffManipulator\MapPianta8.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\SMSData.h" />
@@ -163,6 +170,7 @@
     <Image Include="SMS\Resources\fruit_pine.png" />
     <Image Include="SMS\Resources\hidden_star.png" />
     <Image Include="SMS\Resources\mario.png" />
+    <Image Include="SMS\Resources\PiantaVillageDay.png" />
     <Image Include="SMS\Resources\PinnaBeach.png" />
     <Image Include="SMS\Resources\shine.png" />
   </ItemGroup>

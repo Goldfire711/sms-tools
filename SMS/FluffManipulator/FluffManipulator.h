@@ -2,7 +2,7 @@
 
 #include "FluffManipulatorModel.h"
 #include "FluffRNGFunctions.h"
-#include "../MapViewer/MapViewer.h"
+#include "MapPianta8.h"
 #include "SMSData.h"
 
 #include <QLabel>
@@ -96,4 +96,6 @@ private:
   SMSData* m_smsData;
 
   QLabel* m_lblProbability;
+
+  MapPianta8* map_pianta_8 = nullptr;
 };

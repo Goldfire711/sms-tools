@@ -28,10 +28,18 @@ FluffManipulator::FluffManipulator(QWidget* parent, SMSData* sms_data) : QWidget
   m_editedRngSeed = m_currentRngSeed;
   m_editedRngIndex = m_currentRngIndex;
   updateRNGTextBox();
+
+  if (!map_pianta_8) {
+    map_pianta_8 = new MapPianta8(nullptr, m_smsData);
+  }
+  map_pianta_8->show();
+  map_pianta_8->raise();
+  map_pianta_8->activateWindow();
 }
 
 FluffManipulator::~FluffManipulator()
 {
+  map_pianta_8->close();
 }
 
 void FluffManipulator::initialiseWidgets()
