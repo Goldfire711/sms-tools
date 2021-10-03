@@ -160,6 +160,7 @@
     <None Include="SMS\Resources\ObjectViewer_template.json" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="SMS\Resources\blue_bird.png" />
     <Image Include="SMS\Resources\coin.png" />
     <Image Include="SMS\Resources\coin_blue.png" />
     <Image Include="SMS\Resources\coin_red.png" />

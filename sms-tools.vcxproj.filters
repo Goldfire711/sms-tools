@@ -189,5 +189,6 @@
     <Image Include="SMS\Resources\PinnaBeach.png" />
     <Image Include="SMS\Resources\hidden_star.png" />
     <Image Include="SMS\Resources\PiantaVillageDay.png" />
+    <Image Include="SMS\Resources\blue_bird.png" />
   </ItemGroup>
 </Project>

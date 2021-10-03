@@ -38,7 +38,7 @@ private:
 
   QRectF scene_rect_;
 
-  QGraphicsPolygonItem* blue_bird_;
+  QGraphicsPixmapItem* blue_bird_item_;
   QGraphicsEllipseItem* blue_bird_next_node_;
   QGraphicsEllipseItem* blue_bird_previous_node_;
 

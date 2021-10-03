@@ -13,5 +13,6 @@
         <file alias="shine.png">SMS/Resources/shine.png</file>
         <file alias="hidden_star.png">SMS/Resources/hidden_star.png</file>
         <file alias="PiantaVillageDay.png">SMS/Resources/PiantaVillageDay.png</file>
+        <file alias="blue_bird.png">SMS/Resources/blue_bird.png</file>
     </qresource>
 </RCC>

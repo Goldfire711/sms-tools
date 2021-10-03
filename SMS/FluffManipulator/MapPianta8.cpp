@@ -15,7 +15,7 @@ MapPianta8::MapPianta8(QWidget* parent, SMSData* sms_data) : QGraphicsView(paren
   startTimer(16);
 
   setWindowTitle(tr("Map Viewer"));
-  resize(1600, 1600);
+  resize(800, 800);
   initialize();
   sms_data_->map_viewer_is_active = true;
 
@@ -90,9 +90,10 @@ void MapPianta8::initialize() {
   scene_->addPolygon(blue_bird_rail, white_pen);
 
   // 青鳥本体
-  QPolygonF blue_bird_triangle;
-  blue_bird_triangle << QPointF(0, 150) << QPointF(-250, -150) << QPointF(250, -150);
-  blue_bird_ = scene_->addPolygon(blue_bird_triangle, Qt::NoPen, Qt::blue);
+  const QPixmap blue_bird_pix(":/sms/blue_bird.png");
+  blue_bird_item_ = scene_->addPixmap(blue_bird_pix);
+  blue_bird_item_->setScale(500.0 / 110.0);
+  blue_bird_item_->setTransformOriginPoint(blue_bird_pix.width() / 2, blue_bird_pix.height() / 2);
 
   // 青鳥前/次ノード
   blue_bird_next_node_ = scene_->addEllipse(-150, -150, 300, 300, QPen(Qt::black), Qt::blue);
@@ -233,8 +234,8 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
     const float blue_bird_z = read_float(blue_bird_base + 0x18);
     const float blue_bird_degree = read_float(blue_bird_base + 0x34);
 
-    blue_bird_->setPos(blue_bird_x, blue_bird_z);
-    blue_bird_->setRotation(-blue_bird_degree);
+    blue_bird_item_->setPos(blue_bird_x, blue_bird_z);
+    blue_bird_item_->setRotation(-blue_bird_degree);
 
     // 青鳥前ノード描画
     const s32 blue_bird_next_node = read_s32(blue_bird_base + 0x218);
