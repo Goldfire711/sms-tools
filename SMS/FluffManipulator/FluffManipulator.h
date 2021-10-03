@@ -36,6 +36,9 @@ public:
     RANGE_TYPE_TOP
   };
 
+protected:
+  void closeEvent(QCloseEvent* event) override;
+
 private:
 
   void initialiseWidgets();

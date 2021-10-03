@@ -154,7 +154,6 @@
     <QtMoc Include="SMS\Spin\Spin.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SMS\Resources\ObjectViewer DT.json" />
     <None Include="SMS\Resources\ObjectViewer.json" />
     <None Include="SMS\Resources\ObjectViewer_managers.json" />
     <None Include="SMS\Resources\ObjectViewer_template.json" />

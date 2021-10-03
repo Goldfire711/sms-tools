@@ -34,8 +34,13 @@ FluffManipulator::FluffManipulator(QWidget* parent, SMSData* sms_data) : QWidget
 
 FluffManipulator::~FluffManipulator()
 {
-  map_pianta_8_->close();
 }
+
+void FluffManipulator::closeEvent(QCloseEvent* event) {
+  if (m_smsData->map_viewer_is_active)
+    map_pianta_8_->close();
+}
+
 
 void FluffManipulator::initialiseWidgets()
 {

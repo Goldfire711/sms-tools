@@ -31,7 +31,7 @@
                                 {
                                     "address": "0",
                                     "type": "pointer",
-                                    "name": "p_functions"
+                                    "name": "vtable"
                                 },
                                 {
                                     "address": "10",

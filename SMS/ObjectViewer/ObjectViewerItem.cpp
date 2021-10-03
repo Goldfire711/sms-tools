@@ -21,8 +21,8 @@ ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* pa
     } else {
       address_ = json["address"].toString().toUInt(nullptr, 16);
     }
-    if (!json["p_functions"].isUndefined()) {
-      p_functions_ = json["p_functions"].toString().toInt(nullptr, 16);
+    if (!json["vtable"].isUndefined()) {
+      vtable_ = json["vtable"].toString().toInt(nullptr, 16);
     }
 
     const QString string_type = json["type"].toString();
@@ -158,7 +158,7 @@ void ObjectViewerItem::update() {
   if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
 
-  if (p_functions_ != 0 && memory::read_u32(pointer) != p_functions_) {
+  if (vtable_ != 0 && memory::read_u32(pointer) != vtable_) {
     return;
   }
 

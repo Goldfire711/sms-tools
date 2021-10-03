@@ -115,8 +115,7 @@ void ObjectViewer::scan_managers() {
   for (auto value_ref : json_managers) {
     auto json_manager = value_ref.toObject();
 
-    // todo p_function‚ðvtable‚É•Ï‚¦‚é (json‚àŠÜ‚ß‚Ä)
-    u32 p_functions_bswap = Common::bSwap32(json_manager["p_functions"].toString().toUInt(nullptr, 16));
+    u32 vtable_bswap = Common::bSwap32(json_manager["vtable"].toString().toUInt(nullptr, 16));
 
     Manager manager;
     manager.name = json_manager["name"].toString();
@@ -126,7 +125,7 @@ void ObjectViewer::scan_managers() {
       manager.json_object = json_manager["object"].toObject();
     }
 
-    hash_manager.insert(p_functions_bswap, manager);
+    hash_manager.insert(vtable_bswap, manager);
   }
 
   // scan managers
@@ -135,12 +134,12 @@ void ObjectViewer::scan_managers() {
   for (u32 i = 0; i < (mem_size - 0x100); i++) {
     u8* memory_candidate = &scan_ram_cache[i];
     if (std::memcmp(memory_candidate, search_term.data(), 8) == 0) {
-      const s64 p_functions_offset = 11 - ((i + 3) & 0b11);
-      u32 p_function;
-      std::memcpy(&p_function, &memory_candidate[p_functions_offset], 4);
-      if (hash_manager.contains(p_function)) {
-        auto* manager = &hash_manager[p_function];
-        manager->json_object["value"] = QString::number(i + p_functions_offset + mem_start, 16);
+      const s64 vtable_offset = 11 - ((i + 3) & 0b11);
+      u32 vtable;
+      std::memcpy(&vtable, &memory_candidate[vtable_offset], 4);
+      if (hash_manager.contains(vtable)) {
+        auto* manager = &hash_manager[vtable];
+        manager->json_object["value"] = QString::number(i + vtable_offset + mem_start, 16);
         //manager->json_object["name"].toObject()["name"] = manager->name;
         //manager.json_object["name"] = manager.name;
         json_array.append(manager->json_object);

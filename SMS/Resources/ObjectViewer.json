@@ -33,7 +33,7 @@
                         {
                             "address": "0",
                             "type": "pointer",
-                            "name": "*vtable"
+                            "name": "vtable"
                         },
                         {
                             "address": "10",
@@ -92,7 +92,7 @@
                         {
                             "address": "0",
                             "type": "pointer",
-                            "name": "*vtable"
+                            "name": "vtable"
                         },
                         {
                             "address": "10",
