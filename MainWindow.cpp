@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget* parent)
   ui.button_hook->setChecked(true);
   hook_unhook_attempt();
 
-  // test_window
+  // test main window
   if (true) {
     test_main_window_ = new TestMainWindow(nullptr);
     test_main_window_->show();

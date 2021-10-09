@@ -12,7 +12,7 @@
 using namespace memory;
 
 MapPianta8::MapPianta8(QWidget* parent, SMSData* sms_data) : QGraphicsView(parent), sms_data_(sms_data) {
-  startTimer(16);
+  startTimer(33);
 
   setWindowTitle(tr("Map Viewer"));
   resize(800, 800);
@@ -343,7 +343,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
     const float mario_x = read_float(mario_base + 0x10);
     const float mario_y = read_float(mario_base + 0x14);
     const float mario_z = read_float(mario_base + 0x18);
-    const u16 mario_angle = read_float(mario_base + 0x98);
+    const u16 mario_angle = read_u16(mario_base + 0x9a);
 
     float mario_radius = 500;
     if (mario_y < 0) {
