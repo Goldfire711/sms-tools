@@ -3,9 +3,9 @@
 sms-tools has several small tools made for 120 Shines TAS:
 
 - Spin: Visualize Mario's directions and stick directions like a compass.
-- Object Viewer: Display objects' coordinates and other values on current map.
+- Object Viewer: Display objects' coordinates and other values.
 - Map Viewer: Show coins and other items on 2D Map. Currently available only for Pinna's Beach.
-- Fluff Manipulator: Search for RNGs that generate fluffs in the specified area; Show current fluffs (and other items) on 2D Map.
+- Fluff Manipulator: Search for RNGs that generate fluffs in the specified area. Show current fluffs (and other items) on 2D Map.
 
 Currently available only on JP1.0.
 
