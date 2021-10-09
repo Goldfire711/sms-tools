@@ -68,7 +68,7 @@ QVariant FluffManipulatorModel::headerData(int section, Qt::Orientation orientat
     case FLUFF_COL_DIFFINDEX:
       return tr("Index+");
     case FLUFF_COL_7A5BDIFFINDEX:
-      return tr("=7a+5b");
+      return tr("Drops(7a+5b)");
     case FLUFF_COL_X:
       return tr("X - Target");
     case FLUFF_COL_Y:
