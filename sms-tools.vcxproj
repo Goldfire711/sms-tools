@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
@@ -98,7 +99,6 @@
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTest.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulator.cpp" />
-    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerItem.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
@@ -115,6 +115,7 @@
     <ClCompile Include="DolphinProcess\Windows\WindowsDolphinProcess.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui" />
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
     <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
@@ -135,13 +136,13 @@
     <ClInclude Include="DolphinProcess\Windows\WindowsDolphinProcess.h" />
     <QtMoc Include="Test\TestMainWindow.h" />
     <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h" />
-    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulator.h" />
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTest.h" />
     <QtMoc Include="Test\ReadWriteTest\ReadWriteTestModel.h" />
     <QtMoc Include="SMS\FluffManipulator\FluffManipulator.h" />
     <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h" />
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h" />
+    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\SMSData.h" />

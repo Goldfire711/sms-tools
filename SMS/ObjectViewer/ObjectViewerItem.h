@@ -35,10 +35,10 @@ public:
 
   QVector<ObjectViewerItem*> child_items_;
   ObjectViewerItem* parent_item_;
+  u32 address_ = 0;
 private:
   //QVector<QVariant> item_data_;
   s64 type_size_ = 4;
-  u32 address_ = 0;
   u32 vtable_ = 0;
 
   ObjectViewerItem* memory_name_ = nullptr;

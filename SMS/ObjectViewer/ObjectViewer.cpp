@@ -33,7 +33,7 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   file.close();
 
   // set json to model_ and set model_ to tree_object
-  model_ = new ObjectViewerModel(load_doc.object());
+  model_ = new ObjectViewerModel(load_doc.object(), this);
   ui.tree_object->setModel(model_);
   ui.tree_object->setColumnWidth(1, 72);
 
@@ -47,6 +47,9 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   connect(shortcut_copy, &QShortcut::activated, this, [=] {
     copy_as_dmw_format();
   });
+
+  show_widget_object_parameters();
+  connect(ui.tree_object, &QAbstractItemView::clicked, this, &ObjectViewer::on_tree_object_clicked);
 }
 
 ObjectViewer::~ObjectViewer() {
@@ -55,6 +58,8 @@ ObjectViewer::~ObjectViewer() {
 
 void ObjectViewer::closeEvent(QCloseEvent* event) {
   disconnect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
+  if (object_parameters_)
+    object_parameters_->close();
 }
 
 void ObjectViewer::showEvent(QShowEvent* event) {
@@ -151,7 +156,7 @@ void ObjectViewer::scan_managers() {
 
   // set model_ to tree_object
   json.insert("objects", json_array);
-  model_ = new ObjectViewerModel(json);
+  model_ = new ObjectViewerModel(json, this);
   ui.tree_object->setModel(model_);
   ui.tree_object->setColumnWidth(1, 72);
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
@@ -186,4 +191,17 @@ void ObjectViewer::copy_as_dmw_format() {
 
 void ObjectViewer::on_update() {
   ui.label->setText(QString::number(ui.tree_object->columnWidth(0)));
+}
+
+void ObjectViewer::show_widget_object_parameters() {
+  if (object_parameters_ == nullptr)
+    object_parameters_ = new ObjectParameters();
+  object_parameters_->show();
+  object_parameters_->raise();
+  object_parameters_->activateWindow();
+}
+
+void ObjectViewer::on_tree_object_clicked(const QModelIndex& index) {
+  auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
+  object_parameters_->set_label(QString::number(item->value_.toUInt(), 16));
 }

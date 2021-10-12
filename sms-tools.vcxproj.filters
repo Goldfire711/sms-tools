@@ -28,9 +28,6 @@
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Test\TestMainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,6 +53,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -103,9 +103,6 @@
     <QtMoc Include="SMS\MapViewer\MapPinnaBeach.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="Test\TestMainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -125,6 +122,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -149,6 +149,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
