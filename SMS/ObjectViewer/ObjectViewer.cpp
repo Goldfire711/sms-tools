@@ -205,5 +205,5 @@ void ObjectViewer::on_tree_object_clicked(const QModelIndex& index) {
   auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
   const u32 address = item->value_.toUInt();
   if (0x80000000 <= address && address <= 0x817fffff)
-    object_parameters_->show_parameters(item->value_.toUInt(), item->index_);
+    object_parameters_->show_parameters(address, item->index_);
 }

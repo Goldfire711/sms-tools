@@ -85,6 +85,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParametersItem.cpp" />
+    <ClCompile Include="SMS\ObjectViewer\ObjectParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
@@ -95,6 +97,7 @@
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
+    <ClCompile Include="Test\Test\Test.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTest.cpp" />
@@ -116,6 +119,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui" />
+    <QtUic Include="Test\Test\Test.ui" />
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
     <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
@@ -143,9 +147,12 @@
     <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h" />
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
+    <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h" />
+    <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\SMSData.h" />
+    <QtMoc Include="Test\Test\Test.h" />
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
@@ -157,7 +164,6 @@
   <ItemGroup>
     <None Include="SMS\Resources\ObjectViewer.json" />
     <None Include="SMS\Resources\ObjectViewer_managers.json" />
-    <None Include="SMS\Resources\ObjectViewer_template.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="SMS\Resources\blue_bird.png" />

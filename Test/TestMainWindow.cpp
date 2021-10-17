@@ -8,6 +8,7 @@ TestMainWindow::TestMainWindow(QWidget *parent)
   ui.setupUi(this);
   connect(ui.button_rng_manupulator, &QPushButton::clicked, this, &TestMainWindow::show_rng_manipulator_);
   connect(ui.button_read_write_test, &QPushButton::clicked, this, &TestMainWindow::show_read_write_test);
+  connect(ui.button_test, &QPushButton::clicked, this, &TestMainWindow::show_test);
 }
 
 TestMainWindow::~TestMainWindow()
@@ -30,11 +31,22 @@ void TestMainWindow::show_read_write_test() {
   read_write_test_->activateWindow();
 }
 
+void TestMainWindow::show_test() {
+  if (test_ == nullptr)
+    test_ = new Test();
+  test_->show();
+  test_->raise();
+  test_->activateWindow();
+}
+
+
 void TestMainWindow::closeEvent(QCloseEvent* event) {
   if (rng_manipulator_)
     rng_manipulator_->close();
   if (read_write_test_)
     read_write_test_->close();
+  if (test_)
+    test_->close();
 
   event->accept();
 }

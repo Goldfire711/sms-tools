@@ -2,7 +2,7 @@
 #include <QString>
 #include "../../Common/CommonTypes.h"
 
-enum class Type {
+enum class TypeTest {
   S8,
   S16,
   S32,
@@ -17,14 +17,14 @@ enum class Type {
 class ReadWriteTestItem {
 public:
   ReadWriteTestItem();
-  ReadWriteTestItem(Type type, u32 address, QString name = "No Name", size_t byte_size = 16);
-  ReadWriteTestItem(Type type, u32 address, std::initializer_list<u32> offsets,
+  ReadWriteTestItem(TypeTest type, u32 address, QString name = "No Name", size_t byte_size = 16);
+  ReadWriteTestItem(TypeTest type, u32 address, std::initializer_list<u32> offsets,
     QString name = "No Name", size_t byte_size = 16);
   void read_memory();
   void write_memory();
   QString get_type_string();
 
-  Type type_;
+  TypeTest type_;
   u32 address_;
   std::initializer_list<u32> offsets_;
   QString name_ = "No Name";

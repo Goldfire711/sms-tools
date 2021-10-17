@@ -1,6 +1,7 @@
 {
-    "offsets": {
-        "_default": [
+    "_default": {
+        "size": "test",
+        "offsets": [
             {
                 "offset": "0",
                 "type": "u32",

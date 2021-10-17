@@ -15,6 +15,13 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QPushButton" name="button_read_write_test">
+      <property name="text">
+       <string>Read Write Test</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="button_rng_manupulator">
       <property name="text">
@@ -22,10 +29,10 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="button_read_write_test">
+    <item row="2" column="0">
+     <widget class="QPushButton" name="button_test">
       <property name="text">
-       <string>Read Write Test</string>
+       <string>Test</string>
       </property>
      </widget>
     </item>

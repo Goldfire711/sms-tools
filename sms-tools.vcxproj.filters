@@ -58,6 +58,15 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParametersModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParametersItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test\Test\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -83,6 +92,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SMS\FluffManipulator\SMSData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -127,6 +139,12 @@
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Test\Test\Test.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
@@ -154,6 +172,9 @@
     <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Test\Test\Test.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -175,7 +196,6 @@
   <ItemGroup>
     <None Include="SMS\Resources\ObjectViewer.json" />
     <None Include="SMS\Resources\ObjectViewer_managers.json" />
-    <None Include="SMS\Resources\ObjectViewer_template.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="SMS\Resources\coin.png" />

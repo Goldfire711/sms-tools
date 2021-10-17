@@ -4,6 +4,7 @@
 #include "ui_TestMainWindow.h"
 #include "../SMS/RNGManipulator/RNGManipulator.h"
 #include "ReadWriteTest/ReadWriteTest.h"
+#include "Test/Test.h"
 
 class TestMainWindow : public QMainWindow {
 Q_OBJECT
@@ -15,10 +16,12 @@ public:
   void closeEvent(QCloseEvent* event) override;
   void show_rng_manipulator_();
   void show_read_write_test();
+  void show_test();
 
 private:
   Ui::TestMainWindow ui;
 
   RNGManipulator* rng_manipulator_ = nullptr;
   ReadWriteTest* read_write_test_ = nullptr;
+  Test* test_ = nullptr;
 };
