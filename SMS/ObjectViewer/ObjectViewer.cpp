@@ -203,5 +203,7 @@ void ObjectViewer::show_widget_object_parameters() {
 
 void ObjectViewer::on_tree_object_clicked(const QModelIndex& index) {
   auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
-  object_parameters_->set_label(QString::number(item->value_.toUInt(), 16));
+  const u32 address = item->value_.toUInt();
+  if (0x80000000 <= address && address <= 0x817fffff)
+    object_parameters_->show_parameters(item->value_.toUInt(), item->index_);
 }

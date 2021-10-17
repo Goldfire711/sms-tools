@@ -1,0 +1,46 @@
+{
+    "offsets": {
+        "_default": [
+            {
+                "offset": "0",
+                "type": "u32",
+                "name": "vtable"
+            },
+            {
+                "offset": "4",
+                "type": "string",
+                "name": "name"
+            },
+            {
+                "offset": "8",
+                "type": "s16",
+                "name": "hash?"
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "x"
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "y"
+            },
+            {
+                "offset": "18",
+                "type": "float",
+                "name": "z"
+            },
+            {
+                "offset": "fc",
+                "type": "u16",
+                "name": "state"
+            },
+            {
+                "address": "134",
+                "type": "u32",
+                "name": "SpawnObjID"
+            }
+        ]
+    }
+}
