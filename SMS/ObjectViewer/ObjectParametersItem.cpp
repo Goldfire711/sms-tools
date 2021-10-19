@@ -10,10 +10,10 @@ ObjectParametersItem::ObjectParametersItem() {
   name_ = "No Name";
 }
 
-ObjectParametersItem::ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name)
-  : class_name_(std::move(class_name)) {
+ObjectParametersItem::ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset, const bool is_pointer)
+  : class_name_(std::move(class_name)), base_offset_(base_offset) {
   offset_ = json_offset["offset"].toString().toUInt(nullptr, 16);
-  address_ = address + offset_;
+  address_ = address + offset_ + base_offset;
   string_type_ = json_offset["type"].toString();
   name_ = json_offset["name"].toString();
   if (string_type_ == "s8") {
@@ -32,10 +32,15 @@ ObjectParametersItem::ObjectParametersItem(u32 address, const QJsonObject& json_
     type_ = Type::FLOAT;
   } else if (string_type_ == "string") {
     type_ = Type::STRING;
+  } else if (is_pointer) {
+    type_ = Type::POINTER;
   }
 }
 
 void ObjectParametersItem::read_memory() {
+  if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
   switch (type_) {
   case Type::S8:
     string_value_ = QString::number(read_s8(address_));
@@ -60,5 +65,8 @@ void ObjectParametersItem::read_memory() {
     return;
   case Type::STRING:
     string_value_ = read_string(address_, { 0 }, 50);
+    return;
+  case Type::POINTER:
+    string_value_ = "0x" + QString::number(read_u32(address_), 16);
   }
 }

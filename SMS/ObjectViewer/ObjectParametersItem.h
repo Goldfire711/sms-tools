@@ -12,18 +12,20 @@ enum class Type {
   U32,
   FLOAT,
   STRING,
+  POINTER
 };
 
 class ObjectParametersItem {
 public:
   ObjectParametersItem();
-  ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name);
+  ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset = 0, bool is_pointer = false);
   void read_memory();
   void write_memory();
   QString get_type_string();
 
   Type type_;
   u32 address_;
+  u32 base_offset_;
   u32 offset_;
   QString name_ = "No Name";
   QString string_value_ = "???";

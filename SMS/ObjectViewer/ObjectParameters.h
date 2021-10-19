@@ -24,5 +24,5 @@ private:
   QJsonDocument json_classes_;
   ObjectParametersModel* model_;
 
-  void load_items_from_json(const QJsonObject& json, QString class_name);
+  void load_items_from_json(const QJsonObject& json, const QString& class_name, u32 base_offset = 0);
 };

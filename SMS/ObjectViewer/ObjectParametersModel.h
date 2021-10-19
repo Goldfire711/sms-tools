@@ -12,9 +12,9 @@ public:
 
   enum {
     COLUMN_OFFSET = 0,
-    COLUMN_TYPE,
     COLUMN_NAME,
     COLUMN_VALUE,
+    COLUMN_TYPE,
     COLUMN_CLASS,
     COLUMN_COUNT
   };

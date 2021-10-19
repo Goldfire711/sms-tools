@@ -1,46 +1,418 @@
 {
     "_default": {
-        "size": "test",
+        "size": -1,
         "offsets": [
             {
                 "offset": "0",
                 "type": "u32",
+                "size": 4,
                 "name": "vtable"
             },
             {
                 "offset": "4",
                 "type": "string",
+                "size": 4,
                 "name": "name"
             },
             {
                 "offset": "8",
                 "type": "s16",
+                "size": 2,
                 "name": "hash?"
             },
             {
                 "offset": "10",
                 "type": "float",
+                "size": 4,
                 "name": "x"
             },
             {
                 "offset": "14",
                 "type": "float",
+                "size": 4,
                 "name": "y"
             },
             {
                 "offset": "18",
                 "type": "float",
+                "size": 4,
                 "name": "z"
             },
             {
                 "offset": "fc",
                 "type": "u16",
+                "size": 2,
                 "name": "state"
             },
             {
-                "address": "134",
+                "offset": "134",
                 "type": "u32",
+                "size": 4,
                 "name": "SpawnObjID"
+            }
+        ]
+    },
+    "TChuuHana": {
+        "size": 560,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TWalkerEnemy",
+                "size": 404,
+                "name": "TWalkerEnemy"
+            }
+        ]
+    },
+    "TWalkerEnemy": {
+        "size": 404,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSmallEnemy",
+                "size": 404,
+                "name": "TSmallEnemy"
+            }
+        ]
+    },
+    "TSmallEnemy": {
+        "size": 404,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemy",
+                "size": 336,
+                "name": ""
+            }
+        ]
+    },
+    "TSpineEnemy": {
+        "size": 336,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveActor",
+                "size": 244,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "124",
+                "type": "TGraphTracer*",
+                "size": 4,
+                "name": "Movement graph"
+            }
+        ]
+    },
+    "TLiveActor": {
+        "size": 244,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TTakeActor",
+                "size": 112,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "8c",
+                "type": "TSpineBase<TLiveActor>*",
+                "size": 4,
+                "name": "AI"
+            },
+            {
+                "offset": "94",
+                "type": "float",
+                "size": 4,
+                "name": "X movement (unit/step)"
+            },
+            {
+                "offset": "98",
+                "type": "float",
+                "size": 4,
+                "name": "Y movement (unit/step)"
+            },
+            {
+                "offset": "9c",
+                "type": "float",
+                "size": 4,
+                "name": "Z movement (unit/step)"
+            },
+            {
+                "offset": "ac",
+                "type": "float",
+                "size": 4,
+                "name": "X speed (unit/step)"
+            },
+            {
+                "offset": "b0",
+                "type": "float",
+                "size": 4,
+                "name": "Y speed (unit/step)"
+            },
+            {
+                "offset": "b4",
+                "type": "float",
+                "size": 4,
+                "name": "Z speed (unit/step)"
+            },
+            {
+                "offset": "bc",
+                "type": "float",
+                "size": 4,
+                "name": "Max speed (unit/step)"
+            },
+            {
+                "offset": "cc",
+                "type": "float",
+                "size": 4,
+                "name": "Gravity (unit/step²)"
+            }
+        ]
+    },
+    "TTakeActor": {
+        "size": 112,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "THitActor",
+                "size": 104,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "68",
+                "type": "TTakeActor*",
+                "size": 4,
+                "name": "Holder"
+            },
+            {
+                "offset": "6c",
+                "type": "TTakeActor*",
+                "size": 4,
+                "name": "Held object"
+            }
+        ]
+    },
+    "THitActor": {
+        "size": 104,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TActor",
+                "size": 68,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "44",
+                "type": "THitActor**",
+                "size": 4,
+                "name": "Array of objects in collision range"
+            },
+            {
+                "offset": "48",
+                "type": "s16",
+                "size": 2,
+                "name": "Number of objects in collision range"
+            },
+            {
+                "offset": "4a",
+                "type": "s16",
+                "size": 2,
+                "name": "Capacity of the collision array"
+            },
+            {
+                "offset": "50",
+                "type": "float",
+                "size": 4,
+                "name": "Attacking hitbox radius"
+            },
+            {
+                "offset": "54",
+                "type": "float",
+                "size": 4,
+                "name": "Attacking hitbox height"
+            },
+            {
+                "offset": "58",
+                "type": "float",
+                "size": 4,
+                "name": "Receiving hitbox radius"
+            },
+            {
+                "offset": "5c",
+                "type": "float",
+                "size": 4,
+                "name": "Receiving hitbox height"
+            },
+            {
+                "offset": "60",
+                "type": "float",
+                "size": 4,
+                "name": "Collision range?"
+            }
+        ]
+    },
+    "JDrama::TActor": {
+        "size": 68,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TPlacement",
+                "size": 32,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "20",
+                "type": "JStage::TActor",
+                "size": 4,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "size": 4,
+                "name": "X Scale"
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "size": 4,
+                "name": "Y Scale"
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "size": 4,
+                "name": "Z Scale"
+            },
+            {
+                "offset": "30",
+                "type": "float",
+                "size": 4,
+                "name": "X Rotation"
+            },
+            {
+                "offset": "34",
+                "type": "float",
+                "size": 4,
+                "name": "Y Rotation"
+            },
+            {
+                "offset": "38",
+                "type": "float",
+                "size": 4,
+                "name": "Z Rotation"
+            },
+            {
+                "offset": "40",
+                "type": "JDrama::TLightMap*",
+                "size": 4,
+                "name": ""
+            }
+        ]
+    },
+    "JDrama::TPlacement": {
+        "size": 32,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "size": 16,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "10",
+                "type": "JGeometry::TVec3<float>",
+                "size": 12,
+                "name": "Position"
+            },
+            {
+                "offset": "1c",
+                "type": "s16",
+                "size": 2,
+                "name": ""
+            }
+        ]
+    },
+    "JDrama::TViewObj": {
+        "size": 16,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TNameRef",
+                "size": 10,
+                "name": "Inherited fields"
+            },
+            {
+                "offset": "c",
+                "type": "u16",
+                "size": 2,
+                "name": "Flags"
+            }
+        ]
+    },
+    "JGeometry::TVec3<float>": {
+        "size": 12,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "size": 4,
+                "name": "X"
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "size": 4,
+                "name": "Y"
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "size": 4,
+                "name": "Z"
+            }
+        ]
+    },
+    "JDrama::TNameRef": {
+        "size": 10,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "size": 4,
+                "name": "vtable"
+            },
+            {
+                "offset": "4",
+                "type": "string",
+                "size": 4,
+                "name": "Name"
+            },
+            {
+                "offset": "8",
+                "type": "s16",
+                "size": 2,
+                "name": "Key code"
+            }
+        ]
+    },
+    "JStage::TActor": {
+        "size": 4,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JStage::TObject",
+                "size": 4,
+                "name": "Inherited fields"
+            }
+        ]
+    },
+    "JStage::TObject": {
+        "size": 4,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "size": 4,
+                "name": "vtable"
             }
         ]
     }

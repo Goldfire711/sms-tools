@@ -28,7 +28,7 @@ QVariant ObjectParametersModel::data(const QModelIndex& index, int role) const {
   const auto item = items_->at(index.row());
   switch (index.column()) {
   case COLUMN_OFFSET:
-    return "0x" + QString::number(item.offset_, 16);
+    return "0x" + QString::number(item.base_offset_ + item.offset_, 16);
   case COLUMN_TYPE:
     return item.string_type_;
   case COLUMN_NAME:
@@ -47,15 +47,15 @@ QVariant ObjectParametersModel::headerData(int section, Qt::Orientation orientat
     return QVariant();
   switch (section) {
   case COLUMN_OFFSET:
-    return tr("offset");
+    return tr("Offset");
   case COLUMN_TYPE:
-    return tr("type");
+    return tr("Type");
   case COLUMN_NAME:
-    return tr("name");
+    return tr("Name");
   case COLUMN_VALUE:
-    return tr("value");
+    return tr("Value");
   case COLUMN_CLASS:
-    return tr("class");
+    return tr("Class");
   default:
     return QVariant();
   }
