@@ -4,6 +4,17 @@
         "offsets": [
             {
                 "offset": "0",
+                "type": "TSmallEnemy",
+                "size": 404,
+                "name": "TSmallEnemy"
+            }
+        ]
+    },
+    "_default_": {
+        "size": -1,
+        "offsets": [
+            {
+                "offset": "0",
                 "type": "u32",
                 "size": 4,
                 "name": "vtable"

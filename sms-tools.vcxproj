@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersItem.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersModel.cpp" />
@@ -104,7 +105,6 @@
     <ClCompile Include="SMS\RNGManipulator\RNGManipulator.cpp" />
     <ClCompile Include="SMS\MapViewer\MapPinnaBeach.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerItem.cpp" />
-    <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
     <ClCompile Include="SMS\MapViewer\MapViewer.cpp" />
     <ClCompile Include="Memory\Memory.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp" />
@@ -118,11 +118,11 @@
     <ClCompile Include="DolphinProcess\Windows\WindowsDolphinProcess.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui" />
     <QtUic Include="Test\Test\Test.ui" />
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
     <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui" />
-    <QtUic Include="SMS\ObjectViewer\ObjectViewer.ui" />
     <QtUic Include="SMS\MapViewer\MapViewer.ui" />
     <QtUic Include="SMS\Spin\Spin.ui" />
     <QtUic Include="Test\TestMainWindow.ui" />
@@ -148,6 +148,7 @@
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
+    <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
@@ -156,7 +157,6 @@
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
-    <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
     <QtMoc Include="SMS\MapViewer\MapViewer.h" />
     <ClInclude Include="Memory\Memory.h" />
     <QtMoc Include="SMS\Spin\Spin.h" />

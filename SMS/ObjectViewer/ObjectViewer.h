@@ -1,12 +1,13 @@
 #pragma once
 
 #include <QWidget>
+#include <QMainWindow>
 #include "ui_ObjectViewer.h"
 #include "ObjectViewerModel.h"
 #include "ObjectParameters.h"
 
 
-class ObjectViewer : public QWidget {
+class ObjectViewer : public QMainWindow {
   Q_OBJECT
 
 public:

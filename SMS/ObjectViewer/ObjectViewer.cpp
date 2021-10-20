@@ -17,7 +17,7 @@
 extern QTimer* g_timer_100ms;
 
 ObjectViewer::ObjectViewer(QWidget* parent)
-  : QWidget(parent) {
+  : QMainWindow(parent) {
   ui.setupUi(this);
 
   // read json 
@@ -46,7 +46,7 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   auto* shortcut_copy = new QShortcut(QKeySequence(Qt::Modifier::CTRL + Qt::Key::Key_C), ui.tree_object);
   connect(shortcut_copy, &QShortcut::activated, this, [=] {
     copy_as_dmw_format();
-  });
+    });
 
   show_widget_object_parameters();
   connect(ui.tree_object, &QAbstractItemView::clicked, this, &ObjectViewer::on_tree_object_clicked);
@@ -196,10 +196,7 @@ void ObjectViewer::on_update() {
 void ObjectViewer::show_widget_object_parameters() {
   if (object_parameters_ == nullptr)
     object_parameters_ = new ObjectParameters();
-  ui.gridLayout->addWidget(object_parameters_, 0, 2, 2, 1);
-  //object_parameters_->show();
-  //object_parameters_->raise();
-  //object_parameters_->activateWindow();
+  addDockWidget(Qt::BottomDockWidgetArea, object_parameters_);
 }
 
 void ObjectViewer::on_tree_object_clicked(const QModelIndex& index) {

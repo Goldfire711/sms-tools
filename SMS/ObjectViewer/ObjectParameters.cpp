@@ -96,4 +96,5 @@ void ObjectParameters::refresh_items() {
     items_[i].read_memory();
   }
   model_->update_list();
+  ui.label_debug->setText(QString::number(size().width()));
 }
