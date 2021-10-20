@@ -1,14 +1,15 @@
 #pragma once
 
 #include <QWidget>
+#include <QDockWidget>
 #include <QJsonDocument>
 #include "ui_ObjectParameters.h"
 #include "../../Common/CommonTypes.h"
 #include "ObjectParametersItem.h"
 #include "ObjectParametersModel.h"
 
-class ObjectParameters : public QWidget {
-Q_OBJECT
+class ObjectParameters : public QDockWidget {
+  Q_OBJECT
 
 public:
   ObjectParameters(QWidget* parent = Q_NULLPTR);

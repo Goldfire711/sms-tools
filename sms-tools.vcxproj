@@ -85,9 +85,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersItem.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersModel.cpp" />
-    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
       <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
@@ -146,8 +146,8 @@
     <QtMoc Include="SMS\FluffManipulator\FluffManipulator.h" />
     <QtMoc Include="SMS\FluffManipulator\FluffManipulatorModel.h" />
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h" />
-    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h" />
+    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

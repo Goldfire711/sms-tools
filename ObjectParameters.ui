@@ -15,17 +15,17 @@
   </property>
   <widget class="QWidget" name="widget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_debug">
-      <property name="text">
-       <string>label_debug</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
        <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_debug">
+      <property name="text">
+       <string>label_debug</string>
       </property>
      </widget>
     </item>

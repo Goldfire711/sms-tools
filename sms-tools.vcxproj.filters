@@ -55,9 +55,6 @@
     <ClCompile Include="SMS\FluffManipulator\MapPianta8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -65,6 +62,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Test\Test\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -136,13 +136,13 @@
     <QtMoc Include="SMS\FluffManipulator\MapPianta8.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Test\Test\Test.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -169,10 +169,10 @@
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui">
+    <QtUic Include="Test\Test\Test.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="Test\Test\Test.ui">
+    <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

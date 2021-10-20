@@ -13,7 +13,7 @@ extern QTimer* g_timer_100ms;
 using namespace memory;
 
 ObjectParameters::ObjectParameters(QWidget* parent)
-  : QWidget(parent) {
+  : QDockWidget(parent) {
   ui.setupUi(this);
 
   model_ = new ObjectParametersModel(&items_, this);
@@ -61,7 +61,8 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   if (!json_classes_[class_name].isUndefined()) {
     json_class = json_classes_[class_name].toObject();
     load_items_from_json(json_class, class_name);
-  } else {
+  }
+  else {
     json_class = json_classes_["_default"].toObject();
     load_items_from_json(json_class, "_default");
   }
@@ -77,9 +78,11 @@ void ObjectParameters::load_items_from_json(const QJsonObject& json, const QStri
     QString string_type = json_offset["type"].toString();
     if (string_types.contains(string_type)) {
       items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset));
-    } else if (string_type.right(1) == "*") {
+    }
+    else if (string_type.right(1) == "*") {
       items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, true));
-    } else {
+    }
+    else {
       if (json_classes_[string_type].isUndefined())
         continue;
       QJsonObject json_class = json_classes_[string_type].toObject();
