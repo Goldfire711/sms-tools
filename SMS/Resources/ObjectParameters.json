@@ -150,19 +150,19 @@
                 "offset": "ac",
                 "type": "float",
                 "size": 4,
-                "name": "X speed (unit/step)"
+                "name": "X pushed? (unit/step)"
             },
             {
                 "offset": "b0",
                 "type": "float",
                 "size": 4,
-                "name": "Y speed (unit/step)"
+                "name": "Y pushed? (unit/step)"
             },
             {
                 "offset": "b4",
                 "type": "float",
                 "size": 4,
-                "name": "Z speed (unit/step)"
+                "name": "Z puehed? (unit/step)"
             },
             {
                 "offset": "bc",
@@ -175,6 +175,12 @@
                 "type": "float",
                 "size": 4,
                 "name": "Gravity (unit/step²)"
+            },
+            {
+                "offset": "f0",
+                "type": "u32",
+                "size": 4,
+                "name": "Draw info"
             }
         ]
     },
@@ -424,6 +430,131 @@
                 "type": "void*",
                 "size": 4,
                 "name": "vtable"
+            }
+        ]
+    },
+    "TMapObjBase": {
+        "size": 312,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveActor",
+                "size": 208,
+                "name": "vtable"
+            },
+            {
+                "offset": "fc",
+                "type": "u16",
+                "size": 2,
+                "name": "state?"
+            },
+            {
+                "offset": "10c",
+                "type": "float",
+                "size": 4,
+                "name": "X origin?"
+            },
+            {
+                "offset": "110",
+                "type": "float",
+                "size": 4,
+                "name": "Y origin?"
+            },
+            {
+                "offset": "114",
+                "type": "float",
+                "size": 4,
+                "name": "Z origin?"
+            },
+            {
+                "offset": "134",
+                "type": "u32",
+                "size": 4,
+                "name": "Flag ID"
+            }
+        ]
+    },
+    "TFluff": {
+        "size": 440,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "size": 312,
+                "name": "vtable"
+            },
+            {
+                "offset": "148",
+                "type": "float",
+                "size": 4,
+                "name": "揺れの位相"
+            },
+            {
+                "offset": "150",
+                "type": "float",
+                "size": 4,
+                "name": "Wind resistance [0.2,1)"
+            },
+            {
+                "offset": "154",
+                "type": "float",
+                "size": 4,
+                "name": "X offset"
+            },
+            {
+                "offset": "158",
+                "type": "float",
+                "size": 4,
+                "name": "Y offset"
+            },
+            {
+                "offset": "15c",
+                "type": "float",
+                "size": 4,
+                "name": "Z offset"
+            }
+        ]
+    },
+    "TShine": {
+        "size": 440,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "size": 312,
+                "name": "vtable"
+            },
+            {
+                "offset": "154",
+                "type": "u32",
+                "size": 4,
+                "name": "0 = \"normal\", 1 = \"demo\", 2 = \"quickly\""
+            },
+            {
+                "offset": "1a8",
+                "type": "float",
+                "size": 4,
+                "name": "X Glow Size"
+            },
+            {
+                "offset": "1ac",
+                "type": "float",
+                "size": 4,
+                "name": "Y Glow Size"
+            },
+            {
+                "offset": "1b0",
+                "type": "float",
+                "size": 4,
+                "name": "Z Glow Size"
+            },
+            {
+                "offset": "1b4",
+                "type": "s8",
+                "size": 1,
+                "name": "Is already collected?",
+                "is_locked": true,
+                "is_visible": true
             }
         ]
     }

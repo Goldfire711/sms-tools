@@ -67,6 +67,6 @@ void ObjectParametersItem::read_memory() {
     string_value_ = read_string(address_, { 0 }, 50);
     return;
   case Type::POINTER:
-    string_value_ = "0x" + QString::number(read_u32(address_), 16);
+    string_value_ = "0x" + QString::number(read_u32(address_), 16).toUpper();
   }
 }

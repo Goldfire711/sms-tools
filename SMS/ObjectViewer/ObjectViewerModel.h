@@ -34,7 +34,8 @@ public:
 private:
   enum {
     COLUMN_NAME,
-    COLUMN_VALUE
+    COLUMN_VALUE,
+    COLUMN_COUNT
   };
   //void setup_model_data(const QJsonObject &json, ObjectViewerItem* parent);
 

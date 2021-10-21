@@ -46,7 +46,7 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   file.close();
   const QJsonObject vtable_to_class = load_doc["Class"].toObject();
   const QString class_name = vtable_to_class[QString::number(vtable, 16)].toString();
-  name += " <" + class_name + "> (0x" + QString::number(address, 16) + ")";
+  name += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ")";
 
   ui.label->setText(name);
 
@@ -66,8 +66,6 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
     json_class = json_classes_["_default"].toObject();
     load_items_from_json(json_class, "_default");
   }
-
-  // table view‚Åjson‚©‚ç“¾‚½offsets‚ð•\Ž¦
 }
 
 void ObjectParameters::load_items_from_json(const QJsonObject& json, const QString& class_name, const u32 base_offset) {

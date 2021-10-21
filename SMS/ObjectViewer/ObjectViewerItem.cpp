@@ -7,8 +7,9 @@ ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* pa
   : parent_item_(parent_item), index_(index), is_attribute_(is_attribute){
   if (parent_item == nullptr) { // header
     QJsonArray objects = json["objects"].toArray();
-    name_ = "name";
-    value_ = "value";
+    name_ = "Name";
+    class_name_ = "Class";
+    value_ = "Value";
 
     for (auto object : objects) {
       auto* child = new ObjectViewerItem(object.toObject(), this);

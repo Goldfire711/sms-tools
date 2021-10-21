@@ -30,12 +30,12 @@ public:
   QString name_;
   s64 index_;
   QVariant value_ = 0;
-  s32 column_count_ = 2;
   bool is_attribute_ = false;
 
   QVector<ObjectViewerItem*> child_items_;
   ObjectViewerItem* parent_item_;
   u32 address_ = 0;
+  QString class_name_;
 private:
   //QVector<QVariant> item_data_;
   s64 type_size_ = 4;

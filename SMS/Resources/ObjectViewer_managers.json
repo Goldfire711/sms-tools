@@ -871,39 +871,7 @@
                     "address": "4",
                     "type": "string",
                     "name": "object"
-                },
-                "offsets": [
-                    {
-                        "address": "0",
-                        "type": "pointer",
-                        "name": "vtable"
-                    },
-                    {
-                        "address": "10",
-                        "type": "float",
-                        "name": "x"
-                    },
-                    {
-                        "address": "14",
-                        "type": "float",
-                        "name": "y"
-                    },
-                    {
-                        "address": "18",
-                        "type": "float",
-                        "name": "z"
-                    },
-                    {
-                        "address": "fc",
-                        "type": "u16",
-                        "name": "state"
-                    },
-                    {
-                        "address": "134",
-                        "type": "u32",
-                        "name": "SpawnObjID"
-                    }
-                ]
+                }
             }
         ]
     }

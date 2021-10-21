@@ -14,9 +14,7 @@ ObjectViewerModel::~ObjectViewerModel() {
 
 int ObjectViewerModel::columnCount(const QModelIndex& parent) const
 {
-  if (parent.isValid())
-    return static_cast<ObjectViewerItem*>(parent.internalPointer())->column_count_;
-  return root_item_->column_count_;
+  return COLUMN_COUNT;
 }
 
 QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
