@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>776</width>
+    <width>425</width>
     <height>300</height>
    </rect>
   </property>
@@ -21,12 +21,26 @@
   </property>
   <widget class="QWidget" name="widget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_debug">
-      <property name="text">
-       <string>label_debug</string>
-      </property>
-     </widget>
+    <item row="4" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="button_edit_parameters">
+        <property name="text">
+         <string>Edit Parameters</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="button_memory_viewer">
+        <property name="text">
+         <string>Memory Viewer</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <widget class="QTableView" name="table_parameters"/>
     </item>
     <item row="0" column="0">
      <widget class="QLabel" name="label">
@@ -34,9 +48,6 @@
        <string/>
       </property>
      </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QTableView" name="table_parameters"/>
     </item>
    </layout>
   </widget>

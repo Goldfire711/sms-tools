@@ -35,6 +35,7 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   // set json to model_ and set model_ to tree_object
   model_ = new ObjectViewerModel(load_doc.object(), this);
   ui.tree_object->setModel(model_);
+  ui.tree_object->setColumnWidth(0, 318);
   ui.tree_object->setColumnWidth(1, 72);
 
   connect(ui.button_scan_managers, &QPushButton::clicked, this, &ObjectViewer::scan_managers);
@@ -61,6 +62,7 @@ void ObjectViewer::closeEvent(QCloseEvent* event) {
   disconnect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   if (object_parameters_) {
     object_parameters_->close();
+    delete object_parameters_;
     object_parameters_ = nullptr;
   }
 }
@@ -162,6 +164,8 @@ void ObjectViewer::scan_managers() {
   json.insert("objects", json_array);
   model_ = new ObjectViewerModel(json, this);
   ui.tree_object->setModel(model_);
+  model_->on_update();
+  ui.tree_object->resizeColumnToContents(0);
   ui.tree_object->setColumnWidth(1, 72);
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   emit model_->layoutChanged();
@@ -199,7 +203,7 @@ void ObjectViewer::on_update() {
 
 void ObjectViewer::show_widget_object_parameters() {
   if (object_parameters_ == nullptr)
-    object_parameters_ = new ObjectParameters();
+    object_parameters_ = new ObjectParameters(this);
   object_parameters_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
   addDockWidget(Qt::BottomDockWidgetArea, object_parameters_);
 }

@@ -16,11 +16,18 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
   ui.setupUi(this);
 
+  QFile file2("SMS/Resources/ObjectParameters.json");
+  if (!file2.open(QIODevice::ReadOnly))
+    return;
+  json_classes_ = QJsonDocument(QJsonDocument::fromJson(file2.readAll()));
+  file2.close();
+
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
+  //ui.table_parameters->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectParameters::refresh_items));
-
+  connect(ui.button_edit_parameters, &QPushButton::clicked, this, &ObjectParameters::show_edit_parameters_dialog);
 }
 
 ObjectParameters::~ObjectParameters() {
@@ -51,11 +58,6 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   ui.label->setText(name);
 
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード
-  QFile file2("SMS/Resources/ObjectParameters.json");
-  if (!file2.open(QIODevice::ReadOnly))
-    return;
-  json_classes_ = QJsonDocument(QJsonDocument::fromJson(file2.readAll()));
-  file2.close();
   QJsonObject json_class;
   items_.clear();
   if (!json_classes_[class_name].isUndefined()) {
@@ -66,6 +68,8 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
     json_class = json_classes_["_default"].toObject();
     load_items_from_json(json_class, "_default");
   }
+  refresh_items();
+  ui.table_parameters->resizeColumnsToContents();
 }
 
 void ObjectParameters::load_items_from_json(const QJsonObject& json, const QString& class_name, const u32 base_offset) {
@@ -94,5 +98,12 @@ void ObjectParameters::refresh_items() {
     items_[i].read_memory();
   }
   model_->update_list();
-  ui.label_debug->setText(QString::number(size().width()));
+}
+
+void ObjectParameters::show_edit_parameters_dialog() {
+  //auto* edit_parameters = new EditParametersDialog(json_classes_, this);
+  //edit_parameters->exec();
+  //delete edit_parameters;
+  EditParametersDialog edit_parameters(json_classes_, this);
+  edit_parameters.exec();
 }

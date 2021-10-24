@@ -85,6 +85,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
+    <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectParametersItem.cpp" />
@@ -110,6 +112,7 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp" />
     <ClCompile Include="SMS\Spin\Spin.cpp" />
     <ClCompile Include="Test\TestMainWindow.cpp" />
+    <QtUic Include="SMS\ObjectViewer\EditParametersDialog.ui" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="Common\MemoryCommon.cpp" />
@@ -149,6 +152,8 @@
     <QtMoc Include="SMS\ObjectViewer\ObjectParametersModel.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectParameters.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
+    <QtMoc Include="SMS\ObjectViewer\EditParametersDialog.h" />
+    <QtMoc Include="SMS\ObjectViewer\EditParametersModel.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

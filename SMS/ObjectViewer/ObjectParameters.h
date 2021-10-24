@@ -7,6 +7,7 @@
 #include "../../Common/CommonTypes.h"
 #include "ObjectParametersItem.h"
 #include "ObjectParametersModel.h"
+#include "EditParametersDialog.h"
 
 class ObjectParameters : public QDockWidget {
   Q_OBJECT
@@ -17,6 +18,7 @@ public:
   void set_label(QString string);
   void show_parameters(u32 address, s64 index);
   void refresh_items();
+  void show_edit_parameters_dialog();
 
 private:
   Ui::ObjectParameters ui;

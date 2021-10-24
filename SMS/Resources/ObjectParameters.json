@@ -1,560 +1,654 @@
 {
     "_default": {
         "size": -1,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TSmallEnemy",
-                "size": 404,
-                "name": "TSmallEnemy"
-            }
-        ]
-    },
-    "_default_": {
-        "size": -1,
-        "offsets": [
-            {
-                "offset": "0",
-                "type": "u32",
-                "size": 4,
-                "name": "vtable"
-            },
-            {
-                "offset": "4",
-                "type": "string",
-                "size": 4,
-                "name": "name"
-            },
-            {
-                "offset": "8",
-                "type": "s16",
-                "size": 2,
-                "name": "hash?"
-            },
-            {
-                "offset": "10",
-                "type": "float",
-                "size": 4,
-                "name": "x"
-            },
-            {
-                "offset": "14",
-                "type": "float",
-                "size": 4,
-                "name": "y"
-            },
-            {
-                "offset": "18",
-                "type": "float",
-                "size": 4,
-                "name": "z"
-            },
-            {
-                "offset": "fc",
-                "type": "u16",
-                "size": 2,
-                "name": "state"
-            },
-            {
-                "offset": "134",
-                "type": "u32",
-                "size": 4,
-                "name": "SpawnObjID"
+                "name": "temporary",
+                "notes": "test\ntest",
+                "is_locked": false
             }
         ]
     },
     "TChuuHana": {
         "size": 560,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TWalkerEnemy",
-                "size": 404,
-                "name": "TWalkerEnemy"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TWalkerEnemy": {
         "size": 404,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TSmallEnemy",
-                "size": 404,
-                "name": "TSmallEnemy"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TSmallEnemy": {
         "size": 404,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TSpineEnemy",
-                "size": 336,
-                "name": ""
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TSpineEnemy": {
         "size": 336,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TLiveActor",
-                "size": 244,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "124",
                 "type": "TGraphTracer*",
-                "size": 4,
-                "name": "Movement graph"
+                "name": "Movement graph",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TLiveActor": {
         "size": 244,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TTakeActor",
-                "size": 112,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "74",
+                "type": "MActor*",
+                "name": "",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "80",
+                "type": "MAnimSound*",
+                "name": "",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "84",
+                "type": "JKRFileLoader*",
+                "name": "",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "8c",
                 "type": "TSpineBase<TLiveActor>*",
-                "size": 4,
-                "name": "AI"
+                "name": "AI",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "94",
                 "type": "float",
-                "size": 4,
-                "name": "X movement (unit/step)"
+                "name": "X movement (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "98",
                 "type": "float",
-                "size": 4,
-                "name": "Y movement (unit/step)"
+                "name": "Y movement (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "9c",
                 "type": "float",
-                "size": 4,
-                "name": "Z movement (unit/step)"
+                "name": "Z movement (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "ac",
                 "type": "float",
-                "size": 4,
-                "name": "X pushed? (unit/step)"
+                "name": "X pushed? (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "b0",
                 "type": "float",
-                "size": 4,
-                "name": "Y pushed? (unit/step)"
+                "name": "Y pushed? (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "b4",
                 "type": "float",
-                "size": 4,
-                "name": "Z puehed? (unit/step)"
+                "name": "Z puehed? (unit/step)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "bc",
                 "type": "float",
-                "size": 4,
-                "name": "Max speed (unit/step)"
+                "name": "Max speed (unit/step)",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "c4",
+                "type": "TBGCheckData*",
+                "name": "",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "cc",
                 "type": "float",
-                "size": 4,
-                "name": "Gravity (unit/step²)"
+                "name": "GravityY (unit/step²)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "f0",
                 "type": "u32",
-                "size": 4,
-                "name": "Draw info"
+                "name": "Draw info",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TTakeActor": {
         "size": 112,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "THitActor",
-                "size": 104,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "68",
                 "type": "TTakeActor*",
-                "size": 4,
-                "name": "Holder"
+                "name": "Holder",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "6c",
                 "type": "TTakeActor*",
-                "size": 4,
-                "name": "Held object"
+                "name": "Held object",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "THitActor": {
         "size": 104,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "JDrama::TActor",
-                "size": 68,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "44",
                 "type": "THitActor**",
-                "size": 4,
-                "name": "Array of objects in collision range"
+                "name": "Array of objects in collision range",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "48",
                 "type": "s16",
-                "size": 2,
-                "name": "Number of objects in collision range"
+                "name": "Number of objects in collision range",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "4a",
                 "type": "s16",
-                "size": 2,
-                "name": "Capacity of the collision array"
+                "name": "Capacity of the collision array",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "50",
                 "type": "float",
-                "size": 4,
-                "name": "Attacking hitbox radius"
+                "name": "Attacking hitbox radius",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "54",
                 "type": "float",
-                "size": 4,
-                "name": "Attacking hitbox height"
+                "name": "Attacking hitbox height",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "58",
                 "type": "float",
-                "size": 4,
-                "name": "Receiving hitbox radius"
+                "name": "Receiving hitbox radius",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "5c",
                 "type": "float",
-                "size": 4,
-                "name": "Receiving hitbox height"
+                "name": "Receiving hitbox height",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "60",
                 "type": "float",
-                "size": 4,
-                "name": "Collision range?"
+                "name": "Collision range?",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JDrama::TActor": {
         "size": 68,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "JDrama::TPlacement",
-                "size": 32,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "20",
                 "type": "JStage::TActor",
-                "size": 4,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "24",
                 "type": "float",
-                "size": 4,
-                "name": "X Scale"
+                "name": "X Scale",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "28",
                 "type": "float",
-                "size": 4,
-                "name": "Y Scale"
+                "name": "Y Scale",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "2c",
                 "type": "float",
-                "size": 4,
-                "name": "Z Scale"
+                "name": "Z Scale",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "30",
                 "type": "float",
-                "size": 4,
-                "name": "X Rotation"
+                "name": "JointTransX",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "34",
                 "type": "float",
-                "size": 4,
-                "name": "Y Rotation"
+                "name": "JointTransY",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "38",
                 "type": "float",
-                "size": 4,
-                "name": "Z Rotation"
+                "name": "JointTransZ",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "40",
                 "type": "JDrama::TLightMap*",
-                "size": 4,
-                "name": ""
+                "name": "",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JDrama::TPlacement": {
         "size": 32,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "JDrama::TViewObj",
-                "size": 16,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "10",
                 "type": "JGeometry::TVec3<float>",
-                "size": 12,
-                "name": "Position"
+                "name": "Position",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "1c",
                 "type": "s16",
-                "size": 2,
-                "name": ""
+                "name": "",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JDrama::TViewObj": {
         "size": 16,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "JDrama::TNameRef",
-                "size": 10,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "c",
                 "type": "u16",
-                "size": 2,
-                "name": "Flags"
+                "name": "Flags",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JGeometry::TVec3<float>": {
         "size": 12,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "float",
-                "size": 4,
-                "name": "X"
+                "name": "X",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "4",
                 "type": "float",
-                "size": 4,
-                "name": "Y"
+                "name": "Y",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "8",
                 "type": "float",
-                "size": 4,
-                "name": "Z"
+                "name": "Z",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JDrama::TNameRef": {
         "size": 10,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "void*",
-                "size": 4,
-                "name": "vtable"
+                "name": "vtable",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "4",
                 "type": "string",
-                "size": 4,
-                "name": "Name"
+                "name": "Name",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "8",
                 "type": "s16",
-                "size": 2,
-                "name": "Key code"
+                "name": "Key code",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JStage::TActor": {
         "size": 4,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "JStage::TObject",
-                "size": 4,
-                "name": "Inherited fields"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "JStage::TObject": {
         "size": 4,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "void*",
-                "size": 4,
-                "name": "vtable"
+                "name": "vtable",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TMapObjBase": {
         "size": 312,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TLiveActor",
-                "size": 208,
-                "name": "vtable"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "f4",
+                "type": "string",
+                "name": "?",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "fc",
                 "type": "u16",
-                "size": 2,
-                "name": "state?"
+                "name": "state?",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "108",
+                "type": "float",
+                "name": "ObjCollisionHeightOffset",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "10c",
                 "type": "float",
-                "size": 4,
-                "name": "X origin?"
+                "name": "X origin?",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "110",
                 "type": "float",
-                "size": 4,
-                "name": "Y origin?"
+                "name": "Y origin?",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "114",
                 "type": "float",
-                "size": 4,
-                "name": "Z origin?"
+                "name": "Z origin?",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "134",
                 "type": "u32",
-                "size": 4,
-                "name": "Flag ID"
+                "name": "Flag ID",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TFluff": {
-        "size": 440,
+        "size": 368,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TMapObjBase",
-                "size": 312,
-                "name": "vtable"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "148",
                 "type": "float",
-                "size": 4,
-                "name": "揺れの位相"
+                "name": "揺れの位相",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "150",
                 "type": "float",
-                "size": 4,
-                "name": "Wind resistance [0.2,1)"
+                "name": "Wind resistance [0.2,1)",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "154",
                 "type": "float",
-                "size": 4,
-                "name": "X offset"
+                "name": "X offset",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "158",
                 "type": "float",
-                "size": 4,
-                "name": "Y offset"
+                "name": "Y offset",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "15c",
                 "type": "float",
-                "size": 4,
-                "name": "Z offset"
+                "name": "Z offset",
+                "notes": "",
+                "is_locked": false
             }
         ]
     },
     "TShine": {
         "size": 440,
+        "hide_offsets": [],
         "offsets": [
             {
                 "offset": "0",
                 "type": "TMapObjBase",
-                "size": 312,
-                "name": "vtable"
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "154",
                 "type": "u32",
-                "size": 4,
-                "name": "0 = \"normal\", 1 = \"demo\", 2 = \"quickly\""
+                "name": "0 = \"normal\", 1 = \"demo\", 2 = \"quickly\"",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "1a8",
                 "type": "float",
-                "size": 4,
-                "name": "X Glow Size"
+                "name": "X Glow Size",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "1ac",
                 "type": "float",
-                "size": 4,
-                "name": "Y Glow Size"
+                "name": "Y Glow Size",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "1b0",
                 "type": "float",
-                "size": 4,
-                "name": "Z Glow Size"
+                "name": "Z Glow Size",
+                "notes": "",
+                "is_locked": false
             },
             {
                 "offset": "1b4",
                 "type": "s8",
-                "size": 1,
                 "name": "Is already collected?",
-                "is_locked": true,
-                "is_visible": true
+                "notes": "",
+                "is_locked": false
+            }
+        ]
+    },
+    "TLeanMirror": {
+        "size": 432,
+        "hide_offsets": [],
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "name": "Inherited fields",
+                "notes": "",
+                "is_locked": false
+            },
+            {
+                "offset": "17c",
+                "type": "TShiningStone*",
+                "name": "",
+                "notes": "",
+                "is_locked": false
             }
         ]
     }
