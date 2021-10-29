@@ -62,8 +62,23 @@ bool EditParametersModel::setData(const QModelIndex& index, const QVariant& valu
       return true;
     case COLUMN_OFFSET:
       offset_object["offset"] = value.toString();
-      //wip
+      offset = offset_object;
+      json_class_["offsets"] = json_offsets_;
+      emit dataChanged(index, index);
+      return true;
     }
+  }
+  if (role == Qt::CheckStateRole && index.column() == COLUMN_IS_LOCKED) {
+    if(value == Qt::Checked) {
+      offset_object["is_locked"] = true;
+    }
+    else {
+      offset_object["is_locked"] = false;
+    }
+    offset = offset_object;
+    json_class_["offsets"] = json_offsets_;
+    emit dataChanged(index, index);
+    return true;
   }
   return false;
 }
@@ -93,15 +108,21 @@ Qt::ItemFlags EditParametersModel::flags(const QModelIndex& index) const {
   if (!index.isValid())
     return Qt::NoItemFlags;
 
-  const Qt::ItemFlags flags_editable = Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemIsEditable;
+  const Qt::ItemFlags flags_read_only = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
+  const Qt::ItemFlags flags_editable = flags_read_only | Qt::ItemIsEditable;
+
+  auto current_row = json_offsets_[index.row()].toObject();
 
   if (index.column() == COLUMN_IS_LOCKED)
     return Qt::ItemIsUserCheckable | Qt::ItemIsEnabled;
   if (index.column() == COLUMN_SIZE)
-    return Qt::ItemIsEnabled;
-  if (index.column() == COLUMN_TYPE || index.column() == COLUMN_NOTES)
-    return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-  return flags_editable;
+    return flags_read_only;
+  if (index.column() == COLUMN_TYPE || index.column() == COLUMN_NAME | index.column() == COLUMN_NOTES) {
+    if (current_row["is_locked"].toBool())
+      return flags_read_only;
+    return flags_editable;
+  }
+  return flags_read_only;
 }
 
 

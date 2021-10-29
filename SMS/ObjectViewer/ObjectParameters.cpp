@@ -9,6 +9,7 @@
 
 #include "../../Memory/Memory.h"
 
+QJsonDocument g_json_classes;
 extern QTimer* g_timer_100ms;
 using namespace memory;
 
@@ -19,7 +20,7 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   QFile file2("SMS/Resources/ObjectParameters.json");
   if (!file2.open(QIODevice::ReadOnly))
     return;
-  json_classes_ = QJsonDocument(QJsonDocument::fromJson(file2.readAll()));
+  g_json_classes = QJsonDocument(QJsonDocument::fromJson(file2.readAll()));
   file2.close();
 
   model_ = new ObjectParametersModel(&items_, this);
@@ -60,12 +61,12 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード
   QJsonObject json_class;
   items_.clear();
-  if (!json_classes_[class_name].isUndefined()) {
-    json_class = json_classes_[class_name].toObject();
+  if (!g_json_classes[class_name].isUndefined()) {
+    json_class = g_json_classes[class_name].toObject();
     load_items_from_json(json_class, class_name);
   }
   else {
-    json_class = json_classes_["_default"].toObject();
+    json_class = g_json_classes["_default"].toObject();
     load_items_from_json(json_class, "_default");
   }
   refresh_items();
@@ -85,9 +86,9 @@ void ObjectParameters::load_items_from_json(const QJsonObject& json, const QStri
       items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, true));
     }
     else {
-      if (json_classes_[string_type].isUndefined())
+      if (g_json_classes[string_type].isUndefined())
         continue;
-      QJsonObject json_class = json_classes_[string_type].toObject();
+      QJsonObject json_class = g_json_classes[string_type].toObject();
       load_items_from_json(json_class, string_type, base_offset + json_offset["offset"].toString().toUInt(nullptr, 16));
     }
   }
@@ -101,9 +102,9 @@ void ObjectParameters::refresh_items() {
 }
 
 void ObjectParameters::show_edit_parameters_dialog() {
-  //auto* edit_parameters = new EditParametersDialog(json_classes_, this);
+  //auto* edit_parameters = new EditParametersDialog(g_json_classes, this);
   //edit_parameters->exec();
   //delete edit_parameters;
-  EditParametersDialog edit_parameters(json_classes_, this);
+  EditParametersDialog edit_parameters(g_json_classes, this);
   edit_parameters.exec();
 }

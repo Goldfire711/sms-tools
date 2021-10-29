@@ -21,7 +21,6 @@ public:
   ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset = 0, bool is_pointer = false);
   void read_memory();
   void write_memory();
-  QString get_type_string();
 
   Type type_;
   u32 address_;

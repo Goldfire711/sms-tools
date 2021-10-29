@@ -24,7 +24,6 @@ private:
   Ui::ObjectParameters ui;
   u32 address_;
   QVector<ObjectParametersItem> items_;
-  QJsonDocument json_classes_;
   ObjectParametersModel* model_;
 
   void load_items_from_json(const QJsonObject& json, const QString& class_name, u32 base_offset = 0);
