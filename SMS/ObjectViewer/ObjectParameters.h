@@ -26,5 +26,5 @@ private:
   QVector<ObjectParametersItem> items_;
   ObjectParametersModel* model_;
 
-  void load_items_from_json(const QJsonObject& json, const QString& class_name, u32 base_offset = 0);
+  void load_items_from_json(const QJsonObject& json, const QString& class_name, u32 base_offset = 0, const QString& parent_name = "");
 };

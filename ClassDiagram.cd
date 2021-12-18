@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ObjectParametersItem" Collapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAAAACAAAAAAEBAAAAIEAAAoAAAAAEAAAAAAIAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectParametersItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SMSData" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAQAAAAAAAAAAAAAAAAAAAQQACAACAAAEAAA=</HashCode>
+      <FileName>SMS\FluffManipulator\SMSData.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReadWriteTestItem" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAACAAAAAAABAAAALEAAAoAIAAAAAAAAAAIAA=</HashCode>
+      <FileName>Test\ReadWriteTest\ReadWriteTestItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectViewerItem" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAEgAAAQSAAAIAABBBECAACAQAAACAAAAAQAAIFIAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectViewerItem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TestMainWindow" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAABEAAQAAAAAAAAAAgBABAAAAAEAAAQAAA=</HashCode>
+      <FileName>Test\TestMainWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapPinnaBeach" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAQABAgJAgIAAAGAAIACEAAACEEggAEIAAAAAAA=</HashCode>
+      <FileName>SMS\MapViewer\MapPinnaBeach.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RNGManipulator" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>SMS\RNGManipulator\RNGManipulator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReadWriteTest" Collapsed="true">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAEAAAAAgAAAAAAAABAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Test\ReadWriteTest\ReadWriteTest.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReadWriteTestModel" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAIAQAgAAAAAAAABAAgAAAAQAAAAAAA=</HashCode>
+      <FileName>Test\ReadWriteTest\ReadWriteTestModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluffManipulator" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KgAgOEAKCIQQCBCYAsYhCABQIAAQAAAaAoCABIgGAmw=</HashCode>
+      <FileName>SMS\FluffManipulator\FluffManipulator.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FluffManipulatorModel" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAIAAAAAAAAAAAABAAICAAAQAAgIAAA=</HashCode>
+      <FileName>SMS\FluffManipulator\FluffManipulatorModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapPianta8" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>GAICAECIBAQAAgMAAAEAAIAAAAQAACAIAAICAAggBEA=</HashCode>
+      <FileName>SMS\FluffManipulator\MapPianta8.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectParametersModel" Collapsed="true">
+    <Position X="7" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAIAQAgAAAAAAAABAAAAAAAQAAAQAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectParametersModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectParameters" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAUAAAIBgAAAAAAAAIAQAIAAAAAAAIAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectParameters.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectViewer" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>xACAAAAAAAIAEAAQAAMAAAAAAAQAAAAAAAACAAAIAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectViewer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EditParametersDialog" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\EditParametersDialog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EditParametersModel" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAShAAAAIAQAAAAAAAAAABAAAAAAAQAAAAAAQ=</HashCode>
+      <FileName>SMS\ObjectViewer\EditParametersModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectViewerMain" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectViewerMain.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Test" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Test\Test\Test.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectViewerModel" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAQAAAEAJAgAAAAAAAEAABAAAAAAEQAAABEAQ=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectViewerModel.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MapViewer" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAEAACAAEAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>SMS\MapViewer\MapViewer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spin" Collapsed="true">
+    <Position X="7" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAABAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SMS\Spin\Spin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWindow" Collapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EACAQAAAAAAAEIAQAABAABAAAACAIEAAAEAAAAAAAEA=</HashCode>
+      <FileName>MainWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DolphinComm::DolphinAccessor" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgABgAAAgggAACAECAAAAAAABAEhAIJAAABAAAAAAA=</HashCode>
+      <FileName>DolphinProcess\DolphinAccessor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DolphinComm::IDolphinProcess" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAgAACAAIAAAEAADBAAAAAAAAMBAAAAAAA=</HashCode>
+      <FileName>DolphinProcess\IDolphinProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DolphinComm::LinuxDolphinProcess" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAACAIAAAAAAABAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>DolphinProcess\Linux\LinuxDolphinProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DolphinComm::WindowsDolphinProcess" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAEAAIAAIAAAABAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>DolphinProcess\Windows\WindowsDolphinProcess.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="fluff_rng_functions::Vector3d" Collapsed="true">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAQAAAAA=</HashCode>
+      <FileName>SMS\FluffManipulator\FluffRNGFunctions.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fluff_rng_functions::Rectangular" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SMS\FluffManipulator\FluffRNGFunctions.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="fluff_rng_functions::FluffResult" Collapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAFgAAADAAAAAAAAAgAxkAQABAAA=</HashCode>
+      <FileName>SMS\FluffManipulator\FluffRNGFunctions.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="u64" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="u32" Collapsed="true">
+    <Position X="5.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="u16" Collapsed="true">
+    <Position X="12.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="u8" Collapsed="true">
+    <Position X="8.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="s64" Collapsed="true">
+    <Position X="8.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="s32" Collapsed="true">
+    <Position X="7" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="s16" Collapsed="true">
+    <Position X="5.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="s8" Collapsed="true">
+    <Position X="10.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\CommonTypes.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Type" Collapsed="true">
+    <Position X="10.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwhAAAAAAAAAAAAAABAAAAABAEAgAAAAAAAAAAAA=</HashCode>
+      <FileName>SMS\ObjectViewer\ObjectParametersItem.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TypeTest" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAwhAAAAAAAAAAAAAABAAAAABAEAgABAAAAAAAAAA=</HashCode>
+      <FileName>Test\ReadWriteTest\ReadWriteTestItem.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Common::MemType" Collapsed="true">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAQFAAEAAAAAAAAEAAAAAAAAAAAAAAIAAAAI=</HashCode>
+      <FileName>Common\MemoryCommon.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Common::MemBase" Collapsed="true">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgABAAAAAAAAAAAAAAAAAAAAAEAgAAgAAAAAAAA=</HashCode>
+      <FileName>Common\MemoryCommon.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Common::MemOperationReturnCode" Collapsed="true">
+    <Position X="7" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAQAAAAAQBAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Common\MemoryCommon.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

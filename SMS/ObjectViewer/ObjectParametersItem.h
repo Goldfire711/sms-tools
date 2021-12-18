@@ -18,7 +18,7 @@ enum class Type {
 class ObjectParametersItem {
 public:
   ObjectParametersItem();
-  ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset = 0, bool is_pointer = false);
+  ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset = 0, QString name = "", bool is_pointer = false);
   void read_memory();
   void write_memory();
 

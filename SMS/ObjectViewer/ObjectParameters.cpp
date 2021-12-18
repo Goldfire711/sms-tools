@@ -73,23 +73,32 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   ui.table_parameters->resizeColumnsToContents();
 }
 
-void ObjectParameters::load_items_from_json(const QJsonObject& json, const QString& class_name, const u32 base_offset) {
+void ObjectParameters::load_items_from_json(const QJsonObject& json, const QString& class_name, const u32 base_offset, const QString& parent_name) {
   const QJsonArray offsets = json["offsets"].toArray();
   const QStringList string_types = { "u8", "u16", "u32", "s8", "s16", "s32", "float", "string" };
   for (auto offset : offsets) {
     QJsonObject json_offset = offset.toObject();
+
+    QString name;
+    if (parent_name.contains('*')) {
+      name = parent_name;
+      name.replace("*", json_offset["name"].toString());
+    } else {
+      name = json_offset["name"].toString();
+    }
+
     QString string_type = json_offset["type"].toString();
     if (string_types.contains(string_type)) {
-      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset));
+      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, name));
     }
     else if (string_type.right(1) == "*") {
-      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, true));
+      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, name, true));
     }
     else {
       if (g_json_classes[string_type].isUndefined())
         continue;
       QJsonObject json_class = g_json_classes[string_type].toObject();
-      load_items_from_json(json_class, string_type, base_offset + json_offset["offset"].toString().toUInt(nullptr, 16));
+      load_items_from_json(json_class, string_type, base_offset + json_offset["offset"].toString().toUInt(nullptr, 16), name);
     }
   }
 }

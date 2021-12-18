@@ -1,6 +1,15 @@
 {
     "objects": [
         {
+            "address": "8040a378",
+            "type": "pointer",
+            "name": {
+                "address": "4",
+                "type": "string",
+                "name": "mario"
+            }
+        },
+        {
             "address": "8040a4d8",
             "type": "pointer",
             "name": {
