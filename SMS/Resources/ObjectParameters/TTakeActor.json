@@ -1,0 +1,25 @@
+{
+    "TTakeActor": {
+        "size": 112,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "THitActor",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "68",
+                "type": "TTakeActor*",
+                "name": "Holder",
+                "notes": ""
+            },
+            {
+                "offset": "6c",
+                "type": "TTakeActor*",
+                "name": "Held object",
+                "notes": ""
+            }
+        ]
+    }
+}

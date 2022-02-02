@@ -1,0 +1,79 @@
+{
+    "TMarDirector": {
+        "size": 616,
+        "offsets": [
+            {
+                "offset": "7c",
+                "type": "s8",
+                "name": "Current stage",
+                "notes": ""
+            },
+            {
+                "offset": "7d",
+                "type": "s8",
+                "name": "Current episode",
+                "notes": ""
+            },
+            {
+                "offset": "12c",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot0 *",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot1 *",
+                "notes": ""
+            },
+            {
+                "offset": "174",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot2 *",
+                "notes": ""
+            },
+            {
+                "offset": "198",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot3 *",
+                "notes": ""
+            },
+            {
+                "offset": "1bc",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot4 *",
+                "notes": ""
+            },
+            {
+                "offset": "1e0",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot5 *",
+                "notes": ""
+            },
+            {
+                "offset": "204",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot6 *",
+                "notes": ""
+            },
+            {
+                "offset": "228",
+                "type": "TMarDirector::TDemoInfo",
+                "name": "slot7 *",
+                "notes": ""
+            },
+            {
+                "offset": "24c",
+                "type": "u8",
+                "name": "Cutscenes started",
+                "notes": ""
+            },
+            {
+                "offset": "24d",
+                "type": "u8",
+                "name": "Sutscenes ended",
+                "notes": ""
+            }
+        ]
+    }
+}

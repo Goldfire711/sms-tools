@@ -1,0 +1,61 @@
+{
+    "THitActor": {
+        "size": 104,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TActor",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "44",
+                "type": "THitActor**",
+                "name": "Array of objects in collision range",
+                "notes": ""
+            },
+            {
+                "offset": "48",
+                "type": "s16",
+                "name": "Number of objects in collision range",
+                "notes": ""
+            },
+            {
+                "offset": "4a",
+                "type": "s16",
+                "name": "Capacity of the collision array",
+                "notes": ""
+            },
+            {
+                "offset": "50",
+                "type": "float",
+                "name": "Attacking hitbox radius",
+                "notes": ""
+            },
+            {
+                "offset": "54",
+                "type": "float",
+                "name": "Attacking hitbox height",
+                "notes": ""
+            },
+            {
+                "offset": "58",
+                "type": "float",
+                "name": "Receiving hitbox radius",
+                "notes": ""
+            },
+            {
+                "offset": "5c",
+                "type": "float",
+                "name": "Receiving hitbox height",
+                "notes": ""
+            },
+            {
+                "offset": "60",
+                "type": "float",
+                "name": "Collision range?",
+                "notes": ""
+            }
+        ]
+    }
+}

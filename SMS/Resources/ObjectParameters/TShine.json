@@ -1,0 +1,43 @@
+{
+    "TShine": {
+        "size": 440,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "154",
+                "type": "u32",
+                "name": "0 = \"normal\", 1 = \"demo\", 2 = \"quickly\"",
+                "notes": ""
+            },
+            {
+                "offset": "1a8",
+                "type": "float",
+                "name": "X Glow Size",
+                "notes": ""
+            },
+            {
+                "offset": "1ac",
+                "type": "float",
+                "name": "Y Glow Size",
+                "notes": ""
+            },
+            {
+                "offset": "1b0",
+                "type": "float",
+                "name": "Z Glow Size",
+                "notes": ""
+            },
+            {
+                "offset": "1b4",
+                "type": "s8",
+                "name": "Is already collected?",
+                "notes": ""
+            }
+        ]
+    }
+}

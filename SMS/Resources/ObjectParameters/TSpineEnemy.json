@@ -1,0 +1,19 @@
+{
+    "TSpineEnemy": {
+        "size": 336,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveActor",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "124",
+                "type": "TGraphTracer*",
+                "name": "Movement graph",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "TWalkerEnemy": {
+        "size": 404,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSmallEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            }
+        ]
+    }
+}

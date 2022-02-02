@@ -1,0 +1,13 @@
+{
+    "TChuuHana": {
+        "size": 560,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TWalkerEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            }
+        ]
+    }
+}

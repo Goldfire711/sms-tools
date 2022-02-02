@@ -1,0 +1,19 @@
+{
+    "TLeanMirror": {
+        "size": 432,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "17c",
+                "type": "TShiningStone*",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

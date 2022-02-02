@@ -1,0 +1,13 @@
+{
+    "_default": {
+        "size": -1,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSmallEnemy",
+                "name": "temporary",
+                "notes": "test\ntest"
+            }
+        ]
+    }
+}

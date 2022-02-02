@@ -1,0 +1,31 @@
+{
+    "TFluff": {
+        "size": 368,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "148",
+                "type": "float",
+                "name": "揺れの位相",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "float",
+                "name": "Wind resistance [0.2,1)",
+                "notes": ""
+            },
+            {
+                "offset": "154",
+                "type": "JGeometry::TVec3<float>",
+                "name": "* offset",
+                "notes": ""
+            }
+        ]
+    }
+}

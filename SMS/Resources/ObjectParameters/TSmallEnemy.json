@@ -1,0 +1,13 @@
+{
+    "TSmallEnemy": {
+        "size": 404,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            }
+        ]
+    }
+}

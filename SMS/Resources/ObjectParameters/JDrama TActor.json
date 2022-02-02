@@ -1,0 +1,61 @@
+{
+    "JDrama::TActor": {
+        "size": 68,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TPlacement",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "JStage::TActor",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "name": "X Scale",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "name": "Y Scale",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "name": "Z Scale",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "float",
+                "name": "JointTransX",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "float",
+                "name": "JointTransY",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "float",
+                "name": "JointTransZ",
+                "notes": ""
+            },
+            {
+                "offset": "40",
+                "type": "JDrama::TLightMap*",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

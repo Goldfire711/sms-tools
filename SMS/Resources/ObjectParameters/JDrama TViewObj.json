@@ -1,0 +1,19 @@
+{
+    "JDrama::TViewObj": {
+        "size": 16,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TNameRef",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "u16",
+                "name": "Flags",
+                "notes": ""
+            }
+        ]
+    }
+}

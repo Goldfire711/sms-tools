@@ -1,0 +1,43 @@
+{
+    "TMapObjBase": {
+        "size": 312,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveActor",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "f4",
+                "type": "string",
+                "name": "?",
+                "notes": ""
+            },
+            {
+                "offset": "fc",
+                "type": "u16",
+                "name": "state?",
+                "notes": ""
+            },
+            {
+                "offset": "108",
+                "type": "float",
+                "name": "ObjCollisionHeightOffset",
+                "notes": ""
+            },
+            {
+                "offset": "10c",
+                "type": "JGeometry::TVec3<float>",
+                "name": "* origin?",
+                "notes": ""
+            },
+            {
+                "offset": "134",
+                "type": "u32",
+                "name": "Flag ID",
+                "notes": ""
+            }
+        ]
+    }
+}

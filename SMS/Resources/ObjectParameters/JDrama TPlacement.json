@@ -1,0 +1,25 @@
+{
+    "JDrama::TPlacement": {
+        "size": 32,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "JGeometry::TVec3<float>",
+                "name": "* Position",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "s16",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

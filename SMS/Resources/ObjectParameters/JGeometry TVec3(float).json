@@ -1,0 +1,25 @@
+{
+    "JGeometry::TVec3<float>": {
+        "size": 12,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "X",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "Y",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "Z",
+                "notes": ""
+            }
+        ]
+    }
+}

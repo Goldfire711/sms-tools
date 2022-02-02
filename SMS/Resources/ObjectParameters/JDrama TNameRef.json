@@ -1,0 +1,25 @@
+{
+    "JDrama::TNameRef": {
+        "size": 10,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "string",
+                "name": "Name",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s16",
+                "name": "Key code",
+                "notes": ""
+            }
+        ]
+    }
+}

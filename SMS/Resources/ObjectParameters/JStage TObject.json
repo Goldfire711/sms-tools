@@ -1,0 +1,13 @@
+{
+    "JStage::TObject": {
+        "size": 4,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            }
+        ]
+    }
+}
