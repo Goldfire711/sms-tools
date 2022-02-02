@@ -10,6 +10,15 @@
             }
         },
         {
+            "value": "80907A20",
+            "type": "pointer",
+            "name": {
+                "address": "4",
+                "type": "string",
+                "name": "cutscenes"
+            }
+        },
+        {
             "address": "8040a4d8",
             "type": "pointer",
             "name": {
