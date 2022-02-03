@@ -6,22 +6,22 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QTimer>
+#include <fstream>
+#include <filesystem>
 
 #include "../../Memory/Memory.h"
 
-QJsonDocument g_json_classes;
-extern QTimer* g_timer_100ms;
 using namespace memory;
+using json = nlohmann::json;
+json g_json_parameters;
+extern QTimer* g_timer_100ms;
 
 ObjectParameters::ObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
   ui.setupUi(this);
 
-  QFile file2("SMS/Resources/ObjectParameters.json");
-  if (!file2.open(QIODevice::ReadOnly))
-    return;
-  g_json_classes = QJsonDocument(QJsonDocument::fromJson(file2.readAll()));
-  file2.close();
+  // read object parameters from ObjectParameters/*.json
+  read_parameters();
 
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
@@ -59,46 +59,40 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   ui.label->setText(name);
 
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード
-  QJsonObject json_class;
   items_.clear();
-  if (!g_json_classes[class_name].isUndefined()) {
-    json_class = g_json_classes[class_name].toObject();
-    load_items_from_json(json_class, class_name);
-  }
-  else {
-    json_class = g_json_classes["_default"].toObject();
-    load_items_from_json(json_class, "_default");
+  if (g_json_parameters[class_name.toStdString()].is_null()) {
+    load_items_from_json(g_json_parameters["_default"], "_default");
+  } else {
+    load_items_from_json(g_json_parameters[class_name.toStdString()], class_name);
   }
   refresh_items();
   ui.table_parameters->resizeColumnsToContents();
 }
 
-void ObjectParameters::load_items_from_json(const QJsonObject& json, const QString& class_name, const u32 base_offset, const QString& parent_name) {
-  const QJsonArray offsets = json["offsets"].toArray();
-  const QStringList string_types = { "u8", "u16", "u32", "s8", "s16", "s32", "float", "string" };
-  for (auto offset : offsets) {
-    QJsonObject json_offset = offset.toObject();
-
+void ObjectParameters::load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset, const QString& parent_name) {
+  const QStringList type_list = { "u8", "u16", "u32", "s8", "s16", "s32", "float", "string" };
+  for (auto& parameter : j["offsets"]) {
     QString name;
     if (parent_name.contains('*')) {
       name = parent_name;
-      name.replace("*", json_offset["name"].toString());
-    } else {
-      name = json_offset["name"].toString();
-    }
-
-    QString string_type = json_offset["type"].toString();
-    if (string_types.contains(string_type)) {
-      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, name));
-    }
-    else if (string_type.right(1) == "*") {
-      items_.append(ObjectParametersItem(address_, json_offset, class_name, base_offset, name, true));
+      name.replace("*", QString::fromStdString(parameter["name"]));
     }
     else {
-      if (g_json_classes[string_type].isUndefined())
+      name = QString::fromStdString(parameter["name"]);
+    }
+
+    QString type = QString::fromStdString(parameter["type"]);
+    if (type_list.contains(type)) {
+      items_.append(ObjectParametersItem(address_, parameter, class_name, base_offset, name));
+    }
+    else if (type.right(1) == "*") {
+      items_.append(ObjectParametersItem(address_, parameter, class_name, base_offset, name, true));
+    }
+    else {
+      if (g_json_parameters[type.toStdString()].is_null())
         continue;
-      QJsonObject json_class = g_json_classes[string_type].toObject();
-      load_items_from_json(json_class, string_type, base_offset + json_offset["offset"].toString().toUInt(nullptr, 16), name);
+      std::string str_offset = parameter["offset"];
+      load_items_from_json(g_json_parameters[type.toStdString()], type, base_offset + std::stoi(str_offset, nullptr, 16), name);
     }
   }
 }
@@ -114,6 +108,17 @@ void ObjectParameters::show_edit_parameters_dialog() {
   //auto* edit_parameters = new EditParametersDialog(g_json_classes, this);
   //edit_parameters->exec();
   //delete edit_parameters;
-  EditParametersDialog edit_parameters(g_json_classes, this);
-  edit_parameters.exec();
+  //EditParametersDialog edit_parameters(g_json_classes, this);
+  //edit_parameters.exec();
+}
+
+// read object parameters from ObjectParameters/*.json
+void ObjectParameters::read_parameters() {
+  g_json_parameters = { {"dummy", 0} };
+  for (const auto & entry : std::filesystem::directory_iterator("SMS/Resources/ObjectParameters")) {
+    std::ifstream i(entry.path());
+    json j;
+    i >> j;
+    g_json_parameters.insert(j.begin(), j.end());
+  }
 }

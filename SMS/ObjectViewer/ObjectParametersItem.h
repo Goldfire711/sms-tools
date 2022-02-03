@@ -1,6 +1,7 @@
 #pragma once
 #include <QJsonObject>
 #include <QString>
+#include "../../Externals/json.hpp"
 #include "../../Common/CommonTypes.h"
 
 enum class Type {
@@ -18,7 +19,7 @@ enum class Type {
 class ObjectParametersItem {
 public:
   ObjectParametersItem();
-  ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset = 0, QString name = "", bool is_pointer = false);
+  ObjectParametersItem(u32 address, const nlohmann::json& json_offset, QString class_name, u32 base_offset = 0, QString name = "", bool is_pointer = false);
   void read_memory();
   void write_memory();
 

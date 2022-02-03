@@ -106,6 +106,9 @@
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Externals\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MainWindow.h" />

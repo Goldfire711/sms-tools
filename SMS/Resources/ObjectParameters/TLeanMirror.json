@@ -9,6 +9,72 @@
                 "notes": ""
             },
             {
+                "offset": "138",
+                "type": "float",
+                "name": "radius",
+                "notes": ""
+            },
+            {
+                "offset": "13c",
+                "type": "float",
+                "name": "0x13c",
+                "notes": ""
+            },
+            {
+                "offset": "14c",
+                "type": "float",
+                "name": "X tilt speed?",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "float",
+                "name": "Y tilt speed?",
+                "notes": ""
+            },
+            {
+                "offset": "154",
+                "type": "float",
+                "name": "Z tilt speed?",
+                "notes": ""
+            },
+            {
+                "offset": "158",
+                "type": "float",
+                "name": "tilt_angle_per_speed? (rad)",
+                "notes": ""
+            },
+            {
+                "offset": "160",
+                "type": "float",
+                "name": "weight player stands",
+                "notes": ""
+            },
+            {
+                "offset": "164",
+                "type": "float",
+                "name": "weight player lands",
+                "notes": ""
+            },
+            {
+                "offset": "168",
+                "type": "float",
+                "name": "weight player ground pounds",
+                "notes": ""
+            },
+            {
+                "offset": "16c",
+                "type": "float",
+                "name": "weight enemy stands",
+                "notes": ""
+            },
+            {
+                "offset": "174",
+                "type": "float",
+                "name": "0x174",
+                "notes": ""
+            },
+            {
                 "offset": "17c",
                 "type": "TShiningStone*",
                 "name": "",

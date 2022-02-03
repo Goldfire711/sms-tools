@@ -10,11 +10,12 @@ ObjectParametersItem::ObjectParametersItem() {
   name_ = "No Name";
 }
 
-ObjectParametersItem::ObjectParametersItem(u32 address, const QJsonObject& json_offset, QString class_name, u32 base_offset, QString name, const bool is_pointer)
+ObjectParametersItem::ObjectParametersItem(u32 address, const nlohmann::json& json_offset, QString class_name, u32 base_offset, QString name, const bool is_pointer)
   : base_offset_(base_offset), name_(std::move(name)), class_name_(std::move(class_name)) {
-  offset_ = json_offset["offset"].toString().toUInt(nullptr, 16);
+  const std::string str_offset = json_offset["offset"];
+  offset_ = std::stoi(str_offset, nullptr, 16);
   address_ = address + offset_ + base_offset;
-  string_type_ = json_offset["type"].toString();
+  string_type_ = QString::fromStdString(json_offset["type"]);
   if (string_type_ == "s8") {
     type_ = Type::S8;
   } else if (string_type_ == "s16") {
