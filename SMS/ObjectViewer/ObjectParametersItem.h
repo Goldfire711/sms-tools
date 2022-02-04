@@ -31,4 +31,5 @@ public:
   QString string_value_ = "???";
   QString string_type_;
   QString class_name_;
+  QString notes_;
 };

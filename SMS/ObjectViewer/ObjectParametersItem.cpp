@@ -8,6 +8,7 @@ ObjectParametersItem::ObjectParametersItem() {
   string_type_ = "u32";
   address_ = 0x80000000;
   name_ = "No Name";
+  notes_ = "";
 }
 
 ObjectParametersItem::ObjectParametersItem(u32 address, const nlohmann::json& json_offset, QString class_name, u32 base_offset, QString name, const bool is_pointer)
@@ -15,6 +16,7 @@ ObjectParametersItem::ObjectParametersItem(u32 address, const nlohmann::json& js
   const std::string str_offset = json_offset["offset"];
   offset_ = std::stoi(str_offset, nullptr, 16);
   address_ = address + offset_ + base_offset;
+  notes_ = QString::fromStdString(json_offset["notes"]);
   string_type_ = QString::fromStdString(json_offset["type"]);
   if (string_type_ == "s8") {
     type_ = Type::S8;

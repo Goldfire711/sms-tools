@@ -20,26 +20,41 @@ int ObjectParametersModel::rowCount(const QModelIndex& parent) const {
 QVariant ObjectParametersModel::data(const QModelIndex& index, int role) const {
   if (!index.isValid())
     return QVariant();
-  if (role != Qt::DisplayRole)
-    return QVariant();
   if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return QVariant();
 
   const auto item = items_->at(index.row());
-  switch (index.column()) {
-  case COLUMN_OFFSET:
-    return "0x" + QString::number(item.base_offset_ + item.offset_, 16);
-  case COLUMN_TYPE:
-    return item.string_type_;
-  case COLUMN_NAME:
-    return item.name_;
-  case COLUMN_VALUE:
-    return item.string_value_;
-  case COLUMN_CLASS:
-    return item.class_name_;
-  default:
-    return QVariant();
+  if (role == Qt::DisplayRole) {
+    switch (index.column()) {
+    case COLUMN_OFFSET:
+      return "0x" + QString::number(item.base_offset_ + item.offset_, 16);
+    case COLUMN_TYPE:
+      return item.string_type_;
+    case COLUMN_NAME:
+      return item.name_;
+    case COLUMN_VALUE:
+      return item.string_value_;
+    case COLUMN_CLASS:
+      return item.class_name_;
+    case COLUMN_NOTES:
+      if (!item.notes_.isEmpty())
+        return "...";
+      return "";
+    default:
+      return QVariant();
+    }
   }
+  if (role == Qt::ToolTipRole) {
+    switch (index.column()) {
+    case COLUMN_NAME:
+      return item.name_;
+    case COLUMN_NOTES:
+      return item.notes_;
+    default:
+      return QVariant();
+    }
+  }
+  return QVariant();
 }
 
 QVariant ObjectParametersModel::headerData(int section, Qt::Orientation orientation, int role) const {
@@ -56,6 +71,8 @@ QVariant ObjectParametersModel::headerData(int section, Qt::Orientation orientat
     return tr("Value");
   case COLUMN_CLASS:
     return tr("Class");
+  case COLUMN_NOTES:
+    return tr("Notes");
   default:
     return QVariant();
   }

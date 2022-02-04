@@ -136,18 +136,22 @@ void ObjectParameters::read_parameters() {
 }
 
 void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
-  if (index == QVariant() || index.column() != ObjectParametersModel::COLUMN_VALUE)
+  if (index == QVariant())
     return;
   auto item = &items_[index.row()];
-  bool ok = true;
-  bool is_valid_value = false;
-  QString string_invalid = "";
-  while(ok && !is_valid_value) {
-    QString message = "Type: " + item->string_type_ + string_invalid;
-    QString string_value = QInputDialog::getText(this, tr("Change Value"), message, QLineEdit::Normal, item->string_value_, &ok);
-    is_valid_value = item->write_memory_from_string(string_value);
-    if (!is_valid_value)
-      string_invalid = "\nInvalid value was entered";
+  if (index.column() == ObjectParametersModel::COLUMN_VALUE) {
+    bool ok = true;
+    bool is_valid_value = false;
+    QString string_invalid = "";
+    while (ok && !is_valid_value) {
+      QString message = "Type: " + item->string_type_ + string_invalid;
+      QString string_value = QInputDialog::getText(this, tr("Change Value"), message, QLineEdit::Normal, item->string_value_, &ok);
+      if (ok) {
+        is_valid_value = item->write_memory_from_string(string_value);
+        if (!is_valid_value)
+          string_invalid = "\nInvalid value was entered";
+      }
+    }
   }
 }
 
