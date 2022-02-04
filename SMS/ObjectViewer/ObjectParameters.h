@@ -20,12 +20,16 @@ public:
   void show_parameters(u32 address, s64 index);
   void refresh_items();
   void show_edit_parameters_dialog();
+  void reload_json();
 
 private:
   Ui::ObjectParameters ui;
   u32 address_;
+  s64 index_;
   QVector<ObjectParametersItem> items_;
   ObjectParametersModel* model_;
+  nlohmann::json json_parameters_;
+  nlohmann::json vtable_to_class_;
 
   void read_parameters();
   void load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset = 0, const QString& parent_name = "");

@@ -96,7 +96,7 @@ bool ObjectParametersItem::write_memory_from_string(const QString& string) {
   }
   if (type_ == Type::U8) {
     const u16 value = string.toUShort(&ok);
-    if (ok && 0 <= value && value <= 256)
+    if (ok && 0 <= value && value <= 255)
       return write_u8(address_, (u8)value);
     return false;
   }
