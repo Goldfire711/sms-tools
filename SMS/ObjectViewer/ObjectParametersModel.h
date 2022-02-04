@@ -14,9 +14,9 @@ public:
     COLUMN_OFFSET = 0,
     COLUMN_NAME,
     COLUMN_VALUE,
+    COLUMN_NOTES,
     COLUMN_TYPE,
     COLUMN_CLASS,
-    COLUMN_NOTES,
     COLUMN_COUNT
   };
 

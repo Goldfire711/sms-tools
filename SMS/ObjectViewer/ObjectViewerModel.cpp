@@ -1,3 +1,4 @@
+#include <fstream>
 #include "ObjectViewerModel.h"
 #include "ObjectViewerItem.h"
 #include "../../Memory/Memory.h"
@@ -5,6 +6,11 @@
 ObjectViewerModel::ObjectViewerModel(const QJsonObject &json, QObject* parent)
   : QAbstractItemModel(parent) {
   root_item_ = new ObjectViewerItem(json);
+  // vtable‚Ì’l‚©‚çclass–¼‚ðƒ[ƒh(json)
+  std::ifstream ifs("SMS/Resources/vtable_to_class_JP.json");
+  nlohmann::json v_to_c;
+  ifs >> v_to_c;
+  vtable_to_class_ = v_to_c["Class"];
   //setup_model_data(json, root_item_);
 }
 
@@ -33,9 +39,19 @@ QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
   //if (item->is_attribute_)
   //  return QVariant();
 
+  u32 vtable = 0;
+  std::stringstream stream;
   switch (index.column()) {
   case COLUMN_NAME:
     return item->name_;
+  case COLUMN_CLASS:
+    if (item->type_ == ObjectViewerItem::POINTER) {
+      vtable = memory::read_u32(item->value_.toUInt());
+      stream << std::hex << vtable;
+      if (vtable_to_class_.contains(stream.str()))
+        return QString::fromStdString(vtable_to_class_[stream.str()]);
+    }
+    return QVariant();
   case COLUMN_VALUE:
     if (item->type_ == item->POINTER)
       return "0x" + QString::number(item->value_.toUInt(), 16).toUpper();
@@ -63,6 +79,8 @@ QVariant ObjectViewerModel::headerData(int section, Qt::Orientation orientation,
     switch (section) {
     case COLUMN_NAME:
       return root_item_->name_;
+    case COLUMN_CLASS:
+      return root_item_->class_name_;
     case COLUMN_VALUE:
       return root_item_->value_;
     }

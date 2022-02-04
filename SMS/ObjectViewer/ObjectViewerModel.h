@@ -3,6 +3,7 @@
 #include <QAbstractItemModel>
 #include <QModelIndex>
 #include <QVariant>
+#include "../../Externals/json.hpp"
 #include "../../Common/CommonTypes.h"
 
 class ObjectViewerItem;
@@ -34,10 +35,12 @@ public:
 private:
   enum {
     COLUMN_NAME,
+    COLUMN_CLASS,
     COLUMN_VALUE,
     COLUMN_COUNT
   };
   //void setup_model_data(const QJsonObject &json, ObjectViewerItem* parent);
 
   ObjectViewerItem* root_item_;
+  nlohmann::json vtable_to_class_;
 };

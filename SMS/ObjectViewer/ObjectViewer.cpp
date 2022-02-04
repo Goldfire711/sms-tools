@@ -12,6 +12,7 @@
 #include <QTextCodec>
 #include <QHash>
 #include <QMenu>
+#include <QSettings>
 #include <QShortcut>
 
 extern QTimer* g_timer_100ms;
@@ -52,6 +53,10 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   show_widget_object_parameters();
   connect(ui.tree_object, &QAbstractItemView::activated, this, &ObjectViewer::on_tree_object_clicked);
   connect(ui.tree_object, &QAbstractItemView::clicked, this, &ObjectViewer::on_tree_object_clicked);
+
+  QSettings settings("settings.ini", QSettings::IniFormat);
+  restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
+  restoreState(settings.value("object_viewer/state").toByteArray());
 }
 
 ObjectViewer::~ObjectViewer() {
@@ -166,7 +171,7 @@ void ObjectViewer::scan_managers() {
   ui.tree_object->setModel(model_);
   model_->on_update();
   ui.tree_object->resizeColumnToContents(0);
-  ui.tree_object->setColumnWidth(1, 72);
+  ui.tree_object->setColumnWidth(2, 72);
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   emit model_->layoutChanged();
 }
@@ -205,10 +210,14 @@ void ObjectViewer::show_widget_object_parameters() {
   if (object_parameters_ == nullptr)
     object_parameters_ = new ObjectParameters(this);
   object_parameters_->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-  addDockWidget(Qt::BottomDockWidgetArea, object_parameters_);
+  addDockWidget(Qt::RightDockWidgetArea, object_parameters_);
 }
 
 void ObjectViewer::on_tree_object_clicked(const QModelIndex& index) {
+  QSettings settings("settings.ini", QSettings::IniFormat);
+  settings.setValue("object_viewer/geometry", saveGeometry());
+  settings.setValue("object_viewer/state", saveState());
+
   auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
   const u32 address = item->value_.toUInt();
   if (0x80000000 <= address && address <= 0x817fffff)

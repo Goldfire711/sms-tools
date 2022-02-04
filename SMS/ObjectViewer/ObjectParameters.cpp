@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <fstream>
 #include <filesystem>
+#include <QSettings>
 
 #include "../../Memory/Memory.h"
 
@@ -61,6 +62,8 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
 
   std::stringstream stream;
   stream << std::hex << vtable;
+  if (!vtable_to_class_.contains(stream.str()))
+    return;
   const QString class_name = QString::fromStdString(vtable_to_class_[stream.str()]);
   info += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
