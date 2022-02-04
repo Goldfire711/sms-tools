@@ -7,6 +7,7 @@
 #include <QStringList>
 #include <QTimer>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <fstream>
 #include <filesystem>
 
@@ -151,6 +152,16 @@ void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
         if (!is_valid_value)
           string_invalid = "\nInvalid value was entered";
       }
+    }
+  } else if (index.column() == ObjectParametersModel::COLUMN_NOTES) {
+    if (!item->notes_.isEmpty()) {
+      QMessageBox show_notes(QMessageBox::NoIcon, "Notes", "", QMessageBox::Close);
+      QString text = item->name_ + " (" + item->string_type_ + ")\n";
+      text += "--------------------------------\n";
+      text += item->notes_;
+      show_notes.setText(text);
+
+      show_notes.exec();
     }
   }
 }
