@@ -29,4 +29,5 @@ private:
 
   void read_parameters();
   void load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset = 0, const QString& parent_name = "");
+  void on_table_double_clicked(const QModelIndex& index);
 };

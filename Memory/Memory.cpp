@@ -187,6 +187,36 @@ QString memory::read_string(u32 address, std::initializer_list<u32> offsets, siz
   return "???";
 }
 
+bool memory::write_u8(u32 address, u8 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 1, false);
+}
+
+bool memory::write_u16(u32 address, u16 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 2, true);
+}
+
+bool memory::write_u32(u32 address, u32 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 4, true);
+}
+
+bool memory::write_s8(u32 address, s8 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 1, false);
+}
+
+bool memory::write_s16(u32 address, s16 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 2, true);
+}
+
+bool memory::write_s32(u32 address, s32 value) {
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 4, true);
+}
+
 bool memory::write_float(u32 address, float value) {
   return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)&value, 4, true);
+}
+
+bool memory::write_string(u32 address, const QString& string) {
+  QByteArray string_jis = QTextCodec::codecForName("Shift-JIS")->fromUnicode(string);
+  string_jis.append('\0');
+  return DolphinComm::DolphinAccessor::writeToRAM(address & 0x7fffffff, (u8*)string_jis.data(), string_jis.size(), false);
 }

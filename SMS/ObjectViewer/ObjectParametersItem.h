@@ -21,7 +21,7 @@ public:
   ObjectParametersItem();
   ObjectParametersItem(u32 address, const nlohmann::json& json_offset, QString class_name, u32 base_offset = 0, QString name = "", bool is_pointer = false);
   void read_memory();
-  void write_memory();
+  bool write_memory_from_string(const QString& string);
 
   Type type_;
   u32 address_;

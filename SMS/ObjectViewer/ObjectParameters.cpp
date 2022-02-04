@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QTimer>
+#include <QInputDialog>
 #include <fstream>
 #include <filesystem>
 
@@ -29,6 +30,7 @@ ObjectParameters::ObjectParameters(QWidget* parent)
 
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectParameters::refresh_items));
   connect(ui.button_edit_parameters, &QPushButton::clicked, this, &ObjectParameters::show_edit_parameters_dialog);
+  connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
 }
 
 ObjectParameters::~ObjectParameters() {
@@ -54,17 +56,22 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   file.close();
   const QJsonObject vtable_to_class = load_doc["Class"].toObject();
   const QString class_name = vtable_to_class[QString::number(vtable, 16)].toString();
-  name += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ")";
-
-  ui.label->setText(name);
+  name += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード
   items_.clear();
   if (g_json_parameters[class_name.toStdString()].is_null()) {
+    name += "_default.json";
     load_items_from_json(g_json_parameters["_default"], "_default");
   } else {
+    QString filename = class_name + ".json";
+    filename.replace("::", " ");
+    filename.replace('<', '(');
+    filename.replace('>', ')');
+    name += filename;
     load_items_from_json(g_json_parameters[class_name.toStdString()], class_name);
   }
+  ui.label->setText(name);
   refresh_items();
   ui.table_parameters->resizeColumnsToContents();
 }
@@ -120,5 +127,21 @@ void ObjectParameters::read_parameters() {
     json j;
     i >> j;
     g_json_parameters.insert(j.begin(), j.end());
+  }
+}
+
+void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
+  if (index == QVariant() || index.column() != ObjectParametersModel::COLUMN_VALUE)
+    return;
+  auto item = &items_[index.row()];
+  bool ok = true;
+  bool is_valid_value = false;
+  QString string_invalid = "";
+  while(ok && !is_valid_value) {
+    QString message = "Type: " + item->string_type_ + string_invalid;
+    QString string_value = QInputDialog::getText(this, tr("Change Value"), message, QLineEdit::Normal, item->string_value_, &ok);
+    is_valid_value = item->write_memory_from_string(string_value);
+    if (!is_valid_value)
+      string_invalid = "\nInvalid value was entered";
   }
 }

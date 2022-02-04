@@ -35,19 +35,19 @@
             {
                 "offset": "30",
                 "type": "float",
-                "name": "JointTransX",
+                "name": "X Rotation",
                 "notes": ""
             },
             {
                 "offset": "34",
                 "type": "float",
-                "name": "JointTransY",
+                "name": "Y Rotation",
                 "notes": ""
             },
             {
                 "offset": "38",
                 "type": "float",
-                "name": "JointTransZ",
+                "name": "Z Rotation",
                 "notes": ""
             },
             {

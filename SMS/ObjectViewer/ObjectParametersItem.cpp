@@ -70,3 +70,63 @@ void ObjectParametersItem::read_memory() {
     string_value_ = "0x" + QString::number(read_u32(address_), 16).toUpper();
   }
 }
+
+bool ObjectParametersItem::write_memory_from_string(const QString& string) {
+  if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return false;
+
+  bool ok = false;
+  if (type_ == Type::S8) {
+    const s16 value = string.toShort(&ok);
+    if (ok && -127 <= value && value <= 127)
+      return write_s8(address_, (s8)value);
+    return false;
+  }
+  if (type_ == Type::S16) {
+    const s16 value = string.toShort(&ok);
+    if (ok)
+      return write_s16(address_, value);
+    return false;
+  }
+  if (type_ == Type::S32) {
+    const s32 value = string.toInt(&ok);
+    if (ok)
+      return write_s32(address_, value);
+    return false;
+  }
+  if (type_ == Type::U8) {
+    const u16 value = string.toUShort(&ok);
+    if (ok && 0 <= value && value <= 256)
+      return write_u8(address_, (u8)value);
+    return false;
+  }
+  if (type_ == Type::U16) {
+    const u16 value = string.toUShort(&ok);
+    if (ok)
+      return write_u16(address_, value);
+    return false;
+  }
+  if (type_ == Type::U32) {
+    const u32 value = string.toUInt(&ok);
+    if (ok)
+      return write_u32(address_, value);
+    return false;
+  }
+  if (type_ == Type::FLOAT) {
+    const float value = string.toFloat(&ok);
+    if (ok)
+      return write_float(address_, value);
+    return false;
+  }
+  if (type_ == Type::STRING) {
+    const u32 address_string = read_u32(address_);
+    return write_string(address_string, string);
+  }
+  if (type_ == Type::POINTER) {
+    const u32 value_pointer = string.toUInt(&ok, 16);
+    if (ok)
+      return write_u32(address_, value_pointer);
+    return false;
+  }
+  return false;
+}

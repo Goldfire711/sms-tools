@@ -31,5 +31,6 @@ bool write_s8(u32 address, s8 value);
 bool write_s16(u32 address, s16 value);
 bool write_s32(u32 address, s32 value);
 bool write_float(u32 address, float value);
+bool write_string(u32 address, const QString& string);
 
 } // namespace memory

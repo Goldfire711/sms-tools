@@ -41,7 +41,7 @@
             {
                 "offset": "158",
                 "type": "float",
-                "name": "tilt_angle_per_speed? (rad)",
+                "name": "tilt_angle_per_speed? (rad?)",
                 "notes": ""
             },
             {
