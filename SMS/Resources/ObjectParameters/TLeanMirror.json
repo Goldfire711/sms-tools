@@ -79,6 +79,12 @@
                 "type": "TShiningStone*",
                 "name": "",
                 "notes": ""
+            },
+            {
+                "offset": "180",
+                "type": "float",
+                "name": "",
+                "notes": ""
             }
         ]
     }

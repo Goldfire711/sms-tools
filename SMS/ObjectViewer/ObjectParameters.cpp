@@ -34,6 +34,9 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   connect(ui.button_edit_parameters, &QPushButton::clicked, this, &ObjectParameters::show_edit_parameters_dialog);
   connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
   connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectParameters::reload_json);
+
+  ui.button_edit_parameters->hide();
+  ui.button_memory_viewer->hide();
 }
 
 ObjectParameters::~ObjectParameters() {
