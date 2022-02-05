@@ -1,7 +1,10 @@
 #include "ObjectViewerItem.h"
 #include "../../Memory/Memory.h"
+#include <json.hpp>
 #include <QJsonArray>
 #include <QJsonObject>
+
+extern nlohmann::json g_vtable_to_class;
 
 ObjectViewerItem::ObjectViewerItem(const QJsonObject& json, ObjectViewerItem* parent_item, bool is_attribute, s64 index)
   : parent_item_(parent_item), index_(index), is_attribute_(is_attribute){
@@ -153,11 +156,21 @@ void ObjectViewerItem::update() {
     memory_pointer_->update();
   }
 
-  if (address < 0x80000000 || 0x81800000 <= address)
-    return;
-
   if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
+
+  if (type_ == POINTER) {
+    const u32 vtable = memory::read_u32(value_.toUInt());
+    std::stringstream stream;
+    stream << std::hex << vtable;
+    if (g_vtable_to_class.contains(stream.str())) {
+      class_name_ = QString::fromStdString(g_vtable_to_class[stream.str()]);
+    }
+  }
+
+  if (address < 0x80000000 || 0x81800000 <= address) {
+    return;
+  }
 
   if (vtable_ != 0 && memory::read_u32(pointer) != vtable_) {
     return;
@@ -200,38 +213,4 @@ void ObjectViewerItem::update_all() {
   for (s32 i = 0; i < child_count(); i++) {
     child_items_[i]->update_all();
   }
-
-  //update();
-  //QVector<ObjectViewerItem*> items;
-  //items << this;
-  //while (!items.isEmpty()) {
-  //  items.last()->update();
-  //  for (s32 i = 0; i < items.last()->child_count(); i++) {
-  //    items << items.last()->child_items_[i];
-  //  }
-  //  items.pop_back();
-  //}
 }
-
-//ObjectViewerItem* ObjectViewerItem::child(int row) {
-//  if (row < 0 || row >= child_items_.size())
-//    return nullptr;
-//  return child_items_.at(row);
-//}
-//
-//
-//int ObjectViewerItem::column_count() const {
-//  //return item_data_.count();
-//  return 2;
-//}
-//
-//QVariant ObjectViewerItem::data(int column) const {
-//  if (column < 0 || column >= 3)
-//    return QVariant();
-//  return item_data_.at(column);
-//}
-//
-//ObjectViewerItem* ObjectViewerItem::parent_item() {
-//  return parent_item_;
-//}
-//

@@ -35,4 +35,6 @@ private:
 	FluffManipulator* sms_fluff_manipulator_ = nullptr;
 
 	TestMainWindow* test_main_window_ = nullptr;
+
+	void version_setup();
 };

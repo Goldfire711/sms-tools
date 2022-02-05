@@ -1,14 +1,16 @@
 #include "MainWindow.h"
 
+#include <fstream>
 #include <qevent.h>
 #include <QDesktopWidget>
-
+#include "Externals/json.hpp"
 #include "DolphinProcess/DolphinAccessor.h"
 #include "Common/CommonUtils.h"
 #include "Memory/Memory.h"
 
 QTimer* g_timer_100ms;
 QTimer* g_timer_16ms;
+nlohmann::json g_vtable_to_class;
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent) {
@@ -26,7 +28,7 @@ MainWindow::MainWindow(QWidget* parent)
   hook_unhook_attempt();
 
   // test main window
-  if (true) {
+  if (false) {
     test_main_window_ = new TestMainWindow(nullptr);
     test_main_window_->show();
     const auto pos = test_main_window_->pos();
@@ -54,6 +56,7 @@ void MainWindow::hook_unhook_attempt() {
     ui.button_hook->setChecked(true);
     g_timer_100ms->start(100);
     g_timer_16ms->start(16);
+    version_setup();
 
     //QVariant test = memory::read_string(0x8040A4D8, { 0x18, 0, 4, 0 }, 32);
     //ui.button_widget_fluff_manipulator->setText(test.toString());
@@ -144,4 +147,29 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     test_main_window_->close();
 
   event->accept();
+}
+
+void MainWindow::version_setup() {
+  u8 version_value = memory::read_u8(0x80365ddd);
+  if (version_value == 0x23) {  //JP 1.0
+    // vtable‚Ì’l‚©‚çclass–¼‚ðƒ[ƒh(json)
+    std::ifstream ifs("SMS/Resources/vtable_to_class_JP.json");
+    nlohmann::json v_to_c;
+    ifs >> v_to_c;
+    g_vtable_to_class = v_to_c["Class"];
+    return;
+  }
+  // TODO
+  if (version_value == 0xa3) { // NA / KOR
+    return;
+  }
+  if (version_value == 0x41) { // PAL
+    return;
+  }
+  if (version_value == 0x80) { // JP 1.1
+    return;
+  }
+  if (version_value == 0x4d) { // 3DAS
+    return;
+  }
 }

@@ -17,16 +17,11 @@
 using namespace memory;
 using json = nlohmann::json;
 extern QTimer* g_timer_100ms;
+extern nlohmann::json g_vtable_to_class;
 
 ObjectParameters::ObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
   ui.setupUi(this);
-
-  // vtableの値からclass名をロード(json)
-  std::ifstream ifs("SMS/Resources/vtable_to_class_JP.json");
-  json v_to_c;
-  ifs >> v_to_c;
-  vtable_to_class_ = v_to_c["Class"];
 
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
@@ -62,9 +57,9 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
 
   std::stringstream stream;
   stream << std::hex << vtable;
-  if (!vtable_to_class_.contains(stream.str()))
+  if (!g_vtable_to_class.contains(stream.str()))
     return;
-  const QString class_name = QString::fromStdString(vtable_to_class_[stream.str()]);
+  const QString class_name = QString::fromStdString(g_vtable_to_class[stream.str()]);
   info += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード

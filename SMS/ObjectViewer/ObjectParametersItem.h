@@ -1,7 +1,7 @@
 #pragma once
 #include <QJsonObject>
 #include <QString>
-#include "../../Externals/json.hpp"
+#include <json.hpp>
 #include "../../Common/CommonTypes.h"
 
 enum class Type {

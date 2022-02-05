@@ -14,6 +14,7 @@
 #include <QMenu>
 #include <QSettings>
 #include <QShortcut>
+#include <fstream>
 
 extern QTimer* g_timer_100ms;
 
@@ -37,7 +38,7 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   model_ = new ObjectViewerModel(load_doc.object(), this);
   ui.tree_object->setModel(model_);
   ui.tree_object->setColumnWidth(0, 318);
-  ui.tree_object->setColumnWidth(1, 72);
+  ui.tree_object->setColumnWidth(2, 72);
 
   connect(ui.button_scan_managers, &QPushButton::clicked, this, &ObjectViewer::scan_managers);
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));

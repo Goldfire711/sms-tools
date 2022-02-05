@@ -3,7 +3,7 @@
 #include <QWidget>
 #include <QDockWidget>
 #include <QJsonDocument>
-#include "../../Externals/json.hpp"
+#include <json.hpp>
 #include "ui_ObjectParameters.h"
 #include "../../Common/CommonTypes.h"
 #include "ObjectParametersItem.h"
@@ -29,7 +29,6 @@ private:
   QVector<ObjectParametersItem> items_;
   ObjectParametersModel* model_;
   nlohmann::json json_parameters_;
-  nlohmann::json vtable_to_class_;
 
   void read_parameters();
   void load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset = 0, const QString& parent_name = "");
