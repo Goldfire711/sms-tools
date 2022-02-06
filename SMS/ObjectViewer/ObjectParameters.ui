@@ -44,6 +44,16 @@
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="button_open_folder">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="SP_DirIcon"/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="button_reload_json">
         <property name="text">
          <string>Reload Json</string>

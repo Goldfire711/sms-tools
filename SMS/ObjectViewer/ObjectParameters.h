@@ -21,6 +21,7 @@ public:
   void refresh_items();
   void show_edit_parameters_dialog();
   void reload_json();
+  void open_json_location();
 
 private:
   Ui::ObjectParameters ui;

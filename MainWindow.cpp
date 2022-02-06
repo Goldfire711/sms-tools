@@ -3,7 +3,7 @@
 #include <fstream>
 #include <qevent.h>
 #include <QDesktopWidget>
-#include "Externals/json.hpp"
+#include <json.hpp>
 #include "DolphinProcess/DolphinAccessor.h"
 #include "Common/CommonUtils.h"
 #include "Memory/Memory.h"

@@ -11,6 +11,7 @@
 #include <fstream>
 #include <filesystem>
 #include <QSettings>
+#include <QDesktopServices>
 
 #include "../../Memory/Memory.h"
 
@@ -22,6 +23,8 @@ extern nlohmann::json g_vtable_to_class;
 ObjectParameters::ObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
   ui.setupUi(this);
+  ui.button_open_folder->setIcon(style()->standardIcon((QStyle::SP_DirIcon)));
+  ui.button_open_folder->setToolTip("Open json location");
 
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
@@ -31,6 +34,7 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   connect(ui.button_edit_parameters, &QPushButton::clicked, this, &ObjectParameters::show_edit_parameters_dialog);
   connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
   connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectParameters::reload_json);
+  connect(ui.button_open_folder, &QPushButton::clicked, this, &ObjectParameters::open_json_location);
 
   ui.button_edit_parameters->hide();
   ui.button_memory_viewer->hide();
@@ -166,4 +170,8 @@ void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
 
 void ObjectParameters::reload_json() {
   show_parameters(address_, index_);
+}
+
+void ObjectParameters::open_json_location() {
+  QDesktopServices::openUrl(QUrl::fromLocalFile("SMS/Resources/ObjectParameters"));
 }
