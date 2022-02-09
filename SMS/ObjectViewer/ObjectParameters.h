@@ -16,7 +16,6 @@ class ObjectParameters : public QDockWidget {
 public:
   ObjectParameters(QWidget* parent = Q_NULLPTR);
   ~ObjectParameters() override;
-  void set_label(QString string);
   void show_parameters(u32 address, s64 index);
   void refresh_items();
   void show_edit_parameters_dialog();

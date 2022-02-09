@@ -97,7 +97,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SMS\ObjectViewer\ObjectViewerMain.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectViewer.cpp" />
@@ -125,7 +124,6 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp" />
     <ClCompile Include="SMS\Spin\Spin.cpp" />
     <ClCompile Include="Test\TestMainWindow.cpp" />
-    <QtUic Include="SMS\ObjectViewer\ObjectViewerMain.ui" />
     <QtUic Include="SMS\ObjectViewer\EditParametersDialog.ui" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="MainWindow.h" />
@@ -168,7 +166,6 @@
     <QtMoc Include="SMS\ObjectViewer\ObjectViewer.h" />
     <QtMoc Include="SMS\ObjectViewer\EditParametersDialog.h" />
     <QtMoc Include="SMS\ObjectViewer\EditParametersModel.h" />
-    <QtMoc Include="SMS\ObjectViewer\ObjectViewerMain.h" />
     <ClInclude Include="Externals\json.hpp" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />

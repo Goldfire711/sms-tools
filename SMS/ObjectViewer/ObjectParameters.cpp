@@ -28,23 +28,14 @@ ObjectParameters::ObjectParameters(QWidget* parent)
 
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
-  //ui.table_parameters->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectParameters::refresh_items));
-  connect(ui.button_edit_parameters, &QPushButton::clicked, this, &ObjectParameters::show_edit_parameters_dialog);
   connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
   connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectParameters::reload_json);
   connect(ui.button_open_folder, &QPushButton::clicked, this, &ObjectParameters::open_json_location);
-
-  ui.button_edit_parameters->hide();
-  ui.button_memory_viewer->hide();
 }
 
 ObjectParameters::~ObjectParameters() {
-}
-
-void ObjectParameters::set_label(QString string) {
-  ui.label->setText(string);
 }
 
 void ObjectParameters::show_parameters(u32 address, s64 index) {
@@ -117,14 +108,6 @@ void ObjectParameters::refresh_items() {
     items_[i].read_memory();
   }
   model_->update_list();
-}
-
-void ObjectParameters::show_edit_parameters_dialog() {
-  //auto* edit_parameters = new EditParametersDialog(g_json_classes, this);
-  //edit_parameters->exec();
-  //delete edit_parameters;
-  //EditParametersDialog edit_parameters(g_json_classes, this);
-  //edit_parameters.exec();
 }
 
 // read object parameters from ObjectParameters/*.json

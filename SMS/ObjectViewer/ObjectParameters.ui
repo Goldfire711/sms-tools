@@ -49,7 +49,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset theme="SP_DirIcon"/>
+         <iconset theme="SP_DirIcon">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -66,22 +67,7 @@
      <widget class="QTableView" name="table_parameters"/>
     </item>
     <item row="19" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="button_edit_parameters">
-        <property name="text">
-         <string>Edit Parameters</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_memory_viewer">
-        <property name="text">
-         <string>Memory Viewer</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QHBoxLayout" name="horizontalLayout"/>
     </item>
    </layout>
   </widget>
