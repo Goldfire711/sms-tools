@@ -1,9 +1,7 @@
-#include "ObjectParameters.h"
+#include "ObjectSubParameters.h"
 
 #include <QFile>
-#include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
 #include <QStringList>
 #include <QTimer>
 #include <QInputDialog>
@@ -20,8 +18,8 @@ using json = nlohmann::json;
 extern QTimer* g_timer_100ms;
 extern nlohmann::json g_vtable_to_class;
 
-ObjectParameters::ObjectParameters(QWidget* parent)
-  : QDockWidget(parent) {
+ObjectSubParameters::ObjectSubParameters(QWidget* parent)
+  : QWidget(parent) {
   ui.setupUi(this);
   ui.button_open_folder->setIcon(style()->standardIcon((QStyle::SP_DirIcon)));
   ui.button_open_folder->setToolTip("Open json location");
@@ -29,32 +27,25 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
 
-  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectParameters::refresh_items));
-  connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
-  connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectParameters::reload_json);
-  connect(ui.button_open_folder, &QPushButton::clicked, this, &ObjectParameters::open_json_location);
+  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectSubParameters::refresh_items));
+  connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectSubParameters::on_table_double_clicked);
+  connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectSubParameters::reload_json);
+  connect(ui.button_open_folder, &QPushButton::clicked, this, &ObjectSubParameters::open_json_location);
+
 }
 
-ObjectParameters::~ObjectParameters() {
+ObjectSubParameters::~ObjectSubParameters() {
 }
 
-void ObjectParameters::show_parameters(u32 address, s64 index) {
+void ObjectSubParameters::show_parameters(u32 address, const QString& class_name, const QString& name) {
   // read object parameters from ObjectParameters/*.json
   read_parameters();
 
   address_ = address;
-  index_ = index;
-  // vtable, nameを取得(+0x0, +0x4)
-  u32 vtable = read_u32(address);
-  QString info = read_string(address + 0x4, { 0 }, 100);
-  if (index != -1)
-    info = QString::number(index) + ": " + info;
+  class_name_ = class_name;
+  name_ = name;
+  QString info = name;
 
-  std::stringstream stream;
-  stream << std::hex << vtable;
-  if (!g_vtable_to_class.contains(stream.str()))
-    return;
-  const QString class_name = QString::fromStdString(g_vtable_to_class[stream.str()]);
   info += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
   // class名からoffsets(offset,type,nameのarray)をロード なければ_defaultをロード
@@ -63,7 +54,8 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   if (json_parameters_[class_name.toStdString()].is_null()) {
     filename = "_default.json";
     load_items_from_json(json_parameters_["_default"], "_default");
-  } else {
+  }
+  else {
     filename = class_name + ".json";
     filename.replace("::", " ");
     filename.replace('<', '(');
@@ -75,7 +67,7 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   ui.table_parameters->resizeColumnsToContents();
 }
 
-void ObjectParameters::load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset, const QString& parent_name) {
+void ObjectSubParameters::load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset, const QString& parent_name) {
   const QStringList type_list = { "u8", "u16", "u32", "s8", "s16", "s32", "float", "string" };
   for (auto& parameter : j["offsets"]) {
     QString name;
@@ -103,7 +95,7 @@ void ObjectParameters::load_items_from_json(const nlohmann::json& j, const QStri
   }
 }
 
-void ObjectParameters::refresh_items() {
+void ObjectSubParameters::refresh_items() {
   for (s64 i = 0; i < items_.size(); i++) {
     items_[i].read_memory();
   }
@@ -111,9 +103,9 @@ void ObjectParameters::refresh_items() {
 }
 
 // read object parameters from ObjectParameters/*.json
-void ObjectParameters::read_parameters() {
+void ObjectSubParameters::read_parameters() {
   json_parameters_ = { {"dummy", 0} };
-  for (const auto & entry : std::filesystem::directory_iterator("SMS/Resources/ObjectParameters")) {
+  for (const auto& entry : std::filesystem::directory_iterator("SMS/Resources/ObjectParameters")) {
     std::ifstream i(entry.path());
     json j;
     i >> j;
@@ -121,11 +113,10 @@ void ObjectParameters::read_parameters() {
   }
 }
 
-void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
+void ObjectSubParameters::on_table_double_clicked(const QModelIndex& index) {
   if (index == QVariant())
     return;
   auto item = &items_[index.row()];
-
   if (index.column() == ObjectParametersModel::COLUMN_VALUE) {
     bool ok = true;
     bool is_valid_value = false;
@@ -139,7 +130,8 @@ void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
           string_invalid = "\nInvalid value was entered";
       }
     }
-  } else if (index.column() == ObjectParametersModel::COLUMN_NOTES) {
+  }
+  else if (index.column() == ObjectParametersModel::COLUMN_NOTES) {
     if (!item->notes_.isEmpty()) {
       QMessageBox show_notes(QMessageBox::NoIcon, "Notes", "", QMessageBox::Close);
       QString text = item->name_ + " (" + item->string_type_ + ")\n";
@@ -149,7 +141,8 @@ void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
 
       show_notes.exec();
     }
-  } else if (index.column() == ObjectParametersModel::COLUMN_TYPE) {
+  } 
+  else if (index.column() == ObjectParametersModel::COLUMN_TYPE) {
     if (item->string_type_.right(1) == '*') {
       if (!sub_parameters_)
         sub_parameters_ = new ObjectSubParameters(nullptr);
@@ -159,16 +152,15 @@ void ObjectParameters::on_table_double_clicked(const QModelIndex& index) {
       const u32 address = read_u32(item->address_);
       QString class_name = item->string_type_;
       class_name.chop(1);
-        sub_parameters_->show_parameters(address, class_name, item->name_);
-
+      sub_parameters_->show_parameters(address, class_name, item->name_);
     }
   }
 }
 
-void ObjectParameters::reload_json() {
-  show_parameters(address_, index_);
+void ObjectSubParameters::reload_json() {
+  show_parameters(address_, class_name_, name_);
 }
 
-void ObjectParameters::open_json_location() {
+void ObjectSubParameters::open_json_location() {
   QDesktopServices::openUrl(QUrl::fromLocalFile("SMS/Resources/ObjectParameters"));
 }

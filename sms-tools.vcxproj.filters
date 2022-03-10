@@ -73,6 +73,9 @@
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -160,6 +163,9 @@
     <QtMoc Include="SMS\ObjectViewer\EditParametersModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="SMS\ObjectViewer\ObjectSubParameters.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
@@ -191,6 +197,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="SMS\ObjectViewer\EditParametersDialog.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="SMS\ObjectViewer\ObjectSubParameters.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

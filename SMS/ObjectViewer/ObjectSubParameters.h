@@ -1,35 +1,32 @@
 #pragma once
 
 #include <QWidget>
-#include <QDockWidget>
-#include <QJsonDocument>
+#include "ui_ObjectSubParameters.h"
 #include <json.hpp>
-#include "ui_ObjectParameters.h"
 #include "../../Common/CommonTypes.h"
 #include "ObjectParametersItem.h"
 #include "ObjectParametersModel.h"
-#include "EditParametersDialog.h"
-#include "ObjectSubParameters.h"
 
-class ObjectParameters : public QDockWidget {
+class ObjectSubParameters : public QWidget {
   Q_OBJECT
 
 public:
-  ObjectParameters(QWidget* parent = Q_NULLPTR);
-  ~ObjectParameters() override;
-  void show_parameters(u32 address, s64 index);
+  ObjectSubParameters(QWidget* parent = Q_NULLPTR);
+  ~ObjectSubParameters() override;
+  void show_parameters(u32 address, const QString& class_name, const QString& name);
   void refresh_items();
   void show_edit_parameters_dialog();
   void reload_json();
   void open_json_location();
 
 private:
-  Ui::ObjectParameters ui;
+  Ui::ObjectSubParameters ui;
   u32 address_;
-  s64 index_;
   QVector<ObjectParametersItem> items_;
   ObjectParametersModel* model_;
   nlohmann::json json_parameters_;
+  QString class_name_;
+  QString name_;
   ObjectSubParameters* sub_parameters_ = nullptr;
 
   void read_parameters();
