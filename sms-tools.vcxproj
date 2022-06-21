@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewer.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -125,6 +126,7 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp" />
     <ClCompile Include="SMS\Spin\Spin.cpp" />
     <ClCompile Include="Test\TestMainWindow.cpp" />
+    <QtUic Include="SMS\ChuuHana\ChuuHanaViewer.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectSubParameters.ui" />
     <QtUic Include="SMS\ObjectViewer\EditParametersDialog.ui" />
     <QtUic Include="MainWindow.ui" />
@@ -148,6 +150,7 @@
     <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewer.h" />
     <ClInclude Include="Common\CommonTypes.h" />
     <ClInclude Include="Common\CommonUtils.h" />
     <ClInclude Include="Common\MemoryCommon.h" />

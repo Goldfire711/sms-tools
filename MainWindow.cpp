@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_object_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_object_viewer);
   connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
   connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_fluff_manipulator);
+  connect(ui.button_widget_chuuhana, &QPushButton::clicked, this, &MainWindow::show_widget_chuuhana);
   g_timer_100ms = new QTimer(this);
   g_timer_16ms = new QTimer(this);
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
@@ -131,6 +132,17 @@ void MainWindow::show_widget_fluff_manipulator() {
   sms_fluff_manipulator_->raise();
   sms_fluff_manipulator_->activateWindow();
 }
+
+void MainWindow::show_widget_chuuhana() {
+  if (!sms_chuuhana_viewer_) {
+    sms_chuuhana_viewer_ = new ChuuHanaViewer(nullptr);
+    g_timer_16ms->connect(g_timer_16ms, SIGNAL(timeout()), sms_chuuhana_viewer_, SLOT(update()));
+  }
+  sms_chuuhana_viewer_->show();
+  sms_chuuhana_viewer_->raise();
+  sms_chuuhana_viewer_->activateWindow();
+}
+
 
 
 void MainWindow::closeEvent(QCloseEvent* event) {

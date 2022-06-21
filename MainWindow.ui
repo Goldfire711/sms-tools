@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>235</width>
-    <height>152</height>
+    <height>181</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -101,6 +101,13 @@
      <widget class="QPushButton" name="button_widget_fluff_manipulator">
       <property name="text">
        <string>Fluff Manipulator</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="button_widget_chuuhana">
+      <property name="text">
+       <string>ChuuHana</string>
       </property>
      </widget>
     </item>

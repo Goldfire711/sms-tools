@@ -9,6 +9,7 @@
 #include "SMS/MapViewer/MapPinnaBeach.h"
 #include "SMS/FluffManipulator/FluffManipulator.h"
 #include "SMS/FluffManipulator/MapPianta8.h"
+#include "SMS/ChuuHana/ChuuHanaViewer.h"
 #include "Test/TestMainWindow.h"
 
 class MainWindow : public QMainWindow {
@@ -23,6 +24,7 @@ public:
 	void show_widget_map_viewer();
 	void show_widget_object_viewer();
 	void show_widget_fluff_manipulator();
+	void show_widget_chuuhana();
 	void on_update();
 
 private:
@@ -33,6 +35,7 @@ private:
 	MapViewer* sms_map_viewer_ = nullptr;
 	SMSData* sms_data_ = nullptr;
 	FluffManipulator* sms_fluff_manipulator_ = nullptr;
+	ChuuHanaViewer* sms_chuuhana_viewer_ = nullptr;
 
 	TestMainWindow* test_main_window_ = nullptr;
 
