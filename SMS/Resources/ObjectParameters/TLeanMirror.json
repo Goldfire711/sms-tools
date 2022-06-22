@@ -75,6 +75,12 @@
                 "notes": ""
             },
             {
+                "offset": "178",
+                "type": "float",
+                "name": "0x178",
+                "notes": ""
+            },
+            {
                 "offset": "17c",
                 "type": "TShiningStone*",
                 "name": "",

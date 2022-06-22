@@ -1,0 +1,43 @@
+{
+    "TGraphTracer": {
+        "size": 24,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "s32*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}
