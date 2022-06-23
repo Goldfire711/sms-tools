@@ -15,6 +15,12 @@
                 "notes": ""
             },
             {
+                "offset": "7c",
+                "type": "s16",
+                "name": "No.",
+                "notes": ""
+            },
+            {
                 "offset": "80",
                 "type": "MAnimSound*",
                 "name": "",

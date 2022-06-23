@@ -9,6 +9,30 @@
                 "notes": ""
             },
             {
+                "offset": "104",
+                "type": "?*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "108",
+                "type": "JGeometry::TVec3<float>",
+                "name": "Target *?",
+                "notes": ""
+            },
+            {
+                "offset": "114",
+                "type": "?*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "118",
+                "type": "s32",
+                "name": "?",
+                "notes": ""
+            },
+            {
                 "offset": "124",
                 "type": "TGraphTracer*",
                 "name": "Movement graph",

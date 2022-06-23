@@ -7,6 +7,30 @@
                 "type": "TWalkerEnemy",
                 "name": "Inherited fields",
                 "notes": ""
+            },
+            {
+                "offset": "1a4",
+                "type": "s32",
+                "name": "OnPanelTime?",
+                "notes": ""
+            },
+            {
+                "offset": "1b2",
+                "type": "s8",
+                "name": "端にいるかどうか?",
+                "notes": ""
+            },
+            {
+                "offset": "1fc",
+                "type": "float",
+                "name": "?",
+                "notes": ""
+            },
+            {
+                "offset": "218",
+                "type": "TLeanMirror*",
+                "name": "Mirror",
+                "notes": ""
             }
         ]
     }

@@ -1,0 +1,128 @@
+{
+    "TRailNode": {
+        "size": 68,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "s16",
+                "name": "X",
+                "notes": ""
+            },
+            {
+                "offset": "2",
+                "type": "s16",
+                "name": "Y",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "s16",
+                "name": "Z",
+                "notes": ""
+            },
+            {
+                "offset": "6",
+                "type": "s16",
+                "name": "Neighbors count",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "s16",
+                "name": "Neighbor ID 1",
+                "notes": ""
+            },
+            {
+                "offset": "16",
+                "type": "s16",
+                "name": "Neighbor ID 2",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "s16",
+                "name": "Neighbor ID 3",
+                "notes": ""
+            },
+            {
+                "offset": "1a",
+                "type": "s16",
+                "name": "Neighbor ID 4",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "s16",
+                "name": "Neighbor ID 5",
+                "notes": ""
+            },
+            {
+                "offset": "1e",
+                "type": "s16",
+                "name": "Neighbor ID 6",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "s16",
+                "name": "Neighbor ID 7",
+                "notes": ""
+            },
+            {
+                "offset": "22",
+                "type": "s16",
+                "name": "Neighbor ID 8",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "name": "Neighbor distance 1",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "name": "Neighbor distance 2",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "name": "Neighbor distance 3",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "float",
+                "name": "Neighbor distance 4",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "float",
+                "name": "Neighbor distance 5",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "float",
+                "name": "Neighbor distance 6",
+                "notes": ""
+            },
+            {
+                "offset": "3c",
+                "type": "float",
+                "name": "Neighbor distance 7",
+                "notes": ""
+            },
+            {
+                "offset": "40",
+                "type": "float",
+                "name": "Neighbor distance 8",
+                "notes": ""
+            }
+            
+        ]
+    }
+}

@@ -83,18 +83,38 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   };
   painter.drawPolygon(chuuhana_rail, 7);
 
+  // willFall呼び出し半径
+  painter.drawEllipse(cx - 1100, cy - 1100, 2200, 2200);
+
   // チュウハナ
   u32 p_chuuhana_manager = read_u32(0x81097c40 + 0x18);
   u32 p_chuuhana[3];
   for (u32 i = 0; i < 3; i++) {
     p_chuuhana[i] = read_u32(p_chuuhana_manager + (i + 3) * 4);
   }
+  float sum_x = 0, sum_z = 0;
   QPointF chuuhana_points[3];
   for (u32 i = 0; i < 3; i++) {
     float x = read_float(p_chuuhana[i] + 0x10);
     float z = read_float(p_chuuhana[i] + 0x18);
-    chuuhana_points[i] = QPointF(x, z);
+    sum_x += x, sum_z += z;
+    float degree = -read_float(p_chuuhana[i] + 0x34) + 90.0;
+    float target_x = read_float(p_chuuhana[i] + 0x108);
+    float target_z = read_float(p_chuuhana[i] + 0x110);
+
+    pen.setColor(Qt::red);
+    painter.setPen(pen);
+    painter.drawLine(x, z, target_x, target_z);
+
+    pen.setColor(Qt::black);
+    painter.setPen(pen);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
+    painter.drawEllipse(x - 100, z - 100, 200, 200);
+    painter.drawLine(x, z, x + 225 * cos(M_PI * degree / 180.0), z + 225 * sin(M_PI * degree / 180.0));
   }
 
+  // 重心
+  pen.setColor(Qt::blue);
+  painter.setPen(pen);
+  painter.drawPoint(sum_x / 3.0, sum_z / 3.0);
 }
