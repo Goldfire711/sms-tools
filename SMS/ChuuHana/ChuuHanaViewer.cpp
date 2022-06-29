@@ -61,10 +61,11 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
 
   // 回転角度を求める
   // 行列のy軸成分を(0,1,0)に戻す回転行列をx軸成分に掛ける
-  double yx = mtx34[1], yy = mtx34[5], yz = mtx34[9];
-  double xx = mtx34[0], xy = mtx34[4], xz = mtx34[8];
-  double cosine = (yy + yz * yz / (1 + yy)) * xx + -yx * xy - yx * yz / (1 + yy) * xz;
-  double sine = -yx * yz / (1 + yy) * xx - yz * xy + (yy + yx * yx / (1 + yy)) * xz;
+  double Yx = mtx34[1], Yy = mtx34[5], Yz = mtx34[9];
+  double Xx = mtx34[0], Xy = mtx34[4], Xz = mtx34[8];
+  double Zx = mtx34[2], Zy = mtx34[6], Zz = mtx34[10];
+  double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
+  double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);
   if (sine < 0)
     theta *= -1;
@@ -83,9 +84,6 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   };
   painter.drawPolygon(chuuhana_rail, 7);
 
-  // willFall呼び出し半径
-  painter.drawEllipse(cx - 1100, cy - 1100, 2200, 2200);
-
   // チュウハナ
   u32 p_chuuhana_manager = read_u32(0x81097c40 + 0x18);
   u32 p_chuuhana[3];
@@ -93,6 +91,7 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
     p_chuuhana[i] = read_u32(p_chuuhana_manager + (i + 3) * 4);
   }
   float sum_x = 0, sum_z = 0;
+  float ax = 0, az = 0;
   QPointF chuuhana_points[3];
   for (u32 i = 0; i < 3; i++) {
     float x = read_float(p_chuuhana[i] + 0x10);
@@ -102,19 +101,39 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
     float target_x = read_float(p_chuuhana[i] + 0x108);
     float target_z = read_float(p_chuuhana[i] + 0x110);
 
+    ax += (x - cx) / abs(1500 * mtx34[0]) - mtx34[1];
+    az += (z - cy) / abs(1500 * mtx34[10]) - mtx34[9];
+
     pen.setColor(Qt::red);
     painter.setPen(pen);
     painter.drawLine(x, z, target_x, target_z);
+    painter.drawEllipse(target_x - 100, target_z - 100, 200, 200);
 
     pen.setColor(Qt::black);
     painter.setPen(pen);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
-    painter.drawEllipse(x - 100, z - 100, 200, 200);
+    //painter.drawEllipse(x - 100, z - 100, 200, 200);
     painter.drawLine(x, z, x + 225 * cos(M_PI * degree / 180.0), z + 225 * sin(M_PI * degree / 180.0));
+
+    QFont font = painter.font();
+    font.setPixelSize(200);
+    painter.setFont(font);
+    painter.drawText(x + 30, z - 30, QString::number(i + 3));
   }
 
   // 重心
   pen.setColor(Qt::blue);
   painter.setPen(pen);
   painter.drawPoint(sum_x / 3.0, sum_z / 3.0);
+
+  // 実際の加速度
+  painter.drawLine(cx, cy, cx + ax * 100, cy + az * 100);
+
+  // center
+  painter.drawPoint(cx, cy);
+
+  // willFall呼び出し半径
+  painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * 510 * Yx + width() / 2.0, scale * 510 * Yz + height() / 2.0));
+  double r = sqrt(1100.0 * 1100.0 - 510.0 * 510.0);
+  painter.drawEllipse(-r, -r, r * 2, r * 2);
 }

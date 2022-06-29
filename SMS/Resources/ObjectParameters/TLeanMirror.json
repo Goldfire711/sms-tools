@@ -45,6 +45,12 @@
                 "notes": ""
             },
             {
+                "offset": "15c",
+                "type": "float",
+                "name": "speed decay rate (0.999)",
+                "notes": ""
+            },
+            {
                 "offset": "160",
                 "type": "float",
                 "name": "weight player stands",
@@ -71,7 +77,7 @@
             {
                 "offset": "174",
                 "type": "float",
-                "name": "0x174",
+                "name": "max(mtx22)",
                 "notes": ""
             },
             {
@@ -90,6 +96,24 @@
                 "offset": "180",
                 "type": "float",
                 "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "18c",
+                "type": "JGeometry::TVec3<float>",
+                "name": "? *",
+                "notes": ""
+            },
+            {
+                "offset": "19c",
+                "type": "u32",
+                "name": "ChuuHana count",
+                "notes": ""
+            },
+            {
+                "offset": "1ac",
+                "type": "u8",
+                "name": "Mario is on",
                 "notes": ""
             }
         ]
