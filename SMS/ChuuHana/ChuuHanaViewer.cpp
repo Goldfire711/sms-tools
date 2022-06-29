@@ -29,27 +29,29 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   for (u32 i = 0; i < 12; i++) {
     mtx34[i] = read_float(0x8134A2F8 + i * 4);
   }
-  QPointF polygon_local[20];
-  for (s64 i = 0; i < 20; i++) {
-    polygon_local[i] = QPointF(1500 * qCos(i * M_PI / 10.0), 1500 * qSin(i * M_PI / 10.0));
-  }
-
-  const int side = qMin(width(), height());
-  double cx = -2536.25;
-  double cy = -6877.95;
-  double scale = side / 3200.0;
+  double Xx = mtx34[0], Xy = mtx34[4], Xz = mtx34[8];
+  double Yx = mtx34[1], Yy = mtx34[5], Yz = mtx34[9];
+  double Zx = mtx34[2], Zy = mtx34[6], Zz = mtx34[10];
+  double Cx = mtx34[3];
+  double Cz = mtx34[11];
 
   QPointF polygon[20];
   for (s64 i = 0; i < 20; i++) {
+    double x = 1500 * cos(i * M_PI / 10.0);
+    double z = 1500 * sin(i * M_PI / 10.0);
     polygon[i] = QPointF(
-      polygon_local[i].x() * mtx34[0] + 510.0 * mtx34[1] + polygon_local[i].y() * mtx34[2] + mtx34[3],
-      polygon_local[i].x() * mtx34[8] + 510.0 * mtx34[9] + polygon_local[i].y() * mtx34[10] + mtx34[11]
+      x * Xx + 510.0 * Yx + z * Zx + Cx,
+      x * Xz + 510.0 * Yz + z * Zz + Cz
     );
   }
 
+  const int side = qMin(width(), height());
+  double scale = side / 3200.0;
+
+  // (Cx, Cz)‚ð‰æ–Ê‚Ì’†S‚É
   QPainter painter(this);
   painter.setRenderHint(QPainter::Antialiasing, true);
-  painter.translate(-cx * scale + width()/2.0, -cy * scale + height()/2.0);
+  painter.translate(-Cx * scale + width()/2.0, -Cz * scale + height()/2.0);
   painter.scale(scale, scale);
 
   QPen pen = QPen();
@@ -61,9 +63,6 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
 
   // ‰ñ“]Šp“x‚ð‹‚ß‚é
   // s—ñ‚ÌyŽ²¬•ª‚ð(0,1,0)‚É–ß‚·‰ñ“]s—ñ‚ðxŽ²¬•ª‚ÉŠ|‚¯‚é
-  double Yx = mtx34[1], Yy = mtx34[5], Yz = mtx34[9];
-  double Xx = mtx34[0], Xy = mtx34[4], Xz = mtx34[8];
-  double Zx = mtx34[2], Zy = mtx34[6], Zz = mtx34[10];
   double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
   double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);
@@ -101,8 +100,8 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
     float target_x = read_float(p_chuuhana[i] + 0x108);
     float target_z = read_float(p_chuuhana[i] + 0x110);
 
-    ax += (x - cx) / abs(1500 * mtx34[0]) - mtx34[1];
-    az += (z - cy) / abs(1500 * mtx34[10]) - mtx34[9];
+    ax += (x - Cx) / abs(1500 * Xx) - Yx;
+    az += (z - Cz) / abs(1500 * Zz) - Yz;
 
     pen.setColor(Qt::red);
     painter.setPen(pen);
@@ -112,7 +111,6 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
     pen.setColor(Qt::black);
     painter.setPen(pen);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
-    //painter.drawEllipse(x - 100, z - 100, 200, 200);
     painter.drawLine(x, z, x + 225 * cos(M_PI * degree / 180.0), z + 225 * sin(M_PI * degree / 180.0));
 
     QFont font = painter.font();
@@ -127,10 +125,7 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   painter.drawPoint(sum_x / 3.0, sum_z / 3.0);
 
   // ŽÀÛ‚Ì‰Á‘¬“x
-  painter.drawLine(cx, cy, cx + ax * 100, cy + az * 100);
-
-  // center
-  painter.drawPoint(cx, cy);
+  painter.drawLine(Cx, Cz, Cx + ax * 100, Cz + az * 100);
 
   // willFallŒÄ‚Ño‚µ”¼Œa
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * 510 * Yx + width() / 2.0, scale * 510 * Yz + height() / 2.0));
