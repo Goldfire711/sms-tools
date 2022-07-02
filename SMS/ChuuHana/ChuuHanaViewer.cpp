@@ -24,16 +24,14 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   if (current_stage != 4 || current_episode != 1)
     return;
 
-  //const u32 p_mirrorL = read_u32(0x8134945c);
+  const u32 p_mirrorL = 0x8134945c;
   float mtx34[12];
   for (u32 i = 0; i < 12; i++) {
     mtx34[i] = read_float(0x8134A2F8 + i * 4);
   }
-  double Xx = mtx34[0], Xy = mtx34[4], Xz = mtx34[8];
-  double Yx = mtx34[1], Yy = mtx34[5], Yz = mtx34[9];
-  double Zx = mtx34[2], Zy = mtx34[6], Zz = mtx34[10];
-  double Cx = mtx34[3];
-  double Cz = mtx34[11];
+  double Xx = mtx34[0], Yx = mtx34[1], Zx = mtx34[2], Cx = mtx34[3];
+  double Xy = mtx34[4], Yy = mtx34[5], Zy = mtx34[6];
+  double Xz = mtx34[8], Yz = mtx34[9], Zz = mtx34[10], Cz = mtx34[11];
 
   QPointF polygon[20];
   for (s64 i = 0; i < 20; i++) {
@@ -62,7 +60,7 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   painter.drawLine(polygon[5], polygon[15]);
 
   // ‰ñ“]Šp“x‚ð‹‚ß‚é
-  // s—ñ‚ÌyŽ²¬•ª‚ð(0,1,0)‚É–ß‚·‰ñ“]s—ñ‚ðxŽ²¬•ª‚ÉŠ|‚¯‚é
+  // s—ñ‚Ì(Yx,Yy,Yz)‚ð(0,1,0)‚É–ß‚·‰ñ“]s—ñ‚ð(Xx,Xy,Xz)‚ÉŠ|‚¯‚é
   double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
   double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);
@@ -93,10 +91,15 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   float ax = 0, az = 0;
   QPointF chuuhana_points[3];
   for (u32 i = 0; i < 3; i++) {
+    if (read_u32(p_chuuhana[i] + 0xf0) & 1) {
+      continue;
+    }
     float x = read_float(p_chuuhana[i] + 0x10);
     float z = read_float(p_chuuhana[i] + 0x18);
     sum_x += x, sum_z += z;
     float degree = -read_float(p_chuuhana[i] + 0x34) + 90.0;
+    double cosine = cos(M_PI * degree / 180.0);
+    double sine = sin(M_PI * degree / 180.0);
     float target_x = read_float(p_chuuhana[i] + 0x108);
     float target_z = read_float(p_chuuhana[i] + 0x110);
 
@@ -111,7 +114,7 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
     pen.setColor(Qt::black);
     painter.setPen(pen);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
-    painter.drawLine(x, z, x + 225 * cos(M_PI * degree / 180.0), z + 225 * sin(M_PI * degree / 180.0));
+    painter.drawLine(x, z, x + 225 * cosine, z + 225 * sine);
 
     QFont font = painter.font();
     font.setPixelSize(200);
@@ -122,7 +125,8 @@ void ChuuHanaViewer::paintEvent(QPaintEvent* event) {
   // dS
   pen.setColor(Qt::blue);
   painter.setPen(pen);
-  painter.drawPoint(sum_x / 3.0, sum_z / 3.0);
+  u32 chuuhana_count = read_u32(p_mirrorL + 0x19c);
+  painter.drawPoint(sum_x / chuuhana_count, sum_z / chuuhana_count);
 
   // ŽÀÛ‚Ì‰Á‘¬“x
   painter.drawLine(Cx, Cz, Cx + ax * 100, Cz + az * 100);
