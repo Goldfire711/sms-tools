@@ -134,13 +134,12 @@ void MainWindow::show_widget_fluff_manipulator() {
 }
 
 void MainWindow::show_widget_chuuhana() {
-  if (!sms_chuuhana_viewer_) {
-    sms_chuuhana_viewer_ = new ChuuHanaViewer(nullptr);
-    g_timer_16ms->connect(g_timer_16ms, SIGNAL(timeout()), sms_chuuhana_viewer_, SLOT(update()));
+  if (!sms_chuuhana_main_) {
+    sms_chuuhana_main_ = new ChuuHanaMain(nullptr);
   }
-  sms_chuuhana_viewer_->show();
-  sms_chuuhana_viewer_->raise();
-  sms_chuuhana_viewer_->activateWindow();
+  sms_chuuhana_main_->show();
+  sms_chuuhana_main_->raise();
+  sms_chuuhana_main_->activateWindow();
 }
 
 
@@ -154,6 +153,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_map_viewer_->close();
   if (sms_fluff_manipulator_)
     sms_fluff_manipulator_->close();
+  if (sms_chuuhana_main_)
+    sms_chuuhana_main_->close();
 
   if (test_main_window_)
     test_main_window_->close();

@@ -76,7 +76,16 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewer.cpp">
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -169,7 +178,16 @@
     <QtMoc Include="SMS\ObjectViewer\ObjectSubParameters.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewer.h">
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaMain.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerL.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerM.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -206,9 +224,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="SMS\ObjectViewer\ObjectSubParameters.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="SMS\ChuuHana\ChuuHanaViewer.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

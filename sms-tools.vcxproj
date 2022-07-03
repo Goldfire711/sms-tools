@@ -97,7 +97,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewer.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaMain.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -126,7 +129,6 @@
     <ClCompile Include="SMS\ObjectViewer\ObjectViewerModel.cpp" />
     <ClCompile Include="SMS\Spin\Spin.cpp" />
     <ClCompile Include="Test\TestMainWindow.cpp" />
-    <QtUic Include="SMS\ChuuHana\ChuuHanaViewer.ui" />
     <QtUic Include="SMS\ObjectViewer\ObjectSubParameters.ui" />
     <QtUic Include="SMS\ObjectViewer\EditParametersDialog.ui" />
     <QtUic Include="MainWindow.ui" />
@@ -150,7 +152,6 @@
     <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewer.h" />
     <ClInclude Include="Common\CommonTypes.h" />
     <ClInclude Include="Common\CommonUtils.h" />
     <ClInclude Include="Common\MemoryCommon.h" />
@@ -173,6 +174,10 @@
     <QtMoc Include="SMS\ObjectViewer\EditParametersModel.h" />
     <ClInclude Include="Externals\json.hpp" />
     <QtMoc Include="SMS\ObjectViewer\ObjectSubParameters.h" />
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaMain.h" />
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerL.h" />
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerM.h" />
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
