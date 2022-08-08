@@ -138,6 +138,29 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
   // 実際の加速度
   painter.drawLine(Cx, Cz, Cx + ax * 100, Cz + az * 100);
 
+  // マリオ
+  const u32 p_mario = read_u32(0x8040a378);
+  float mario_x = read_float(p_mario + 0x10);
+  float mario_z = read_float(p_mario + 0x18);
+  u16 mario_spin_angle = read_u16(p_mario + 0x9a);
+  QTransform transform_inv = painter.transform().inverted();
+  const QRectF bound(transform_inv.mapRect(QRectF(0, 0, width(), height())));
+  if (mario_x < bound.left()) {
+    mario_x = bound.left();
+  } else if (bound.right() < mario_x) {
+    mario_x = bound.right();
+  }
+  if (mario_z < bound.top()) {
+    mario_z = bound.top();
+  } else if (bound.bottom() < mario_z) {
+    mario_z = bound.bottom();
+  }
+  QImage img_mario(":sms/mario.png");
+  painter.translate(mario_x, mario_z);
+  painter.rotate(-mario_spin_angle / 65536.0 * 360.0 - 180.0);
+  painter.translate(-mario_x, -mario_z);
+  painter.drawImage(QRectF(mario_x - 100, mario_z - 100, 200, 200), img_mario);
+
   // willFall呼び出し半径
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * mirror_Y* Yx + width() / 2.0, scale * mirror_Y* Yz + height() / 2.0));
   double r = sqrt(willfall_r * willfall_r - mirror_Y * mirror_Y);
