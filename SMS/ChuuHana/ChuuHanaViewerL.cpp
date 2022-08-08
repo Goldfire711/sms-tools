@@ -5,9 +5,11 @@
 #include <Memory/Memory.h>
 #include <QPainter>
 #include <QMatrix4x3>
+#include <QTimer>
 #include <QVBoxLayout>
 
 using namespace memory;
+extern QTimer* g_timer_16ms;
 
 ChuuHanaViewerL::ChuuHanaViewerL(QWidget* parent)
   : QWidget(parent) {
@@ -145,15 +147,25 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
   u16 mario_spin_angle = read_u16(p_mario + 0x9a);
   QTransform transform_inv = painter.transform().inverted();
   const QRectF bound(transform_inv.mapRect(QRectF(0, 0, width(), height())));
-  if (mario_x < bound.left()) {
-    mario_x = bound.left();
-  } else if (bound.right() < mario_x) {
-    mario_x = bound.right();
-  }
-  if (mario_z < bound.top()) {
-    mario_z = bound.top();
-  } else if (bound.bottom() < mario_z) {
-    mario_z = bound.bottom();
+  if (mario_x < bound.left() || bound.right() < mario_x || mario_z < bound.top() || bound.bottom() < mario_z) {
+    double tan_xz = (mario_z - Cz) / (mario_x - Cx);
+    double tan_zx = (mario_x - Cx) / (mario_z - Cz);
+    if (mario_x < Cx)
+      tan_xz *= -1;
+    if (mario_z < Cz)
+      tan_zx *= -1;
+
+    mario_z = tan_xz * (bound.right() - Cx) + Cz;
+    if (mario_z < bound.top())
+      mario_z = bound.top();
+    else if (bound.bottom() < mario_z)
+      mario_z = bound.bottom();
+
+    mario_x = tan_zx * (bound.bottom() - Cz) + Cx;
+    if (mario_x < bound.left())
+      mario_x = bound.left();
+    else if (bound.right() < mario_x)
+      mario_x = bound.right();
   }
   QImage img_mario(":sms/mario.png");
   painter.translate(mario_x, mario_z);
@@ -165,4 +177,11 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * mirror_Y* Yx + width() / 2.0, scale * mirror_Y* Yz + height() / 2.0));
   double r = sqrt(willfall_r * willfall_r - mirror_Y * mirror_Y);
   painter.drawEllipse(-r, -r, r * 2, r * 2);
+
+  // Debug
+  //painter.resetTransform();
+  //painter.setPen(QPen());
+  //painter.setFont(QFont());
+  //painter.scale(side / 200.0, side / 200.0);
+  //painter.drawText(QRectF(0, 20, 400, 200), debug);
 }
