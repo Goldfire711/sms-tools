@@ -113,7 +113,7 @@ void ChuuHanaViewerS::paintEvent(QPaintEvent* event) {
     ax += (x - Cx) / abs(radius * Xx) - Yx;
     az += (z - Cz) / abs(radius * Zz) - Yz;
 
-    pen.setColor(Qt::red);
+    pen.setColor(Qt::darkGreen);
     painter.setPen(pen);
     painter.drawLine(x, z, target_x, target_z);
     painter.drawEllipse(target_x - 100, target_z - 100, 200, 200);
@@ -130,13 +130,27 @@ void ChuuHanaViewerS::paintEvent(QPaintEvent* event) {
   }
 
   // 重心
-  pen.setColor(Qt::blue);
+  pen.setColor(Qt::red);
   painter.setPen(pen);
   u32 chuuhana_count = read_u32(p_mirror + 0x19c);
   if (chuuhana_count)
     painter.drawPoint(sum_x / chuuhana_count, sum_z / chuuhana_count);
 
+  // 鏡の傾き
+  pen.setColor(Qt::blue);
+  painter.setPen(pen);
+  painter.drawLine(Cx, Cz, Cx + Yx * radius * 2, Cz + Yz * radius * 2);
+
+  // 鏡の速度
+  pen.setColor(Qt::darkMagenta);
+  painter.setPen(pen);
+  float vx = read_float(p_mirror + 0x14c);
+  float vz = read_float(p_mirror + 0x154);
+  painter.drawLine(Cx, Cz, Cx + vx * radius * 10, Cz + vz * radius * 10);
+
   // 実際の加速度
+  pen.setColor(Qt::red);
+  painter.setPen(pen);
   painter.drawLine(Cx, Cz, Cx + ax * 100, Cz + az * 100);
 
   // マリオ
@@ -173,6 +187,8 @@ void ChuuHanaViewerS::paintEvent(QPaintEvent* event) {
   painter.drawImage(QRectF(mario_x - 100, mario_z - 100, 200, 200), img_mario);
 
   // willFall呼び出し半径
+  pen.setColor(Qt::blue);
+  painter.setPen(pen);
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * mirror_Y * Yx + width() / 2.0, scale * mirror_Y * Yz + height() / 2.0));
   double r = sqrt(willfall_r * willfall_r - mirror_Y * mirror_Y);
   painter.drawEllipse(-r, -r, r * 2, r * 2);
