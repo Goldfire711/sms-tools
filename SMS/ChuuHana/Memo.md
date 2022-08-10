@@ -16,12 +16,12 @@ $$
 
 とする。
 
-この行列からy軸周りの回転角 $\theta$ を得るには、この行列を真上に向ける行列を掛けて、その行列とy軸周りの回転行列 $R_y(\theta)$ を比較すれば良い。
+この行列からy軸周りの回転角 $\theta$ を得るには、この行列に鏡が真上を向くように回転させる行列を掛けて、その行列とy軸周りの回転行列 $R_y(\theta)$ を比較すれば良い。
 
-つまり、
+つまり、 $\vec{Y}$ を $(0,1,0)$ に回転させる行列 $A$ を求めて、
 
 $$
-    A(\vec{Y}) \begin{pmatrix}
+    A \begin{pmatrix}
         \vec{X} & \vec{Y} & \vec{Z}
     \end{pmatrix}
     = \begin{pmatrix}
@@ -32,14 +32,14 @@ $$
     =: R_y(\theta)\\
 $$
 
-となる $A(\vec{Y})$ を求めて、上式の両辺を比較すれば良い。
+この両辺を比較すれば良い。
 
-[ロドリゲスの回転公式](https://manabitimes.jp/math/2649)
+[ロドリゲスの回転公式](https://manabitimes.jp/math/2649)より、
 
 $$
     \displaylines{
-    \begin{pmatrix}
-        x' \cr y' \cr z'
+    A \begin{pmatrix}
+        x \cr y \cr z
     \end{pmatrix}
     =(\cos \phi)\begin{pmatrix}
         x \cr y \cr z
@@ -49,13 +49,13 @@ $$
         x \cr y \cr z
     \end{pmatrix})\\
     \left( \begin{align*}
-        &\vec{n}:回転軸\ (\|\vec{n}\|=1,右ねじ正),\\
-        &\phi:回転角\ (0\le\phi<180^\circ,\vec{Y}と(0,1,0)の成す角)
+        &\vec{n}:\vec{Y}から(0,1,0)への回転軸\ (\Vert\vec{n}\Vert=1,右ねじ正),\\
+        &\phi:\vec{Y}から(0,1,0)への回転角\ (0\le\phi<180^\circ)
     \end{align*} \right)
     }
 $$
 
-の右辺を整理して $A(\vec{Y})$ を求める。 $A(\vec{Y})$ は $\vec{Y}$ を $(0,1,0)$ に回転させる行列であることに注意する。
+この右辺を整理して $A$ を求める。 $A$ は $\vec{Y}$ を $(0,1,0)$ に回転させる行列であることに注意する。
 
 回転軸 $\vec{n}$ は $\vec{Y}$ と $(0,1,0)$ に直交しているので、
 
@@ -75,7 +75,7 @@ $$ \vec{n} = \frac
     \end{pmatrix}
 $$
 
-$\cos \phi,\sin \phi$ は $\vec{Y}$ と $(0,1,0)$ の内積より
+$\cos \phi,\sin \phi$ は $\vec{Y}$ と $(0,1,0)$ の内積より、
 
 $$ \begin{align*}&\cos \phi = {\begin{pmatrix}
         Y_x \cr Y_y \cr Y_z
@@ -88,7 +88,7 @@ $$ \begin{align*}&\cos \phi = {\begin{pmatrix}
     \end{align*}
 $$
 
-これらを上式の右辺に代入して整理すると、
+これらを上式に代入して整理すると、
 
 $$ \begin{align*}
         &(\cos \phi)\begin{pmatrix}
@@ -107,11 +107,11 @@ $$ \begin{align*}
             -Y_z \cr 0 \cr Y_x
         \end{pmatrix}\end{pmatrix} \frac{1}{\sqrt{Y_x^2+Y_z^2}} \begin{pmatrix}
             -Y_z \cr 0 \cr Y_x
-        \end{pmatrix} + \sqrt{Y_x^2 + Y_z^2}\frac{1}{\sqrt{Y_x^2+Y_z^2}} \begin{pmatrix}
+        \end{pmatrix} + \sqrt{Y_x^2 + Y_z^2}\left( \frac{1}{\sqrt{Y_x^2+Y_z^2}} \begin{pmatrix}
             -Y_z \cr 0 \cr Y_x
         \end{pmatrix} \times \begin{pmatrix}
             x \cr y \cr z
-        \end{pmatrix}\\
+        \end{pmatrix}\right)\\
         &=\begin{pmatrix}
             Y_yx \cr Y_yy \cr Y_yz
         \end{pmatrix} + \frac{1-Y_y}{1-Y_y^2} \begin{pmatrix}
@@ -126,7 +126,7 @@ $$ \begin{align*}
         \end{pmatrix} \begin{pmatrix}
             x \cr y \cr z
         \end{pmatrix}\\
-        &=A(\vec{Y})\begin{pmatrix}
+        &=A\begin{pmatrix}
             x \cr y \cr z
         \end{pmatrix}
     \end{align*}
@@ -135,18 +135,18 @@ $$
 よって、
 
 $$
-    A(\vec{Y}) = \begin{pmatrix}
+    A = \begin{pmatrix}
             Y_y+\dfrac{Y_z^2}{1+Y_y} & -Y_x & -\dfrac{Y_x Y_z}{1+Y_y}\\
             Y_x & Y_y & Y_z\\
             -\dfrac{Y_x Y_z}{1+Y_y} & -Y_z & Y_y + \dfrac{Y_x^2}{1+Y_y}
     \end{pmatrix}
 $$
 
-が $\vec{Y}$ を $(0,1,0)$ に回転させる行列となる。(実際、 $A(\vec{Y})\vec{Y}=(0,1,0)$ となる。)
+が $\vec{Y}$ を $(0,1,0)$ に回転させる行列となる。(実際、 $A\vec{Y}=(0,1,0)$ となる。)
 
 $$
     \begin{align*}
-        &A(\vec{Y})\begin{pmatrix}
+        &A\begin{pmatrix}
             \vec{X} & \vec{Y} & \vec{Z}
         \end{pmatrix}=R_y(\theta)\\
         \iff&\begin{pmatrix}
