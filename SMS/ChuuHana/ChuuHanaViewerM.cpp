@@ -57,8 +57,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
   double Xz = mtx34[8], Yz = mtx34[9], Zz = mtx34[10], Cz = mtx34[11];
 
   // 回転角度を求める
-  // 行列の(Yx,Yy,Yz)を(0,1,0)に戻す回転行列を(Xx,Xy,Xz)に掛けると(cosθ,0,sinθ)が出る
-  // Memo.md参照
+  // README.md参照
   double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
   double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);

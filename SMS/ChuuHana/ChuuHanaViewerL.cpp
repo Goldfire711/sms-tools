@@ -56,8 +56,7 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
   double Xz = mtx34[8], Yz = mtx34[9], Zz = mtx34[10], Cz = mtx34[11];
 
   // ‰ñ“]Šp“x‚ğ‹‚ß‚é
-  // s—ñ‚Ì(Yx,Yy,Yz)‚ğ(0,1,0)‚É–ß‚·‰ñ“]s—ñ‚ğ(Xx,Xy,Xz)‚ÉŠ|‚¯‚é‚Æ(cosƒÆ,0,sinƒÆ)‚ªo‚é
-  // Memo.mdQÆ
+  // README.mdQÆ
   double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
   double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);
@@ -192,11 +191,4 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * mirror_Y* Yx + width() / 2.0, scale * mirror_Y* Yz + height() / 2.0));
   double r = sqrt(willfall_r * willfall_r - mirror_Y * mirror_Y);
   painter.drawEllipse(-r, -r, r * 2, r * 2);
-
-  // Debug
-  //painter.resetTransform();
-  //painter.setPen(QPen());
-  //painter.setFont(QFont());
-  //painter.scale(side / 200.0, side / 200.0);
-  //painter.drawText(QRectF(0, 20, 400, 200), debug);
 }

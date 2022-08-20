@@ -11,4 +11,6 @@ class ChuuHanaMain : public QTabWidget {
 public:
   ChuuHanaMain(QWidget* parent = nullptr);
   ~ChuuHanaMain() override;
+private:
+  void tab_changed(int index);
 };
