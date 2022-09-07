@@ -97,7 +97,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaRNG.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaMain.cpp" />
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulator.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
@@ -152,6 +155,8 @@
     <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h" />
+    <ClInclude Include="SMS\ChuuHana\ChuuHanaRNG.h" />
     <ClInclude Include="Common\CommonTypes.h" />
     <ClInclude Include="Common\CommonUtils.h" />
     <ClInclude Include="Common\MemoryCommon.h" />
@@ -178,6 +183,8 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerL.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerM.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h" />
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h" />
+    <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

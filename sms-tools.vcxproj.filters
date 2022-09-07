@@ -88,6 +88,15 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaRNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -119,6 +128,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Externals\json.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\ChuuHana\ChuuHanaRNG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\ChuuHana\RNGFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -188,6 +203,12 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

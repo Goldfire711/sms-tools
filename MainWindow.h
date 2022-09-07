@@ -10,6 +10,7 @@
 #include "SMS/FluffManipulator/FluffManipulator.h"
 #include "SMS/FluffManipulator/MapPianta8.h"
 #include "SMS/ChuuHana/ChuuHanaMain.h"
+#include "SMS/ChuuHana/ChuuHanaManipulator.h"
 #include "Test/TestMainWindow.h"
 
 class MainWindow : public QMainWindow {
@@ -36,6 +37,7 @@ private:
 	SMSData* sms_data_ = nullptr;
 	FluffManipulator* sms_fluff_manipulator_ = nullptr;
 	ChuuHanaMain* sms_chuuhana_main_ = nullptr;
+	ChuuHanaManipulator* sms_chuuhana_manip_ = nullptr;
 
 	TestMainWindow* test_main_window_ = nullptr;
 

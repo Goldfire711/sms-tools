@@ -140,9 +140,14 @@ void MainWindow::show_widget_chuuhana() {
   sms_chuuhana_main_->show();
   sms_chuuhana_main_->raise();
   sms_chuuhana_main_->activateWindow();
+
+  if (!sms_chuuhana_manip_) {
+    sms_chuuhana_manip_ = new ChuuHanaManipulator(nullptr);
+  }
+  sms_chuuhana_manip_->show();
+  sms_chuuhana_manip_->raise();
+  sms_chuuhana_manip_->activateWindow();
 }
-
-
 
 void MainWindow::closeEvent(QCloseEvent* event) {
   if (sms_spin_)
@@ -155,6 +160,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_fluff_manipulator_->close();
   if (sms_chuuhana_main_)
     sms_chuuhana_main_->close();
+  if (sms_chuuhana_manip_)
+    sms_chuuhana_manip_->close();
 
   if (test_main_window_)
     test_main_window_->close();
