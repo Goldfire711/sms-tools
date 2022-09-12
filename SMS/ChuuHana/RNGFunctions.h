@@ -45,7 +45,11 @@ inline void seed_next(u32* seed) {
   *seed = *seed * 0x41c64e6d + 0x3039;
 }
 
-inline u32 seed_prev(u32 seed) {
+inline u32 seed_next(const u32 seed) {
+  return seed * 0x41c64e6d + 0x3039;
+}
+
+inline u32 seed_prev(const u32 seed) {
   return seed * static_cast<u32>(mod_inv(0x41c64e6d, 0x100000000)) - static_cast<u32>(0x3039 * mod_inv(0x41c64e6d, 0x100000000));
 }
 

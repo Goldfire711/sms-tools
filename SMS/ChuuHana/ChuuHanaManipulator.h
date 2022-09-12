@@ -40,12 +40,14 @@ private:
   void update_rng_textbox();
   void on_rng_seed_changed();
   void on_rng_index_changed();
+  void on_node_count_changed(s32 index);
+  void on_chb_node_multiple_changed(s32 state);
   QLabel* lbl_rng_seed_;
   QLabel* lbl_rng_index_;
   QRadioButton* rdb_read_from_ram_;
   QRadioButton* rdb_edit_rng_seed_;
   QRadioButton* rdb_edit_rng_index_;
-  QButtonGroup* rdb_g_rng_;
+  QButtonGroup* group_rdb_rng_;
   QLineEdit* txb_rng_seed_;
   QLineEdit* txb_rng_index_;
   QPushButton* btn_update_;
@@ -57,9 +59,15 @@ private:
   QLabel* lbl_elapsed_time_;
   QLabel* lbl_probability_;
   QLabel* lbl_nodes_;
-  QButtonGroup* chb_g_nodes_;
-  QButtonGroup* rdb_g_rng_type_;
+  QButtonGroup* group_chb_nodes_;
+  QRadioButton* rdb_type_auto_;
+  QRadioButton* rdb_type_set_goal_;
+  QRadioButton* rdb_type_node_;
+  QButtonGroup* group_rdb_rng_type_;
   QLabel* lbl_type_;
+  QCheckBox* chb_node_collid_move_;
+  QComboBox* cmb_node_count_;
+  QCheckBox* chb_node_multiple_;
 
   u32 ram_seed_ = 0;
   u32 ram_index_ = 0;

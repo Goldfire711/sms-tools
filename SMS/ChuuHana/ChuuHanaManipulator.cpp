@@ -30,12 +30,12 @@ void ChuuHanaManipulator::initialize_widgets() {
   rdb_read_from_ram_ = new QRadioButton(tr("Read RNG Seed from RAM"));
   rdb_edit_rng_seed_ = new QRadioButton(tr("RNG Seed: 0x"));
   rdb_edit_rng_index_ = new QRadioButton(tr("RNG Index: "));
-  rdb_g_rng_ = new QButtonGroup(this);
-  rdb_g_rng_->addButton(rdb_read_from_ram_, READ_FROM_RAM);
-  rdb_g_rng_->addButton(rdb_edit_rng_seed_, EDIT_RNGSEED);
-  rdb_g_rng_->addButton(rdb_edit_rng_index_, EDIT_RNGINDEX);
+  group_rdb_rng_ = new QButtonGroup(this);
+  group_rdb_rng_->addButton(rdb_read_from_ram_, READ_FROM_RAM);
+  group_rdb_rng_->addButton(rdb_edit_rng_seed_, EDIT_RNGSEED);
+  group_rdb_rng_->addButton(rdb_edit_rng_index_, EDIT_RNGINDEX);
   rdb_read_from_ram_->setChecked(true);
-  connect(rdb_g_rng_, QOverload<QAbstractButton*>::of(&QButtonGroup::buttonClicked), this, &ChuuHanaManipulator::update_rng_textbox);
+  connect(group_rdb_rng_, QOverload<QAbstractButton*>::of(&QButtonGroup::buttonClicked), this, &ChuuHanaManipulator::update_rng_textbox);
 
   // seed, indexのLineEdit
   txb_rng_seed_ = new QLineEdit("FFFFFFFF");
@@ -59,17 +59,28 @@ void ChuuHanaManipulator::initialize_widgets() {
   txb_range_from_->setValidator(val_m30_30);
   txb_range_to_->setValidator(val_m30_30);
   // Node(willFall, CollidMove)
-  lbl_nodes_ = new QLabel("Value: [0 .. 6/7]");
-  chb_g_nodes_ = new QButtonGroup(this);
-  chb_g_nodes_->setExclusive(false);
+  lbl_nodes_ = new QLabel("Value: [0 .. 7]");
+  group_chb_nodes_ = new QButtonGroup(this);
+  group_chb_nodes_->setExclusive(true);
+  chb_node_collid_move_ = new QCheckBox("CollidMove");
+  chb_node_collid_move_->setChecked(true);
+  cmb_node_count_ = new QComboBox();
+  const QStringList str_cmb_node_count = { "0-6", "0-7" };
+  cmb_node_count_->addItems(str_cmb_node_count);
+  cmb_node_count_->setCurrentIndex(1);
+  connect(cmb_node_count_, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ChuuHanaManipulator::on_node_count_changed);
+  chb_node_multiple_ = new QCheckBox("Multiple select");
+  chb_node_multiple_->setChecked(false);
+  connect(chb_node_multiple_, QOverload<int>::of(&QCheckBox::stateChanged), this, &ChuuHanaManipulator::on_chb_node_multiple_changed);
   // Radio Button: select RNG type from {Auto, setGoal, Node}
-  auto* rdb_type_auto = new QRadioButton("Auto: ");
-  auto* rdb_type_set_goal = new QRadioButton();
-  auto* rdb_type_node = new QRadioButton();
-  rdb_g_rng_type_ = new QButtonGroup(this);
-  rdb_g_rng_type_->addButton(rdb_type_auto, TYPE_AUTO);
-  rdb_g_rng_type_->addButton(rdb_type_set_goal, TYPE_SET_GOAL);
-  rdb_g_rng_type_->addButton(rdb_type_node, TYPE_NODE);
+  rdb_type_auto_ = new QRadioButton("Auto: ");
+  rdb_type_auto_->click();
+  rdb_type_set_goal_ = new QRadioButton();
+  rdb_type_node_ = new QRadioButton();
+  group_rdb_rng_type_ = new QButtonGroup(this);
+  group_rdb_rng_type_->addButton(rdb_type_auto_, TYPE_AUTO);
+  group_rdb_rng_type_->addButton(rdb_type_set_goal_, TYPE_SET_GOAL);
+  group_rdb_rng_type_->addButton(rdb_type_node_, TYPE_NODE);
   lbl_type_ = new QLabel("setGoal");
 
   // 確率
@@ -121,21 +132,35 @@ void ChuuHanaManipulator::make_layouts() {
   group_set_goal->setLayout(lo_set_goal);
 
   auto* lo_node = new QVBoxLayout();
-  lo_node->addWidget(lbl_nodes_);
+  auto* lo_node_top = new QHBoxLayout();
+  lo_node_top->addWidget(lbl_nodes_);
+  lo_node_top->addWidget(cmb_node_count_);
+  lo_node_top->addWidget(chb_node_collid_move_);
+  lo_node_top->addStretch(0);
+  lo_node_top->addWidget(chb_node_multiple_);
+  lo_node->addLayout(lo_node_top);
   auto* lo_chb_nodes = new QHBoxLayout();
   QCheckBox* chb_nodes[8];
   for (s64 i = 0; i < 8; i++) {
     chb_nodes[i] = new QCheckBox(QString::number(i));
-    chb_g_nodes_->addButton(chb_nodes[i], i);
+    group_chb_nodes_->addButton(chb_nodes[i], i);
     lo_chb_nodes->addWidget(chb_nodes[i]);
   }
+  group_chb_nodes_->button(3)->click();
   lo_node->addLayout(lo_chb_nodes);
-  auto* group_node = new QGroupBox("Node");
+  auto* group_node = new QGroupBox("Node (willFall, CollidMove)");
   group_node->setLayout(lo_node);
 
+  auto* lo_type_set_goal = new QHBoxLayout();
+  lo_type_set_goal->addWidget(rdb_type_set_goal_);
+  lo_type_set_goal->addWidget(group_set_goal);
+  auto* lo_type_node = new QHBoxLayout();
+  lo_type_node->addWidget(rdb_type_node_);
+  lo_type_node->addWidget(group_node);
   auto* lo_top_left = new QVBoxLayout();
-  lo_top_left->addWidget(group_set_goal);
-  lo_top_left->addWidget(group_node);
+  lo_top_left->addWidget(rdb_type_auto_);
+  lo_top_left->addLayout(lo_type_set_goal);
+  lo_top_left->addLayout(lo_type_node);
 
   auto* lo_rng_information = new QHBoxLayout();
   lo_rng_information->addLayout(lo_btn_group_edit);
@@ -164,11 +189,12 @@ void ChuuHanaManipulator::make_layouts() {
 void ChuuHanaManipulator::update() {
   const auto start = std::chrono::steady_clock::now();
 
-  if (rdb_g_rng_->checkedId() == READ_FROM_RAM) {
+  if (group_rdb_rng_->checkedId() == READ_FROM_RAM) {
     if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
       ram_seed_ = memory::read_u32(0x80408cf0);
     }
     rng_->set_seed(ram_seed_);
+    ram_index_ = rng_->index_;
   } else {
     rng_->set_seed(edited_seed_);
   }
@@ -177,22 +203,26 @@ void ChuuHanaManipulator::update() {
   u32 search_range = 10000;
   search_range = txb_search_range_->text().toUInt();
 
-  // TODO ラジオボタンを実装する
-  rdb_g_rng_type_->button(TYPE_NODE)->click();
+  // TODO Auto選択時の動作の実装
 
-  if (rdb_g_rng_type_->checkedId() == TYPE_AUTO || rdb_g_rng_type_->checkedId() == TYPE_SET_GOAL) {
+  if (group_rdb_rng_type_->checkedId() == TYPE_AUTO || group_rdb_rng_type_->checkedId() == TYPE_SET_GOAL) {
     lbl_type_->setText("setGoal");
     const float min = txb_range_from_->text().toFloat();
     const float max = txb_range_to_->text().toFloat();
     rng_->search_rng_m30_30(min, max, search_range);
-  } else if (rdb_g_rng_type_->checkedId() == TYPE_NODE) {
+  } else if (group_rdb_rng_type_->checkedId() == TYPE_NODE) {
     std::vector<s32> checked;
     lbl_type_->setText("Node");
-    for (QAbstractButton* chb : chb_g_nodes_->buttons()) {
+    for (QAbstractButton* chb : group_chb_nodes_->buttons()) {
       if (chb->isChecked())
-        checked.push_back(chb_g_nodes_->id(chb));
+        checked.push_back(group_chb_nodes_->id(chb));
     }
-    rng_->search_rng_0_8_2(checked, search_range);
+    const bool is_collided = (chb_node_collid_move_->checkState() == Qt::Checked);
+    s32 rng_max = 6;
+    if (cmb_node_count_->currentIndex() == 1) {
+      rng_max = 7;
+    }
+    rng_->search_rng_int_array(0, rng_max, is_collided, checked, search_range);
   }
 
   model_rng_table_->update_list();
@@ -207,7 +237,7 @@ void ChuuHanaManipulator::update() {
 }
 
 void ChuuHanaManipulator::update_rng_textbox() {
-  switch (rdb_g_rng_->checkedId()) {
+  switch (group_rdb_rng_->checkedId()) {
   case READ_FROM_RAM:
     txb_rng_seed_->setText(QString::number(ram_seed_, 16).toUpper());
     txb_rng_seed_->setStyleSheet("QLineEdit { background-color: rgba(0, 0, 0, 0); border: none }");
@@ -261,4 +291,22 @@ void ChuuHanaManipulator::on_rng_index_changed() {
   edited_seed_ = seed;
   edited_index_ = index;
   txb_rng_seed_->setText(QString::number(seed, 16).toUpper());
+}
+
+void ChuuHanaManipulator::on_node_count_changed(s32 index) {
+  if (index == 0) {
+    group_chb_nodes_->button(7)->setDisabled(true);
+    lbl_nodes_->setText("Value: [0 .. 6]");
+  } else if (index == 1) {
+    group_chb_nodes_->button(7)->setDisabled(false);
+    lbl_nodes_->setText("Value: [0 .. 7]");
+  }
+}
+
+void ChuuHanaManipulator::on_chb_node_multiple_changed(s32 state) {
+  if (state == Qt::Unchecked) {
+    group_chb_nodes_->setExclusive(true);
+  } else if (state == Qt::Checked) {
+    group_chb_nodes_->setExclusive(false);
+  }
 }

@@ -24,6 +24,7 @@ public:
   void search_rng_0_7(float min, float max, u32 search_range = 10000);
   void search_rng_0_8(float min, float max, u32 search_range = 10000);
   void search_rng_0_8_2(const std::vector<s32> &vertices, u32 search_range = 10000);
+  void search_rng_int_array(s32 rng_min, s32 rng_max, bool is_collided, const std::vector<s32>& search_array, u32 search_range = 10000);
 
   u32 seed_ = 0;
   u32 index_ = 0;
@@ -31,7 +32,8 @@ public:
   enum {
     RNG_m30_30,
     RNG_0_7,
-    RNG_0_8
+    RNG_0_8,
+    RNG_INT
   } rng_type_;
   double probability_inv_;
 };
