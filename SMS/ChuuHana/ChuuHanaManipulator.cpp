@@ -9,6 +9,8 @@
 #include <QHBoxLayout>
 #include <QHeaderView>
 
+using namespace memory;
+
 ChuuHanaManipulator::ChuuHanaManipulator(QWidget* parent)
   : QWidget(parent) {
   rng_ = new ChuuHanaRNG();
@@ -64,11 +66,13 @@ void ChuuHanaManipulator::initialize_widgets() {
   group_chb_nodes_->setExclusive(true);
   chb_node_collid_move_ = new QCheckBox("CollidMove");
   chb_node_collid_move_->setChecked(true);
-  cmb_node_count_ = new QComboBox();
-  const QStringList str_cmb_node_count = { "0-6", "0-7" };
-  cmb_node_count_->addItems(str_cmb_node_count);
-  cmb_node_count_->setCurrentIndex(1);
-  connect(cmb_node_count_, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ChuuHanaManipulator::on_node_count_changed);
+  chb_node_collid_move_->setDisabled(true);
+  cmb_node_range_ = new QComboBox();
+  const QStringList str_cmb_node_range = { "0-6", "0-7" };
+  cmb_node_range_->addItems(str_cmb_node_range);
+  cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
+  cmb_node_range_->setDisabled(true);
+  connect(cmb_node_range_, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &ChuuHanaManipulator::on_node_count_changed);
   chb_node_multiple_ = new QCheckBox("Multiple select");
   chb_node_multiple_->setChecked(false);
   connect(chb_node_multiple_, QOverload<int>::of(&QCheckBox::stateChanged), this, &ChuuHanaManipulator::on_chb_node_multiple_changed);
@@ -81,6 +85,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   group_rdb_rng_type_->addButton(rdb_type_auto_, TYPE_AUTO);
   group_rdb_rng_type_->addButton(rdb_type_set_goal_, TYPE_SET_GOAL);
   group_rdb_rng_type_->addButton(rdb_type_node_, TYPE_NODE);
+  connect(group_rdb_rng_type_, &QButtonGroup::idClicked, this, &ChuuHanaManipulator::on_rng_type_changed);
   lbl_type_ = new QLabel("setGoal");
 
   // Šm—¦
@@ -128,13 +133,13 @@ void ChuuHanaManipulator::make_layouts() {
   auto* lbl_range = new QLabel("Value between: [-30.0, 30.0)");
   lo_set_goal->addWidget(lbl_range);
   lo_set_goal->addLayout(lo_range);
-  auto* group_set_goal = new QGroupBox(tr("setGoal"));
+  auto* group_set_goal = new QGroupBox(tr("setGoal(0x802C02F8)"));
   group_set_goal->setLayout(lo_set_goal);
 
   auto* lo_node = new QVBoxLayout();
   auto* lo_node_top = new QHBoxLayout();
   lo_node_top->addWidget(lbl_nodes_);
-  lo_node_top->addWidget(cmb_node_count_);
+  lo_node_top->addWidget(cmb_node_range_);
   lo_node_top->addWidget(chb_node_collid_move_);
   lo_node_top->addStretch(0);
   lo_node_top->addWidget(chb_node_multiple_);
@@ -148,7 +153,7 @@ void ChuuHanaManipulator::make_layouts() {
   }
   group_chb_nodes_->button(3)->click();
   lo_node->addLayout(lo_chb_nodes);
-  auto* group_node = new QGroupBox("Node (willFall, CollidMove)");
+  auto* group_node = new QGroupBox("willFall(0x802C050C), CollidMove(0x802C13D4)");
   group_node->setLayout(lo_node);
 
   auto* lo_type_set_goal = new QHBoxLayout();
@@ -191,7 +196,7 @@ void ChuuHanaManipulator::update() {
 
   if (group_rdb_rng_->checkedId() == READ_FROM_RAM) {
     if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
-      ram_seed_ = memory::read_u32(0x80408cf0);
+      ram_seed_ = read_u32(0x80408cf0);
     }
     rng_->set_seed(ram_seed_);
     ram_index_ = rng_->index_;
@@ -203,14 +208,72 @@ void ChuuHanaManipulator::update() {
   u32 search_range = 10000;
   search_range = txb_search_range_->text().toUInt();
 
-  // TODO Auto‘I‘ðŽž‚Ì“®ì‚ÌŽÀ‘•
+  // Auto‘I‘ðŽž
+  s32 rng_type = group_rdb_rng_type_->checkedId();
+  if (rng_type == TYPE_AUTO) {
+    rng_type = TYPE_SET_GOAL;
+    rdb_type_auto_->setText("Auto - ");
+    if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
+      s64 priority = 0;
+      for (s32 i = 0; i < 6; i++) {
+        const u32 p_chuuhana = read_u32(0x81097ce0 + i * 4);
+        if (read_u32(p_chuuhana + 0xf0) & 1) {
+          continue;
+        }
+        const float x = read_float(p_chuuhana + 0x10);
+        const float z = read_float(p_chuuhana + 0x18);
+        const float target_x = read_float(p_chuuhana + 0x108);
+        const float target_z = read_float(p_chuuhana + 0x110);
+        const float dx = x - target_x;
+        const float dz = z - target_z;
+        const s32 timer = read_s32(p_chuuhana + 0x1a4);
+        const s16 collide_count = read_s16(p_chuuhana + 0x48);
+        if (timer == 400 && priority < 3) {
+          // willFall
+          rng_type = TYPE_NODE;
+          chb_node_collid_move_->setChecked(false);
+          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: willFall";
+          if (i < 3) {
+            cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
+            text += "[0 .. 7]";
+          } else {
+            cmb_node_range_->setCurrentIndex(ZERO_TO_SIX);
+            text += "[0 .. 6]";
+          }
+          rdb_type_auto_->setText(text);
+          break;
+        }
+        if (sqrt(dx * dx + dz * dz) < 100.0f && priority < 2) {
+          // setGoal
+          rng_type = TYPE_SET_GOAL;
+          priority = 2;
+          const QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: setGoal";
+          rdb_type_auto_->setText(text);
+        } else if (collide_count > 0 && priority < 1) {
+          // CollidMove
+          rng_type = TYPE_NODE;
+          priority = 1;
+          chb_node_collid_move_->setChecked(true);
+          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: CollidMove";
+          if (i < 3) {
+            cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
+            text += "[0 .. 7]";
+          } else {
+            cmb_node_range_->setCurrentIndex(ZERO_TO_SIX);
+            text += "[0 .. 6]";
+          }
+          rdb_type_auto_->setText(text);
+        }
+      }
+    }
+  }
 
-  if (group_rdb_rng_type_->checkedId() == TYPE_AUTO || group_rdb_rng_type_->checkedId() == TYPE_SET_GOAL) {
+  if (rng_type == TYPE_SET_GOAL) {
     lbl_type_->setText("setGoal");
     const float min = txb_range_from_->text().toFloat();
     const float max = txb_range_to_->text().toFloat();
     rng_->search_rng_m30_30(min, max, search_range);
-  } else if (group_rdb_rng_type_->checkedId() == TYPE_NODE) {
+  } else if (rng_type == TYPE_NODE) {
     std::vector<s32> checked;
     lbl_type_->setText("Node");
     for (QAbstractButton* chb : group_chb_nodes_->buttons()) {
@@ -219,7 +282,7 @@ void ChuuHanaManipulator::update() {
     }
     const bool is_collided = (chb_node_collid_move_->checkState() == Qt::Checked);
     s32 rng_max = 6;
-    if (cmb_node_count_->currentIndex() == 1) {
+    if (cmb_node_range_->currentIndex() == ZERO_TO_SEVEN) {
       rng_max = 7;
     }
     rng_->search_rng_int_array(0, rng_max, is_collided, checked, search_range);
@@ -308,5 +371,16 @@ void ChuuHanaManipulator::on_chb_node_multiple_changed(s32 state) {
     group_chb_nodes_->setExclusive(true);
   } else if (state == Qt::Checked) {
     group_chb_nodes_->setExclusive(false);
+  }
+}
+
+void ChuuHanaManipulator::on_rng_type_changed(s32 id) {
+  if (id == TYPE_AUTO) {
+    cmb_node_range_->setDisabled(true);
+    cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
+    chb_node_collid_move_->setDisabled(true);
+  } else {
+    cmb_node_range_->setDisabled(false);
+    chb_node_collid_move_->setDisabled(false);
   }
 }

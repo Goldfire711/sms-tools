@@ -118,7 +118,18 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
     painter.drawLine(x, z, target_x, target_z);
     painter.drawEllipse(target_x - 100, target_z - 100, 200, 200);
 
-    pen.setColor(Qt::black);
+    if (s32 timer = read_s32(p_chuuhana + 0x1a4); timer == 400) {
+      // willFall
+      pen.setColor(Qt::lightGray);
+    } else if (float dx = x - target_x, dz = z - target_z; sqrt(dx * dx + dz * dz) < 100.0f) {
+      // setGoal
+      pen.setColor(Qt::lightGray);
+    } else if (s16 collide_count = read_s16(p_chuuhana + 0x48); collide_count > 0) {
+      // CollidMove
+      pen.setColor(Qt::lightGray);
+    } else {
+      pen.setColor(Qt::black);
+    }
     painter.setPen(pen);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
     painter.drawLine(x, z, x + 225 * cosine, z + 225 * sine);

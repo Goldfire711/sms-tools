@@ -33,6 +33,11 @@ public:
     TYPE_NODE
   };
 
+  enum ComboBoxNodeRange {
+    ZERO_TO_SIX = 0,
+    ZERO_TO_SEVEN
+  };
+
 private:
   void initialize_widgets();
   void make_layouts();
@@ -42,6 +47,7 @@ private:
   void on_rng_index_changed();
   void on_node_count_changed(s32 index);
   void on_chb_node_multiple_changed(s32 state);
+  void on_rng_type_changed(s32 id);
   QLabel* lbl_rng_seed_;
   QLabel* lbl_rng_index_;
   QRadioButton* rdb_read_from_ram_;
@@ -66,7 +72,7 @@ private:
   QButtonGroup* group_rdb_rng_type_;
   QLabel* lbl_type_;
   QCheckBox* chb_node_collid_move_;
-  QComboBox* cmb_node_count_;
+  QComboBox* cmb_node_range_;
   QCheckBox* chb_node_multiple_;
 
   u32 ram_seed_ = 0;
