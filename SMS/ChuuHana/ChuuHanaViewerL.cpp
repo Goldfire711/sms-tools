@@ -11,6 +11,7 @@ using namespace memory;
 
 ChuuHanaViewerL::ChuuHanaViewerL(QWidget* parent)
   : QWidget(parent) {
+  elapsed_timer_.start();
 }
 
 ChuuHanaViewerL::~ChuuHanaViewerL() {
@@ -91,6 +92,16 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
 
   // チュウハナのレールの描画
   painter.drawPolygon(chuuhana_rail, std::size(chuuhana_rail));
+  for (s64 i = 0; i < std::size(chuuhana_rail); i++) {
+    QFont font = painter.font();
+    font.setPixelSize(200);
+    painter.setFont(font);
+    double dx = chuuhana_rail[i].x() - Cx;
+    double dz = chuuhana_rail[i].y() - Cz;
+    double cosine = dx / sqrt(dx * dx + dz * dz);
+    double sine = dz / sqrt(dx * dx + dz * dz);
+    painter.drawText(chuuhana_rail[i].x() - 50 + 100.0 * cosine, chuuhana_rail[i].y() + 50 + 100.0 * sine, QString::number(i));
+  }
 
   // チュウハナ
   float sum_x = 0, sum_z = 0;
@@ -117,21 +128,49 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
     painter.drawLine(x, z, target_x, target_z);
     painter.drawEllipse(target_x - 100, target_z - 100, 200, 200);
 
+    QBrush brush = QBrush();
     if (s32 timer = read_s32(p_chuuhana + 0x1a4); timer == 400) {
       // willFall
-      pen.setColor(Qt::lightGray);
+      brush.setColor(Qt::gray);
+      brush.setStyle(Qt::SolidPattern);
+      chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
+      chuuhana_[id].target_type = ChuuHana::WILL_FALL;
     } else if (float dx = x - target_x, dz = z - target_z; sqrt(dx * dx + dz * dz) < 100.0f) {
       // setGoal
-      pen.setColor(Qt::lightGray);
+      brush.setColor(Qt::cyan);
+      brush.setStyle(Qt::SolidPattern);
+      chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
+      chuuhana_[id].target_type = ChuuHana::SET_GOAL;
     } else if (s16 collide_count = read_s16(p_chuuhana + 0x48); collide_count > 0) {
       // CollidMove
-      pen.setColor(Qt::lightGray);
-    } else {
-      pen.setColor(Qt::black);
+      // TODO 衝突対象のidより大きければ無視する
+      brush.setColor(Qt::lightGray);
+      brush.setStyle(Qt::SolidPattern);
+      chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
+      chuuhana_[id].target_type = ChuuHana::COLLID_MOVE;
+    } else if (s64 dt = elapsed_timer_.elapsed() - chuuhana_[id].elapsed_time_target_changed; dt < 1000) {
+      QColor color = QColor();
+      switch (chuuhana_[id].target_type) {
+      case ChuuHana::WILL_FALL:
+        color = Qt::gray;
+        break;
+      case ChuuHana::SET_GOAL:
+        color = Qt::cyan;
+        break;
+      case ChuuHana::COLLID_MOVE:
+        color = Qt::lightGray;
+        break;
+      }
+      color.setAlphaF(color.alphaF() * (1.0 - dt / 1000.0));
+      brush.setColor(color);
+      brush.setStyle(Qt::SolidPattern);
     }
+    pen.setColor(Qt::black);
     painter.setPen(pen);
+    painter.setBrush(brush);
     painter.drawEllipse(x - 225, z - 225, 450, 450);
     painter.drawLine(x, z, x + 225 * cosine, z + 225 * sine);
+    painter.setBrush(Qt::NoBrush);
 
     QFont font = painter.font();
     font.setPixelSize(200);
