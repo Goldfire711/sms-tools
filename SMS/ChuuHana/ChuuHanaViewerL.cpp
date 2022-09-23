@@ -119,6 +119,17 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
     double sine = sin(M_PI * degree / 180.0);
     float target_x = read_float(p_chuuhana + 0x108);
     float target_z = read_float(p_chuuhana + 0x110);
+    s32 timer = read_s32(p_chuuhana + 0x1a4);
+    s16 collide_count = read_s16(p_chuuhana + 0x48);
+    u32 p_collide_objects = read_u32(p_chuuhana + 0x44);
+    bool is_collid_move = false;
+    for (u32 i = 0; i < collide_count; i++) {
+      u32 hit_object = read_u32(p_collide_objects + i * 4);
+      if (read_u32(hit_object) == 0x803DAE44) {
+        s16 hit_id = read_s16(hit_object + 0x7c);
+        is_collid_move = (id < hit_id);
+      }
+    }
 
     ax += (x - Cx) / abs(radius * Xx) - Yx;
     az += (z - Cz) / abs(radius * Zz) - Yz;
@@ -129,21 +140,20 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
     painter.drawEllipse(target_x - 100, target_z - 100, 200, 200);
 
     QBrush brush = QBrush();
-    if (s32 timer = read_s32(p_chuuhana + 0x1a4); timer == 400) {
+    if (timer == 400) {
       // willFall
-      brush.setColor(Qt::gray);
+      brush.setColor(Qt::cyan);
       brush.setStyle(Qt::SolidPattern);
       chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
       chuuhana_[id].target_type = ChuuHana::WILL_FALL;
     } else if (float dx = x - target_x, dz = z - target_z; sqrt(dx * dx + dz * dz) < 100.0f) {
       // setGoal
-      brush.setColor(Qt::cyan);
+      brush.setColor(Qt::green);
       brush.setStyle(Qt::SolidPattern);
       chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
       chuuhana_[id].target_type = ChuuHana::SET_GOAL;
-    } else if (s16 collide_count = read_s16(p_chuuhana + 0x48); collide_count > 0) {
+    } else if (is_collid_move) {
       // CollidMove
-      // TODO Õ“Ë‘ÎÛ‚Ìid‚æ‚è‘å‚«‚¯‚ê‚Î–³‹‚·‚é
       brush.setColor(Qt::lightGray);
       brush.setStyle(Qt::SolidPattern);
       chuuhana_[id].elapsed_time_target_changed = elapsed_timer_.elapsed();
@@ -152,10 +162,10 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
       QColor color = QColor();
       switch (chuuhana_[id].target_type) {
       case ChuuHana::WILL_FALL:
-        color = Qt::gray;
+        color = Qt::cyan;
         break;
       case ChuuHana::SET_GOAL:
-        color = Qt::cyan;
+        color = Qt::green;
         break;
       case ChuuHana::COLLID_MOVE:
         color = Qt::lightGray;

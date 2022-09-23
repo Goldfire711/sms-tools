@@ -87,6 +87,10 @@ void ChuuHanaManipulator::initialize_widgets() {
   group_rdb_rng_type_->addButton(rdb_type_node_, TYPE_NODE);
   connect(group_rdb_rng_type_, &QButtonGroup::idClicked, this, &ChuuHanaManipulator::on_rng_type_changed);
   lbl_type_ = new QLabel("setGoal");
+  // TODO AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる機能を実装
+  // TODO テーブルの乱数を右クリックで書き込める機能の実装
+  // TODO テーブルをCSV形式でコピーできる機能
+  // TODO 今の乱数がリアルタイムに更新されて、書き換えができる乱数Viewerを作る
 
   // 確率
   lbl_probability_ = new QLabel();
@@ -153,7 +157,7 @@ void ChuuHanaManipulator::make_layouts() {
   }
   group_chb_nodes_->button(3)->click();
   lo_node->addLayout(lo_chb_nodes);
-  auto* group_node = new QGroupBox("willFall(0x802C050C), CollidMove(0x802C13D4)");
+  auto* group_node = new QGroupBox("willFall(0x802C050C), isCollidMove(0x802C13D4)");
   group_node->setLayout(lo_node);
 
   auto* lo_type_set_goal = new QHBoxLayout();

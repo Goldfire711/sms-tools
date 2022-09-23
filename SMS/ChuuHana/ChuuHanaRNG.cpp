@@ -120,7 +120,7 @@ void ChuuHanaRNG::search_rng_int_array(const s32 rng_min, const s32 rng_max, con
         const s32 value = static_cast<s32>(rng_min_f + rng_range_f * rng::seed_to_float(seed2));
         if (std::ranges::binary_search(search_array.begin(), search_array.end(), value)) {
           Result result;
-          result.seed = seed;
+          result.seed = rng::seed_prev(seed);
           result.value = static_cast<float>(value);
           result.index = i;
           result.has_7a5b_index = rng::index_to_7a5b(result.index, &result.index_7a, &result.index_5b);
