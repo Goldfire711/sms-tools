@@ -13,6 +13,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QCheckBox>
+#include <QGroupBox>
 
 #include "Common/CommonTypes.h"
 
@@ -48,6 +49,8 @@ private:
   void on_node_count_changed(s32 index);
   void on_chb_node_multiple_changed(s32 state);
   void on_rng_type_changed(s32 id);
+  void on_context_menu_requested(const QPoint& pos);
+  void copy_selection() const;
   QLabel* lbl_rng_seed_;
   QLabel* lbl_rng_index_;
   QRadioButton* rdb_read_from_ram_;
@@ -74,6 +77,8 @@ private:
   QCheckBox* chb_node_collid_move_;
   QComboBox* cmb_node_range_;
   QCheckBox* chb_node_multiple_;
+  QGroupBox* group_set_goal_;
+  QGroupBox* group_node_;
 
   u32 ram_seed_ = 0;
   u32 ram_index_ = 0;

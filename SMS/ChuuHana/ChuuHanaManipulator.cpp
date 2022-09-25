@@ -5,9 +5,14 @@
 
 #include <QGroupBox>
 #include <chrono>
+#include <QApplication>
 #include <QDebug>
 #include <QHBoxLayout>
 #include <QHeaderView>
+#include <QClipboard>
+#include <QMenu>
+#include <QShortcut>
+#include <QKeySequence>
 
 using namespace memory;
 
@@ -61,7 +66,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   txb_range_from_->setValidator(val_m30_30);
   txb_range_to_->setValidator(val_m30_30);
   // Node(willFall, CollidMove)
-  lbl_nodes_ = new QLabel("Value: [0 .. 7]");
+  lbl_nodes_ = new QLabel("Value: ");
   group_chb_nodes_ = new QButtonGroup(this);
   group_chb_nodes_->setExclusive(true);
   chb_node_collid_move_ = new QCheckBox("CollidMove");
@@ -88,9 +93,26 @@ void ChuuHanaManipulator::initialize_widgets() {
   connect(group_rdb_rng_type_, &QButtonGroup::idClicked, this, &ChuuHanaManipulator::on_rng_type_changed);
   lbl_type_ = new QLabel("setGoal");
   // TODO AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる機能を実装
-  // TODO テーブルの乱数を右クリックで書き込める機能の実装
-  // TODO テーブルをCSV形式でコピーできる機能
   // TODO 今の乱数がリアルタイムに更新されて、書き換えができる乱数Viewerを作る
+  // GroupBoxes
+  group_set_goal_ = new QGroupBox(tr("setGoal"));
+  group_set_goal_->setContextMenuPolicy(Qt::ActionsContextMenu);
+  auto* copy_bp_set_goal = new QAction("Copy BP (setGoal: 0x802C02F8)", this);
+  connect(copy_bp_set_goal, &QAction::triggered, this, [=] {
+    QApplication::clipboard()->setText("802C02F8");
+    });
+  group_set_goal_->addAction(copy_bp_set_goal);
+  group_node_ = new QGroupBox("willFall, isCollidMove");
+  group_node_->setContextMenuPolicy(Qt::ActionsContextMenu);
+  auto* copy_bp_will_fall = new QAction("Copy BP (willFall: 0x802C050C)", this);
+  auto* copy_bp_is_collid_move = new QAction("Copy BP (isCollidMove: 0x802C13D4)", this);
+  connect(copy_bp_will_fall, &QAction::triggered, this, [=] {
+    QApplication::clipboard()->setText("802C050C");
+    });
+  connect(copy_bp_is_collid_move, &QAction::triggered, this, [=] {
+    QApplication::clipboard()->setText("802C13D4");
+    });
+  group_node_->addActions({ copy_bp_will_fall, copy_bp_is_collid_move });
 
   // 確率
   lbl_probability_ = new QLabel();
@@ -102,13 +124,21 @@ void ChuuHanaManipulator::initialize_widgets() {
 
   // RNGテーブル
   model_rng_table_ = new ChuuHanaManipulatorModel(this, rng_);
-  tbl_rng_table_ = new QTableView();
+  tbl_rng_table_ = new QTableView(this);
   tbl_rng_table_->setModel(model_rng_table_);
-  tbl_rng_table_->setSelectionMode(QAbstractItemView::ExtendedSelection);
+  tbl_rng_table_->setSelectionMode(QAbstractItemView::ContiguousSelection);
   tbl_rng_table_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  tbl_rng_table_->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(tbl_rng_table_, &QWidget::customContextMenuRequested, this, &ChuuHanaManipulator::on_context_menu_requested);
 
   // 処理時間
   lbl_elapsed_time_ = new QLabel();
+
+  // ショートカットキー (Ctrl + C)
+  const auto* copy_shortcut = new QShortcut(QKeySequence(Qt::Modifier::CTRL + Qt::Key::Key_C), tbl_rng_table_);
+  connect(copy_shortcut, &QShortcut::activated, this, &ChuuHanaManipulator::copy_selection);
+
+  
 }
 
 void ChuuHanaManipulator::make_layouts() {
@@ -137,8 +167,7 @@ void ChuuHanaManipulator::make_layouts() {
   auto* lbl_range = new QLabel("Value between: [-30.0, 30.0)");
   lo_set_goal->addWidget(lbl_range);
   lo_set_goal->addLayout(lo_range);
-  auto* group_set_goal = new QGroupBox(tr("setGoal(0x802C02F8)"));
-  group_set_goal->setLayout(lo_set_goal);
+  group_set_goal_->setLayout(lo_set_goal);
 
   auto* lo_node = new QVBoxLayout();
   auto* lo_node_top = new QHBoxLayout();
@@ -157,15 +186,14 @@ void ChuuHanaManipulator::make_layouts() {
   }
   group_chb_nodes_->button(3)->click();
   lo_node->addLayout(lo_chb_nodes);
-  auto* group_node = new QGroupBox("willFall(0x802C050C), isCollidMove(0x802C13D4)");
-  group_node->setLayout(lo_node);
+  group_node_->setLayout(lo_node);
 
   auto* lo_type_set_goal = new QHBoxLayout();
   lo_type_set_goal->addWidget(rdb_type_set_goal_);
-  lo_type_set_goal->addWidget(group_set_goal);
+  lo_type_set_goal->addWidget(group_set_goal_);
   auto* lo_type_node = new QHBoxLayout();
   lo_type_node->addWidget(rdb_type_node_);
-  lo_type_node->addWidget(group_node);
+  lo_type_node->addWidget(group_node_);
   auto* lo_top_left = new QVBoxLayout();
   lo_top_left->addWidget(rdb_type_auto_);
   lo_top_left->addLayout(lo_type_set_goal);
@@ -363,10 +391,8 @@ void ChuuHanaManipulator::on_rng_index_changed() {
 void ChuuHanaManipulator::on_node_count_changed(s32 index) {
   if (index == 0) {
     group_chb_nodes_->button(7)->setDisabled(true);
-    lbl_nodes_->setText("Value: [0 .. 6]");
   } else if (index == 1) {
     group_chb_nodes_->button(7)->setDisabled(false);
-    lbl_nodes_->setText("Value: [0 .. 7]");
   }
 }
 
@@ -387,4 +413,48 @@ void ChuuHanaManipulator::on_rng_type_changed(s32 id) {
     cmb_node_range_->setDisabled(false);
     chb_node_collid_move_->setDisabled(false);
   }
+}
+
+void ChuuHanaManipulator::on_context_menu_requested(const QPoint& pos) {
+  QModelIndex index = tbl_rng_table_->indexAt(pos);
+  QModelIndexList selection = tbl_rng_table_->selectionModel()->selectedIndexes();
+  copy_selection();
+  auto* menu = new QMenu(this);
+  auto* copy = new QAction("Copy", this);
+  connect(copy, &QAction::triggered, this, &ChuuHanaManipulator::copy_selection);
+  menu->addAction(copy);
+  if (selection.count() == 1 && index.column() == 3) {
+    auto* write_to_ram = new QAction("Write to RAM", this);
+    connect(write_to_ram, &QAction::triggered, this, [=] {
+      const u32 rng = index.data().toString().toUInt(nullptr, 16);
+      write_u32(0x80408cf0, rng);
+      });
+    menu->addAction(write_to_ram);
+  }
+
+  if (selection.count() != 0) {
+    menu->popup(tbl_rng_table_->viewport()->mapToGlobal(pos));
+  }
+}
+
+void ChuuHanaManipulator::copy_selection() const {
+  QString str;
+  auto selection = tbl_rng_table_->selectionModel()->selectedIndexes();
+  if (selection.isEmpty())
+    return;
+  for (s32 i = 0; i < selection.count(); i++) {
+    const auto *index = &selection[i];
+    if (index->column() != selection.last().column()) {
+      QTextStream(&str) << index->data().toString() << "\t";
+    } else {
+      if (index->row() != selection.last().row()) {
+        QTextStream(&str) << index->data().toString() << "\n";
+      } else {
+        QTextStream(&str) << index->data().toString();
+      }
+    }
+  }
+
+  auto* clipboard = QApplication::clipboard();
+  clipboard->setText(str);
 }
