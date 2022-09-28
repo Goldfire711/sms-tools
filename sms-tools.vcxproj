@@ -104,6 +104,7 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
+    <ClCompile Include="SMS\ChuuHana\RNGViewer.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -185,6 +186,7 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h" />
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
+    <QtMoc Include="SMS\ChuuHana\RNGViewer.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

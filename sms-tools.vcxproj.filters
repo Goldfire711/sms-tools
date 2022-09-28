@@ -97,6 +97,9 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\ChuuHana\RNGViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -209,6 +212,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\ChuuHana\RNGViewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

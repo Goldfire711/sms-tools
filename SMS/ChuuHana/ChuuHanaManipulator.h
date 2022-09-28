@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "ChuuHanaRNG.h"
 #include "ChuuHanaManipulatorModel.h"
+#include "RNGViewer.h"
 
 #include <QLabel>
 #include <QPushButton>
@@ -59,9 +60,9 @@ private:
   QButtonGroup* group_rdb_rng_;
   QLineEdit* txb_rng_seed_;
   QLineEdit* txb_rng_index_;
-  QPushButton* btn_update_;
-  ChuuHanaManipulatorModel* model_rng_table_;;
-  QTableView* tbl_rng_table_;
+  QPushButton* btn_search_;
+  ChuuHanaManipulatorModel* model_tbl_rng_;;
+  QTableView* tbl_rng_;
   QLineEdit* txb_range_from_;
   QLineEdit* txb_range_to_;
   QLineEdit* txb_search_range_;
@@ -85,4 +86,6 @@ private:
   u32 edited_seed_ = 0;
   u32 edited_index_ = 0;
   ChuuHanaRNG* rng_;
+
+  RNGViewer* rng_viewer_ = nullptr;
 };

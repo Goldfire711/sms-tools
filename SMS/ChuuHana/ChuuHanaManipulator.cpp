@@ -29,9 +29,9 @@ ChuuHanaManipulator::ChuuHanaManipulator(QWidget* parent)
 }
 
 void ChuuHanaManipulator::initialize_widgets() {
-  // update button
-  btn_update_ = new QPushButton(tr("Update"), this);
-  connect(btn_update_, &QPushButton::clicked, this, &ChuuHanaManipulator::update);
+  // search button
+  btn_search_ = new QPushButton(tr("Search"), this);
+  connect(btn_search_, &QPushButton::clicked, this, &ChuuHanaManipulator::update);
 
   // RNG seed, indexのラジオボタン
   rdb_read_from_ram_ = new QRadioButton(tr("Read RNG Seed from RAM"));
@@ -123,39 +123,51 @@ void ChuuHanaManipulator::initialize_widgets() {
   txb_search_range_->setFixedWidth(100);
 
   // RNGテーブル
-  model_rng_table_ = new ChuuHanaManipulatorModel(this, rng_);
-  tbl_rng_table_ = new QTableView(this);
-  tbl_rng_table_->setModel(model_rng_table_);
-  tbl_rng_table_->setSelectionMode(QAbstractItemView::ContiguousSelection);
-  tbl_rng_table_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  tbl_rng_table_->setContextMenuPolicy(Qt::CustomContextMenu);
-  connect(tbl_rng_table_, &QWidget::customContextMenuRequested, this, &ChuuHanaManipulator::on_context_menu_requested);
+  model_tbl_rng_ = new ChuuHanaManipulatorModel(this, rng_);
+  tbl_rng_ = new QTableView(this);
+  tbl_rng_->setModel(model_tbl_rng_);
+  tbl_rng_->setSelectionMode(QAbstractItemView::ContiguousSelection);
+  tbl_rng_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  tbl_rng_->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(tbl_rng_, &QWidget::customContextMenuRequested, this, &ChuuHanaManipulator::on_context_menu_requested);
 
   // 処理時間
   lbl_elapsed_time_ = new QLabel();
 
   // ショートカットキー (Ctrl + C)
-  const auto* copy_shortcut = new QShortcut(QKeySequence(Qt::Modifier::CTRL + Qt::Key::Key_C), tbl_rng_table_);
+  const auto* copy_shortcut = new QShortcut(QKeySequence(Qt::Modifier::CTRL + Qt::Key::Key_C), tbl_rng_);
   connect(copy_shortcut, &QShortcut::activated, this, &ChuuHanaManipulator::copy_selection);
 
-  
+  // RNG Viewer
+  rng_viewer_ = new RNGViewer(this);
 }
 
 void ChuuHanaManipulator::make_layouts() {
+  auto* lo_rng_viewer = new QVBoxLayout();
+  lo_rng_viewer->addWidget(rng_viewer_);
+  auto* group_rng_viewer = new QGroupBox("RAM RNG");
+  group_rng_viewer->setLayout(lo_rng_viewer);
+
   auto* lo_edit_rng_seed = new QHBoxLayout();
   lo_edit_rng_seed->setSpacing(0);
   lo_edit_rng_seed->addWidget(rdb_edit_rng_seed_);
   lo_edit_rng_seed->addWidget(txb_rng_seed_);
 
-  auto* lo_edit_eng_index = new QHBoxLayout();
-  lo_edit_eng_index->setSpacing(0);
-  lo_edit_eng_index->addWidget(rdb_edit_rng_index_);
-  lo_edit_eng_index->addWidget(txb_rng_index_);
+  auto* lo_edit_rng_index = new QHBoxLayout();
+  lo_edit_rng_index->setSpacing(0);
+  lo_edit_rng_index->addWidget(rdb_edit_rng_index_);
+  lo_edit_rng_index->addWidget(txb_rng_index_);
 
-  auto* lo_btn_group_edit = new QVBoxLayout();
-  lo_btn_group_edit->addWidget(rdb_read_from_ram_);
-  lo_btn_group_edit->addLayout(lo_edit_rng_seed);
-  lo_btn_group_edit->addLayout(lo_edit_eng_index);
+  auto* lo_rdb_rng = new QVBoxLayout();
+  lo_rdb_rng->addWidget(rdb_read_from_ram_);
+  lo_rdb_rng->addLayout(lo_edit_rng_seed);
+  lo_rdb_rng->addLayout(lo_edit_rng_index);
+  auto* group_rdb_rng = new QGroupBox("Search RNG");
+  group_rdb_rng->setLayout(lo_rdb_rng);
+
+  auto* lo_rng = new QVBoxLayout();
+  lo_rng->addWidget(group_rng_viewer);
+  lo_rng->addWidget(group_rdb_rng);
 
   auto* lo_range = new QHBoxLayout();
   auto* lbl_and = new QLabel("and");
@@ -200,7 +212,7 @@ void ChuuHanaManipulator::make_layouts() {
   lo_top_left->addLayout(lo_type_node);
 
   auto* lo_rng_information = new QHBoxLayout();
-  lo_rng_information->addLayout(lo_btn_group_edit);
+  lo_rng_information->addLayout(lo_rng);
   lo_rng_information->addStretch(1);
   lo_rng_information->addLayout(lo_top_left);
 
@@ -214,10 +226,10 @@ void ChuuHanaManipulator::make_layouts() {
   lo_bottom->addWidget(lbl_elapsed_time_);
 
   auto* lo_main = new QVBoxLayout();
-  lo_main->addWidget(btn_update_);
+  lo_main->addWidget(btn_search_);
   lo_main->addLayout(lo_rng_information);
   lo_main->addLayout(lo_above_table);
-  lo_main->addWidget(tbl_rng_table_);
+  lo_main->addWidget(tbl_rng_);
   lo_main->addLayout(lo_bottom);
 
   setLayout(lo_main);
@@ -260,6 +272,7 @@ void ChuuHanaManipulator::update() {
         const float dz = z - target_z;
         const s32 timer = read_s32(p_chuuhana + 0x1a4);
         const s16 collide_count = read_s16(p_chuuhana + 0x48);
+        // TODO AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる機能を実装
         if (timer == 400 && priority < 3) {
           // willFall
           rng_type = TYPE_NODE;
@@ -274,8 +287,7 @@ void ChuuHanaManipulator::update() {
           }
           rdb_type_auto_->setText(text);
           break;
-        }
-        if (sqrt(dx * dx + dz * dz) < 100.0f && priority < 2) {
+        } else if (sqrt(dx * dx + dz * dz) < 100.0f && priority < 2) {
           // setGoal
           rng_type = TYPE_SET_GOAL;
           priority = 2;
@@ -286,7 +298,7 @@ void ChuuHanaManipulator::update() {
           rng_type = TYPE_NODE;
           priority = 1;
           chb_node_collid_move_->setChecked(true);
-          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: CollidMove";
+          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: isCollidMove";
           if (i < 3) {
             cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
             text += "[0 .. 7]";
@@ -320,7 +332,7 @@ void ChuuHanaManipulator::update() {
     rng_->search_rng_int_array(0, rng_max, is_collided, checked, search_range);
   }
 
-  model_rng_table_->update_list();
+  model_tbl_rng_->update_list();
 
   lbl_probability_->setText("1/" + QString::number(rng_->probability_inv_));
 
@@ -416,8 +428,8 @@ void ChuuHanaManipulator::on_rng_type_changed(s32 id) {
 }
 
 void ChuuHanaManipulator::on_context_menu_requested(const QPoint& pos) {
-  QModelIndex index = tbl_rng_table_->indexAt(pos);
-  QModelIndexList selection = tbl_rng_table_->selectionModel()->selectedIndexes();
+  QModelIndex index = tbl_rng_->indexAt(pos);
+  QModelIndexList selection = tbl_rng_->selectionModel()->selectedIndexes();
   copy_selection();
   auto* menu = new QMenu(this);
   auto* copy = new QAction("Copy", this);
@@ -433,13 +445,13 @@ void ChuuHanaManipulator::on_context_menu_requested(const QPoint& pos) {
   }
 
   if (selection.count() != 0) {
-    menu->popup(tbl_rng_table_->viewport()->mapToGlobal(pos));
+    menu->popup(tbl_rng_->viewport()->mapToGlobal(pos));
   }
 }
 
 void ChuuHanaManipulator::copy_selection() const {
   QString str;
-  auto selection = tbl_rng_table_->selectionModel()->selectedIndexes();
+  auto selection = tbl_rng_->selectionModel()->selectedIndexes();
   if (selection.isEmpty())
     return;
   for (s32 i = 0; i < selection.count(); i++) {
