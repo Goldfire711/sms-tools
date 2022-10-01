@@ -88,4 +88,24 @@ private:
   ChuuHanaRNG* rng_;
 
   RNGViewer* rng_viewer_ = nullptr;
+
+  struct ChuuHanaRNGType {
+    s32 id = -1;
+    s32 rng_type = -1;
+    bool is_collid_move = false;
+
+    bool operator==(const ChuuHanaRNGType& c) const {
+      if (id == c.id && rng_type == c.rng_type && is_collid_move == c.is_collid_move) {
+        return true;
+      }
+      return false;
+    }
+  };
+  std::vector<ChuuHanaRNGType> detected_types_;
+  s32 select_search_ = 0;
+  s32 select_ = 0;
+  QPushButton* btn_auto_left_;
+  QPushButton* btn_auto_right_;
+  void on_button_left_clicked();
+  void on_button_right_clicked();
 };

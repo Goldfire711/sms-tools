@@ -91,14 +91,11 @@ RNGViewer::RNGViewer(QWidget* parent)
 
   setLayout(lo_main);
   
-  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&RNGViewer::update));
+  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&RNGViewer::update_ram_rng));
   on_chb_edit_changed(Qt::Unchecked);
 }
 
-RNGViewer::~RNGViewer() {
-}
-
-void RNGViewer::update() {
+void RNGViewer::update_ram_rng() {
   if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
     if (const u32 seed = read_u32(0x80408cf0); seed != seed_) {
       seed_ = seed;

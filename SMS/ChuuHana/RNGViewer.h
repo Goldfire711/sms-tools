@@ -55,8 +55,7 @@ class RNGViewer : public QWidget {
 
 public:
   RNGViewer(QWidget* parent);
-  ~RNGViewer() override;
-  void update();
+  void update_ram_rng();
 
 private:
   void on_edit_seed_changed();

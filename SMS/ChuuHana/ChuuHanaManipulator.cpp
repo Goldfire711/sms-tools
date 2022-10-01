@@ -1,4 +1,5 @@
 #include "ChuuHanaManipulator.h"
+#include "ChuuHanaManipulator.h"
 
 #include "../../Memory/Memory.h"
 #include "RNGFunctions.h"
@@ -84,6 +85,14 @@ void ChuuHanaManipulator::initialize_widgets() {
   // Radio Button: select RNG type from {Auto, setGoal, Node}
   rdb_type_auto_ = new QRadioButton("Auto: ");
   rdb_type_auto_->click();
+  btn_auto_left_ = new QPushButton();
+  btn_auto_left_->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
+  btn_auto_right_ = new QPushButton();
+  btn_auto_right_->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+  btn_auto_left_->setFixedWidth(30);
+  btn_auto_right_->setFixedWidth(30);
+  connect(btn_auto_left_, &QPushButton::clicked, this, &ChuuHanaManipulator::on_button_left_clicked);
+  connect(btn_auto_right_, &QPushButton::clicked, this, &ChuuHanaManipulator::on_button_right_clicked);
   rdb_type_set_goal_ = new QRadioButton();
   rdb_type_node_ = new QRadioButton();
   group_rdb_rng_type_ = new QButtonGroup(this);
@@ -92,8 +101,6 @@ void ChuuHanaManipulator::initialize_widgets() {
   group_rdb_rng_type_->addButton(rdb_type_node_, TYPE_NODE);
   connect(group_rdb_rng_type_, &QButtonGroup::idClicked, this, &ChuuHanaManipulator::on_rng_type_changed);
   lbl_type_ = new QLabel("setGoal");
-  // TODO AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる機能を実装
-  // TODO 今の乱数がリアルタイムに更新されて、書き換えができる乱数Viewerを作る
   // GroupBoxes
   group_set_goal_ = new QGroupBox(tr("setGoal"));
   group_set_goal_->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -200,21 +207,27 @@ void ChuuHanaManipulator::make_layouts() {
   lo_node->addLayout(lo_chb_nodes);
   group_node_->setLayout(lo_node);
 
+  auto* lo_type_auto = new QHBoxLayout();
+  lo_type_auto->addWidget(rdb_type_auto_);
+  lo_type_auto->addStretch(0);
+  lo_type_auto->addWidget(btn_auto_left_);
+  lo_type_auto->addWidget(btn_auto_right_);
+  lo_type_auto->setSpacing(0);
   auto* lo_type_set_goal = new QHBoxLayout();
   lo_type_set_goal->addWidget(rdb_type_set_goal_);
   lo_type_set_goal->addWidget(group_set_goal_);
   auto* lo_type_node = new QHBoxLayout();
   lo_type_node->addWidget(rdb_type_node_);
   lo_type_node->addWidget(group_node_);
-  auto* lo_top_left = new QVBoxLayout();
-  lo_top_left->addWidget(rdb_type_auto_);
-  lo_top_left->addLayout(lo_type_set_goal);
-  lo_top_left->addLayout(lo_type_node);
+  auto* lo_top_right = new QVBoxLayout();
+  lo_top_right->addLayout(lo_type_auto);
+  lo_top_right->addLayout(lo_type_set_goal);
+  lo_top_right->addLayout(lo_type_node);
 
   auto* lo_rng_information = new QHBoxLayout();
   lo_rng_information->addLayout(lo_rng);
   lo_rng_information->addStretch(1);
-  lo_rng_information->addLayout(lo_top_left);
+  lo_rng_information->addLayout(lo_top_right);
 
   auto* lo_above_table = new QHBoxLayout();
   lo_above_table->addWidget(lbl_probability_);
@@ -258,7 +271,10 @@ void ChuuHanaManipulator::update() {
     rng_type = TYPE_SET_GOAL;
     rdb_type_auto_->setText("Auto - ");
     if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
-      s64 priority = 0;
+      std::vector<ChuuHanaRNGType> detected_types;
+      s32 at = -1;
+      s32 select = -1;
+      s32 priority = 0;
       for (s32 i = 0; i < 6; i++) {
         const u32 p_chuuhana = read_u32(0x81097ce0 + i * 4);
         if (read_u32(p_chuuhana + 0xf0) & 1) {
@@ -272,43 +288,84 @@ void ChuuHanaManipulator::update() {
         const float dz = z - target_z;
         const s32 timer = read_s32(p_chuuhana + 0x1a4);
         const s16 collide_count = read_s16(p_chuuhana + 0x48);
-        // TODO AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる機能を実装
-        if (timer == 400 && priority < 3) {
+        const u32 p_collide_objects = read_u32(p_chuuhana + 0x44);
+        bool is_collid_move = false;
+        for (u32 j = 0; j < collide_count; j++) {
+          if (const u32 hit_object = read_u32(p_collide_objects + j * 4);
+            read_u32(hit_object) == 0x803DAE44) {
+            const s16 hit_id = read_s16(hit_object + 0x7c);
+            is_collid_move = (i < hit_id);
+          }
+        }
+        // AUTO選択時、複数の候補が上がった場合に矢印ボタンで候補を選択できる
+        if (timer == 400) {
           // willFall
-          rng_type = TYPE_NODE;
-          chb_node_collid_move_->setChecked(false);
-          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: willFall";
-          if (i < 3) {
-            cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
-            text += "[0 .. 7]";
-          } else {
-            cmb_node_range_->setCurrentIndex(ZERO_TO_SIX);
-            text += "[0 .. 6]";
+          ChuuHanaRNGType detected = { i, TYPE_NODE, false };
+          detected_types.push_back(detected);
+          at++;
+          if (priority < 3) {
+            select = at;
           }
-          rdb_type_auto_->setText(text);
-          break;
-        } else if (sqrt(dx * dx + dz * dz) < 100.0f && priority < 2) {
+          priority = 3;
+        } else if (sqrt(dx * dx + dz * dz) < 100.0f) {
           // setGoal
-          rng_type = TYPE_SET_GOAL;
-          priority = 2;
-          const QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: setGoal";
-          rdb_type_auto_->setText(text);
-        } else if (collide_count > 0 && priority < 1) {
-          // CollidMove
-          rng_type = TYPE_NODE;
-          priority = 1;
-          chb_node_collid_move_->setChecked(true);
-          QString text = "Auto - ChuuHana: " + QString::number(i) + ", Type: isCollidMove";
-          if (i < 3) {
-            cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
-            text += "[0 .. 7]";
-          } else {
-            cmb_node_range_->setCurrentIndex(ZERO_TO_SIX);
-            text += "[0 .. 6]";
+          ChuuHanaRNGType detected = { i, TYPE_SET_GOAL, false };
+          detected_types.push_back(detected);
+          at++;
+          if (priority < 2) {
+            select = at;
           }
-          rdb_type_auto_->setText(text);
+          priority = 2;
+        } else if (is_collid_move) {
+          // CollidMove
+          ChuuHanaRNGType detected = { i, TYPE_NODE, true };
+          detected_types.push_back(detected);
+          at++;
+          if (priority < 1) {
+            select = at;
+          }
+          priority = 1;
         }
       }
+      if (detected_types != detected_types_ && at >= 0) {
+        detected_types_ = detected_types;
+        select_search_ = select;
+        select_ = select;
+        if (select == 0)
+          btn_auto_left_->setDisabled(true);
+        else
+          btn_auto_left_->setDisabled(false);
+        if (select == at)
+          btn_auto_right_->setDisabled(true);
+        else
+          btn_auto_right_->setDisabled(false);
+      } else {
+        select_search_ = select_;
+      }
+      rdb_type_auto_->setStyleSheet("");
+    }
+    if (!detected_types_.empty()) {
+      const ChuuHanaRNGType* selected = &detected_types_[select_search_];
+      rng_type = selected->rng_type;
+      chb_node_collid_move_->setChecked(selected->is_collid_move);
+      QString text = "Auto - ChuuHana: " + QString::number(selected->id);
+      if (rng_type == TYPE_NODE) {
+        if (selected->is_collid_move) {
+          text += ", Type: isCollidMove";
+        } else {
+          text += ", Type: willFall";
+        }
+        if (selected->id < 3) {
+          cmb_node_range_->setCurrentIndex(ZERO_TO_SEVEN);
+          text += "[0 .. 7]";
+        } else {
+          cmb_node_range_->setCurrentIndex(ZERO_TO_SIX);
+          text += "[0 .. 6]";
+        }
+      } else {
+        text += ", Type: setGoal";
+      }
+      rdb_type_auto_->setText(text);
     }
   }
 
@@ -469,4 +526,62 @@ void ChuuHanaManipulator::copy_selection() const {
 
   auto* clipboard = QApplication::clipboard();
   clipboard->setText(str);
+}
+
+void ChuuHanaManipulator::on_button_left_clicked() {
+  select_--;
+  const ChuuHanaRNGType* selected = &detected_types_[select_];
+  QString text = "Auto - ChuuHana: " + QString::number(selected->id);
+  if (selected->rng_type == TYPE_NODE) {
+    if (selected->is_collid_move)
+      text += ", Type: isCollidMove";
+    else
+      text += ", Type: willFall";
+    if (selected->id < 3)
+      text += "[0 .. 7]";
+    else
+      text += "[0 .. 6]";
+  } else {
+    text += ", Type: setGoal";
+  }
+  rdb_type_auto_->setText(text);
+
+  btn_auto_right_->setDisabled(false);
+  if (select_ == 0)
+    btn_auto_left_->setDisabled(true);
+
+  if (select_ == select_search_) {
+    rdb_type_auto_->setStyleSheet("");
+  } else {
+    rdb_type_auto_->setStyleSheet("QRadioButton { color : Salmon; }");
+  }
+}
+
+void ChuuHanaManipulator::on_button_right_clicked() {
+  select_++;
+  const ChuuHanaRNGType* selected = &detected_types_[select_];
+  QString text = "Auto - ChuuHana: " + QString::number(selected->id);
+  if (selected->rng_type == TYPE_NODE) {
+    if (selected->is_collid_move)
+      text += ", Type: isCollidMove";
+    else
+      text += ", Type: willFall";
+    if (selected->id < 3)
+      text += "[0 .. 7]";
+    else
+      text += "[0 .. 6]";
+  } else {
+    text += ", Type: setGoal";
+  }
+  rdb_type_auto_->setText(text);
+
+  btn_auto_left_->setDisabled(false);
+  if (select_ == detected_types_.size() - 1)
+    btn_auto_right_->setDisabled(true);
+
+  if (select_ == select_search_) {
+    rdb_type_auto_->setStyleSheet("");
+  } else {
+    rdb_type_auto_->setStyleSheet("QRadioButton { color : Salmon; }");
+  }
 }
