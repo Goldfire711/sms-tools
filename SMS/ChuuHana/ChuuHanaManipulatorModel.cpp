@@ -59,6 +59,12 @@ QVariant ChuuHanaManipulatorModel::data(const QModelIndex& index, int role) cons
   return QVariant();
 }
 
+Qt::ItemFlags ChuuHanaManipulatorModel::flags(const QModelIndex& index) const {
+  constexpr Qt::ItemFlags flags = Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+  if (index.column() == COL_7A5B_INDEX && !index.data().toString().isEmpty())
+    return flags | Qt::ItemIsEditable;
+  return flags;
+}
 
 void ChuuHanaManipulatorModel::update_list() {
   emit layoutChanged();

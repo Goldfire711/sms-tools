@@ -87,8 +87,10 @@ void ChuuHanaManipulator::initialize_widgets() {
   rdb_type_auto_->click();
   btn_auto_left_ = new QPushButton();
   btn_auto_left_->setIcon(style()->standardIcon(QStyle::SP_ArrowLeft));
+  btn_auto_left_->setDisabled(true);
   btn_auto_right_ = new QPushButton();
   btn_auto_right_->setIcon(style()->standardIcon(QStyle::SP_ArrowRight));
+  btn_auto_right_->setDisabled(true);
   btn_auto_left_->setFixedWidth(30);
   btn_auto_right_->setFixedWidth(30);
   connect(btn_auto_left_, &QPushButton::clicked, this, &ChuuHanaManipulator::on_button_left_clicked);
@@ -136,6 +138,8 @@ void ChuuHanaManipulator::initialize_widgets() {
   tbl_rng_->setSelectionMode(QAbstractItemView::ContiguousSelection);
   tbl_rng_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   tbl_rng_->setContextMenuPolicy(Qt::CustomContextMenu);
+  delegate_ = new ChuuHanaManipulatorDelegate(this);
+  tbl_rng_->setItemDelegateForColumn(ChuuHanaManipulatorModel::COL_7A5B_INDEX, delegate_);
   connect(tbl_rng_, &QWidget::customContextMenuRequested, this, &ChuuHanaManipulator::on_context_menu_requested);
 
   // ˆ—ŠÔ

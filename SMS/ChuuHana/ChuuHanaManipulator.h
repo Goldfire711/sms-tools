@@ -4,6 +4,7 @@
 #include "ChuuHanaRNG.h"
 #include "ChuuHanaManipulatorModel.h"
 #include "RNGViewer.h"
+#include "ChuuHanaManipulatorDelegate.h"
 
 #include <QLabel>
 #include <QPushButton>
@@ -108,4 +109,6 @@ private:
   QPushButton* btn_auto_right_;
   void on_button_left_clicked();
   void on_button_right_clicked();
+
+  ChuuHanaManipulatorDelegate* delegate_;
 };
