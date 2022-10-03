@@ -72,6 +72,8 @@ private:
   QLabel* lbl_edit_index_;
   QLineEdit* txb_edit_seed_;
   U32SpinBox* spb_edit_index_;
+  QLabel* lbl_index_diff_;
+  QLabel* lbl_index_diff2_;
 
   u32 seed_ = 0;
   u32 index_ = 0;

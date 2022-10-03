@@ -125,8 +125,8 @@ void ChuuHanaViewerL::paintEvent(QPaintEvent* event) {
       collide_count = 0;
     u32 p_collide_objects = read_u32(p_chuuhana + 0x44);
     bool is_collid_move = false;
-    for (s32 i = 0; i < collide_count; i++) {
-      s32 hit_object = read_u32(p_collide_objects + i * 4);
+    for (u32 i = 0; i < collide_count; i++) {
+      u32 hit_object = read_u32(p_collide_objects + i * 4);
       if (read_u32(hit_object) == 0x803DAE44) {
         s16 hit_id = read_s16(hit_object + 0x7c);
         is_collid_move = (id < hit_id);

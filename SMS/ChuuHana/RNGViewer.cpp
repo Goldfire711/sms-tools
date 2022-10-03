@@ -34,6 +34,10 @@ RNGViewer::RNGViewer(QWidget* parent)
   spb_edit_index_ = new U32SpinBox(this);
   spb_edit_index_->setFixedWidth(146);
   connect(spb_edit_index_, &QSpinBox::textChanged, this, &RNGViewer::on_edit_index_changed);
+  lbl_index_diff_ = new QLabel("Index Diff: ");
+  lbl_index_diff2_ = new QLabel();
+  lbl_index_diff2_->setFixedWidth(146);
+  lbl_index_diff2_->setTextInteractionFlags(Qt::TextSelectableByMouse);
 
   // Edit buttons
   chb_edit_ = new QCheckBox("Edit");
@@ -78,12 +82,18 @@ RNGViewer::RNGViewer(QWidget* parent)
   lo_edit_index->addWidget(lbl_edit_index_);
   lo_edit_index->addWidget(spb_edit_index_);
 
+  auto* lo_index_diff = new QHBoxLayout();
+  lo_index_diff->setSpacing(0);
+  lo_index_diff->addWidget(lbl_index_diff_);
+  lo_index_diff->addWidget(lbl_index_diff2_);
+
   auto* lo_main = new QVBoxLayout();
   lo_main->addLayout(lo_seed);
   lo_main->addLayout(lo_index);
   lo_main->addLayout(lo_middle);
   lo_main->addLayout(lo_edit_seed);
   lo_main->addLayout(lo_edit_index);
+  lo_main->addLayout(lo_index_diff);
 
   lo_main->setSizeConstraint(QLayout::SetMinimumSize);
   lo_main->setMargin(0);
@@ -103,21 +113,24 @@ void RNGViewer::update_ram_rng() {
 
       txb_seed_->setText(QString::number(seed, 16).toUpper());
       txb_index_->setText(QString::number(index_));
+      const s64 diff = static_cast<s64>(edit_index_) - static_cast<s64>(index_);
+      lbl_index_diff2_->setText((diff < 0 ? "" : "+") + QString::number(diff));
     }
   }
   
   if (seed_ == edit_seed_) {
     lbl_edit_seed_->setStyleSheet("");
     lbl_edit_index_->setStyleSheet("");
+    lbl_index_diff_->setStyleSheet("");
     btn_read_->setDisabled(true);
     btn_write_->setDisabled(true);
   } else {
     lbl_edit_seed_->setStyleSheet("QLabel { color : Salmon; }");
     lbl_edit_index_->setStyleSheet("QLabel { color : Salmon; }");
+    lbl_index_diff_->setStyleSheet("QLabel { color : Salmon; }");
     btn_read_->setDisabled(false);
     btn_write_->setDisabled(false);
   }
-  txb_edit_seed_->deselect();
 }
 
 void RNGViewer::on_edit_seed_changed() {
@@ -126,12 +139,16 @@ void RNGViewer::on_edit_seed_changed() {
     edit_index_ = rng::seed_to_index(edit_seed_);
   }
   spb_edit_index_->setValueU32(edit_index_);
+  const s64 diff = static_cast<s64>(edit_index_) - static_cast<s64>(index_);
+  lbl_index_diff2_->setText((diff < 0 ? "" : "+") + QString::number(diff));
 }
 
 void RNGViewer::on_edit_index_changed() {
   edit_index_ = spb_edit_index_->valueU32();
   edit_seed_ = rng::index_to_seed(edit_index_);
   txb_edit_seed_->setText(QString::number(edit_seed_, 16).toUpper());
+  const s64 diff = static_cast<s64>(edit_index_) - static_cast<s64>(index_);
+  lbl_index_diff2_->setText((diff < 0 ? "" : "+") + QString::number(diff));
 }
 
 void RNGViewer::on_chb_edit_changed(s32 state) const {
@@ -142,6 +159,8 @@ void RNGViewer::on_chb_edit_changed(s32 state) const {
     txb_edit_seed_->setVisible(true);
     lbl_edit_index_->setVisible(true);
     spb_edit_index_->setVisible(true);
+    lbl_index_diff_->setVisible(true);
+    lbl_index_diff2_->setVisible(true);
   } else {
     btn_read_->setVisible(false);
     btn_write_->setVisible(false);
@@ -149,5 +168,7 @@ void RNGViewer::on_chb_edit_changed(s32 state) const {
     txb_edit_seed_->setVisible(false);
     lbl_edit_index_->setVisible(false);
     spb_edit_index_->setVisible(false);
+    lbl_index_diff_->setVisible(false);
+    lbl_index_diff2_->setVisible(false);
   }
 }
