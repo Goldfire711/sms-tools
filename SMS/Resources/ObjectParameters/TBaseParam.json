@@ -1,0 +1,31 @@
+{
+    "TBaseParam": {
+        "size": 16,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "u16",
+                "name": "KeyCode",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "string",
+                "name": "Name",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "?*",
+                "name": "?",
+                "notes": ""
+            }
+        ]
+    }
+}

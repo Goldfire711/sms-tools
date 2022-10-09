@@ -1,0 +1,67 @@
+{
+    "TSpineEnemyParams": {
+        "size": 168,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "string",
+                "name": "prm location",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "*?",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "TParamT<float>",
+                "name": "mSLHeadHeight *",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "TParamT<float>",
+                "name": "mSLBodyRadius *",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "TParamT<float>",
+                "name": "mSLWallRadius *",
+                "notes": ""
+            },
+            {
+                "offset": "44",
+                "type": "TParamT<float>",
+                "name": "mSLClipRadius *",
+                "notes": ""
+            },
+            {
+                "offset": "58",
+                "type": "TParamT<float>",
+                "name": "mSLFarClip *",
+                "notes": ""
+            },
+            {
+                "offset": "6c",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLHitPointMax *",
+                "notes": ""
+            },
+            {
+                "offset": "80",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLInstanceNum *",
+                "notes": ""
+            },
+            {
+                "offset": "94",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLActiveEnemyNum *",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "TWalkerEnemyParams": {
+        "size": "32c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSmallEnemyParams",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "2d4",
+                "type": "TParamT<float>",
+                "name": "mSLZigzagCycle *",
+                "notes": ""
+            },
+            {
+                "offset": "2e8",
+                "type": "TParamT<float>",
+                "name": "mSLZigzagAngle *",
+                "notes": ""
+            },
+            {
+                "offset": "2fc",
+                "type": "TParamT<float>",
+                "name": "mSLMarchSpeedLow *",
+                "notes": ""
+            },
+            {
+                "offset": "310",
+                "type": "TParamT<float>",
+                "name": "mSLMarchSpeedHigh *",
+                "notes": ""
+            },
+            {
+                "offset": "324",
+                "type": "float",
+                "name": "0x30c",
+                "notes": ""
+            },
+            {
+                "offset": "328",
+                "type": "float",
+                "name": "0x320",
+                "notes": ""
+            }
+        ]
+    }
+}

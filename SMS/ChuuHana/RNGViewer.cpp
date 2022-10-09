@@ -35,7 +35,7 @@ RNGViewer::RNGViewer(QWidget* parent)
   spb_edit_index_->setFixedWidth(146);
   connect(spb_edit_index_, &QSpinBox::textChanged, this, &RNGViewer::on_edit_index_changed);
   lbl_index_diff_ = new QLabel("Index Diff: ");
-  lbl_index_diff2_ = new QLabel();
+  lbl_index_diff2_ = new QLabel("+0");
   lbl_index_diff2_->setFixedWidth(146);
   lbl_index_diff2_->setTextInteractionFlags(Qt::TextSelectableByMouse);
 

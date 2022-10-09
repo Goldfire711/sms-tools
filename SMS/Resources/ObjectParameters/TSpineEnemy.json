@@ -37,6 +37,30 @@
                 "type": "TGraphTracer*",
                 "name": "Movement graph",
                 "notes": ""
+            },
+            {
+                "offset": "140",
+                "type": "float",
+                "name": "MarchSpeed",
+                "notes": ""
+            },
+            {
+                "offset": "144",
+                "type": "float",
+                "name": "TurnSpeed",
+                "notes": ""
+            },
+            {
+                "offset": "148",
+                "type": "float",
+                "name": "BodyScale",
+                "notes": ""
+            },
+            {
+                "offset": "14c",
+                "type": "float",
+                "name": "",
+                "notes": ""
             }
         ]
     }

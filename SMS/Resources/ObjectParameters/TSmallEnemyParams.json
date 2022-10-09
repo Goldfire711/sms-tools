@@ -1,0 +1,199 @@
+{
+    "TSmallEnemyParams": {
+        "size": "2d4",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemyParams",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "a8",
+                "type": "TParamT<float>",
+                "name": "mSLJumpForce *",
+                "notes": ""
+            },
+            {
+                "offset": "bc",
+                "type": "TParamT<float>",
+                "name": "mSLSearchLength *",
+                "notes": ""
+            },
+            {
+                "offset": "d0",
+                "type": "TParamT<float>",
+                "name": "mSLSearchHeight *",
+                "notes": ""
+            },
+            {
+                "offset": "e4",
+                "type": "TParamT<float>",
+                "name": "mSLSearchAware *",
+                "notes": ""
+            },
+            {
+                "offset": "f8",
+                "type": "TParamT<float>",
+                "name": "mSLSearchAngle *",
+                "notes": ""
+            },
+            {
+                "offset": "10c",
+                "type": "TParamT<float>",
+                "name": "mSLGiveUpLength *",
+                "notes": ""
+            },
+            {
+                "offset": "120",
+                "type": "TParamT<float>",
+                "name": "mSLGiveUpHeight *",
+                "notes": ""
+            },
+            {
+                "offset": "134",
+                "type": "TParamT<long>",
+                "name": "mSLAttackWait *",
+                "notes": ""
+            },
+            {
+                "offset": "148",
+                "type": "TParamT<long>",
+                "name": "mSLFreezeWait *",
+                "notes": ""
+            },
+            {
+                "offset": "15c",
+                "type": "TParamT<long>",
+                "name": "mSLDamageRadius *",
+                "notes": ""
+            },
+            {
+                "offset": "170",
+                "type": "TParamT<long>",
+                "name": "mSLDamageHeight *",
+                "notes": ""
+            },
+            {
+                "offset": "184",
+                "type": "TParamT<long>",
+                "name": "mSLAttackRadius *",
+                "notes": ""
+            },
+            {
+                "offset": "198",
+                "type": "TParamT<long>",
+                "name": "mSLAttackHeight *",
+                "notes": ""
+            },
+            {
+                "offset": "1ac",
+                "type": "TParamT<float>",
+                "name": "mSLTurnSpeedLow *",
+                "notes": ""
+            },
+            {
+                "offset": "1c0",
+                "type": "TParamT<float>",
+                "name": "mSLTurnSpeedHigh *",
+                "notes": ""
+            },
+            {
+                "offset": "1d4",
+                "type": "TParamT<float>",
+                "name": "mSLBodyScaleLow *",
+                "notes": ""
+            },
+            {
+                "offset": "1e8",
+                "type": "TParamT<float>",
+                "name": "mSLBodyScaleHigh *",
+                "notes": ""
+            },
+            {
+                "offset": "1fc",
+                "type": "TParamT<float>",
+                "name": "mSLGenItemRate *",
+                "notes": ""
+            },
+            {
+                "offset": "210",
+                "type": "TParamT<float>",
+                "name": "mSLGenEggRate *",
+                "notes": ""
+            },
+            {
+                "offset": "224",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLPolluteRange *",
+                "notes": ""
+            },
+            {
+                "offset": "238",
+                "type": "TParamT<long>",
+                "name": "mSLWaitTime *",
+                "notes": ""
+            },
+            {
+                "offset": "24c",
+                "type": "TParamT<long>",
+                "name": "mSLPolluteRMin *",
+                "notes": ""
+            },
+            {
+                "offset": "260",
+                "type": "TParamT<long>",
+                "name": "mSLPolluteRMax *",
+                "notes": ""
+            },
+            {
+                "offset": "274",
+                "type": "TParamT<long>",
+                "name": "mSLPolluteCycle *",
+                "notes": ""
+            },
+            {
+                "offset": "288",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLStampRange *",
+                "notes": ""
+            },
+            {
+                "offset": "29c",
+                "type": "TParamT<long>",
+                "name": "mSLPolluteInterval *",
+                "notes": ""
+            },
+            {
+                "offset": "2b0",
+                "type": "TParamT<unsigned_char>",
+                "name": "mSLGenerateOnlyDead *",
+                "notes": ""
+            },
+            {
+                "offset": "2c4",
+                "type": "float",
+                "name": "0x1bc",
+                "notes": ""
+            },
+            {
+                "offset": "2c8",
+                "type": "float",
+                "name": "0x1d0",
+                "notes": ""
+            },
+            {
+                "offset": "2cc",
+                "type": "float",
+                "name": "0x1e4",
+                "notes": ""
+            },
+            {
+                "offset": "2d0",
+                "type": "float",
+                "name": "0x1f8",
+                "notes": ""
+            }
+        ]
+    }
+}
