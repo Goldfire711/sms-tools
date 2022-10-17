@@ -11,25 +11,25 @@
             {
                 "offset": "2d4",
                 "type": "TParamT<float>",
-                "name": "mSLZigzagCycle *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "2e8",
                 "type": "TParamT<float>",
-                "name": "mSLZigzagAngle *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "2fc",
                 "type": "TParamT<float>",
-                "name": "mSLMarchSpeedLow *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "310",
                 "type": "TParamT<float>",
-                "name": "mSLMarchSpeedHigh *",
+                "name": "*",
                 "notes": ""
             },
             {

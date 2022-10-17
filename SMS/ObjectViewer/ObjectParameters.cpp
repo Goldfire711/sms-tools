@@ -86,6 +86,17 @@ void ObjectParameters::load_items_from_json(const nlohmann::json& j, const QStri
     else {
       name = QString::fromStdString(parameter["name"]);
     }
+    // $(0xXX)‚ª‚ ‚Á‚½‚Æ‚«‚Í0xXX‚©‚ç–¼‘O‚ð“Ç‚Ýž‚Þ
+    QRegExp rx(R"(\$\((0x[0-9a-fA-F]+)\))");
+    while (rx.indexIn(name) > -1) {
+      const QString str_offset = rx.cap(1);
+      const s32 offset = str_offset.toInt(nullptr, 16);
+      QString mem_name;
+      if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
+        mem_name = read_string(address_ + base_offset + offset, { 0 }, 50);
+      }
+      name.replace(name.indexOf(rx), str_offset.size() + 3, mem_name);
+    }
 
     QString type = QString::fromStdString(parameter["type"]);
     if (type_list.contains(type)) {

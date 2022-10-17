@@ -17,49 +17,49 @@
             {
                 "offset": "8",
                 "type": "TParamT<float>",
-                "name": "mSLHeadHeight *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "1c",
                 "type": "TParamT<float>",
-                "name": "mSLBodyRadius *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "30",
                 "type": "TParamT<float>",
-                "name": "mSLWallRadius *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "44",
                 "type": "TParamT<float>",
-                "name": "mSLClipRadius *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "58",
                 "type": "TParamT<float>",
-                "name": "mSLFarClip *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "6c",
                 "type": "TParamT<unsigned_char>",
-                "name": "mSLHitPointMax *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "80",
                 "type": "TParamT<unsigned_char>",
-                "name": "mSLInstanceNum *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "94",
                 "type": "TParamT<unsigned_char>",
-                "name": "mSLActiveEnemyNum *",
+                "name": "*",
                 "notes": ""
             }
         ]

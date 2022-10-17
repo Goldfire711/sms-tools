@@ -11,157 +11,157 @@
             {
                 "offset": "32c",
                 "type": "TParamT<float>",
-                "name": "mSLGetWaterPow *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "340",
                 "type": "TParamT<float>",
-                "name": "mSLGetGroundPow *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "354",
                 "type": "TParamT<long>",
-                "name": "mSLKeepBalanceTime *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "368",
                 "type": "TParamT<long>",
-                "name": "mSLCheckFrame *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "37c",
                 "type": "TParamT<float>",
-                "name": "mSLReverseHeightS *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "390",
                 "type": "TParamT<float>",
-                "name": "mSLStretchHeightS *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "3a4",
                 "type": "TParamT<float>",
-                "name": "mSLMediumStretchHeightS *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "3b8",
                 "type": "TParamT<float>",
-                "name": "mSLSmallStretchHeightS *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "3cc",
                 "type": "TParamT<float>",
-                "name": "mSLReverseHeightM *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "3e0",
                 "type": "TParamT<float>",
-                "name": "mSLStretchHeightM *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "3f4",
                 "type": "TParamT<float>",
-                "name": "mSLMediumStretchHeightM *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "408",
                 "type": "TParamT<float>",
-                "name": "mSLSmallStretchHeightM *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "41c",
                 "type": "TParamT<float>",
-                "name": "mSLReverseHeightL *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "430",
                 "type": "TParamT<float>",
-                "name": "mSLStretchHeightL *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "444",
                 "type": "TParamT<float>",
-                "name": "mSLMediumStretchHeightL *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "458",
                 "type": "TParamT<float>",
-                "name": "mSLSmallStretchHeightL *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "46c",
                 "type": "TParamT<float>",
-                "name": "mSLWalkGravity *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "480",
                 "type": "TParamT<float>",
-                "name": "mSLWaterHitGravity *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "494",
                 "type": "TParamT<float>",
-                "name": "mSLJumpGravity *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "4a8",
                 "type": "TParamT<float>",
-                "name": "mSLJumpSp *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "4bc",
                 "type": "TParamT<float>",
-                "name": "mSLJumpHeight *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "4d0",
                 "type": "TParamT<float>",
-                "name": "mSLGetWaterPow2 *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "4e4",
                 "type": "TParamT<float>",
-                "name": "mSLTacklePow *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "4f8",
                 "type": "TParamT<float>",
-                "name": "mSLDashRate *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "50c",
                 "type": "TParamT<long>",
-                "name": "mSLAttackTimer *",
+                "name": "*",
                 "notes": ""
             },
             {
                 "offset": "520",
                 "type": "TParamT<long>",
-                "name": "mSLHitWaterTimer *",
+                "name": "*",
                 "notes": ""
             }
         ]
