@@ -19,7 +19,7 @@ namespace rng_functions
   }
 
   // https://qiita.com/drken/items/3b4fdf0a78e7a138cd9a
-  // a^(-1) mod m ‚ğ‹‚ß‚é
+  // a^(-1) mod m ã‚’æ±‚ã‚ã‚‹
   constexpr s64 modular_inverse(s64 a, s64 m)
   {
     s64 b = m, u = 1, v = 0;
@@ -56,7 +56,7 @@ namespace rng_functions
 
   inline u32 index_to_seed(const u32 index)
   {
-    // 0x3039 * ((0x41c64e6d^index - 1) / 4) * ((0x41c64e6d - 1) / 4)^(-1) (mod 2^32) (ƒ‚ƒWƒ…ƒ‰‹t”‚ğg—p)
+    // 0x3039 * ((0x41c64e6d^index - 1) / 4) * ((0x41c64e6d - 1) / 4)^(-1) (mod 2^32) (ãƒ¢ã‚¸ãƒ¥ãƒ©é€†æ•°ã‚’ä½¿ç”¨)
     constexpr u32 mod_inv = modular_inverse((0x41c64e6d - 1) / 4, 0x100000000);
     return static_cast<u32>(0x3039 * ((pow_mod64(0x41c64e6d, index) - 1) / 4) * mod_inv);
   }
@@ -76,11 +76,11 @@ namespace rng_functions
     return index_guess;
   }
 
-  // 7a+5b=index‚ğ–‚½‚·0ˆÈã‚Ì®”a,b‚Ì‘g‚Ì’†‚ÅAb‚ªÅ¬‚Ì‚à‚Ì‚ğ
-  // a,b‚É‘ã“ü ‘¶İ‚µ‚È‚¢ê‡false‚ğ•Ô‚·
+  // 7a+5b=indexã‚’æº€ãŸã™0ä»¥ä¸Šã®æ•´æ•°a,bã®çµ„ã®ä¸­ã§ã€bãŒæœ€å°ã®ã‚‚ã®ã‚’
+  // a,bã«ä»£å…¥ å­˜åœ¨ã—ãªã„å ´åˆfalseã‚’è¿”ã™
   inline bool index_to_7a5b(u32 index, u32* a, u32* b)
   {
-    // index<24‚Ìê‡Aa,b‚Ì‘g‚ª‘¶İ‚µ‚È‚¢ê‡‚ª‚ ‚é
+    // index<24ã®å ´åˆã€a,bã®çµ„ãŒå­˜åœ¨ã—ãªã„å ´åˆãŒã‚ã‚‹
     if (index < 24)
     {
       for (u32 x = 0; x <= (24 / 7); x++)
@@ -97,11 +97,11 @@ namespace rng_functions
       }
     }
     else
-      // index>=24‚Ìê‡Aa,b‚Ì‘g‚Í•K‚¸1‚ÂˆÈã‘¶İ‚·‚é
+      // index>=24ã®å ´åˆã€a,bã®çµ„ã¯å¿…ãš1ã¤ä»¥ä¸Šå­˜åœ¨ã™ã‚‹
     {
       constexpr u32 mod_inv = modular_inverse(5, 7);
-      *b = index * mod_inv % 7;   // 5b = index (mod 7) ‚ğ–‚½‚·b
-      *a = (index - 5 * *b) / 7;  // 7a = index - 5b ‚ğ–‚½‚·a (index - 5b ‚Íª‚æ‚è7‚ÅŠ„‚Á‚½—]‚è‚Í0‚É‚È‚é)
+      *b = index * mod_inv % 7;   // 5b = index (mod 7) ã‚’æº€ãŸã™b
+      *a = (index - 5 * *b) / 7;  // 7a = index - 5b ã‚’æº€ãŸã™a (index - 5b ã¯â†‘ã‚ˆã‚Š7ã§å‰²ã£ãŸä½™ã‚Šã¯0ã«ãªã‚‹)
       return true;
     }
     return false;

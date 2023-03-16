@@ -129,9 +129,9 @@ void ReadWriteTestItem::read_memory() {
   }
 }
 
-// offsets‹@”\‚Í–¢ŽÀ‘•B‚±‚Á‚¿‘¤‚Åoffsets‚Ìˆ—‚ðŽÀ‘•‚·‚é•K—v‚ª‚ ‚é
-// (ªstd::initializer‚ª‚¤‚Ü‚­‹@”\‚µ‚È‚©‚Á‚½)
-// offsets‹@”\‚ð‚±‚Á‚¿‘¤‚ÅŽÀ‘•‚·‚é‚È‚çread_XXŠÖ˜A‚à‚±‚Á‚¿‚ÅŽÀ‘•‚µ‚½‚Ù‚¤‚ª‚¢‚¢‚©‚à‚µ‚ê‚È‚¢
-// write_memory‹@”\–¢ŽÀ‘•
-// ƒAƒhƒŒƒX“™‚Ì’Ç‰ÁE•ÏX‹@”\Avalue‚Ì‘‚«Š·‚¦‹@”\A16i”•\Ž¦‹@”\‚È‚Ç‚ð’Ç‰ÁH
-// ‚»‚Ì‚¤‚¿Object Viewer(Parameters)‚É‚±‚ê‚ð­‚µ‰ü•Ï‚µ‚ÄˆÚA‚µ‚½‚¢
+// offsetsæ©Ÿèƒ½ã¯æœªå®Ÿè£…ã€‚ã“ã£ã¡å´ã§offsetsã®å‡¦ç†ã‚’å®Ÿè£…ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+// (â†‘std::initializerãŒã†ã¾ãæ©Ÿèƒ½ã—ãªã‹ã£ãŸ)
+// offsetsæ©Ÿèƒ½ã‚’ã“ã£ã¡å´ã§å®Ÿè£…ã™ã‚‹ãªã‚‰read_XXé–¢é€£ã‚‚ã“ã£ã¡ã§å®Ÿè£…ã—ãŸã»ã†ãŒã„ã„ã‹ã‚‚ã—ã‚Œãªã„
+// write_memoryæ©Ÿèƒ½æœªå®Ÿè£…
+// ã‚¢ãƒ‰ãƒ¬ã‚¹ç­‰ã®è¿½åŠ ãƒ»å¤‰æ›´æ©Ÿèƒ½ã€valueã®æ›¸ãæ›ãˆæ©Ÿèƒ½ã€16é€²æ•°è¡¨ç¤ºæ©Ÿèƒ½ãªã©ã‚’è¿½åŠ ï¼Ÿ
+// ãã®ã†ã¡Object Viewer(Parameters)ã«ã“ã‚Œã‚’å°‘ã—æ”¹å¤‰ã—ã¦ç§»æ¤ã—ãŸã„

@@ -23,10 +23,10 @@ namespace fluff_rng_functions
       rng_values.emplace_back(rng_functions::seed_to_float_value(seed));
       rng_functions::seed_next(&seed);
     }
-    // forƒ‹[ƒv. float_value’l‚ğ1ŒÂ‚¸‚ÂŠm•Û‚µ‚È‚ª‚çAz,y,x,(•—’ïR),ˆÊ‘Š‚ğÅV‚Ì5‚Â‚Ì
-    // rng_values”z—ñ‚©‚çZo‚µ‚ÄAarea“à‚É‚ ‚ê‚Îxyz’l“™‚ğŒ‹‰Ê‚Ì”z—ñ‚É’Ç‰Á. search_range•ª‰ñ‚·
-    // search_for_origin(Œ´“_‚ğŒŸõ)‚ªChecked‚Ìê‡A‰Šúphase‚ğl—¶‚µ‚È‚¢‚Å—h‚ê‚ÌŒ´“_‚ğŒŸõ
-    // Unchecked‚Ìê‡A‰Šúphase‚ğl—¶‚µ‚½xyz‚ğŒŸõi‚±‚ê‚ªÀÛ‚Ìƒ[ƒvŒã‚ÌÀ•W‚É‚È‚éj
+    // forãƒ«ãƒ¼ãƒ—. float_valueå€¤ã‚’1å€‹ãšã¤ç¢ºä¿ã—ãªãŒã‚‰ã€z,y,x,(é¢¨æŠµæŠ—),ä½ç›¸ã‚’æœ€æ–°ã®5ã¤ã®
+    // rng_valuesé…åˆ—ã‹ã‚‰ç®—å‡ºã—ã¦ã€areaå†…ã«ã‚ã‚Œã°xyzå€¤ç­‰ã‚’çµæœã®é…åˆ—ã«è¿½åŠ . search_rangeåˆ†å›ã™
+    // search_for_origin(åŸç‚¹ã‚’æ¤œç´¢)ãŒCheckedã®å ´åˆã€åˆæœŸphaseã‚’è€ƒæ…®ã—ãªã„ã§æºã‚Œã®åŸç‚¹ã‚’æ¤œç´¢
+    // Uncheckedã®å ´åˆã€åˆæœŸphaseã‚’è€ƒæ…®ã—ãŸxyzã‚’æ¤œç´¢ï¼ˆã“ã‚ŒãŒå®Ÿéš›ã®ãƒ¯ãƒ¼ãƒ—å¾Œã®åº§æ¨™ã«ãªã‚‹ï¼‰
     if (search_for_origin == Qt::Checked)
     {
 

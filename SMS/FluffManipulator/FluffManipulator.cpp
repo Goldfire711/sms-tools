@@ -44,11 +44,11 @@ void FluffManipulator::closeEvent(QCloseEvent* event) {
 
 void FluffManipulator::initialiseWidgets()
 {
-  // updateƒ{ƒ^ƒ“
+  // updateãƒœã‚¿ãƒ³
   m_updateButton = new QPushButton(tr("update"), this);
   connect(m_updateButton, &QPushButton::clicked, this, &FluffManipulator::update);
 
-  // Seed‚ğRAM‚©‚ç“Ç‚İ‚Ş‚©ASeed,Index‚ğè“®‚Å•ÒW‚·‚é‚©‘I‘ğ‚·‚éƒ‰ƒWƒIƒ{ƒ^ƒ“
+  // Seedã‚’RAMã‹ã‚‰èª­ã¿è¾¼ã‚€ã‹ã€Seed,Indexã‚’æ‰‹å‹•ã§ç·¨é›†ã™ã‚‹ã‹é¸æŠã™ã‚‹ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
   m_rdbReadFromRAM = new QRadioButton(tr("Read RNG Seed from RAM"));
   m_rdbEditRngSeed = new QRadioButton(tr("RNG Seed: 0x"));
   m_rdbEditRngIndex = new QRadioButton(tr("RNG Index: "));
@@ -61,7 +61,7 @@ void FluffManipulator::initialiseWidgets()
   connect(m_btnGroupEdit, QOverload<QAbstractButton*>::of(&QButtonGroup::buttonClicked), this,
     &FluffManipulator::updateRNGTextBox);
 
-  // Seed’lEIndex’l‚ÌlineEdit
+  // Seedå€¤ãƒ»Indexå€¤ã®lineEdit
   m_txbRngSeed = new QLineEdit("FFFFFFFF");
   m_txbRngIndex = new QLineEdit("4294967295");
   m_txbRngSeed->setFixedWidth(120);
@@ -79,15 +79,15 @@ void FluffManipulator::initialiseWidgets()
   // update();
   // updateRNGTextBox();
 
-  // –È–Ñ¶¬À•W‚Ìƒ^[ƒQƒbƒg(XYZ)‚Æ”ÍˆÍ
+  // ç¶¿æ¯›ç”Ÿæˆåº§æ¨™ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ(XYZ)ã¨ç¯„å›²
   m_txbTargetX = new QLineEdit("2815");
   m_txbTargetY = new QLineEdit("9139");
   m_txbTargetZ = new QLineEdit("-635");
   m_txbTargetX->setFixedWidth(60);
   m_txbTargetY->setFixedWidth(60);
   m_txbTargetZ->setFixedWidth(60);
-  float amplitudeX = 425;  // –È–Ñ‚ÌX•ûŒü‚ÌÅ‘åU•425
-  float amplitudeZ = 425;  // –È–Ñ‚ÌY•ûŒü‚ÌÅ‘åU•425
+  float amplitudeX = 425;  // ç¶¿æ¯›ã®Xæ–¹å‘ã®æœ€å¤§æŒ¯å¹…425
+  float amplitudeZ = 425;  // ç¶¿æ¯›ã®Yæ–¹å‘ã®æœ€å¤§æŒ¯å¹…425
   m_smsData->m_bounds.min.x = -5000 - amplitudeX;
   m_smsData->m_bounds.max.x = 5000 + amplitudeX;
   m_smsData->m_bounds.min.y = 0;
@@ -107,7 +107,7 @@ void FluffManipulator::initialiseWidgets()
   // connect(m_txbTargetY, &QLineEdit::textChanged, this, &FluffManipulator::updateRangeY);
   // connect(m_txbTargetZ, &QLineEdit::textChanged, this, &FluffManipulator::updateRangeZ);
 
-  // –È–Ñ‚Ì—h‚ê‚é•ûŒü(Target‚ÌGroupBox“à)
+  // ç¶¿æ¯›ã®æºã‚Œã‚‹æ–¹å‘(Targetã®GroupBoxå†…)
   m_txbTargetSwingDirection = new QLineEdit("0");
   m_txbTargetSwingDirection->setFixedWidth(100);
   m_txbTargetSwingDirection->setValidator(new QDoubleValidator(0, 360, 1000, this));
@@ -118,7 +118,7 @@ void FluffManipulator::initialiseWidgets()
   connect(m_txbTargetSwingDirection, &QLineEdit::textEdited, this, &FluffManipulator::onSwingDirectionChanged);
   connect(m_txbTargetSwingDirectionHex, &QLineEdit::textEdited, this, &FluffManipulator::onSwingDirectionHexChanged);
 
-  // ”ÍˆÍ‚Ìw’è
+  // ç¯„å›²ã®æŒ‡å®š
   m_txbRangeX = new QLineEdit("1000");
   m_txbRangeY = new QLineEdit("1000");
   m_txbRangeZ = new QLineEdit("1000");
@@ -136,8 +136,8 @@ void FluffManipulator::initialiseWidgets()
   m_cmbRangeXType = new QComboBox();
   m_cmbRangeYType = new QComboBox();
   m_cmbRangeZType = new QComboBox();
-  QStringList rangeTypeList = { QString::fromLocal8Bit("©E¨"), QString::fromLocal8Bit("E¨"),
-                               QString::fromLocal8Bit("©E") };
+  QStringList rangeTypeList = { QString::fromLocal8Bit("â†ãƒ»â†’"), QString::fromLocal8Bit("ãƒ»â†’"),
+                               QString::fromLocal8Bit("â†ãƒ»") };
   m_cmbRangeXType->addItems(rangeTypeList);
   m_cmbRangeYType->addItems(rangeTypeList);
   m_cmbRangeZType->addItems(rangeTypeList);
@@ -163,7 +163,7 @@ void FluffManipulator::initialiseWidgets()
   m_lblRangeMaxZ->setFixedWidth(50);
 
 
-  // w’è‚µ‚½”ÍˆÍ“à‚É”­¶‚·‚é–È–Ñ‚Æ‚»‚ÌRNG‚Ìˆê——
+  // æŒ‡å®šã—ãŸç¯„å›²å†…ã«ç™ºç”Ÿã™ã‚‹ç¶¿æ¯›ã¨ãã®RNGã®ä¸€è¦§
   //m_fluffListModel = new FluffManipulatorModel(this, &m_fluffsResult);
   m_fluffListModel = new FluffManipulatorModel(this, &m_smsData->m_fluffsResult);
 
@@ -172,22 +172,22 @@ void FluffManipulator::initialiseWidgets()
   m_tblFluffList->setSelectionMode(QAbstractItemView::ExtendedSelection);
   m_tblFluffList->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-  // seed‚ÌŒŸõ”ÍˆÍ
+  // seedã®æ¤œç´¢ç¯„å›²
   m_txbSearchRange = new QLineEdit("100000");
   m_txbSearchRange->setValidator(new QIntValidator(0, 10000000, this));
   m_txbSearchRange->setFixedWidth(100);
 
-  // ˆÊ‘Š‚ğl—¶‚·‚éƒ`ƒFƒbƒNƒ{ƒbƒNƒX
+  // ä½ç›¸ã‚’è€ƒæ…®ã™ã‚‹ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹
   m_chbSearchOrigin = new QCheckBox("Search for x/z origin");
   //m_chbSearchOrigin = new QCheckBox(tr("Search for origin"));
   m_chbSearchOrigin->setCheckState(Qt::Unchecked);
   connect(m_chbSearchOrigin, &QCheckBox::stateChanged, this,
     &FluffManipulator::onSearchOriginCheckBoxChanged);
 
-  // ˆ—ŠÔ
+  // å‡¦ç†æ™‚é–“
   m_lblElapsedTime = new QLabel();
 
-  // ƒGƒŠƒA“à‚É–È–Ñ‚ªoŒ»‚·‚éŠm—¦i‘åG”cj
+  // ã‚¨ãƒªã‚¢å†…ã«ç¶¿æ¯›ãŒå‡ºç¾ã™ã‚‹ç¢ºç‡ï¼ˆå¤§é›‘æŠŠï¼‰
   m_lblProbability = new QLabel();
 
   // show pianta8 map button
@@ -623,8 +623,8 @@ void FluffManipulator::onSwingDirectionHexChanged()
 
 void FluffManipulator::onSearchOriginCheckBoxChanged()
 {
-  float amplitudeX = 425; // –È–Ñ‚ÌX•ûŒü‚ÌÅ‘åU•425
-  float amplitudeZ = 425; // –È–Ñ‚ÌY•ûŒü‚ÌÅ‘åU•425
+  float amplitudeX = 425; // ç¶¿æ¯›ã®Xæ–¹å‘ã®æœ€å¤§æŒ¯å¹…425
+  float amplitudeZ = 425; // ç¶¿æ¯›ã®Yæ–¹å‘ã®æœ€å¤§æŒ¯å¹…425
   if (m_chbSearchOrigin->checkState() == Qt::Checked)
   {
     amplitudeX = 0;

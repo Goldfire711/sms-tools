@@ -25,7 +25,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
   if (current_stage != 4 || current_episode != 1)
     return;
 
-  // MirrorM‚Ìî•ñ
+  // MirrorMã®æƒ…å ±
   constexpr u32 p_mirror = 0x81345924;
   constexpr u32 p_matrix = 0x813467b8;
   constexpr double radius = 1250.0;
@@ -57,8 +57,8 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
   double Xy = mtx34[4], Yy = mtx34[5], Zy = mtx34[6];
   double Xz = mtx34[8], Yz = mtx34[9], Zz = mtx34[10], Cz = mtx34[11];
 
-  // ‰ñ“]Šp“x‚ğ‹‚ß‚é
-  // README.mdQÆ
+  // å›è»¢è§’åº¦ã‚’æ±‚ã‚ã‚‹
+  // README.mdå‚ç…§
   double cosine = (Yy + Yz * Yz / (1 + Yy)) * Xx + -Yx * Xy - Yx * Yz / (1 + Yy) * Xz;
   double sine = -Yx * Yz / (1 + Yy) * Xx - Yz * Xy + (Yy + Yx * Yx / (1 + Yy)) * Xz;
   double theta = acos(cosine);
@@ -78,7 +78,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
     );
   }
 
-  // (Cx, Cz)‚ğ‰æ–Ê‚Ì’†S‚É
+  // (Cx, Cz)ã‚’ç”»é¢ã®ä¸­å¿ƒã«
   painter.resetTransform();
   scale = side / (radius * 2 + 200);
   painter.translate(-Cx * scale + width() / 2.0, -Cz * scale + height() / 2.0);
@@ -91,7 +91,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
   painter.drawLine(polygon[0], polygon[10]);
   painter.drawLine(polygon[5], polygon[15]);
 
-  // ƒ`ƒ…ƒEƒnƒi‚ÌƒŒ[ƒ‹‚Ì•`‰æ
+  // ãƒãƒ¥ã‚¦ãƒãƒŠã®ãƒ¬ãƒ¼ãƒ«ã®æç”»
   painter.drawPolygon(chuuhana_rail, std::size(chuuhana_rail));
   for (s64 i = 0; i < std::size(chuuhana_rail); i++) {
     QFont font = painter.font();
@@ -104,7 +104,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
     painter.drawText(chuuhana_rail[i].x() - 50 + 100.0 * cosine, chuuhana_rail[i].y() + 50 + 100.0 * sine, QString::number(i));
   }
 
-  // ƒ`ƒ…ƒEƒnƒi
+  // ãƒãƒ¥ã‚¦ãƒãƒŠ
   float sum_x = 0, sum_z = 0;
   float ax = 0, az = 0;
   for (u32 id : chuuhana_ids) {
@@ -191,31 +191,31 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
     painter.drawText(x + 30, z - 30, QString::number(id));
   }
 
-  // dS
+  // é‡å¿ƒ
   pen.setColor(Qt::red);
   painter.setPen(pen);
   u32 chuuhana_count = read_u32(p_mirror + 0x19c);
   if (chuuhana_count)
     painter.drawPoint(sum_x / chuuhana_count, sum_z / chuuhana_count);
 
-  // ‹¾‚ÌŒX‚«
+  // é¡ã®å‚¾ã
   pen.setColor(Qt::blue);
   painter.setPen(pen);
   painter.drawLine(Cx, Cz, Cx + Yx * radius * 2, Cz + Yz * radius * 2);
 
-  // ‹¾‚Ì‘¬“x
+  // é¡ã®é€Ÿåº¦
   pen.setColor(Qt::darkMagenta);
   painter.setPen(pen);
   float vx = read_float(p_mirror + 0x14c);
   float vz = read_float(p_mirror + 0x154);
   painter.drawLine(Cx, Cz, Cx + vx * radius * 10, Cz + vz * radius * 10);
 
-  // ÀÛ‚Ì‰Á‘¬“x
+  // å®Ÿéš›ã®åŠ é€Ÿåº¦
   pen.setColor(Qt::red);
   painter.setPen(pen);
   painter.drawLine(Cx, Cz, Cx + ax * 100, Cz + az * 100);
 
-  // ƒ}ƒŠƒI
+  // ãƒãƒªã‚ª
   const u32 p_mario = read_u32(0x8040a378);
   float mario_x = read_float(p_mario + 0x10);
   float mario_z = read_float(p_mario + 0x18);
@@ -248,7 +248,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
   painter.translate(-mario_x, -mario_z);
   painter.drawImage(QRectF(mario_x - 100, mario_z - 100, 200, 200), img_mario);
 
-  // willFallŒÄ‚Ño‚µ”¼Œa
+  // willFallå‘¼ã³å‡ºã—åŠå¾„
   pen.setColor(Qt::blue);
   painter.setPen(pen);
   painter.setTransform(QTransform(scale * Xx, scale * Xz, scale * Zx, scale * Zz, scale * mirror_Y * Yx + width() / 2.0, scale * mirror_Y * Yz + height() / 2.0));

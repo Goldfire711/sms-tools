@@ -42,13 +42,13 @@ RNGViewer::RNGViewer(QWidget* parent)
   // Edit buttons
   chb_edit_ = new QCheckBox("Edit");
   connect(chb_edit_, QOverload<int>::of(&QCheckBox::stateChanged), this, &RNGViewer::on_chb_edit_changed);
-  btn_read_ = new QPushButton(QString::fromLocal8Bit("«Read"));
+  btn_read_ = new QPushButton(QString::fromLocal8Bit("â†“Read"));
   btn_read_->setDisabled(true);
   btn_read_->setFixedWidth(73);
   connect(btn_read_, &QPushButton::clicked, this, [=] {
     spb_edit_index_->setValueU32(index_);
   });
-  btn_write_ = new QPushButton(QString::fromLocal8Bit("ªWrite"));
+  btn_write_ = new QPushButton(QString::fromLocal8Bit("â†‘Write"));
   btn_write_->setDisabled(true);
   btn_write_->setFixedWidth(73);
   connect(btn_write_, &QPushButton::clicked, this, [=] {
