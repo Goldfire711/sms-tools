@@ -1,64 +1,71 @@
 {
-    "TSpineEnemyParams": {
-        "size": "a8",
+    "TAmenboSaveLoadParams": {
+        "size": "39c",
+        "notes": "実際は存在しない？",
         "offsets": [
             {
                 "offset": "0",
-                "type": "string",
-                "name": "prm location",
+                "type": "TSmallEnemyParams",
+                "name": "Inherited fields",
                 "notes": ""
             },
             {
-                "offset": "4",
-                "type": "*?",
-                "name": "",
-                "notes": ""
-            },
-            {
-                "offset": "8",
+                "offset": "2d4",
                 "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "1c",
+                "offset": "2e8",
                 "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "30",
+                "offset": "2fc",
                 "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "44",
+                "offset": "310",
                 "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "58",
+                "offset": "324",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "338",
                 "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "6c",
-                "type": "TParamT<unsigned_char>",
+                "offset": "34c",
+                "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "80",
-                "type": "TParamT<unsigned_char>",
+                "offset": "360",
+                "type": "TParamT<float>",
                 "name": "*",
                 "notes": ""
             },
             {
-                "offset": "94",
-                "type": "TParamT<unsigned_char>",
+                "offset": "374",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "388",
+                "type": "TParamT<long>",
                 "name": "*",
                 "notes": ""
             }

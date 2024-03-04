@@ -1,0 +1,55 @@
+{
+    "TAmenbo": {
+        "size": "22c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSmallEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "194",
+                "type": "JGeometry::TVec3<float>",
+                "name": "? *",
+                "notes": ""
+            },
+            {
+                "offset": "1a0",
+                "type": "s8",
+                "name": "isFindOutMario",
+                "notes": ""
+            },
+            {
+                "offset": "1a8",
+                "type": "s32",
+                "name": "mIsNotSearchTimer",
+                "notes": "mIsNotSearchTimerMax == 240"
+            },
+            {
+                "offset": "1b0",
+                "type": "JGeometry::TVec4<float>",
+                "name": "current quat *",
+                "notes": ""
+            },
+            {
+                "offset": "1c0",
+                "type": "JGeometry::TVec4<float>",
+                "name": "prev quat *",
+                "notes": ""
+            },
+            {
+                "offset": "1d0",
+                "type": "JGeometry::TVec4<float>",
+                "name": "target quat *",
+                "notes": ""
+            },
+            {
+                "offset": "1e0",
+                "type": "float",
+                "name": "slerp_t",
+                "notes": ""
+            }
+        ]
+    }
+}

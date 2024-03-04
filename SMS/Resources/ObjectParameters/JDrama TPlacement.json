@@ -1,6 +1,6 @@
 {
     "JDrama::TPlacement": {
-        "size": 32,
+        "size": "20",
         "offsets": [
             {
                 "offset": "0",

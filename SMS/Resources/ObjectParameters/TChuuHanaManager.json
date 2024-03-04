@@ -1,6 +1,6 @@
 {
     "TChuuHanaManager": {
-        "size": -1,
+        "size": "64",
         "offsets": [
             {
                 "offset": "0",

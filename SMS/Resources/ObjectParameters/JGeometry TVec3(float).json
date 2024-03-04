@@ -1,6 +1,6 @@
 {
     "JGeometry::TVec3<float>": {
-        "size": 12,
+        "size": "c",
         "offsets": [
             {
                 "offset": "0",
@@ -18,6 +18,64 @@
                 "offset": "8",
                 "type": "float",
                 "name": "Z",
+                "notes": ""
+            }
+        ]
+    },
+    "JGeometry::TVec4<float>": {
+        "size": "10",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "X",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "Y",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "Z",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "W",
+                "notes": ""
+            }
+        ]
+    },
+    "JGeometry::TQuat4<float>": {
+        "size": "10",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "X",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "Y",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "Z",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "W",
                 "notes": ""
             }
         ]
