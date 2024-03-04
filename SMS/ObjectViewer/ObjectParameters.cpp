@@ -44,7 +44,7 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
 
   address_ = address;
   index_ = index;
-  // vtable, nameã‚’å–å¾—(+0x0, +0x4)
+  // vtable, name‚ğæ“¾(+0x0, +0x4)
   u32 vtable = read_u32(address);
   QString info = read_string(address + 0x4, { 0 }, 100);
   if (index != -1)
@@ -57,7 +57,7 @@ void ObjectParameters::show_parameters(u32 address, s64 index) {
   const QString class_name = QString::fromStdString(g_vtable_to_class[stream.str()]);
   info += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
-  // classåã‹ã‚‰offsets(offset,type,nameã®array)ã‚’ãƒ­ãƒ¼ãƒ‰ ãªã‘ã‚Œã°_defaultã‚’ãƒ­ãƒ¼ãƒ‰
+  // class–¼‚©‚çoffsets(offset,type,name‚Ìarray)‚ğƒ[ƒh ‚È‚¯‚ê‚Î_default‚ğƒ[ƒh
   items_.clear();
   QString filename;
   if (json_parameters_[class_name.toStdString()].is_null()) {
@@ -86,7 +86,7 @@ void ObjectParameters::load_items_from_json(const nlohmann::json& j, const QStri
     else {
       name = QString::fromStdString(parameter["name"]);
     }
-    // $(0xXX)ãŒã‚ã£ãŸã¨ãã¯0xXXã‹ã‚‰åå‰ã‚’èª­ã¿è¾¼ã‚€
+    // $(0xXX)‚ª‚ ‚Á‚½‚Æ‚«‚Í0xXX‚©‚ç–¼‘O‚ğ“Ç‚İ‚Ş
     QRegExp rx(R"(\$\((0x[0-9a-fA-F]+)\))");
     while (rx.indexIn(name) > -1) {
       const QString str_offset = rx.cap(1);

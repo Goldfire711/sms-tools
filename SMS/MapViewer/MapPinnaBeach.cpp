@@ -28,12 +28,12 @@ void MapPinnaBeach::initialize() {
   scene_ = new QGraphicsScene(this);
   setScene(scene_);
 
-  // ãƒãƒƒãƒ—ç”»åƒè¡¨ç¤º(ãƒ”ãƒ³ãƒŠãƒ“ãƒ¼ãƒ)
-  // (155, 768) -> (-5846.752, 5083.398) é’ã‚³ã‚¤ãƒ³4, (313, 1211) -> (-5007.95, 7431.883) é’ã‚³ã‚¤ãƒ³5
+  // ƒ}ƒbƒv‰æ‘œ•\¦(ƒsƒ“ƒiƒr[ƒ`)
+  // (155, 768) -> (-5846.752, 5083.398) ÂƒRƒCƒ“4, (313, 1211) -> (-5007.95, 7431.883) ÂƒRƒCƒ“5
   const QPixmap pinna_beach_pix(":/sms/PinnaBeach.png");
   QGraphicsPixmapItem* pinna_beach_item = set_map_image(pinna_beach_pix, 155, 768, 313, -5846.752, 5083.398, -5007.95);
 
-  // æ°´ãƒ’ãƒƒãƒˆã‚³ã‚¤ãƒ³
+  // …ƒqƒbƒgƒRƒCƒ“
   coin_pix_ = QPixmap(":sms/coin.png");
   coin_blue_pix_ = QPixmap(":sms/coin_blue.png");
   fruit_banana_pix_ = QPixmap(":sms/fruit_banana.png");
@@ -60,7 +60,7 @@ void MapPinnaBeach::initialize() {
   hidden_star_pix_.fill(QColor(0, 0, 255));
   hidden_star_pix_.setMask(blue_star_pix.createMaskFromColor(Qt::transparent));
 
-  // ã‚¢ã‚¤ãƒ†ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼(ã‚³ã‚¤ãƒ³)
+  // ƒAƒCƒeƒ€ƒ}ƒl[ƒWƒƒ[(ƒRƒCƒ“)
   for (s64 i = 0; i < 100; i++) {
     item_manager_items_[i] = scene_->addPixmap(QPixmap());
     item_manager_items_[i]->setScale(200.0 / coin_pix_.width());
@@ -68,7 +68,7 @@ void MapPinnaBeach::initialize() {
     item_manager_items_[i]->setVisible(false);
   }
 
-  // ãƒãƒªã‚ªã®ç”»åƒ
+  // ƒ}ƒŠƒI‚Ì‰æ‘œ
   QPixmap mario_pix(":sms/mario.png");
   mario_pix_item_ = scene_->addPixmap(mario_pix);
   mario_pix_item_->setScale(200.0 / mario_pix.width());
@@ -76,18 +76,18 @@ void MapPinnaBeach::initialize() {
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);
   //mario_pix_item_->setVisible(false);
 
-  // ãƒ‰ãƒ©ãƒƒã‚°ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ“ä½œ
+  // ƒhƒ‰ƒbƒO‚ÅƒXƒNƒ[ƒ‹‘€ì
   setDragMode(ScrollHandDrag);
 }
 
-// ç”»åƒã®åº§æ¨™ã¨ãã‚Œã«å¯¾å¿œã™ã‚‹ã‚²ãƒ¼ãƒ å†…ã®åº§æ¨™2ã¤ãšã¤ã‚’ç”¨ã„ã¦ãƒãƒƒãƒ—ç”»åƒã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+// ‰æ‘œ‚ÌÀ•W‚Æ‚»‚ê‚É‘Î‰‚·‚éƒQ[ƒ€“à‚ÌÀ•W2‚Â‚¸‚Â‚ğ—p‚¢‚Äƒ}ƒbƒv‰æ‘œ‚ğƒZƒbƒg‚·‚é
 QGraphicsPixmapItem* MapPinnaBeach::set_map_image(const QPixmap& pixmap, double pix_x1, double pix_y1, double pix_x2, double game_x1, double game_y1, double game_x2) {
   const double scale = (game_x2 - game_x1) / (pix_x2 - pix_x1);
   QGraphicsPixmapItem* pixmap_item = scene_->addPixmap(pixmap);
   pixmap_item->setScale(scale);
   // p1->g1, p2->g2 >> g-g1 = scale*(p-p1)
-  // ç‰¹ã«p=0ã®ã¨ã g0 = g1-scale*p1
-  // p=0ã¯ç”»åƒã®å·¦ä¸Šã®åº§æ¨™ãªã®ã§ã€ç”»åƒä¸Šã®p=0ã«ã‚ãŸã‚‹ã‚²ãƒ¼ãƒ å†…åº§æ¨™ã®g0ã«ç”»åƒã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã¨ä¸åº¦ã„ã„â†“
+  // “Á‚Ép=0‚Ì‚Æ‚« g0 = g1-scale*p1
+  // p=0‚Í‰æ‘œ‚Ì¶ã‚ÌÀ•W‚È‚Ì‚ÅA‰æ‘œã‚Ìp=0‚É‚ ‚½‚éƒQ[ƒ€“àÀ•W‚Ìg0‚É‰æ‘œ‚ğƒZƒbƒg‚·‚é‚Æ’š“x‚¢‚¢«
   pixmap_item->setPos(QPointF(game_x1, game_y1) - scale * QPointF(pix_x1, pix_y1));
   //resize(QSize(3840, 2160) * scale / 10.0);
 
@@ -141,7 +141,7 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
 
 
     u32 function_pointer = read_u32(p_object);
-    // æ°´ãƒ’ãƒƒãƒˆã‚³ã‚¤ãƒ³
+    // …ƒqƒbƒgƒRƒCƒ“
     if (function_pointer == 0x803cf31c) {
       u32 spawn_obj_id = read_u32(p_object + 0x134);
       switch (spawn_obj_id) {
@@ -174,7 +174,7 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
         water_hit_obj_items_[i]->setPos(0, 5000);
         break;
       }
-    } else if (function_pointer == 0x803cebcc) {  // ã‚¹ã‚¿ãƒ¼ã®çµµ
+    } else if (function_pointer == 0x803cebcc) {  // ƒXƒ^[‚ÌŠG
       water_hit_obj_items_[i]->setPixmap(hidden_star_pix_);
       water_hit_obj_items_[i]->setTransformOriginPoint(hidden_star_pix_.width() / 2.0, hidden_star_pix_.height() / 2.0);
     } else {
@@ -184,7 +184,7 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
 
   }
 
-  // ã‚¢ã‚¤ãƒ†ãƒ ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼(ã‚³ã‚¤ãƒ³)
+  // ƒAƒCƒeƒ€ƒ}ƒl[ƒWƒƒ[(ƒRƒCƒ“)
   const u32 p_map_item_manager = read_u32(0x8040a4d8);
   const u32 map_items_count = read_u32(p_map_item_manager + 0x14);
   const u32 p_map_items = read_u32(p_map_item_manager + 0x18);
@@ -209,37 +209,37 @@ void MapPinnaBeach::timerEvent(QTimerEvent* event) {
 
     const u32 fruit_type = read_u32(p_item + 0x4c);
     switch (function_pointer) {
-    case 0x803c1b58:  // ã‚³ã‚¤ãƒ³
+    case 0x803c1b58:  // ƒRƒCƒ“
       item_manager_items_[i]->setPixmap(coin_pix_);
       item_manager_items_[i]->setTransformOriginPoint(coin_pix_.width() / 2.0, coin_pix_.height() / 2.0);
       break;
-    case 0x803c13c8:  // é’ã‚³ã‚¤ãƒ³
+    case 0x803c13c8:  // ÂƒRƒCƒ“
       item_manager_items_[i]->setPixmap(coin_blue_pix_);
       item_manager_items_[i]->setTransformOriginPoint(coin_blue_pix_.width() / 2.0, coin_blue_pix_.height() / 2.0);
       break;
-    case 0x803ca434:  // ãƒ•ãƒ«ãƒ¼ãƒ„
+    case 0x803ca434:  // ƒtƒ‹[ƒc
       switch (fruit_type) {
-      case 0x40000390:  // ãƒ¤ã‚·ã®å®Ÿ
+      case 0x40000390:  // ƒ„ƒV‚ÌÀ
         item_manager_items_[i]->setPixmap(fruit_coconut_pix_);
         item_manager_items_[i]->setTransformOriginPoint(fruit_coconut_pix_.width() / 2.0, fruit_coconut_pix_.height() / 2.0);
         break;
-      case 0x40000391:  // ãƒ‘ãƒ‘ã‚¤ãƒ¤
+      case 0x40000391:  // ƒpƒpƒCƒ„
         item_manager_items_[i]->setPixmap(fruit_papaya_pix_);
         item_manager_items_[i]->setTransformOriginPoint(fruit_papaya_pix_.width() / 2.0, fruit_papaya_pix_.height() / 2.0);
         break;
-      case 0x40000392:  // ãƒ‘ã‚¤ãƒ³
+      case 0x40000392:  // ƒpƒCƒ“
         item_manager_items_[i]->setPixmap(fruit_pine_pix_);
         item_manager_items_[i]->setTransformOriginPoint(fruit_pine_pix_.width() / 2.0, fruit_pine_pix_.height() / 2.0);
         break;
-      case 0x40000393:  // ãƒ‰ãƒªã‚¢ãƒ³
+      case 0x40000393:  // ƒhƒŠƒAƒ“
         item_manager_items_[i]->setPixmap(fruit_durian_pix_);
         item_manager_items_[i]->setTransformOriginPoint(fruit_durian_pix_.width() / 2.0, fruit_durian_pix_.height() / 2.0);
         break;
-      case 0x40000394:  // ãƒãƒŠãƒŠ
+      case 0x40000394:  // ƒoƒiƒi
         item_manager_items_[i]->setPixmap(fruit_banana_pix_);
         item_manager_items_[i]->setTransformOriginPoint(fruit_banana_pix_.width() / 2.0, fruit_banana_pix_.height() / 2.0);
         break;
-      case 0x40000395:  // å”è¾›å­
+      case 0x40000395:  // “‚hq
         item_manager_items_[i]->setPixmap(QPixmap());
         break;
       default:

@@ -172,7 +172,7 @@ void MainWindow::closeEvent(QCloseEvent* event) {
 void MainWindow::version_setup() {
   u8 version_value = memory::read_u8(0x80365ddd);
   if (version_value == 0x23) {  //JP 1.0
-    // vtableã®å€¤ã‹ã‚‰classåã‚’ãƒ­ãƒ¼ãƒ‰(json)
+    // vtable‚Ì’l‚©‚çclass–¼‚ðƒ[ƒh(json)
     std::ifstream ifs("SMS/Resources/vtable_to_class_JP.json");
     nlohmann::json v_to_c;
     ifs >> v_to_c;

@@ -34,7 +34,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   btn_search_ = new QPushButton(tr("Search"), this);
   connect(btn_search_, &QPushButton::clicked, this, &ChuuHanaManipulator::update);
 
-  // RNG seed, indexã®ãƒ©ã‚¸ã‚ªãƒœã‚¿ãƒ³
+  // RNG seed, index‚Ìƒ‰ƒWƒIƒ{ƒ^ƒ“
   rdb_read_from_ram_ = new QRadioButton(tr("Read RNG Seed from RAM"));
   rdb_edit_rng_seed_ = new QRadioButton(tr("RNG Seed: 0x"));
   rdb_edit_rng_index_ = new QRadioButton(tr("RNG Index: "));
@@ -45,7 +45,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   rdb_read_from_ram_->setChecked(true);
   connect(group_rdb_rng_, QOverload<QAbstractButton*>::of(&QButtonGroup::buttonClicked), this, &ChuuHanaManipulator::update_rng_textbox);
 
-  // seed, indexã®LineEdit
+  // seed, index‚ÌLineEdit
   txb_rng_seed_ = new QLineEdit("FFFFFFFF");
   txb_rng_index_ = new QLineEdit("4294967295");
   txb_rng_seed_->setFixedWidth(120);
@@ -59,7 +59,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   connect(txb_rng_seed_, &QLineEdit::textEdited, this, &ChuuHanaManipulator::on_rng_seed_changed);
   connect(txb_rng_index_, &QLineEdit::textEdited, this, &ChuuHanaManipulator::on_rng_index_changed);
 
-  // æ¤œç´¢ã‚ªãƒ—ã‚·ãƒ§ãƒ³
+  // ŒŸõƒIƒvƒVƒ‡ƒ“
   // setGoal
   txb_range_from_ = new QLineEdit("29");
   txb_range_to_ = new QLineEdit("30");
@@ -123,15 +123,15 @@ void ChuuHanaManipulator::initialize_widgets() {
     });
   group_node_->addActions({ copy_bp_will_fall, copy_bp_is_collid_move });
 
-  // ç¢ºçŽ‡
+  // Šm—¦
   lbl_probability_ = new QLabel();
 
-  // seedã®æ¤œç´¢ç¯„å›²
+  // seed‚ÌŒŸõ”ÍˆÍ
   txb_search_range_ = new QLineEdit("10000");
   txb_search_range_->setValidator(new QIntValidator(0, 10000000, this));
   txb_search_range_->setFixedWidth(100);
 
-  // RNGãƒ†ãƒ¼ãƒ–ãƒ«
+  // RNGƒe[ƒuƒ‹
   model_tbl_rng_ = new ChuuHanaManipulatorModel(this, rng_);
   tbl_rng_ = new QTableView(this);
   tbl_rng_->setModel(model_tbl_rng_);
@@ -142,10 +142,10 @@ void ChuuHanaManipulator::initialize_widgets() {
   tbl_rng_->setItemDelegateForColumn(ChuuHanaManipulatorModel::COL_7A5B_INDEX, delegate_);
   connect(tbl_rng_, &QWidget::customContextMenuRequested, this, &ChuuHanaManipulator::on_context_menu_requested);
 
-  // å‡¦ç†æ™‚é–“
+  // ˆ—ŽžŠÔ
   lbl_elapsed_time_ = new QLabel();
 
-  // ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼ (Ctrl + C)
+  // ƒVƒ‡[ƒgƒJƒbƒgƒL[ (Ctrl + C)
   const auto* copy_shortcut = new QShortcut(QKeySequence(Qt::Modifier::CTRL + Qt::Key::Key_C), tbl_rng_);
   connect(copy_shortcut, &QShortcut::activated, this, &ChuuHanaManipulator::copy_selection);
 
@@ -269,7 +269,7 @@ void ChuuHanaManipulator::update() {
   u32 search_range = 10000;
   search_range = txb_search_range_->text().toUInt();
 
-  // Autoé¸æŠžæ™‚
+  // Auto‘I‘ðŽž
   s32 rng_type = group_rdb_rng_type_->checkedId();
   if (rng_type == TYPE_AUTO) {
     rng_type = TYPE_SET_GOAL;
@@ -303,7 +303,7 @@ void ChuuHanaManipulator::update() {
             is_collid_move = (i < hit_id);
           }
         }
-        // AUTOé¸æŠžæ™‚ã€è¤‡æ•°ã®å€™è£œãŒä¸ŠãŒã£ãŸå ´åˆã«çŸ¢å°ãƒœã‚¿ãƒ³ã§å€™è£œã‚’é¸æŠžã§ãã‚‹
+        // AUTO‘I‘ðŽžA•¡”‚ÌŒó•â‚ªã‚ª‚Á‚½ê‡‚É–îˆóƒ{ƒ^ƒ“‚ÅŒó•â‚ð‘I‘ð‚Å‚«‚é
         if (timer == 400) {
           // willFall
           ChuuHanaRNGType detected = { i, TYPE_NODE, false };

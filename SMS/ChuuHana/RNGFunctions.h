@@ -53,7 +53,7 @@ inline u32 seed_prev(const u32 seed) {
   return seed * static_cast<u32>(mod_inv(0x41c64e6d, 0x100000000)) - static_cast<u32>(0x3039 * mod_inv(0x41c64e6d, 0x100000000));
 }
 
-// 0x3039 * ((0x41c64e6d^index - 1) / 4) * ((0x41c64e6d - 1) / 4)^(-1) (mod 2^32) (ãƒ¢ã‚¸ãƒ¥ãƒ©é€†æ•°ã‚’ä½¿ç”¨)
+// 0x3039 * ((0x41c64e6d^index - 1) / 4) * ((0x41c64e6d - 1) / 4)^(-1) (mod 2^32) (ƒ‚ƒWƒ…ƒ‰‹t”‚ğg—p)
 inline u32 index_to_seed(u32 index) {
   constexpr u32 inv = mod_inv((0x41c64e6d - 1) / 4, 0x100000000);
   return static_cast<u32>(0x3039 * ((pow_mod64(0x41c64e6d, index) - 1) / 4) * inv);
@@ -72,7 +72,7 @@ inline u32 seed_to_index(u32 seed) {
 }
 
 inline bool index_to_7a5b(u32 index, u32* a, u32* b) {
-  // index<24ã®å ´åˆã€a,bã®çµ„ãŒå­˜åœ¨ã—ãªã„å ´åˆãŒã‚ã‚‹
+  // index<24‚Ìê‡Aa,b‚Ì‘g‚ª‘¶İ‚µ‚È‚¢ê‡‚ª‚ ‚é
   if (index < 24) {
     for (u32 x = 0; x <= (24 / 7); x++) {
       for (u32 y = 0; y <= (24 / 5); y++) {
@@ -84,10 +84,10 @@ inline bool index_to_7a5b(u32 index, u32* a, u32* b) {
       }
     }
   } else {
-    // index>=24ã®å ´åˆã€a,bã®çµ„ã¯å¿…ãš1ã¤ä»¥ä¸Šå­˜åœ¨ã™ã‚‹
+    // index>=24‚Ìê‡Aa,b‚Ì‘g‚Í•K‚¸1‚ÂˆÈã‘¶İ‚·‚é
     constexpr u32 inv = mod_inv(5, 7);
-    *b = index * inv % 7; // 5b = index (mod 7) ã‚’æº€ãŸã™b
-    *a = (index - 5 * *b) / 7; // 7a = index - 5b ã‚’æº€ãŸã™a (index - 5b ã¯â†‘ã‚ˆã‚Š7ã§å‰²ã£ãŸä½™ã‚Šã¯0ã«ãªã‚‹)
+    *b = index * inv % 7; // 5b = index (mod 7) ‚ğ–‚½‚·b
+    *a = (index - 5 * *b) / 7; // 7a = index - 5b ‚ğ–‚½‚·a (index - 5b ‚Íª‚æ‚è7‚ÅŠ„‚Á‚½—]‚è‚Í0‚É‚È‚é)
     return true;
   }
   return false;

@@ -48,7 +48,7 @@ void ObjectSubParameters::show_parameters(u32 address, const QString& class_name
 
   info += " <" + class_name + "> (0x" + QString::number(address, 16).toUpper() + ") ";
 
-  // classåã‹ã‚‰offsets(offset,type,nameã®array)ã‚’ãƒ­ãƒ¼ãƒ‰ ãªã‘ã‚Œã°_defaultã‚’ãƒ­ãƒ¼ãƒ‰
+  // class–¼‚©‚çoffsets(offset,type,name‚Ìarray)‚ðƒ[ƒh ‚È‚¯‚ê‚Î_default‚ðƒ[ƒh
   items_.clear();
   QString filename;
   if (json_parameters_[class_name.toStdString()].is_null()) {
@@ -78,7 +78,7 @@ void ObjectSubParameters::load_items_from_json(const nlohmann::json& j, const QS
     else {
       name = QString::fromStdString(parameter["name"]);
     }
-    // $(0xXX)ãŒã‚ã£ãŸã¨ãã¯0xXXã‹ã‚‰åå‰ã‚’èª­ã¿è¾¼ã‚€
+    // $(0xXX)‚ª‚ ‚Á‚½‚Æ‚«‚Í0xXX‚©‚ç–¼‘O‚ð“Ç‚Ýž‚Þ
     QRegExp rx(R"(\$\((0x[0-9a-fA-F]+)\))");
     while (rx.indexIn(name) > -1) {
       const QString str_offset = rx.cap(1);

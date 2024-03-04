@@ -19,7 +19,7 @@ MapPianta8::MapPianta8(QWidget* parent, SMSData* sms_data) : QGraphicsView(paren
   initialize();
   sms_data_->map_viewer_is_active = true;
 
-  // ãƒ‰ãƒ©ãƒƒã‚°ã§ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ“ä½œ
+  // ƒhƒ‰ƒbƒO‚ÅƒXƒNƒ[ƒ‹‘€ì
   setDragMode(ScrollHandDrag);
 }
 
@@ -36,7 +36,7 @@ void MapPianta8::initialize() {
   QPen red_pen(Qt::red);
   red_pen.setWidth(50);
 
-  // PV4(PV8)ã®ãƒãƒƒãƒ—ã‚’è¡¨ç¤º
+  // PV4(PV8)‚Ìƒ}ƒbƒv‚ğ•\¦
   QPixmap PV4_pix(":/sms/PiantaVillageDay.png");
   QGraphicsPixmapItem* PV4_item = scene_->addPixmap(PV4_pix);
   const double PV4_item_scale = (19968.0 * 2.0) / PV4_pix.width();
@@ -44,13 +44,13 @@ void MapPianta8::initialize() {
   PV4_item->setOffset(QPointF(-19968, -19968) / PV4_item_scale);
   scene_rect_ = QRectF(-19968, -19968, 19968 * 2, 19968 * 2);
 
-  // ç¶¿æ¯›ã®ç”Ÿæˆç¯„å›²ã¨ç¶¿æ¯›ã®æ¶ˆå¤±ã™ã‚‹ç¯„å›²ã‚’æç”»
+  // –È–Ñ‚Ì¶¬”ÍˆÍ‚Æ–È–Ñ‚ÌÁ¸‚·‚é”ÍˆÍ‚ğ•`‰æ
   scene_->addRect(-5000, -5000, 5000 * 2, 5000 * 2, white_pen);
   scene_->addRect(-5425, -5425, 5425 * 2, 5425 * 2, white_pen);
   scene_->addRect(-14848, -19968, 14848 * 2, 19968 * 2, white_pen);
   setScene(scene_);
 
-  // ç¶¿æ¯›ã®å›ºå®šç”Ÿæˆä½ç½®ã‚’æç”»(-4225, 9139.115, -3020)
+  // –È–Ñ‚ÌŒÅ’è¶¬ˆÊ’u‚ğ•`‰æ(-4225, 9139.115, -3020)
   auto fixed_fluff_radius = 500;
   QPen fixed_fluff_pen(QColor(0, 0, 0xff, 0xff));
   fixed_fluff_pen.setWidth(100);
@@ -58,49 +58,49 @@ void MapPianta8::initialize() {
     scene_->addEllipse(-4225 - fixed_fluff_radius, -3020 - fixed_fluff_radius,
                        fixed_fluff_radius * 2, fixed_fluff_radius * 2, fixed_fluff_pen);
 
-  // ç¶¿æ¯›x32åˆæœŸåŒ–
+  // –È–Ñx32‰Šú‰»
   for (auto i = 0; i < 32; ++i) {
-    // ç¶¿æ¯›ã®å††ã®åˆæœŸåŒ–
+    // –È–Ñ‚Ì‰~‚Ì‰Šú‰»
     QPen fluff_pen(Qt::black);
     fluff_pen.setWidth(50);
     QBrush fluff_brush(QColor(0xff, 0xff, 0xff, 0xff));
     fluff_[i] =
       scene_->addEllipse(0, 0, 0, 0, fluff_pen, fluff_brush);
 
-    // ç¶¿æ¯›ã®ãƒ¬ãƒ¼ãƒ«ã®åˆæœŸåŒ–
+    // –È–Ñ‚ÌƒŒ[ƒ‹‚Ì‰Šú‰»
     QPen fluff_rail_pen(Qt::black);
     fluff_rail_pen.setWidth(50);
     fluff_rail_[i] = scene_->addLine(0, 0, 0, 0, fluff_rail_pen);
 
-    // ç¶¿æ¯›idã®åˆæœŸåŒ–
+    // –È–Ñid‚Ì‰Šú‰»
     fluff_id_[i] = scene_->addText(QString::number(i));
     fluff_id_[i]->setScale(30);
 
-    // ç¶¿æ¯›ãƒ¯ãƒ¼ãƒ—ã®çŸ¢å°(ä»®)
+    // –È–Ñƒ[ƒv‚Ì–îˆó(‰¼)
     QPen fluff_warp_line_pen(QColor(0xff, 0, 0, 0xff));
     fluff_warp_line_pen.setWidth(100);
     fluff_warp_line_[i] = scene_->addLine(0, 0, 10, 10, fluff_warp_line_pen);
     fluff_warp_line_[i]->setVisible(false);
   }
 
-  // é’é³¥ãƒ¬ãƒ¼ãƒ«
+  // Â’¹ƒŒ[ƒ‹
   QPolygonF blue_bird_rail;
   blue_bird_rail << QPointF(100, -1600) << QPointF(800, 1200) << QPointF(3000, 1500)
     << QPointF(4200, -400) << QPointF(2400, -2600);
   scene_->addPolygon(blue_bird_rail, white_pen);
 
-  // é’é³¥æœ¬ä½“
+  // Â’¹–{‘Ì
   const QPixmap blue_bird_pix(":/sms/blue_bird.png");
   blue_bird_item_ = scene_->addPixmap(blue_bird_pix);
   blue_bird_item_->setScale(500.0 / 110.0);
   blue_bird_item_->setTransformOriginPoint(blue_bird_pix.width() / 2, blue_bird_pix.height() / 2);
 
-  // é’é³¥å‰/æ¬¡ãƒãƒ¼ãƒ‰
+  // Â’¹‘O/Ÿƒm[ƒh
   blue_bird_next_node_ = scene_->addEllipse(-150, -150, 300, 300, QPen(Qt::black), Qt::blue);
   blue_bird_previous_node_ =
     scene_->addEllipse(-150, -150, 300, 300, QPen(Qt::black), QBrush(Qt::NoBrush));
 
-  // èµ¤ã‚³ã‚¤ãƒ³ãƒ»é’ã‚³ã‚¤ãƒ³ã®ç”»åƒ (gpItemManager)
+  // ÔƒRƒCƒ“EÂƒRƒCƒ“‚Ì‰æ‘œ (gpItemManager)
   coin_red_pix_ = QPixmap(":/sms/coin_red.png");
   coin_blue_pix_ = QPixmap(":/sms/coin_blue.png");
   for (s64 i = 0; i < 85; ++i) {
@@ -111,20 +111,20 @@ void MapPianta8::initialize() {
     coins_pix_item_[i]->setVisible(false);
   }
 
-  // ã‚·ãƒ£ã‚¤ãƒ³ã®ç”»åƒ
+  // ƒVƒƒƒCƒ“‚Ì‰æ‘œ
   QPixmap shine_pix(":/sms/shine.png");
   shine_pix_item_ = scene_->addPixmap(shine_pix);
   shine_pix_item_->setScale(200.0 * 2 / 35.0);
   shine_pix_item_->setTransformOriginPoint(shine_pix.width() / 2, shine_pix.height() / 2);
   shine_pix_item_->setVisible(false);
 
-  // ãƒãƒªã‚ªã®ç”»åƒ
+  // ƒ}ƒŠƒI‚Ì‰æ‘œ
   QPixmap mario_pix(":/sms/mario.png");
   mario_pix_item_ = scene_->addPixmap(mario_pix);
   mario_pix_item_->setScale(200.0 * 2 / 35.0);
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);
 
-  // ç¶¿æ¯›ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãã®ç¯„å›²ã®æç”»åˆæœŸåŒ–
+  // –È–Ñ‚Ìƒ^[ƒQƒbƒg‚Æ‚»‚Ì”ÍˆÍ‚Ì•`‰æ‰Šú‰»
   const auto target_radius = 50.0;
   target_ = scene_->addEllipse(0, 0, target_radius * 2, target_radius * 2, Qt::NoPen, Qt::red);
   range_ = scene_->addRect(0, 0, 0, 0, red_pen);
@@ -136,7 +136,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
   QPen redPen(Qt::red);
   redPen.setWidth(50);
   QBrush redBrush(Qt::red);
-  // ç¶¿æ¯›ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãã®ç¯„å›²ã®æç”»
+  // –È–Ñ‚Ìƒ^[ƒQƒbƒg‚Æ‚»‚Ì”ÍˆÍ‚Ì•`‰æ
   const auto radius = 50.0;
   target_->setPos(sms_data_->m_target.x - radius, sms_data_->m_target.z - radius);
   range_->setRect(sms_data_->m_range.min.x, sms_data_->m_range.min.z,
@@ -145,7 +145,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
 
   if (DolphinComm::DolphinAccessor::getStatus() ==
     DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
-    // ã‚¹ãƒ†ãƒ¼ã‚¸åˆ¤å®š ç¶¿æ¯›ã‚¹ãƒ†ãƒ¼ã‚¸(8-7)ã˜ã‚ƒãªã‘ã‚Œã°return)
+    // ƒXƒe[ƒW”»’è –È–ÑƒXƒe[ƒW(8-7)‚¶‚á‚È‚¯‚ê‚Îreturn)
     const s8 current_stage = read_s8(0x805F8749);
     const s8 current_episode = read_s8(0x805F874A);
     if (current_stage != 8 || current_episode != 7) {
@@ -154,7 +154,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
       }
       return;
     }
-    // ç¶¿æ¯›x32ã®æç”»
+    // –È–Ñx32‚Ì•`‰æ
     const u32 fluff_base_table = read_u32(0x811b0c44);
     for (auto i = 0; i < 32; ++i) {
       const u32 fluff_base = read_u32(fluff_base_table + i * 4);
@@ -177,12 +177,12 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
 
       const float y = read_float(fluff_base + 0x14);
 
-      // é€æ˜åº¦0(é€šå¸¸é€šã‚Š)
-      // ç¶¿æ¯›ã®å††ã®ä½ç½®ã¨è‰²ã®è¨­å®š
+      // “§–¾“x0(’Êí’Ê‚è)
+      // –È–Ñ‚Ì‰~‚ÌˆÊ’u‚ÆF‚Ìİ’è
       const float fluff_radius = 200 + y / 9139 * 300;
       fluff_[i]->setRect(x - fluff_radius, z - fluff_radius, fluff_radius * 2, fluff_radius * 2);
       switch (state) {
-      case 0: // æ¬¡ã«å›ºå®šæ¹§ããƒã‚¤ãƒ³ãƒˆã«ãƒ¯ãƒ¼ãƒ—ã™ã‚‹ç¶¿æ¯›(é’)
+      case 0: // Ÿ‚ÉŒÅ’è—N‚«ƒ|ƒCƒ“ƒg‚Éƒ[ƒv‚·‚é–È–Ñ(Â)
         fluff_[i]->setBrush(QColor(0, 0, 0xff, 0xff));
         if (former_state_[i] != 0 && former_state_[i] != 2) {
           fluff_warp_line_[i]->setLine(former_x_[i], former_z_[i], x, z);
@@ -195,10 +195,10 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
         former_x_[i] = x;
         former_z_[i] = z;
         break;
-      case 1: // é€šå¸¸ã®ç¶¿æ¯›(ç™½)
+      case 1: // ’Êí‚Ì–È–Ñ(”’)
         fluff_[i]->setBrush(QColor(0xff, 0xff, 0xff, 0xff));
         break;
-      case 2: // ãƒ¯ãƒ¼ãƒ—ç›´å¾Œã®ç¶¿æ¯›(ç´«)
+      case 2: // ƒ[ƒv’¼Œã‚Ì–È–Ñ(‡)
         fluff_[i]->setBrush(QColor(0xff, 0, 0xff, 0xff));
         if (former_state_[i] != 2) {
           fluff_warp_line_[i]->setLine(former_x_[i], former_z_[i], x, z);
@@ -208,10 +208,10 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
           });
         }
         break;
-      case 3: // å£ã«ã¶ã¤ã‹ã£ãŸç›´å¾Œ(èµ¤)
+      case 3: // •Ç‚É‚Ô‚Â‚©‚Á‚½’¼Œã(Ô)
         fluff_[i]->setBrush(QColor(0xff, 0, 0, 0xff));
         break;
-      case 4: // ãƒ¯ãƒ¼ãƒ—ç›´å‰ã®ç¶¿æ¯›(é»’)
+      case 4: // ƒ[ƒv’¼‘O‚Ì–È–Ñ(•)
         fluff_[i]->setBrush(QColor(0, 0, 0, 0xff));
         former_state_[i] = state;
         former_x_[i] = x;
@@ -221,14 +221,14 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
         break;
       }
 
-      // ç¶¿æ¯›ã®ãƒ¬ãƒ¼ãƒ«
+      // –È–Ñ‚ÌƒŒ[ƒ‹
       fluff_rail_[i]->setLine(x_edge1, z_edge1, x_edge2, z_edge2);
 
-      // ç¶¿æ¯›id
+      // –È–Ñid
       fluff_id_[i]->setPos(x, z);
     }
 
-    // é’é³¥æç”»
+    // Â’¹•`‰æ
     const u32 blue_bird_base = read_u32(0x80f9741c);
     const float blue_bird_x = read_float(blue_bird_base + 0x10);
     const float blue_bird_z = read_float(blue_bird_base + 0x18);
@@ -237,7 +237,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
     blue_bird_item_->setPos(blue_bird_x, blue_bird_z);
     blue_bird_item_->setRotation(-blue_bird_degree);
 
-    // é’é³¥å‰ãƒãƒ¼ãƒ‰æç”»
+    // Â’¹‘Oƒm[ƒh•`‰æ
     const s32 blue_bird_next_node = read_s32(blue_bird_base + 0x218);
     switch (blue_bird_next_node) {
     case 0:
@@ -257,7 +257,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
       break;
     }
 
-    // é’é³¥æ¬¡ãƒãƒ¼ãƒ‰æç”»
+    // Â’¹Ÿƒm[ƒh•`‰æ
     const s32 blue_bird_previous_node = read_s32(blue_bird_base + 0x21c);
     switch (blue_bird_previous_node) {
     case 0:
@@ -277,14 +277,14 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
       break;
     }
 
-    // èµ¤ãƒ»é’ã‚³ã‚¤ãƒ³æç”»
+    // ÔEÂƒRƒCƒ“•`‰æ
     const u32 item_manager_base = read_u32(0x8040a4d8);
     const u32 item_base_table = read_u32(item_manager_base + 0x18);
     for (s64 i = 0; i < 85; ++i) {
       const u32 base = read_u32(item_base_table + i * 4);
       const u32 vtable = read_u32(base);
 
-      if (vtable == 0x803C15AC) // èµ¤ã‚³ã‚¤ãƒ³
+      if (vtable == 0x803C15AC) // ÔƒRƒCƒ“
       {
         const s16 state = read_s16(base + 0xfc);
 
@@ -292,7 +292,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
           const float x = read_float(base + 0x10);
           const float z = read_float(base + 0x18);
 
-          // èµ¤ã‚³ã‚¤ãƒ³æç”»
+          // ÔƒRƒCƒ“•`‰æ
           coins_pix_item_[i]->setPos(x, z);
           coins_pix_item_[i]->setScale(400 * 2 / 35.0);
 
@@ -301,7 +301,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
         } else {
           coins_pix_item_[i]->setVisible(false);
         }
-      } else if (vtable == 0x803C13C8) // é’ã‚³ã‚¤ãƒ³
+      } else if (vtable == 0x803C13C8) // ÂƒRƒCƒ“
       {
         const s16 state = read_s16(base + 0xfc);
 
@@ -309,7 +309,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
           const float x = read_float(base + 0x10);
           const float z = read_float(base + 0x18);
 
-          // é’ã‚³ã‚¤ãƒ³æç”»
+          // ÂƒRƒCƒ“•`‰æ
           coins_pix_item_[i]->setPos(x, z);
           coins_pix_item_[i]->setScale(400 * 2 / 35.0);
 
@@ -324,7 +324,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
 
     }
 
-    // shineã‚’æç”»
+    // shine‚ğ•`‰æ
     const u32 shine_base_pianta_8 = read_u32(0x80f87fec, {0x18, 0});
     const s16 shine_state = read_s16(shine_base_pianta_8 + 0xfc);
     if (shine_state != 0) {
@@ -338,7 +338,7 @@ void MapPianta8::timerEvent(QTimerEvent* event) {
       shine_pix_item_->setVisible(false);
     }
 
-    // marioã‚’æç”»
+    // mario‚ğ•`‰æ
     const u32 mario_base = read_u32(0x8040a378);
     const float mario_x = read_float(mario_base + 0x10);
     const float mario_y = read_float(mario_base + 0x14);
