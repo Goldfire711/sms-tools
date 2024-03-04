@@ -1,0 +1,19 @@
+{
+    "MActor": {
+        "size": 72,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "MActorAnmData*",
+                "name": "?",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "J3DModel*",
+                "name": "J3DModel*",
+                "notes": ""
+            }
+        ]
+    }
+}

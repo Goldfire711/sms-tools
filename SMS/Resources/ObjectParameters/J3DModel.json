@@ -1,0 +1,25 @@
+{
+    "J3DModel": {
+        "size": 160,
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "J3DModel*",
+                "name": "J3DModel*",
+                "notes": ""
+            },
+            {
+                "offset": "58",
+                "type": "float*",
+                "name": "Matrix34",
+                "notes": ""
+            }
+        ]
+    }
+}
