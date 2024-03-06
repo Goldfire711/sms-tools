@@ -15,8 +15,13 @@
 #include <QSettings>
 #include <QShortcut>
 #include <fstream>
+#include <QDebug>
+
+#include <json.hpp>
 
 extern QTimer* g_timer_100ms;
+using json = nlohmann::json;
+using namespace memory;
 
 ObjectViewer::ObjectViewer(QWidget* parent)
   : QMainWindow(parent) {
@@ -104,16 +109,6 @@ void ObjectViewer::scan_managers() {
   QJsonObject json = load_doc3.object();
   QJsonArray json_array = json["objects"].toArray();
 
-  // read entire memory
-  constexpr u32 mem_start = 0x80414020;
-  constexpr u32 mem_end = 0x81800000;
-  constexpr u32 mem_size = mem_end - mem_start;
-  u8* scan_ram_cache = new u8[mem_size];
-  if (!DolphinComm::DolphinAccessor::readFromRAM(mem_start & 0x7fffffff, scan_ram_cache, mem_size, false)) {
-    delete[] scan_ram_cache;
-    return;
-  }
-
   // read name,address from ObjectViewer_managers.json
   QFile file("SMS/Resources/ObjectViewer_managers.json");
   if (!file.open(QIODevice::ReadOnly))
@@ -132,7 +127,7 @@ void ObjectViewer::scan_managers() {
   for (auto value_ref : json_managers) {
     auto json_manager = value_ref.toObject();
 
-    u32 vtable_bswap = Common::bSwap32(json_manager["vtable"].toString().toUInt(nullptr, 16));
+    u32 vtable = json_manager["vtable"].toString().toUInt(nullptr, 16);
 
     Manager manager;
     manager.name = json_manager["name"].toString();
@@ -142,29 +137,23 @@ void ObjectViewer::scan_managers() {
       manager.json_object = json_manager["object"].toObject();
     }
 
-    hash_manager.insert(vtable_bswap, manager);
+    hash_manager.insert(vtable, manager);
   }
 
   // scan managers
-  QByteArray search_term = QTextCodec::codecForName("Shift-JIS")->fromUnicode("Manager");
-  search_term.append('\0');
-  for (u32 i = 0; i < (mem_size - 0x100); i++) {
-    u8* memory_candidate = &scan_ram_cache[i];
-    if (std::memcmp(memory_candidate, search_term.data(), 8) == 0) {
-      const s64 vtable_offset = 11 - ((i + 3) & 0b11);
-      u32 vtable;
-      std::memcpy(&vtable, &memory_candidate[vtable_offset], 4);
-      if (hash_manager.contains(vtable)) {
-        auto* manager = &hash_manager[vtable];
-        manager->json_object["value"] = QString::number(i + vtable_offset + mem_start, 16);
-        //manager->json_object["name"].toObject()["name"] = manager->name;
-        //manager.json_object["name"] = manager.name;
-        json_array.append(manager->json_object);
-      }
-    }
+  u32 addr = read_u32(0x8040a6e8);
+  s32 count = read_u32(addr + 0x14);
+  u32 head = read_u32(addr + 0x18);
+  u32 l = head;
+  for (s64 i = 0; i < count-1; i++) {
+    l = read_u32(l);
+    u32 m = read_u32(l + 0x8);
+    u32 vt = read_u32(m);
+    qDebug() << QString::number(vt, 16);
+    auto* manager = &hash_manager[vt];
+    manager->json_object["value"] = QString::number(m, 16);
+    json_array.append(manager->json_object);
   }
-
-  delete[] scan_ram_cache;
 
   // set model_ to tree_object
   json.insert("objects", json_array);

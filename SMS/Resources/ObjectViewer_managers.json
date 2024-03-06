@@ -674,9 +674,11 @@
         {
             "name": "ButterflyManager",
             "vtable": "803e5dc8"
-        }
-    ],
-    "a": [
+        },
+        {
+            "name": "MapObjManager",
+            "vtable": "803c08e4"
+        },
         {
             "name": "QuestionManager",
             "vtable": "803b5350"
@@ -688,10 +690,6 @@
         {
             "name": "ModelWaterManager",
             "vtable": "803b7fec"
-        },
-        {
-            "name": "MapObjManager",
-            "vtable": "803c08e4"
         },
         {
             "name": "ItemManager",
@@ -842,6 +840,9 @@
             "name": "EffectObjManager",
             "vtable": "803d2940"
         }
+    ],
+    "a": [
+
     ],
     "object_template": {
         "value": "81037da4",

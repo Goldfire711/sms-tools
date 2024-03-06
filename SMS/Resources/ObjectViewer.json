@@ -49,38 +49,6 @@
                     }
                 }
             ]
-        },
-        {
-            "address": "8040a4d0",
-            "type": "pointer",
-            "name": {
-                "address": "4",
-                "type": "string",
-                "name": "gpMapObjManager"
-            },
-            "pointer": {
-                "address": "18",
-                "type": "pointer",
-                "name": "*object_table"
-            },
-            "count": {
-                "address": "14",
-                "type": "u32",
-                "name": "object_count"
-            },
-            "offsets": [
-                {
-                    "address": {
-                        "maximum_count": 300
-                    },
-                    "type": "pointer",
-                    "name": {
-                        "address": "4",
-                        "type": "string",
-                        "name": "object"
-                    }
-                }
-            ]
         }
     ]
 }
