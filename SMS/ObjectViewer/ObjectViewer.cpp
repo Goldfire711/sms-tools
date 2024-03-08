@@ -45,7 +45,7 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   ui.tree_object->setColumnWidth(0, 318);
   ui.tree_object->setColumnWidth(2, 72);
 
-  connect(ui.button_scan_managers, &QPushButton::clicked, this, &ObjectViewer::scan_managers);
+  connect(ui.button_refresh, &QPushButton::clicked, this, &ObjectViewer::refresh);
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
 
   ui.tree_object->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -81,10 +81,12 @@ void ObjectViewer::closeEvent(QCloseEvent* event) {
 void ObjectViewer::showEvent(QShowEvent* event) {
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   show_widget_object_parameters();
-  //connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectViewer::on_update));
+
+  // TODO auto refresh
+  // connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectViewer::on_update));
 }
 
-void ObjectViewer::scan_managers() {
+void ObjectViewer::refresh() {
   if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
 
@@ -149,7 +151,6 @@ void ObjectViewer::scan_managers() {
     l = read_u32(l);
     u32 m = read_u32(l + 0x8);
     u32 vt = read_u32(m);
-    qDebug() << QString::number(vt, 16);
     auto* manager = &hash_manager[vt];
     manager->json_object["value"] = QString::number(m, 16);
     json_array.append(manager->json_object);
@@ -193,7 +194,14 @@ void ObjectViewer::copy_as_dmw_format() {
 }
 
 void ObjectViewer::on_update() {
-  ui.label->setText(QString::number(ui.tree_object->columnWidth(0)));
+  if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+  const u32 conductor = read_u32(0x8040a6e8);
+  const s32 count = read_s32(conductor + 0x14);
+  if (conductor != prev_conductor_ || count != prev_count_)
+    refresh();
+  prev_conductor_ = conductor;
+  prev_count_ = count;
 }
 
 void ObjectViewer::show_widget_object_parameters() {

@@ -13,7 +13,7 @@ class ObjectViewer : public QMainWindow {
 public:
   ObjectViewer(QWidget* parent = Q_NULLPTR);
   ~ObjectViewer() override;
-  void scan_managers();
+  void refresh();
   void show_context_menu(const QPoint& pos);
   void copy_as_dmw_format();
   void on_update();
@@ -33,4 +33,6 @@ private:
   //s64 number_ = 0;
   //s8 former_stage_ = -1;
   //s8 former_episode_ = -1;
+  u32 prev_conductor_ = 0;
+  s32 prev_count_ = 0;
 };

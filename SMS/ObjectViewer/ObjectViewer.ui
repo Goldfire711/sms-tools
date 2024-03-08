@@ -16,9 +16,9 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="2">
-     <widget class="QPushButton" name="button_scan_managers">
+     <widget class="QPushButton" name="button_refresh">
       <property name="text">
-       <string>Scan Managers</string>
+       <string>Refresh</string>
       </property>
      </widget>
     </item>
