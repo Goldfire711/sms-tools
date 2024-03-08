@@ -10,10 +10,10 @@
 
 #include "Common/CommonTypes.h"
 
-
-class U32SpinBox : public QSpinBox {
+//test
+class U32RNGSpinBox : public QSpinBox {
 public:
-  U32SpinBox(QWidget* parent = nullptr) : QSpinBox(parent) {
+  U32RNGSpinBox(QWidget* parent = nullptr) : QSpinBox(parent) {
     setRange(INT_MIN, INT_MAX);
   }
   [[nodiscard]] u32 valueU32() const {
@@ -50,11 +50,11 @@ private:
   }
 };
 
-class RNGViewer : public QWidget {
+class RNGViewer2 : public QWidget {
   Q_OBJECT
 
 public:
-  RNGViewer(QWidget* parent);
+  RNGViewer2(QWidget* parent);
   void update_ram_rng();
 
 private:
@@ -71,7 +71,7 @@ private:
   QLabel* lbl_edit_seed_;
   QLabel* lbl_edit_index_;
   QLineEdit* txb_edit_seed_;
-  U32SpinBox* spb_edit_index_;
+  U32RNGSpinBox* spb_edit_index_;
   QLabel* lbl_index_diff_;
   QLabel* lbl_index_diff2_;
 

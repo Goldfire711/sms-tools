@@ -97,10 +97,22 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\ChuuHana\RNGViewer.cpp">
+    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.cpp">
+    <ClCompile Include="SMS\Amenbo\AmenboManipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\RNGManipulatorDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\RNGManipulatorModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\RNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\RNGViewer2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -140,6 +152,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\RNGManipulator\RNG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\RNGManipulator\RNGFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -217,10 +235,19 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\ChuuHana\RNGViewer.h">
+    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.h">
+    <QtMoc Include="SMS\Amenbo\AmenboManipulator.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\RNGManipulator\RNGManipulatorDelegate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\RNGManipulator\RNGViewer2.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -236,9 +263,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Test\TestMainWindow.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui">

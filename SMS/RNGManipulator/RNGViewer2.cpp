@@ -1,4 +1,4 @@
-#include "RNGViewer.h"
+#include "RNGViewer2.h"
 
 #include <QLabel>
 #include <QVBoxLayout>
@@ -8,8 +8,8 @@
 
 extern QTimer* g_timer_100ms;
 using namespace memory;
-
-RNGViewer::RNGViewer(QWidget* parent)
+//test
+RNGViewer2::RNGViewer2(QWidget* parent)
   : QWidget(parent) {
   // RAM RNG
   lbl_seed_ = new QLabel("RAM Seed: 0x");
@@ -29,11 +29,11 @@ RNGViewer::RNGViewer(QWidget* parent)
   txb_edit_seed_->setFixedWidth(146);
   const auto* val_hex_32 = new QRegExpValidator(QRegExp("[0-9a-fA-F]{1,8}"));
   txb_edit_seed_->setValidator(val_hex_32);
-  connect(txb_edit_seed_, &QLineEdit::textEdited, this, &RNGViewer::on_edit_seed_changed);
+  connect(txb_edit_seed_, &QLineEdit::textEdited, this, &RNGViewer2::on_edit_seed_changed);
   lbl_edit_index_ = new QLabel("Edit Index: ");
-  spb_edit_index_ = new U32SpinBox(this);
+  spb_edit_index_ = new U32RNGSpinBox(this);
   spb_edit_index_->setFixedWidth(146);
-  connect(spb_edit_index_, &QSpinBox::textChanged, this, &RNGViewer::on_edit_index_changed);
+  connect(spb_edit_index_, &QSpinBox::textChanged, this, &RNGViewer2::on_edit_index_changed);
   lbl_index_diff_ = new QLabel("Index Diff: ");
   lbl_index_diff2_ = new QLabel("+0");
   lbl_index_diff2_->setFixedWidth(146);
@@ -41,7 +41,7 @@ RNGViewer::RNGViewer(QWidget* parent)
 
   // Edit buttons
   chb_edit_ = new QCheckBox("Edit");
-  connect(chb_edit_, QOverload<int>::of(&QCheckBox::stateChanged), this, &RNGViewer::on_chb_edit_changed);
+  connect(chb_edit_, QOverload<int>::of(&QCheckBox::stateChanged), this, &RNGViewer2::on_chb_edit_changed);
   btn_read_ = new QPushButton(QString::fromLocal8Bit("«Read"));
   btn_read_->setDisabled(true);
   btn_read_->setFixedWidth(73);
@@ -101,11 +101,11 @@ RNGViewer::RNGViewer(QWidget* parent)
 
   setLayout(lo_main);
   
-  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&RNGViewer::update_ram_rng));
+  connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&RNGViewer2::update_ram_rng));
   on_chb_edit_changed(Qt::Unchecked);
 }
 
-void RNGViewer::update_ram_rng() {
+void RNGViewer2::update_ram_rng() {
   if (DolphinComm::DolphinAccessor::getStatus() == DolphinComm::DolphinAccessor::DolphinStatus::hooked) {
     if (const u32 seed = read_u32(0x80408cf0); seed != seed_) {
       seed_ = seed;
@@ -133,7 +133,7 @@ void RNGViewer::update_ram_rng() {
   }
 }
 
-void RNGViewer::on_edit_seed_changed() {
+void RNGViewer2::on_edit_seed_changed() {
   if (!txb_edit_seed_->text().isEmpty()) {
     edit_seed_ = txb_edit_seed_->text().toUInt(nullptr, 16);
     edit_index_ = rng::seed_to_index(edit_seed_);
@@ -143,7 +143,7 @@ void RNGViewer::on_edit_seed_changed() {
   lbl_index_diff2_->setText((diff < 0 ? "" : "+") + QString::number(diff));
 }
 
-void RNGViewer::on_edit_index_changed() {
+void RNGViewer2::on_edit_index_changed() {
   edit_index_ = spb_edit_index_->valueU32();
   edit_seed_ = rng::index_to_seed(edit_index_);
   txb_edit_seed_->setText(QString::number(edit_seed_, 16).toUpper());
@@ -151,7 +151,7 @@ void RNGViewer::on_edit_index_changed() {
   lbl_index_diff2_->setText((diff < 0 ? "" : "+") + QString::number(diff));
 }
 
-void RNGViewer::on_chb_edit_changed(s32 state) const {
+void RNGViewer2::on_chb_edit_changed(s32 state) const {
   if (state == Qt::Checked) {
     btn_read_->setVisible(true);
     btn_write_->setVisible(true);

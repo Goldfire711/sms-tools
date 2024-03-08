@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_map_viewer, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer);
   connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_fluff_manipulator);
   connect(ui.button_widget_chuuhana, &QPushButton::clicked, this, &MainWindow::show_widget_chuuhana);
+  connect(ui.button_widget_rng_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
   g_timer_100ms = new QTimer(this);
   g_timer_16ms = new QTimer(this);
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
@@ -147,6 +148,15 @@ void MainWindow::show_widget_chuuhana() {
   sms_chuuhana_manip_->show();
   sms_chuuhana_manip_->raise();
   sms_chuuhana_manip_->activateWindow();
+}
+
+void MainWindow::show_widget_rng_manipulator() {
+  if (!sms_rng_manip_) {
+    sms_rng_manip_ = new RNGManipulator(nullptr);
+  }
+  sms_rng_manip_->show();
+  sms_rng_manip_->raise();
+  sms_rng_manip_->activateWindow();
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {

@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SMS\Amenbo\AmenboManipulator.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaRNG.cpp" />
@@ -105,7 +106,6 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
-    <ClCompile Include="SMS\ChuuHana\RNGViewer.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -122,6 +122,10 @@
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\RNGManipulatorDelegate.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\RNGManipulatorModel.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\RNG.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\RNGViewer2.cpp" />
     <ClCompile Include="Test\Test\Test.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
@@ -148,7 +152,6 @@
     <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui" />
     <QtUic Include="Test\Test\Test.ui" />
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
-    <QtUic Include="SMS\RNGManipulator\RNGManipulator.ui" />
     <QtUic Include="SMS\MapViewer\MapViewer.ui" />
     <QtUic Include="SMS\Spin\Spin.ui" />
     <QtUic Include="Test\TestMainWindow.ui" />
@@ -159,6 +162,7 @@
   <ItemGroup>
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.h" />
+    <QtMoc Include="SMS\Amenbo\AmenboManipulator.h" />
     <ClInclude Include="SMS\ChuuHana\ChuuHanaRNG.h" />
     <ClInclude Include="Common\CommonTypes.h" />
     <ClInclude Include="Common\CommonUtils.h" />
@@ -188,12 +192,16 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h" />
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
-    <QtMoc Include="SMS\ChuuHana\RNGViewer.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\SMSData.h" />
     <QtMoc Include="Test\Test\Test.h" />
+    <QtMoc Include="SMS\RNGManipulator\RNGManipulatorDelegate.h" />
+    <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h" />
+    <ClInclude Include="SMS\RNGManipulator\RNG.h" />
+    <ClInclude Include="SMS\RNGManipulator\RNGFunctions.h" />
+    <QtMoc Include="SMS\RNGManipulator\RNGViewer2.h" />
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
