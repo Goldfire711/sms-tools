@@ -64,20 +64,24 @@ void RNGManipulator::initialize_widgets() {
   txb_rng_to_ = new QLineEdit("1");
   txb_rng_from_->setValidator(val_float);
   txb_rng_to_->setValidator(val_float);
+  txb_rng_from_->setFixedWidth(60);
+  txb_rng_to_->setFixedWidth(60);
   txb_search_from_ = new QLineEdit("0");
   txb_search_to_ = new QLineEdit("0.01");
   txb_search_from_->setValidator(val_float);
   txb_search_to_->setValidator(val_float);
+  txb_search_from_->setFixedWidth(60);
+  txb_search_to_->setFixedWidth(60);
 
   // GroupBoxes
-  group_setting_ = new QGroupBox(tr("setGoal"));
+  group_setting_ = new QGroupBox(tr("Settings"));
 
   // 確率
   lbl_probability_ = new QLabel();
 
   // seedの検索範囲
   txb_search_range_ = new QLineEdit("10000");
-  txb_search_range_->setValidator(new QIntValidator(0, 4294967296, this));
+  txb_search_range_->setValidator(new QRegExpValidator(QRegExp("\\d{1,10}")));
   txb_search_range_->setFixedWidth(100);
 
   // RNGテーブル
@@ -99,7 +103,7 @@ void RNGManipulator::initialize_widgets() {
   connect(copy_shortcut, &QShortcut::activated, this, &RNGManipulator::copy_selection);
 
   // RNG Viewer
-  rng_viewer_ = new RNGViewer2(this);
+  rng_viewer_ = new RNGViewer(this);
 }
 
 void RNGManipulator::make_layouts() {
@@ -133,6 +137,7 @@ void RNGManipulator::make_layouts() {
   auto* lbl_rng_range = new QLabel("RNG range:");
   auto* lbl_rng_hyphen = new QLabel("-");
   lo_rng_range->addWidget(lbl_rng_range);
+  lo_rng_range->addStretch(0);
   lo_rng_range->addWidget(txb_rng_from_);
   lo_rng_range->addWidget(lbl_rng_hyphen);
   lo_rng_range->addWidget(txb_rng_to_);
@@ -141,6 +146,7 @@ void RNGManipulator::make_layouts() {
   auto* lbl_search_range = new QLabel("Search range:");
   auto* lbl_search_hyphen = new QLabel("-");
   lo_search_range->addWidget(lbl_search_range);
+  lo_search_range->addStretch(0);
   lo_search_range->addWidget(txb_search_from_);
   lo_search_range->addWidget(lbl_search_hyphen);
   lo_search_range->addWidget(txb_search_to_);

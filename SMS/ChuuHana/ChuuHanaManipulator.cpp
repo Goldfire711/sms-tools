@@ -149,7 +149,7 @@ void ChuuHanaManipulator::initialize_widgets() {
   connect(copy_shortcut, &QShortcut::activated, this, &ChuuHanaManipulator::copy_selection);
 
   // RNG Viewer
-  rng_viewer_ = new RNGViewer2(this);
+  rng_viewer_ = new RNGViewer(this);
 }
 
 void ChuuHanaManipulator::make_layouts() {

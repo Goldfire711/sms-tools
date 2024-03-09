@@ -3,7 +3,7 @@
 #include <QWidget>
 #include "RNG.h"
 #include "RNGManipulatorModel.h"
-#include "RNGViewer2.h"
+#include "RNGViewer.h"
 #include "RNGManipulatorDelegate.h"
 
 #include <QLabel>
@@ -76,7 +76,7 @@ private:
   u32 edited_index_ = 0;
   RNG* rng_;
 
-  RNGViewer2* rng_viewer_ = nullptr;
+  RNGViewer* rng_viewer_ = nullptr;
 
   s32 select_search_ = 0;
   s32 select_ = 0;

@@ -50,11 +50,11 @@ private:
   }
 };
 
-class RNGViewer2 : public QWidget {
+class RNGViewer : public QWidget {
   Q_OBJECT
 
 public:
-  RNGViewer2(QWidget* parent);
+  RNGViewer(QWidget* parent);
   void update_ram_rng();
 
 private:

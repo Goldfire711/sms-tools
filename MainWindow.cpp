@@ -172,6 +172,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_chuuhana_main_->close();
   if (sms_chuuhana_manip_)
     sms_chuuhana_manip_->close();
+  if (sms_rng_manip_)
+    sms_rng_manip_->close();
 
   if (test_main_window_)
     test_main_window_->close();

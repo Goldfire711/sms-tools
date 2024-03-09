@@ -125,7 +125,7 @@
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorDelegate.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorModel.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNG.cpp" />
-    <ClCompile Include="SMS\RNGManipulator\RNGViewer2.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\RNGViewer.cpp" />
     <ClCompile Include="Test\Test\Test.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
@@ -201,7 +201,7 @@
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h" />
     <ClInclude Include="SMS\RNGManipulator\RNG.h" />
     <ClInclude Include="SMS\RNGManipulator\RNGFunctions.h" />
-    <QtMoc Include="SMS\RNGManipulator\RNGViewer2.h" />
+    <QtMoc Include="SMS\RNGManipulator\RNGViewer.h" />
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />

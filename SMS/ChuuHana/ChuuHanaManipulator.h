@@ -3,7 +3,7 @@
 #include <QWidget>
 #include "ChuuHanaRNG.h"
 #include "ChuuHanaManipulatorModel.h"
-#include "../RNGManipulator/RNGViewer2.h"
+#include "../RNGManipulator/RNGViewer.h"
 #include "ChuuHanaManipulatorDelegate.h"
 
 #include <QLabel>
@@ -88,7 +88,7 @@ private:
   u32 edited_index_ = 0;
   ChuuHanaRNG* rng_;
 
-  RNGViewer2* rng_viewer_ = nullptr;
+  RNGViewer* rng_viewer_ = nullptr;
 
   struct ChuuHanaRNGType {
     s32 id = -1;

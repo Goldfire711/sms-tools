@@ -112,7 +112,7 @@
     <ClCompile Include="SMS\RNGManipulator\RNG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\RNGManipulator\RNGViewer2.cpp">
+    <ClCompile Include="SMS\RNGManipulator\RNGViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -247,7 +247,7 @@
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="SMS\RNGManipulator\RNGViewer2.h">
+    <QtMoc Include="SMS\RNGManipulator\RNGViewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
