@@ -12,7 +12,7 @@
                 "offset": "150",
                 "type": "float",
                 "name": "",
-                "notes": ""
+                "notes": "arr = {0: 0.005, 1: 0.008, 2: 0.01, 3: 0.03, 4: 0.05, 5: 0.05}\nt = -0.4 * (sin * attr.norm.x - cos * attr.norm.z) - 0.5\n(0x150) = (1.0 - arr[gen]) * (0x150) + arr[gen] * t\n使われているのはTBossManta::control内のみ"
             },
             {
                 "offset": "154",
@@ -28,21 +28,9 @@
             },
             {
                 "offset": "164",
-                "type": "float",
-                "name": "",
-                "notes": ""
-            },
-            {
-                "offset": "168",
-                "type": "float",
-                "name": "",
-                "notes": ""
-            },
-            {
-                "offset": "16c",
-                "type": "float",
-                "name": "",
-                "notes": ""
+                "type": "JGeometry::TVec3<float>",
+                "name": "Attractor *",
+                "notes": "正規化された値が使われる"
             },
             {
                 "offset": "170",
@@ -83,32 +71,32 @@
             {
                 "offset": "188",
                 "type": "s32",
-                "name": "「is chasing mario」が切り替わるQF",
+                "name": "(0x1a4)が切り替わるQF",
                 "notes": "分裂時に乱数によって決まる\n形態0:600 \n形態1: [600,700)\n形態2: [200,300)\n形態3: [100,200)\n形態4: [100,200)\n形態5: [100,200)\nTBossManta::initNthGeneration()参照"
             },
             {
                 "offset": "18c",
                 "type": "s32",
-                "name": "形態",
+                "name": "Generation",
                 "notes": ""
             },
             {
                 "offset": "190",
                 "type": "float",
-                "name": "",
-                "notes": ""
+                "name": "Speed",
+                "notes": "形態0: 2.0\n形態1: 2.0\n形態2: 3.0\n形態3: 4.0\n形態4: 7.0\n形態5: 3.0"
             },
             {
                 "offset": "194",
                 "type": "float",
-                "name": "",
-                "notes": ""
+                "name": "Attract方向への曲がりやすさ？",
+                "notes": "形態0: 0.009\n形態1: 0.009\n形態2: 0.009\n形態3: 0.019\n形態4: 0.03\n形態5: 0.03"
             },
             {
                 "offset": "198",
                 "type": "float",
-                "name": "",
-                "notes": ""
+                "name": "未使用の変数？",
+                "notes": "形態0: 1000.0\n形態1: 1000.0\n形態2: 1000.0\n形態3: 700.0\n形態4: 400.0\n形態5: 200.0"
             },
             {
                 "offset": "19c",
@@ -125,8 +113,8 @@
             {
                 "offset": "1a4",
                 "type": "s32",
-                "name": "is not? chasing mario?\nis_zigzag?",
-                "notes": ""
+                "name": "is targeting mario",
+                "notes": "0x8032586cでのみ使われる\nターゲット座標(0x158)の設定に影響\n1ならマリオの座標をそのまま指し、0ならマリオの周りの座標をうろうろするようになる(Notion参照)\ntarget = node[0-12] + mul * (mario - node[0-12])\nmulは下表\n(0x1a4): 0 1\n形態0: 1.0 1.0\n形態1: 0.8 1.0\n形態2: 0.8 1.0\n形態3: 0.6 1.0\n形態4: 0.8 1.0\n形態5: 1.0 1.0"
             }
         ]
     }
