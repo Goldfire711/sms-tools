@@ -1,0 +1,133 @@
+{
+    "TBossManta": {
+        "size": "1a8",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "154",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "158",
+                "type": "JGeometry::TVec3<float>",
+                "name": "Target *",
+                "notes": ""
+            },
+            {
+                "offset": "164",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "168",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "16c",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "170",
+                "type": "float",
+                "name": "cos",
+                "notes": ""
+            },
+            {
+                "offset": "174",
+                "type": "float",
+                "name": "0",
+                "notes": ""
+            },
+            {
+                "offset": "178",
+                "type": "float",
+                "name": "sin",
+                "notes": ""
+            },
+            {
+                "offset": "17c",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "180",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "184",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "188",
+                "type": "s32",
+                "name": "「is chasing mario」が切り替わるQF",
+                "notes": "分裂時に乱数によって決まる\n形態0:600 \n形態1: [600,700)\n形態2: [200,300)\n形態3: [100,200)\n形態4: [100,200)\n形態5: [100,200)\nTBossManta::initNthGeneration()参照"
+            },
+            {
+                "offset": "18c",
+                "type": "s32",
+                "name": "形態",
+                "notes": ""
+            },
+            {
+                "offset": "190",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "194",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "198",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "19c",
+                "type": "s32",
+                "name": "damage",
+                "notes": "以下のダメージを与えると形態変化\n形態0: 16, 形態1: 8, 形態2: 4, 形態3: 2, 形態4,5: 1"
+            },
+            {
+                "offset": "1a0",
+                "type": "s32",
+                "name": "cool time?",
+                "notes": ""
+            },
+            {
+                "offset": "1a4",
+                "type": "s32",
+                "name": "is not? chasing mario?\nis_zigzag?",
+                "notes": ""
+            }
+        ]
+    }
+}

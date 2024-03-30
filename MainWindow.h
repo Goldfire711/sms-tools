@@ -12,6 +12,8 @@
 #include "SMS/ChuuHana/ChuuHanaMain.h"
 #include "SMS/ChuuHana/ChuuHanaManipulator.h"
 #include "SMS/RNGManipulator/RNGManipulator.h"
+#include "SMS/Manta/MapSirena1.h"
+
 #include "Test/TestMainWindow.h"
 
 class MainWindow : public QMainWindow {
@@ -28,6 +30,7 @@ public:
 	void show_widget_fluff_manipulator();
 	void show_widget_chuuhana();
 	void show_widget_rng_manipulator();
+	void show_widget_map_viewer_sirena1();
 	void on_update();
 
 private:
@@ -41,6 +44,7 @@ private:
 	ChuuHanaMain* sms_chuuhana_main_ = nullptr;
 	ChuuHanaManipulator* sms_chuuhana_manip_ = nullptr;
 	RNGManipulator* sms_rng_manip_ = nullptr;
+	MapViewerSirena1* sms_map_viewer_sirena1_ = nullptr;
 
 	TestMainWindow* test_main_window_ = nullptr;
 

@@ -1,0 +1,67 @@
+{
+    "TSpineBase<TLiveActor>": {
+        "size": "28",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveActor*",
+                "name": "Target / Owner",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "s32",
+                "name": "capacity of nerve chain (=8?)",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s32",
+                "name": "size of nerve stack",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "TNerveBase<TLiveActor>**",
+                "name": "Nerve stack",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "void*",
+                "name": "TSolidStack<TNerveBase<TLiveActor>_const*>::__vt",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "TNerveBase<TLiveActor>*",
+                "name": "Current nerve",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "TNerveBase<TLiveActor>*",
+                "name": "Default/Initial? nerve",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "TNerveBase<TLiveActor>*",
+                "name": "Previous nerve",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "s32",
+                "name": "timer",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "void*",
+                "name": "Virtual table",
+                "notes": ""
+            }
+        ]
+    }
+}

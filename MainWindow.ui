@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>238</width>
-    <height>210</height>
+    <height>239</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -115,6 +115,13 @@
      <widget class="QPushButton" name="button_widget_rng_manipulator">
       <property name="text">
        <string>RNG Manipulator</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="button_widget_manta">
+      <property name="text">
+       <string>Manta</string>
       </property>
      </widget>
     </item>

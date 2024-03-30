@@ -1,6 +1,6 @@
 {
     "MActor": {
-        "size": 72,
+        "size": "48",
         "offsets": [
             {
                 "offset": "0",
@@ -12,6 +12,244 @@
                 "offset": "4",
                 "type": "J3DModel*",
                 "name": "J3DModel*",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "?*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "_MActor_t1*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "MActorAnmBase*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "MActorAnmBase*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "MActorAnmBase*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "MActorAnmBase*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "_MActor_t2*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "u32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "s8",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "39",
+                "type": "s8",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "3c",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "40",
+                "type": "s8",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "44",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    },
+    "_MActor_t1": {
+        "size": "3c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "void*",
+                "name": "&J3DFrameCtrl::__vt",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "s16",
+                "name": "anm end frame",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "anm speed",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "current anm frame",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "void*",
+                "name": "&MActorAnmBck::__vt",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "2a",
+                "type": "s8",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    },
+    "_MActor_t2": {
+        "size": "18",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "_MActor_t1*",
+                "name": "(0xc)",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "void*",
+                "name": "(0x24)",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "MActorAnmBase*",
+                "name": "(0x14)",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "MActorAnmBase*",
+                "name": "(0x18)",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "MActorAnmBase*",
+                "name": "(0x1c)",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "MActorAnmBase*",
+                "name": "(0x20)",
                 "notes": ""
             }
         ]

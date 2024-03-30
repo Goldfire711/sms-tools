@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_fluff_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_fluff_manipulator);
   connect(ui.button_widget_chuuhana, &QPushButton::clicked, this, &MainWindow::show_widget_chuuhana);
   connect(ui.button_widget_rng_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
+  connect(ui.button_widget_manta, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer_sirena1);
   g_timer_100ms = new QTimer(this);
   g_timer_16ms = new QTimer(this);
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
@@ -159,6 +160,15 @@ void MainWindow::show_widget_rng_manipulator() {
   sms_rng_manip_->activateWindow();
 }
 
+void MainWindow::show_widget_map_viewer_sirena1() {
+  if (!sms_map_viewer_sirena1_) {
+    sms_map_viewer_sirena1_ = new MapViewerSirena1(nullptr);
+  }
+  sms_map_viewer_sirena1_->show();
+  sms_map_viewer_sirena1_->raise();
+  sms_map_viewer_sirena1_->activateWindow();
+}
+
 void MainWindow::closeEvent(QCloseEvent* event) {
   if (sms_spin_)
     sms_spin_->close();
@@ -174,6 +184,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_chuuhana_manip_->close();
   if (sms_rng_manip_)
     sms_rng_manip_->close();
+  if (sms_map_viewer_sirena1_)
+    sms_map_viewer_sirena1_->close();
+
 
   if (test_main_window_)
     test_main_window_->close();

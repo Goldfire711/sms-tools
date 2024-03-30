@@ -115,6 +115,12 @@
     <ClCompile Include="SMS\RNGManipulator\RNGViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\Manta\MapSirena1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\Manta\MapViewerSirena1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -248,6 +254,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\RNGManipulator\RNGViewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\Manta\MapSirena1.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

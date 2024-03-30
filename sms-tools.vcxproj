@@ -14,17 +14,17 @@
     <ProjectGuid>{378D6B0E-04B9-413B-A272-652067C8F487}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
@@ -106,6 +106,8 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerL.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerM.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
+    <ClCompile Include="SMS\Manta\MapSirena1.cpp" />
+    <ClCompile Include="SMS\Manta\MapViewerSirena1.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -192,6 +194,7 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaViewerS.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h" />
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
+    <QtMoc Include="SMS\Manta\MapSirena1.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

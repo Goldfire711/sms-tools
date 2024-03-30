@@ -1,6 +1,6 @@
 {
     "TSpineEnemy": {
-        "size": "a8",
+        "size": "150",
         "offsets": [
             {
                 "offset": "0",
