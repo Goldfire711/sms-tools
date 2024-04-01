@@ -1,6 +1,7 @@
 #include "MapSirena1.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QPushButton>
 
 MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   : QWidget(parent) {
@@ -48,6 +49,9 @@ MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   chb_show_is_chasing->setText("is targeting mario");
   chb_show_is_chasing->setChecked(true);
 
+  auto* btn_refresh = new QPushButton();
+  btn_refresh->setText("Refresh");
+
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on_);
   lo_top->addStretch();
@@ -61,6 +65,7 @@ MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   lo_top->addWidget(chb_show_anm);
   lo_top->addWidget(chb_show_anm_spd);
   lo_top->addWidget(chb_show_is_chasing);
+  lo_top->addWidget(btn_refresh);
 
   auto* lo_main = new QVBoxLayout();
   lo_main->addLayout(lo_top);
@@ -78,6 +83,7 @@ MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   connect(chb_show_anm, QOverload<int>::of(&QCheckBox::stateChanged), this, &MapViewerSirena1::chb_show_anm_clicked);
   connect(chb_show_anm_spd, QOverload<int>::of(&QCheckBox::stateChanged), this, &MapViewerSirena1::chb_show_anm_spd_clicked);
   connect(chb_show_is_chasing, QOverload<int>::of(&QCheckBox::stateChanged), this, &MapViewerSirena1::chb_show_is_chasing_clicked);
+  connect(btn_refresh, &QPushButton::clicked, map_, &MapSirena1::refresh);
 }
 
 void MapViewerSirena1::center_on_clicked(s32 state) const {

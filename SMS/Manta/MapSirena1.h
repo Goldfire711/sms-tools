@@ -11,6 +11,7 @@ class MapSirena1 : public QGraphicsView {
 public:
   MapSirena1(QWidget *parent);
   ~MapSirena1();
+  void refresh();
 
   bool center_on_mario_ = false;
   bool show_circle_ = true;
@@ -23,6 +24,7 @@ public:
   bool show_anm_ = true;
   bool show_anm_spd_ = true;
   bool show_is_chasing_ = true;
+  u32 p_manta_manager_ = 0;
 
 protected:
   void timerEvent(QTimerEvent* event) override;

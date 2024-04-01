@@ -122,8 +122,10 @@ void MapSirena1::timerEvent(QTimerEvent* event) {
     return;
 
   // ƒ}ƒ“ƒ^
-  constexpr u32 p_manta_manager = 0x81056e50;
-  const u32 p_mantas = read_u32(p_manta_manager + 0x18);
+  if (p_manta_manager_ == 0)
+    return;
+
+  const u32 p_mantas = read_u32(p_manta_manager_ + 0x18);
   for (s64 i = 0; i < 128; i++) {
     const u32 p = read_u32(p_mantas + 4 * i);
     const u32 draw_info = read_u32(p + 0xf0);
@@ -256,4 +258,22 @@ void MapSirena1::wheelEvent(QWheelEvent* event) {
     view_scale = 1 / 1.1;
   }
   scale(view_scale, view_scale);
+}
+
+void MapSirena1::refresh() {
+  const u32 addr = read_u32(0x8040a6e8);
+  const s32 count = read_u32(addr + 0x14);
+  const u32 head = read_u32(addr + 0x18);
+  u32 l = head;
+  for (s64 i = 0; i < count - 1; i++) {
+    l = read_u32(l);
+    u32 m = read_u32(l + 0x8);
+    u32 vt = read_u32(m);
+    if (vt == 0x803e177c) {
+      p_manta_manager_ = m;
+      return;
+    }
+  }
+  p_manta_manager_ = 0;
+  return;
 }

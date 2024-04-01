@@ -142,7 +142,9 @@ void ObjectViewer::refresh() {
     hash_manager.insert(vtable, manager);
   }
 
-  // scan managers
+  // scan managers (gpConductor(0x8040a6e8)を使用)
+  // +0x0: next manager, +0x4: prev, 0x8: manager
+  // の双方向連結リスト
   u32 addr = read_u32(0x8040a6e8);
   s32 count = read_u32(addr + 0x14);
   u32 head = read_u32(addr + 0x18);
