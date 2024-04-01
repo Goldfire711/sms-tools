@@ -12,6 +12,7 @@ MapSirena1::MapSirena1(QWidget *parent)
   : QGraphicsView(parent) {
   startTimer(33);
   initialize();
+  refresh();
 }
 
 MapSirena1::~MapSirena1() {}
