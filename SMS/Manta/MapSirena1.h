@@ -52,7 +52,7 @@ private:
   QPen pen_gray_;
   QPen pen_red_;
 
-  s32 timer_id = -1;
+  s32 timer_id_ = -1;
 };
 
 class MapViewerSirena1 : public QWidget {
