@@ -2,10 +2,20 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
 
 MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   : QWidget(parent) {
   map_ = new MapSirena1(nullptr);
+
+  auto* lbl_update_timer = new QLabel();
+  lbl_update_timer->setText("Update Interval(ms)");
+
+  auto* txb_update_timer = new QLineEdit();
+  txb_update_timer->setText("100");
+  txb_update_timer->setFixedWidth(50);
+
   chb_center_on_ = new QCheckBox();
   chb_center_on_->setText("Center on Mario");
 
@@ -54,6 +64,8 @@ MapViewerSirena1::MapViewerSirena1(QWidget* parent)
 
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on_);
+  lo_top->addWidget(txb_update_timer);
+  lo_top->addWidget(lbl_update_timer);
   lo_top->addStretch();
   lo_top->addWidget(chb_show_circle);
   lo_top->addWidget(chb_show_target_nodes);
@@ -84,6 +96,7 @@ MapViewerSirena1::MapViewerSirena1(QWidget* parent)
   connect(chb_show_anm_spd, QOverload<int>::of(&QCheckBox::stateChanged), this, &MapViewerSirena1::chb_show_anm_spd_clicked);
   connect(chb_show_is_chasing, QOverload<int>::of(&QCheckBox::stateChanged), this, &MapViewerSirena1::chb_show_is_chasing_clicked);
   connect(btn_refresh, &QPushButton::clicked, map_, &MapSirena1::refresh);
+  connect(txb_update_timer, &QLineEdit::textChanged, this, &MapViewerSirena1::txb_update_timer_changed);
 }
 
 void MapViewerSirena1::center_on_clicked(s32 state) const {
@@ -161,4 +174,11 @@ void MapViewerSirena1::chb_show_is_chasing_clicked(s32 state) const{
     map_->show_is_chasing_ = true;
   else
     map_->show_is_chasing_ = false;
+}
+
+void MapViewerSirena1::txb_update_timer_changed(QString str) const {
+  bool ok = false;
+  s32 interval = str.toInt(&ok);
+  if (interval >= 16)
+    map_->set_timer_interval(interval);
 }

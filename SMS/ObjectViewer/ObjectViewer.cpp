@@ -63,6 +63,8 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   QSettings settings("settings.ini", QSettings::IniFormat);
   restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
   restoreState(settings.value("object_viewer/state").toByteArray());
+
+  refresh();
 }
 
 ObjectViewer::~ObjectViewer() {

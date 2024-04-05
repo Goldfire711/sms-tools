@@ -10,7 +10,7 @@ using namespace memory;
 
 MapSirena1::MapSirena1(QWidget *parent)
   : QGraphicsView(parent) {
-  startTimer(33);
+  timer_id = startTimer(100);
   initialize();
   refresh();
 }
@@ -277,4 +277,9 @@ void MapSirena1::refresh() {
   }
   p_manta_manager_ = 0;
   return;
+}
+
+void MapSirena1::set_timer_interval(s32 interval) {
+  killTimer(timer_id);
+  timer_id = startTimer(interval);
 }

@@ -12,6 +12,7 @@ public:
   MapSirena1(QWidget *parent);
   ~MapSirena1();
   void refresh();
+  void set_timer_interval(s32 interval);
 
   bool center_on_mario_ = false;
   bool show_circle_ = true;
@@ -50,6 +51,8 @@ private:
   QGraphicsEllipseItem* circle6000_;
   QPen pen_gray_;
   QPen pen_red_;
+
+  s32 timer_id = -1;
 };
 
 class MapViewerSirena1 : public QWidget {
@@ -73,4 +76,5 @@ private:
   void chb_show_anm_clicked(s32 state) const;
   void chb_show_anm_spd_clicked(s32 state) const;
   void chb_show_is_chasing_clicked(s32 state) const;
+  void txb_update_timer_changed(QString str) const;
 };
