@@ -1,0 +1,91 @@
+{
+    "CPolarSubCamera": {
+        "size": "3fc",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TLookAtCamera",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "50",
+                "type": "s32",
+                "name": "Camera Type",
+                "notes": "http://smswiki.shoutwiki.com/wiki/Docs/Camera#Camera_Zones\n0: Normal\n6: on Rope\n7: Y-cam\n18: Hover\n19: bounce (e.g. roof)\n22: Option map\n73: Stage intro?"
+            },
+            {
+                "offset": "6c",
+                "type": "TCameraInbetween*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "80",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "8c",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "98",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "a6",
+                "type": "s16",
+                "name": "Horizontal angle",
+                "notes": ""
+            },
+            {
+                "offset": "a8",
+                "type": "float",
+                "name": "Distance",
+                "notes": "0: closest, 1: farthest"
+            },
+            {
+                "offset": "b4",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "c0",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "cc",
+                "type": "JGeometry::TVec3<float>",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "1ec",
+                "type": "JGeometry::TMatrix34<>",
+                "name": "current *",
+                "notes": "敵が視界内にいるかの判定に使われている?"
+            },
+            {
+                "offset": "21c",
+                "type": "JGeometry::TMatrix34<>",
+                "name": "prev *",
+                "notes": ""
+            },
+            {
+                "offset": "258",
+                "type": "s16",
+                "name": "Horizontal angle for acceleration",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 {
     "TBaseParam": {
-        "size": 16,
+        "size": "10",
         "offsets": [
             {
                 "offset": "0",

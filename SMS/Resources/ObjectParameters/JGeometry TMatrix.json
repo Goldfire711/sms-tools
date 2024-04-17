@@ -1,0 +1,240 @@
+{
+    "JGeometry::TMatrix33<>": {
+        "size": "24",
+        "notes": "SMatrix33CとかSMatrix33Rとかあるけどとりあえず",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "m11",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "m12",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "m13",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "m21",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "m22",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "m23",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "float",
+                "name": "m31",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "float",
+                "name": "m32",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "float",
+                "name": "m33",
+                "notes": ""
+            }
+        ]
+    },
+    "JGeometry::TMatrix34<>": {
+        "size": "30",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "m11",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "m12",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "m13",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "m14",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "m21",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "m22",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "float",
+                "name": "m23",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "float",
+                "name": "m24",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "float",
+                "name": "m31",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "name": "m32",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "name": "m33",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "name": "m34",
+                "notes": ""
+            }
+        ]
+    },
+    "JGeometry::TMatrix44<>": {
+        "size": "40",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "float",
+                "name": "m11",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "float",
+                "name": "m12",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "m13",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "float",
+                "name": "m14",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "float",
+                "name": "m21",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "float",
+                "name": "m22",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "float",
+                "name": "m23",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "float",
+                "name": "m24",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "float",
+                "name": "m31",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "name": "m32",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "name": "m33",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "name": "m34",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "float",
+                "name": "m41",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "float",
+                "name": "m42",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "float",
+                "name": "m43",
+                "notes": ""
+            },
+            {
+                "offset": "3c",
+                "type": "float",
+                "name": "m44",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "TNameKuriParams": {
+        "size": "41c",
+        "notes": "inline?",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TWalkerEnemyParams",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "32c",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "340",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "354",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "368",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "37c",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "390",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "3a4",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "3b8",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "3cc",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "3e0",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "3f4",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "408",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            }
+        ]
+    }
+}

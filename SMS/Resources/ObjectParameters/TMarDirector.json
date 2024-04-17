@@ -15,6 +15,12 @@
                 "notes": ""
             },
             {
+                "offset": "124",
+                "type": "s8",
+                "name": "",
+                "notes": ""
+            },
+            {
                 "offset": "12c",
                 "type": "TMarDirector::TDemoInfo",
                 "name": "slot0 *",

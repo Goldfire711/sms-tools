@@ -1,0 +1,43 @@
+{
+    "TNameKuri": {
+        "size": "1d0",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TWalkerEnemy",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "194",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "1b0",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "1b4",
+                "type": "float",
+                "name": "_unused?",
+                "notes": ""
+            },
+            {
+                "offset": "1c4",
+                "type": "void*",
+                "name": "color?",
+                "notes": ""
+            },
+            {
+                "offset": "1c8",
+                "type": "void*",
+                "name": "color?",
+                "notes": ""
+            }
+        ]
+    }
+}

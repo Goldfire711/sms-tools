@@ -1,0 +1,25 @@
+{
+    "TList<>": {
+        "size": "c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TList<>*",
+                "name": "next",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "TList<>*",
+                "name": "prev",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

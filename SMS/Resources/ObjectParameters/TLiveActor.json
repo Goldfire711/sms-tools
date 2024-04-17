@@ -9,6 +9,12 @@
                 "notes": ""
             },
             {
+                "offset": "70",
+                "type": "TLiveManager*",
+                "name": "Manager",
+                "notes": ""
+            },
+            {
                 "offset": "74",
                 "type": "MActor*",
                 "name": "",
@@ -70,9 +76,9 @@
             },
             {
                 "offset": "f0",
-                "type": "u32",
+                "type": "void*",
                 "name": "Draw info",
-                "notes": ""
+                "notes": "u32\n0001: disappear\n0002: \n0004: not in camera\n0008: \n0010: \n0020: \n0040: \n0080: \n0100: \n0200: \n0400: \n0800: \n"
             }
         ]
     }

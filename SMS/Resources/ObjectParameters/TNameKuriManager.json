@@ -1,0 +1,37 @@
+{
+    "TNameKuriManager": {
+        "size": "100",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "string",
+                "name": "Name",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s16",
+                "name": "Key code",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "TNameKuriParams*",
+                "name": "Params",
+                "notes": ""
+            },
+            {
+                "offset": "60",
+                "type": "s32*",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

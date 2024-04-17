@@ -1,0 +1,37 @@
+{
+    "JDrama::TCamera": {
+        "size": "30",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama TPlacement",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "u16",
+                "name": "flag",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "float",
+                "name": "Projection Near",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "float",
+                "name": "Projection Far",
+                "notes": ""
+            }
+        ]
+    }
+}

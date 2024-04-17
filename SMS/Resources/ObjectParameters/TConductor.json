@@ -1,0 +1,253 @@
+{
+    "TConductor": {
+        "size": "100",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "s32",
+                "name": "Manager count",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "TList<>*",
+                "name": "Manager list",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "28",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "2c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "30",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "3c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "40",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "44",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "48",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "4c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "50",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "54",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "58",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "5c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "60",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "64",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "68",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "6c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "70",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "74",
+                "type": "s32",
+                "name": "? count",
+                "notes": ""
+            },
+            {
+                "offset": "78",
+                "type": "TList<>*",
+                "name": "? list",
+                "notes": ""
+            },
+            {
+                "offset": "7c",
+                "type": "TList<>*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "80",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "84",
+                "type": "string",
+                "name": "prm location",
+                "notes": ""
+            },
+            {
+                "offset": "88",
+                "type": "void*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "8c",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "a0",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "b4",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "c8",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "dc",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "f0",
+                "type": "TStageEnemyInfoTable*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "f4",
+                "type": "TNpcParams*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "f8",
+                "type": "TAreaCylinderManager*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "fc",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

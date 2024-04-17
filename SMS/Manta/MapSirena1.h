@@ -78,3 +78,5 @@ private:
   void chb_show_is_chasing_clicked(s32 state) const;
   void txb_update_timer_changed(QString str) const;
 };
+
+// TODO マップ左側に表示するマンタの情報のリストを作る
