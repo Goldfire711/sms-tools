@@ -1,6 +1,7 @@
 {
     "JDrama::TActor": {
         "size": "44",
+        "notes": "2つ継承? TActor() : public TPlacement, public JStage::TActor {}",
         "offsets": [
             {
                 "offset": "0",

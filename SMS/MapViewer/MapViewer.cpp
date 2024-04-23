@@ -1,27 +1,41 @@
 #include "MapViewer.h"
 
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QFileDialog>
+#include <QCoreApplication>
 
 extern QTimer* g_timer_100ms;
 
 MapViewer::MapViewer(QWidget* parent)
   : QWidget(parent) {
-  ui.setupUi(this);
   map_pinna_ = new MapPinnaBeach(nullptr);
-  ui.verticalLayout->addWidget(map_pinna_);
+
+  chb_center_on_ = new QCheckBox();
+  chb_center_on_->setText("Center on mario");
+  btn_capture_ = new QPushButton();
+  btn_capture_->setText("Capture");
+
+  auto* lo_top = new QHBoxLayout();
+  lo_top->addWidget(chb_center_on_);
+  lo_top->addWidget(btn_capture_);
+
+  auto* lo_main = new QVBoxLayout();
+  lo_main->addLayout(lo_top);
+  lo_main->addWidget(map_pinna_);
+  setLayout(lo_main);
+
   //resize(map_pinna->size());
-  connect(ui.check_center_on, &QCheckBox::stateChanged, this, &MapViewer::center_on_clicked);
-  connect(ui.button_capture, &QPushButton::clicked, this, &MapViewer::button_capture_clicked);
+  connect(chb_center_on_, &QCheckBox::stateChanged, this, [=]() {
+    if (chb_center_on_->checkState() == Qt::Unchecked)
+      map_pinna_->center_on_mario_ = false;
+    else
+      map_pinna_->center_on_mario_ = true;
+    });
+  connect(btn_capture_, &QPushButton::clicked, this, &MapViewer::button_capture_clicked);
 }
 
 MapViewer::~MapViewer() {
-}
-
-void MapViewer::center_on_clicked() {
-  if (ui.check_center_on->checkState() == Qt::Unchecked)
-    map_pinna_->center_on_mario_ = false;
-  else
-    map_pinna_->center_on_mario_ = true;
 }
 
 void MapViewer::button_capture_clicked() {

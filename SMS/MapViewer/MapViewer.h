@@ -1,7 +1,8 @@
 #pragma once
 
 #include <QWidget>
-#include "ui_MapViewer.h"
+#include <QCheckBox>
+#include <QPushButton>
 #include "MapPinnaBeach.h"
 
 class MapViewer : public QWidget {
@@ -12,9 +13,9 @@ public:
   ~MapViewer() override;
 
 private:
-  Ui::MapViewer ui;
   MapPinnaBeach* map_pinna_;
+  QCheckBox* chb_center_on_;
+  QPushButton* btn_capture_;
 
-  void center_on_clicked();
   void button_capture_clicked();
 };

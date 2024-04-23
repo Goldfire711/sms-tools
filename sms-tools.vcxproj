@@ -154,7 +154,6 @@
     <QtUic Include="SMS\ObjectViewer\ObjectParameters.ui" />
     <QtUic Include="Test\Test\Test.ui" />
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
-    <QtUic Include="SMS\MapViewer\MapViewer.ui" />
     <QtUic Include="SMS\Spin\Spin.ui" />
     <QtUic Include="Test\TestMainWindow.ui" />
   </ItemGroup>
