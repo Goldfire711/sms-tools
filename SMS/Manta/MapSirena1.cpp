@@ -23,7 +23,7 @@ void MapSirena1::initialize() {
   auto* scene = new QGraphicsScene(this);
   setScene(scene);
 
-  const QPixmap pix_sirena_beach(":/sms/SirenaBeach_19200,10800.png");
+  const QPixmap pix_sirena_beach(":stages/SirenaBeach_x10.png");
   auto* item_sirena_beach = scene->addPixmap(pix_sirena_beach);
   item_sirena_beach->setTransformOriginPoint(pix_sirena_beach.width() / 2.0, pix_sirena_beach.height() / 2.0);
   item_sirena_beach->setTransform(QTransform().translate(-pix_sirena_beach.width() / 2.0, -pix_sirena_beach.height() / 2.0));

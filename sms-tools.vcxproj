@@ -108,6 +108,9 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
     <ClCompile Include="SMS\Manta\MapSirena1.cpp" />
     <ClCompile Include="SMS\Manta\MapViewerSirena1.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapGeneral.cpp" />
+    <ClCompile Include="SMS\MapViewer\ItemMap.cpp" />
+    <ClCompile Include="SMS\MapViewer\ItemMario.cpp" />
     <ClCompile Include="SMS\ObjectViewer\ObjectSubParameters.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersModel.cpp" />
     <ClCompile Include="SMS\ObjectViewer\EditParametersDialog.cpp" />
@@ -194,6 +197,8 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulator.h" />
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
     <QtMoc Include="SMS\Manta\MapSirena1.h" />
+    <QtMoc Include="SMS\MapViewer\MapGeneral.h" />
+    <ClInclude Include="SMS\MapViewer\Items.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />
     <ClInclude Include="SMS\FluffManipulator\FluffRNGFunctions.h" />
     <ClInclude Include="SMS\FluffManipulator\RNGFunctions.h" />

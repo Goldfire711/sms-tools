@@ -14,10 +14,16 @@
         <file alias="hidden_star.png">SMS/Resources/hidden_star.png</file>
         <file alias="PiantaVillageDay.png">SMS/Resources/PiantaVillageDay.png</file>
         <file alias="blue_bird.png">SMS/Resources/blue_bird.png</file>
-        <file alias="SirenaBeach_19200,10800.png">SMS/Resources/SirenaBeach_19200,10800.png</file>
         <file alias="manta.png">SMS/Resources/manta.png</file>
         <file alias="manta_white.png">SMS/Resources/manta_white.png</file>
         <file alias="manta_red.png">SMS/Resources/manta_red.png</file>
         <file alias="manta_purple.png">SMS/Resources/manta_purple.png</file>
+        <file alias="puchipuchi_blue_x1.png">SMS/Resources/puchipuchi_blue_x1.png</file>
+    </qresource>
+    <qresource prefix="/stages">
+        <file alias="SirenaBeach_x10.png">SMS/Resources/Stages/SirenaBeach_x10.png</file>
+        <file alias="PiantaVillageNight_x20.png">SMS/Resources/Stages/PiantaVillageNight_x20.png</file>
+        <file alias="PiantaVillageNight_x20_h7100.png">SMS/Resources/Stages/PiantaVillageNight_x20_h7100.png</file>
+        <file alias="PiantaVillageNight_x20_h-800.png">SMS/Resources/Stages/PiantaVillageNight_x20_h-800.png</file>
     </qresource>
 </RCC>
