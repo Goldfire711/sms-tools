@@ -4,8 +4,13 @@
 #include <QPixmap>
 #include "../../Common/CommonTypes.h"
 #include "../../Memory/Memory.h"
+#include <json.hpp>
+#include <sstream>
 
 using namespace memory;
+using json = nlohmann::json;
+extern json g_vtable_to_class;
+extern json g_class_to_png;
 
 class ItemMap : public QGraphicsPixmapItem {
 
@@ -14,7 +19,6 @@ public:
   void update(const float mario_y);
   bool is_changed() const;
 
-  s64 former_id_ = 0;
   s8 stage_ = 0;
   s8 episode_ = 0;
 private:
@@ -23,6 +27,8 @@ private:
     float height;
   };
   QVector<map_height> maps_;
+  s64 former_id_ = 0;
+
   enum {
     AIRPORT1 = 0,
     DOLPIC = 1,
@@ -77,4 +83,32 @@ public:
   float y_ = 0;
   float z_ = 0;
   u16 spin_angle_ = 0;
+};
+
+class ItemObjBase : public QGraphicsPixmapItem {
+public:
+  ItemObjBase(const u32 p_obj, const std::string class_name);
+  void update();
+
+  u32 p_obj_ = 0;
+  u32 vt_ = 0;
+  float x_ = 0;
+  float y_ = 0;
+  float z_ = 0;
+  float y_rot_ = 0;
+  float scale_ = 1;
+  u32 draw_info_ = 0;
+
+  std::string class_name_;
+};
+
+class ItemGroupManagerBase : public QGraphicsItemGroup {
+public:
+  ItemGroupManagerBase(const u32 p_manager);
+  ~ItemGroupManagerBase();
+  virtual void update();
+
+  u32 p_manager_ = 0;
+  std::string class_name_;
+  QVector<ItemObjBase*> objs_;
 };

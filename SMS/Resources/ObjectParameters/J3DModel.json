@@ -16,7 +16,7 @@
             },
             {
                 "offset": "58",
-                "type": "float*",
+                "type": "JGeometry::TMatrix34<>*",
                 "name": "Matrix34",
                 "notes": ""
             }

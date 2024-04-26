@@ -2,7 +2,7 @@
 
 MapGeneral::MapGeneral(QWidget *parent)
   : QGraphicsView(parent) {
-  timer_id_ = startTimer(100);
+  timer_id_ = startTimer(33);
   init();
   refresh();
 }
@@ -19,12 +19,6 @@ void MapGeneral::init() {
   scene_->addItem(map_);
   scene_->addItem(mario_);
 
-  QPen white_pen(QColor(0xff, 0xff, 0xff, 0x80));
-  white_pen.setWidth(100);
-  scene_->addRect(-5000, -5000, 5000 * 2, 5000 * 2, white_pen);
-  scene_->addRect(-5425, -5425, 5425 * 2, 5425 * 2, white_pen);
-  scene_->addRect(-14848, -19968, 14848 * 2, 19968 * 2, white_pen);
-
   setDragMode(ScrollHandDrag);
 }
 
@@ -32,8 +26,25 @@ void MapGeneral::refresh() {
   if (DolphinComm::DolphinAccessor::getStatus() !=
     DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
-  // 不要なitemsをdelete?
   map_->set_map();
+
+  for (auto* manager : managers_) {
+    scene_->removeItem(manager);
+    delete manager;
+  }
+  managers_.clear();
+  const u32 p_conductor = read_u32(0x8040a6e8);
+  const s32 count = read_u32(p_conductor + 0x14);
+  const u32 head = read_u32(p_conductor + 0x18);
+  u32 next = head;
+  for (s32 i = 0; i < count - 1; i++) {
+    next = read_u32(next);
+    const u32 p_manager = read_u32(next + 0x8);
+    // クラス名によっては専用のItemGroupManagerクラスを使う？
+    auto* manager = new ItemGroupManagerBase(p_manager);
+    scene_->addItem(manager);
+    managers_.append(manager);
+  }
 }
 
 void MapGeneral::timerEvent(QTimerEvent* event) {
@@ -46,6 +57,9 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
   
   mario_->update();
   map_->update(mario_->y_);
+  for (auto* manager : managers_) {
+    manager->update();
+  }
 
   if (center_on_mario_)
     centerOn(mario_);
@@ -63,7 +77,13 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
   scale(view_scale, view_scale);
 }
 
-void MapGeneral::set_timer_interval(s32 interval) {
+void MapGeneral::set_center_on_mario(const bool is_center) {
+  center_on_mario_ = is_center;
+}
+
+void MapGeneral::set_timer_interval(const s32 interval) {
+  if (interval < 16)
+    return
   killTimer(timer_id_);
   timer_id_ = startTimer(interval);
 }

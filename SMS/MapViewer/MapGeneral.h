@@ -14,9 +14,11 @@ class MapGeneral  : public QGraphicsView {
 public:
   MapGeneral(QWidget *parent);
   virtual void refresh();
-  void set_timer_interval(s32 interval);
+  void set_center_on_mario(const bool is_center);
+  void set_timer_interval(const s32 interval);
 
   bool center_on_mario_ = false;
+  s32 timer_id_ = -1;
 
 protected:
   void timerEvent(QTimerEvent* event) override;
@@ -26,7 +28,7 @@ private:
   virtual void init();
 
   QGraphicsScene* scene_;
-  s32 timer_id_ = -1;
   ItemMap* map_;
   ItemMario* mario_;
+  QVector<ItemGroupManagerBase*> managers_;
 };

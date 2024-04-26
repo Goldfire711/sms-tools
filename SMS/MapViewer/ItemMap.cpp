@@ -7,6 +7,7 @@ void ItemMap::set_map() {
   stage_ = read_s8(p_director + 0x7c);
   episode_ = read_s8(p_director + 0x7d);
 
+  // TODO
   switch (stage_) {
   case SIRENA:
     maps_.append({ QPixmap(":stages/SirenaBeach_x10.png") , INFINITY });
