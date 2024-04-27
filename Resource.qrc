@@ -9,7 +9,6 @@
         <file alias="fruit_durian.png">SMS/Resources/fruit_durian.png</file>
         <file alias="fruit_papaya.png">SMS/Resources/fruit_papaya.png</file>
         <file alias="fruit_pine.png">SMS/Resources/fruit_pine.png</file>
-        <file alias="mario.png">SMS/Resources/mario.png</file>
         <file alias="shine.png">SMS/Resources/shine.png</file>
         <file alias="hidden_star.png">SMS/Resources/hidden_star.png</file>
         <file alias="PiantaVillageDay.png">SMS/Resources/PiantaVillageDay.png</file>
@@ -19,6 +18,7 @@
         <file alias="manta_red.png">SMS/Resources/manta_red.png</file>
         <file alias="manta_purple.png">SMS/Resources/manta_purple.png</file>
         <file alias="puchipuchi_blue_x1.png">SMS/Resources/puchipuchi_blue_x1.png</file>
+        <file alias="mario.png">SMS/Resources/mario.png</file>
     </qresource>
     <qresource prefix="/stages">
         <file alias="SirenaBeach_x10.png">SMS/Resources/Stages/SirenaBeach_x10.png</file>

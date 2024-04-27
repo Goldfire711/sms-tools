@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <json.hpp>
 #include <fstream>
+#include <QValidator>
 
 class MapViewer : public QWidget {
 Q_OBJECT

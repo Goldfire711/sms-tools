@@ -108,7 +108,7 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
     <ClCompile Include="SMS\Manta\MapSirena1.cpp" />
     <ClCompile Include="SMS\Manta\MapViewerSirena1.cpp" />
-    <ClCompile Include="SMS\MapViewer\ItemGroupManagerBase.cpp" />
+    <ClCompile Include="SMS\MapViewer\ItemManagerBase.cpp" />
     <ClCompile Include="SMS\MapViewer\ItemObjBase.cpp" />
     <ClCompile Include="SMS\MapViewer\MapGeneral.cpp" />
     <ClCompile Include="SMS\MapViewer\ItemMap.cpp" />

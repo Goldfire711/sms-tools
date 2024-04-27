@@ -6,11 +6,15 @@
 #include "../../Memory/Memory.h"
 #include <json.hpp>
 #include <sstream>
+#include <QGraphicsEllipseItem>
+#include <QPen>
+#include <QDebug>
 
 using namespace memory;
 using json = nlohmann::json;
 extern json g_vtable_to_class;
 extern json g_class_to_png;
+extern qreal g_obj_scale;
 
 class ItemMap : public QGraphicsPixmapItem {
 
@@ -73,42 +77,61 @@ private:
   };
 };
 
-class ItemMario : public QGraphicsPixmapItem {
+enum ItemType {
+  MARIO = QGraphicsItem::UserType + 1,
+  OBJ = QGraphicsItem::UserType + 2,
+};
+
+class ItemMario : public QGraphicsItemGroup {
 public:
   ItemMario();
   void update();
+
+  enum { Type = ItemType::MARIO };
+  int type() const override { return Type; }
 
   u32 p_mario_ = 0;
   float x_ = 0;
   float y_ = 0;
   float z_ = 0;
   u16 spin_angle_ = 0;
+  float atk_radius_ = 80;
+
+  QGraphicsPixmapItem* pix_;
+  QGraphicsEllipseItem* circle_;
 };
 
-class ItemObjBase : public QGraphicsPixmapItem {
+class ItemObjBase : public QGraphicsItemGroup {
 public:
-  ItemObjBase(const u32 p_obj, const std::string class_name);
+  ItemObjBase(const u32 p_obj, const std::string class_name, const s32 manager_id);
   void update();
+
+  enum { Type = ItemType::OBJ };
+  int type() const override { return Type; }
 
   u32 p_obj_ = 0;
   u32 vt_ = 0;
   float x_ = 0;
   float y_ = 0;
   float z_ = 0;
-  float y_rot_ = 0;
+  float rot_y_ = 0;
   float scale_ = 1;
   u32 draw_info_ = 0;
-
+  s16 id_ = -1;
+  s32 manager_id_ = -1;
   std::string class_name_;
+
+  QGraphicsPixmapItem* pix_;
 };
 
-class ItemGroupManagerBase : public QGraphicsItemGroup {
+class ItemManagerBase : public QGraphicsItemGroup {
 public:
-  ItemGroupManagerBase(const u32 p_manager);
-  ~ItemGroupManagerBase();
+  ItemManagerBase(const u32 p_manager, const s32 id = -1);
+  ~ItemManagerBase();
   virtual void update();
 
   u32 p_manager_ = 0;
+  s32 id_ = -1;
   std::string class_name_;
   QVector<ItemObjBase*> objs_;
 };

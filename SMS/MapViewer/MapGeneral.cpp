@@ -40,11 +40,13 @@ void MapGeneral::refresh() {
   for (s32 i = 0; i < count - 1; i++) {
     next = read_u32(next);
     const u32 p_manager = read_u32(next + 0x8);
-    // クラス名によっては専用のItemGroupManagerクラスを使う？
-    auto* manager = new ItemGroupManagerBase(p_manager);
+    // クラス名によっては専用のItemManagerクラスを使う？
+    auto* manager = new ItemManagerBase(p_manager, i);
     scene_->addItem(manager);
     managers_.append(manager);
   }
+
+  // ここにmap_->stage_, map_->episode_ごとの処理？
 }
 
 void MapGeneral::timerEvent(QTimerEvent* event) {
@@ -62,7 +64,7 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
   }
 
   if (center_on_mario_)
-    centerOn(mario_);
+    centerOn(mario_->pix_);
 
   QGraphicsView::timerEvent(event);
 }
@@ -75,6 +77,17 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
     view_scale = 1 / 1.1;
   }
   scale(view_scale, view_scale);
+}
+
+void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
+  auto* item = scene_->itemAt(mapToScene(event->pos()), QTransform());
+  if (item->type() == ItemType::OBJ) {
+    auto* obj = static_cast<ItemObjBase*>(item);
+    qDebug() << "Clicked on item:" << QString::fromStdString(obj->class_name_);
+    qDebug() << obj->manager_id_ << "," << obj->id_;
+  }
+
+  QGraphicsView::mouseDoubleClickEvent(event);
 }
 
 void MapGeneral::set_center_on_mario(const bool is_center) {

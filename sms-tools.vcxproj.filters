@@ -133,7 +133,7 @@
     <ClCompile Include="SMS\MapViewer\ItemObjBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMS\MapViewer\ItemGroupManagerBase.cpp">
+    <ClCompile Include="SMS\MapViewer\ItemManagerBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

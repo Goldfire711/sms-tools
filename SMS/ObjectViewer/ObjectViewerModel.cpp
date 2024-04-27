@@ -2,6 +2,8 @@
 #include "ObjectViewerModel.h"
 #include "ObjectViewerItem.h"
 #include "../../Memory/Memory.h"
+#include <QColor>
+#include <QDebug>
 
 ObjectViewerModel::ObjectViewerModel(const QJsonObject &json, QObject* parent)
   : QAbstractItemModel(parent) {
@@ -23,7 +25,7 @@ QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
   if (!index.isValid())
     return QVariant();
 
-  if (role != Qt::DisplayRole)
+  if (role != Qt::DisplayRole && role != Qt::ForegroundRole)
     return QVariant();
 
   if (DolphinComm::DolphinAccessor::getStatus() != DolphinComm::DolphinAccessor::DolphinStatus::hooked)
@@ -33,6 +35,15 @@ QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
   auto* item = static_cast<ObjectViewerItem*>(index.internalPointer());
   //if (item->is_attribute_)
   //  return QVariant();
+
+  if (item->parent_item_ != root_item_ && role == Qt::ForegroundRole) {
+    const u32 draw_info = memory::read_u32(item->value_.toUInt() + 0xf0);
+    if (draw_info & 1)  // isInactive
+      return QColor(Qt::gray);
+    if (!(draw_info & 4)) // isInCamera
+      return QColor(Qt::blue);
+    return QVariant();
+  }
 
   switch (index.column()) {
   case COLUMN_NAME:

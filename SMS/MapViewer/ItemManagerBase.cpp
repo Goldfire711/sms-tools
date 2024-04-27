@@ -1,7 +1,7 @@
 #include "Items.h"
 
-ItemGroupManagerBase::ItemGroupManagerBase(const u32 p_manager)
-  : p_manager_(p_manager) {
+ItemManagerBase::ItemManagerBase(const u32 p_manager, const s32 id)
+  : p_manager_(p_manager), id_(id) {
   const u32 p_objs = read_u32(p_manager_ + 0x18);
   const s32 count = read_s32(p_manager_ + 0x14);
   if (count <= 0 || 200 <= count)
@@ -14,19 +14,19 @@ ItemGroupManagerBase::ItemGroupManagerBase(const u32 p_manager)
     ss << std::hex << vt;
     const std::string obj_class = g_vtable_to_class[ss.str()];
     // クラス名によっては専用のItemObjクラスを使う予定
-    auto* obj = new ItemObjBase(p, obj_class);
+    auto* obj = new ItemObjBase(p, obj_class, id);
     addToGroup(obj);
     objs_.append(obj);
   }
 };
 
-ItemGroupManagerBase::~ItemGroupManagerBase() {
+ItemManagerBase::~ItemManagerBase() {
   for (auto* obj : objs_) {
     delete obj;
   }
 }
 
-void ItemGroupManagerBase::update() {
+void ItemManagerBase::update() {
   for (auto* obj : objs_) {
     obj->update();
   }

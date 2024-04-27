@@ -5,6 +5,7 @@
 #include "Items.h"
 #include "../../Memory/Memory.h"
 #include <QMouseEvent>
+#include <QDebug>
 
 using namespace memory;
 
@@ -23,6 +24,7 @@ public:
 protected:
   void timerEvent(QTimerEvent* event) override;
   void wheelEvent(QWheelEvent* event) override;
+  void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private:
   virtual void init();
@@ -30,5 +32,5 @@ private:
   QGraphicsScene* scene_;
   ItemMap* map_;
   ItemMario* mario_;
-  QVector<ItemGroupManagerBase*> managers_;
+  QVector<ItemManagerBase*> managers_;
 };
