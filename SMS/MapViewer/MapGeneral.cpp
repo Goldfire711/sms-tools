@@ -86,7 +86,6 @@ void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
     qDebug() << "Clicked on item:" << QString::fromStdString(obj->class_name_);
     qDebug() << obj->manager_id_ << "," << obj->id_;
   }
-
   QGraphicsView::mouseDoubleClickEvent(event);
 }
 

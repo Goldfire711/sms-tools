@@ -14,7 +14,12 @@ ItemManagerBase::ItemManagerBase(const u32 p_manager, const s32 id)
     ss << std::hex << vt;
     const std::string obj_class = g_vtable_to_class[ss.str()];
     // クラス名によっては専用のItemObjクラスを使う予定
-    auto* obj = new ItemObjBase(p, obj_class, id);
+    ItemObjBase* obj;
+    if (obj_class == "TBossManta") {
+      obj = new ItemBossManta(p, obj_class, id, this);
+    } else {
+      obj = new ItemObjBase(p, obj_class, id, this);
+    }
     addToGroup(obj);
     objs_.append(obj);
   }

@@ -9,6 +9,7 @@
 #include <QGraphicsEllipseItem>
 #include <QPen>
 #include <QDebug>
+#include <QtMath>
 
 using namespace memory;
 using json = nlohmann::json;
@@ -104,7 +105,7 @@ public:
 
 class ItemObjBase : public QGraphicsItemGroup {
 public:
-  ItemObjBase(u32 p_obj, std::string class_name, s32 manager_id);
+  ItemObjBase(u32 p_obj, const std::string &class_name, s32 manager_id, QGraphicsItem* parent = nullptr);
   void update();
 
   enum { Type = ItemType::OBJ };
@@ -123,6 +124,10 @@ public:
   std::string class_name_;
 
   QGraphicsPixmapItem* pix_;
+private:
+  virtual void set_scale();
+  virtual void set_rotation();
+  virtual void set_appearance();
 };
 
 class ItemManagerBase : public QGraphicsItemGroup {
@@ -135,4 +140,16 @@ public:
   s32 id_ = -1;
   std::string class_name_;
   QVector<ItemObjBase*> objs_;
+};
+
+class ItemBossManta : public ItemObjBase {
+public:
+  ItemBossManta(u32 p_obj, const std::string& class_name, s32 manager_id, QGraphicsItem* parent = nullptr);
+private:
+  void set_scale() override;
+  void set_rotation() override;
+  void set_appearance() override;
+
+  QPixmap pixmap_normal_;
+  QPixmap pixmap_purple_;
 };
