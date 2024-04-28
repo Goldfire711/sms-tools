@@ -1,15 +1,12 @@
 #include "Items.h"
 
 ItemObjBase::ItemObjBase(const u32 p_obj, const std::string class_name, const s32 manager_id) 
-  : p_obj_(p_obj), class_name_(class_name), manager_id_(manager_id) {
-  QPixmap pix;
+  : p_obj_(p_obj), manager_id_(manager_id), class_name_(class_name) {
   if (g_class_to_png.contains(class_name)) {
     const std::string dir = g_class_to_png[class_name];
-    pix = QPixmap(QString::fromStdString(dir));
+    const auto pix = QPixmap(QString::fromStdString(dir));
     pix_ = new QGraphicsPixmapItem(pix);
     addToGroup(pix_);
-    pix_->setTransformOriginPoint(pix.width() / 2.0, pix.height() / 2.0);
-    pix_->setTransform(QTransform().translate(-pix.width() / 2.0, -pix.height() / 2.0));
   } else {
     pix_ = new QGraphicsPixmapItem();
   }

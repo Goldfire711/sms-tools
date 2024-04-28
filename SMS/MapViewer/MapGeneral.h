@@ -14,6 +14,7 @@ class MapGeneral  : public QGraphicsView {
 
 public:
   MapGeneral(QWidget *parent);
+  virtual void init();
   virtual void refresh();
   void set_center_on_mario(const bool is_center);
   void set_timer_interval(const s32 interval);
@@ -27,7 +28,6 @@ protected:
   void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private:
-  virtual void init();
 
   QGraphicsScene* scene_;
   ItemMap* map_;

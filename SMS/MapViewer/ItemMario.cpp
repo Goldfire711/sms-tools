@@ -1,12 +1,8 @@
 #include "Items.h"
 
 ItemMario::ItemMario() {
-  QPixmap pix_mario(":sms/mario.png");
+  const QPixmap pix_mario(":sms/mario.png");
   pix_ = new QGraphicsPixmapItem(pix_mario);
-  const QRectF bounds = pix_->boundingRect();
-  pix_->setTransformOriginPoint(bounds.center());
-  pix_->setTransform(QTransform().translate(-bounds.center().x(), -bounds.center().y()));
-  pix_->setTransform(QTransform().translate(-100, -100));
   addToGroup(pix_);
 
   circle_ = new QGraphicsEllipseItem(-100, -100, 200, 200);

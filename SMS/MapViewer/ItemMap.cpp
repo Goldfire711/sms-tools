@@ -2,7 +2,6 @@
 
 void ItemMap::set_map() {
   maps_.clear();
-  former_id_ = 0;
 
   constexpr u32 p_director = 0x80907a20;
   stage_ = read_s8(p_director + 0x7c);
@@ -40,14 +39,14 @@ void ItemMap::update(const float mario_y) {
   if (maps_.count() <= 1)
     return;
   
-  s64 id = 0;
-  for (s64 i = 0; i < maps_.count(); i++) {
+  cur_map_ = &maps_[0];
+  for (s32 i = 0; i < maps_.count(); i++) {
     if (mario_y <= maps_[i].height)
-      id = i;
+      cur_map_ = &maps_[i];
   }
-  if (id != former_id_) {
-    setPixmap(maps_[id].pix);
-    former_id_ = id;
+  if (cur_map_ != former_map_) {
+    setPixmap(cur_map_->pix);
+    former_map_ = cur_map_;
   }
 }
 

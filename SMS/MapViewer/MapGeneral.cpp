@@ -3,8 +3,6 @@
 MapGeneral::MapGeneral(QWidget *parent)
   : QGraphicsView(parent) {
   timer_id_ = startTimer(33);
-  init();
-  refresh();
 }
 
 void MapGeneral::init() {
@@ -20,6 +18,8 @@ void MapGeneral::init() {
   scene_->addItem(mario_);
 
   setDragMode(ScrollHandDrag);
+
+  refresh();
 }
 
 void MapGeneral::refresh() {
@@ -81,8 +81,8 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
 
 void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
   auto* item = scene_->itemAt(mapToScene(event->pos()), QTransform());
-  if (item->type() == ItemType::OBJ) {
-    auto* obj = static_cast<ItemObjBase*>(item);
+  if (item->type() == OBJ) {
+    const auto* obj = dynamic_cast<ItemObjBase*>(item);
     qDebug() << "Clicked on item:" << QString::fromStdString(obj->class_name_);
     qDebug() << obj->manager_id_ << "," << obj->id_;
   }

@@ -13,6 +13,7 @@ MapViewer::MapViewer(QWidget* parent)
 
   // initialize widgets
   map_ = new MapGeneral(nullptr);
+  map_->init();
   auto* chb_center_on = new QCheckBox("Center on mario");
   auto* lbl_update_timer = new QLabel("Update Interval(ms)");
   auto* txb_update_timer = new QLineEdit("33");
@@ -28,11 +29,11 @@ MapViewer::MapViewer(QWidget* parent)
   connect(chb_center_on, &QCheckBox::stateChanged, this, [=](const s32 state) {
     map_->set_center_on_mario(state);
     });
-  connect(txb_update_timer, &QLineEdit::textChanged, this, [=](const QString str) {
+  connect(txb_update_timer, &QLineEdit::textChanged, this, [=](const QString &str) {
     const s32 interval = str.toInt();
     map_->set_timer_interval(interval);
     });
-  connect(txb_obj_scale, &QLineEdit::textChanged, this, [=](const QString str) {
+  connect(txb_obj_scale, &QLineEdit::textChanged, this, [=](const QString &str) {
     const qreal obj_scale = str.toDouble();
     if (1 <= obj_scale || obj_scale <= 100)
       g_obj_scale = obj_scale;
@@ -55,6 +56,5 @@ MapViewer::MapViewer(QWidget* parent)
   setLayout(lo_main);
 }
 
-MapViewer::~MapViewer() {
-}
+MapViewer::~MapViewer() = default;
 

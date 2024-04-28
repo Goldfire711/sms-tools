@@ -20,18 +20,19 @@ class ItemMap : public QGraphicsPixmapItem {
 
 public:
   void set_map();
-  void update(const float mario_y);
+  void update(float mario_y);
   bool is_changed() const;
 
   s8 stage_ = 0;
   s8 episode_ = 0;
-private:
   struct map_height {
     QPixmap pix;
     float height;
   };
   QVector<map_height> maps_;
-  s64 former_id_ = 0;
+  map_height* cur_map_ = nullptr;
+private:
+  map_height* former_map_ = nullptr;
 
   enum {
     AIRPORT1 = 0,
@@ -103,7 +104,7 @@ public:
 
 class ItemObjBase : public QGraphicsItemGroup {
 public:
-  ItemObjBase(const u32 p_obj, const std::string class_name, const s32 manager_id);
+  ItemObjBase(u32 p_obj, std::string class_name, s32 manager_id);
   void update();
 
   enum { Type = ItemType::OBJ };
@@ -126,8 +127,8 @@ public:
 
 class ItemManagerBase : public QGraphicsItemGroup {
 public:
-  ItemManagerBase(const u32 p_manager, const s32 id = -1);
-  ~ItemManagerBase();
+  ItemManagerBase(u32 p_manager, s32 id = -1);
+  ~ItemManagerBase() override;
   virtual void update();
 
   u32 p_manager_ = 0;
