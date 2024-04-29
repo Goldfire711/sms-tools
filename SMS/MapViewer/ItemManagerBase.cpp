@@ -16,9 +16,14 @@ ItemManagerBase::ItemManagerBase(const u32 p_manager, const s32 id)
     // クラス名によっては専用のItemObjクラスを使う予定
     ItemObjBase* obj;
     if (obj_class == "TBossManta") {
-      obj = new ItemBossManta(p, obj_class, id, this);
+      obj = new ItemBossManta(p, this);
     } else {
-      obj = new ItemObjBase(p, obj_class, id, this);
+      obj = new ItemObjBase(p, this);
+      if (g_class_to_png.contains(obj_class)) {
+        const std::string dir = g_class_to_png[obj_class];
+        const auto pix = QPixmap(QString::fromStdString(dir));
+        obj->pix_->setPixmap(pix);
+      }
     }
     addToGroup(obj);
     objs_.append(obj);

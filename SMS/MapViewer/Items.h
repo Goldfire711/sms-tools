@@ -11,6 +11,7 @@
 #include <QDebug>
 #include <QtMath>
 
+class ItemManagerBase;
 using namespace memory;
 using json = nlohmann::json;
 extern json g_vtable_to_class;
@@ -105,7 +106,7 @@ public:
 
 class ItemObjBase : public QGraphicsItemGroup {
 public:
-  ItemObjBase(u32 p_obj, const std::string &class_name, s32 manager_id, QGraphicsItem* parent = nullptr);
+  ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);
   void update();
 
   enum { Type = ItemType::OBJ };
@@ -121,7 +122,6 @@ public:
   u32 draw_info_ = 0;
   s16 id_ = -1;
   s32 manager_id_ = -1;
-  std::string class_name_;
 
   QGraphicsPixmapItem* pix_;
 private:
@@ -144,7 +144,7 @@ public:
 
 class ItemBossManta : public ItemObjBase {
 public:
-  ItemBossManta(u32 p_obj, const std::string& class_name, s32 manager_id, QGraphicsItem* parent = nullptr);
+  ItemBossManta(u32 p_obj, ItemManagerBase* parent = nullptr);
 private:
   void set_scale() override;
   void set_rotation() override;

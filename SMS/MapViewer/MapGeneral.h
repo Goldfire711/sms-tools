@@ -6,6 +6,7 @@
 #include "../../Memory/Memory.h"
 #include <QMouseEvent>
 #include <QDebug>
+#include <QGraphicsRectItem>
 
 using namespace memory;
 
@@ -33,4 +34,5 @@ private:
   ItemMap* map_;
   ItemMario* mario_;
   QVector<ItemManagerBase*> managers_;
+  QGraphicsRectItem* rect_selected_;
 };

@@ -14,8 +14,15 @@ void MapGeneral::init() {
   map_ = new ItemMap();
   mario_ = new ItemMario();
 
+  rect_selected_ = new QGraphicsRectItem();
+  QPen pen(Qt::red);
+  pen.setWidth(20);
+  rect_selected_->setPen(pen);
+  rect_selected_->setVisible(false);
+
   scene_->addItem(map_);
   scene_->addItem(mario_);
+  scene_->addItem(rect_selected_);
 
   setDragMode(ScrollHandDrag);
 
@@ -80,11 +87,19 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
 }
 
 void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
-  auto* item = scene_->itemAt(mapToScene(event->pos()), QTransform());
-  if (item->type() == OBJ) {
+  auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
+  auto* item = pix_item->parentItem();
+  if (item != nullptr && item->type() == OBJ) {
     const auto* obj = dynamic_cast<ItemObjBase*>(item);
-    qDebug() << "Clicked on item:" << QString::fromStdString(obj->class_name_);
-    qDebug() << obj->manager_id_ << "," << obj->id_;
+    qDebug() << "Clicked on item:" << obj->manager_id_ << "," << obj->id_;
+    qDebug() << obj->pix_->boundingRect() << obj->pix_->pos() - obj->pix_->boundingRect().center();
+    // TODO ItemObjBase‘¤‚ÉˆÚ‚·
+    rect_selected_->setRect(0, 0, obj->pix_->boundingRect().width() * obj->pix_->scale(), obj->pix_->boundingRect().height() * obj->pix_->scale());
+    //rect_selected_->setScale(obj->scale_);
+    rect_selected_->setPos(obj->pix_->pos() - obj->pix_->boundingRect().center() * obj->pix_->scale());
+    rect_selected_->setVisible(true);
+  } else {
+    rect_selected_->setVisible(false);
   }
   QGraphicsView::mouseDoubleClickEvent(event);
 }
