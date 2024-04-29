@@ -4,7 +4,7 @@ json g_class_to_png;
 qreal g_obj_scale = 2;
 
 MapViewer::MapViewer(QWidget* parent)
-  : QWidget(parent) {
+  : QMainWindow(parent) {
   std::ifstream ifs("SMS/Resources/class_to_png.json");
   g_class_to_png = json::parse(ifs);
 
@@ -26,10 +26,10 @@ MapViewer::MapViewer(QWidget* parent)
 
   auto* btn_refresh = new QPushButton("Refresh");
 
-  connect(chb_center_on, &QCheckBox::stateChanged, this, [=](const s32 state) {
+  connect(chb_center_on, &QCheckBox::stateChanged, this, [this](const s32 state) {
     map_->set_center_on_mario(state);
     });
-  connect(txb_update_timer, &QLineEdit::textChanged, this, [=](const QString &str) {
+  connect(txb_update_timer, &QLineEdit::textChanged, this, [this](const QString &str) {
     const s32 interval = str.toInt();
     map_->set_timer_interval(interval);
     });
@@ -40,7 +40,7 @@ MapViewer::MapViewer(QWidget* parent)
     });
   connect(btn_refresh, &QPushButton::clicked, map_, &MapGeneral::refresh);
 
-  // set layout
+  // set layouts
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on);
   lo_top->addWidget(lbl_update_timer);
@@ -49,11 +49,11 @@ MapViewer::MapViewer(QWidget* parent)
   lo_top->addWidget(txb_obj_scale);
   lo_top->addStretch();
   lo_top->addWidget(btn_refresh);
+  auto* top = new QWidget();
+  top->setLayout(lo_top);
+  setMenuWidget(top);
 
-  auto* lo_main = new QVBoxLayout();
-  lo_main->addLayout(lo_top);
-  lo_main->addWidget(map_);
-  setLayout(lo_main);
+  setCentralWidget(map_);
 }
 
 MapViewer::~MapViewer() = default;

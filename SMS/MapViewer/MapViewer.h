@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QMainWindow>
 #include <QCheckBox>
 #include <QPushButton>
 #include "MapPinnaBeach.h"
@@ -13,7 +14,7 @@
 #include <fstream>
 #include <QValidator>
 
-class MapViewer : public QWidget {
+class MapViewer : public QMainWindow {
 Q_OBJECT
 
 public:
