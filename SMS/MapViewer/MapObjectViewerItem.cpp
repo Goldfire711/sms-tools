@@ -41,10 +41,14 @@ MapObjectViewerItem* MapObjectViewerItem::append_object(const u32 p_obj) {
 
 QVariant MapObjectViewerItem::data(const s32 column) const {
   switch (column) {
-  case COLUMN_NAME:
+  case 0:
     return name_;
-  case COLUMN_CLASS_NAME:
+  case 1:
     return class_name_;
+  case 2:
+    if (parent_ == nullptr)
+      return "Address";
+    return "0x" + QString::number(address_, 16).toUpper();
   default:
     return {};
   }
@@ -62,10 +66,6 @@ s32 MapObjectViewerItem::row() const {
     return std::distance(parent_->children_.cbegin(), it);
   Q_ASSERT(false); // should not happen
   return -1;
-}
-
-s32 MapObjectViewerItem::column_count() const {
-  return COLUMN_COUNT;
 }
 
 QColor MapObjectViewerItem::data_color() const {

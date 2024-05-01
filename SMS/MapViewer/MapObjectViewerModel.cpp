@@ -32,7 +32,7 @@ QModelIndex MapObjectViewerModel::parent(const QModelIndex& index) const {
 
 s32 MapObjectViewerModel::rowCount(const QModelIndex& parent) const {
   if (parent.column() > 0)
-    return 0; // ‚±‚ê0ˆÈŠO‚É‚µ‚Ä‚Ý‚½‚¢
+    return 0;
 
   const MapObjectViewerItem* parent_item = parent.isValid()
     ? static_cast<const MapObjectViewerItem*>(parent.internalPointer())
@@ -42,9 +42,7 @@ s32 MapObjectViewerModel::rowCount(const QModelIndex& parent) const {
 }
 
 s32 MapObjectViewerModel::columnCount(const QModelIndex& parent) const {
-  if (parent.isValid())
-    return static_cast<MapObjectViewerItem*>(parent.internalPointer())->column_count();
-  return root_item_->column_count();
+  return 2;
 }
 
 QVariant MapObjectViewerModel::data(const QModelIndex& index, s32 role) const {

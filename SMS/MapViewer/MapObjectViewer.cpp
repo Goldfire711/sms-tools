@@ -50,6 +50,7 @@ void MapObjectViewer::refresh() {
 
   tree_view_->setModel(model_);
   tree_view_->resizeColumnToContents(0);
+  tree_view_->resizeColumnToContents(1);
 
   timer_id_ = startTimer(timer_interval_);
 }

@@ -20,7 +20,6 @@ public:
   MapObjectViewerItem* append_object(u32 p_obj);
   QVariant data(s32 column) const;
   s32 row() const;
-  s32 column_count() const;
   QColor data_color() const;
 
   QString name_;
@@ -30,13 +29,6 @@ public:
 
   MapObjectViewerItem* parent_ = nullptr;
   std::vector<std::unique_ptr<MapObjectViewerItem>> children_;
-
-private:
-  enum {
-    COLUMN_NAME = 0,
-    COLUMN_CLASS_NAME,
-    COLUMN_COUNT
-  };
 };
 
 class MapObjectViewerModel : public QAbstractItemModel {
