@@ -30,7 +30,9 @@ void ItemMap::set_map() {
 
   if (maps_.isEmpty())
     return;
-  setPixmap(maps_[0].pix);
+  cur_map_ = &maps_[0];
+  former_map_ = nullptr;
+  setPixmap(cur_map_->pix);
   setTransformOriginPoint(boundingRect().center());
   setTransform(QTransform().translate(-boundingRect().width() / 2, -boundingRect().height() / 2));
 }

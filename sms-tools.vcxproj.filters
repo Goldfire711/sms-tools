@@ -139,6 +139,15 @@
     <ClCompile Include="SMS\MapViewer\ItemBossManta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapObjectViewerItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapObjectViewerModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapObjectViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -281,6 +290,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\MapViewer\MapGeneral.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\MapViewer\MapObjectViewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

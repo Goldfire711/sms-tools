@@ -1,5 +1,7 @@
 #include "MapViewer.h"
 
+#include <QDockWidget>
+
 json g_class_to_png;
 qreal g_obj_scale = 2;
 
@@ -12,7 +14,7 @@ MapViewer::MapViewer(QWidget* parent)
   resize(800, 800);
 
   // initialize widgets
-  map_ = new MapGeneral(nullptr);
+  map_ = new MapGeneral(this);
   map_->init();
   auto* chb_center_on = new QCheckBox("Center on mario");
   auto* lbl_update_timer = new QLabel("Update Interval(ms)");
@@ -40,6 +42,9 @@ MapViewer::MapViewer(QWidget* parent)
     });
   connect(btn_refresh, &QPushButton::clicked, map_, &MapGeneral::refresh);
 
+  object_viewer_ = new MapObjectViewer(this);
+  connect(btn_refresh, &QPushButton::clicked, object_viewer_, &MapObjectViewer::refresh);
+
   // set layouts
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on);
@@ -54,6 +59,10 @@ MapViewer::MapViewer(QWidget* parent)
   setMenuWidget(top);
 
   setCentralWidget(map_);
+
+  auto* left = new QDockWidget();
+  left->setWidget(object_viewer_);
+  addDockWidget(Qt::LeftDockWidgetArea, left);
 }
 
 MapViewer::~MapViewer() = default;

@@ -17,8 +17,8 @@ public:
   MapGeneral(QWidget *parent);
   virtual void init();
   virtual void refresh();
-  void set_center_on_mario(const bool is_center);
-  void set_timer_interval(const s32 interval);
+  void set_center_on_mario(bool is_center);
+  void set_timer_interval(s32 interval);
 
   bool center_on_mario_ = false;
   s32 timer_id_ = -1;

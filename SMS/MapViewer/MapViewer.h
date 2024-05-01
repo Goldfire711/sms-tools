@@ -5,7 +5,6 @@
 #include <QCheckBox>
 #include <QPushButton>
 #include "MapPinnaBeach.h"
-#include "MapGeneral.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -13,6 +12,9 @@
 #include <json.hpp>
 #include <fstream>
 #include <QValidator>
+
+#include "MapGeneral.h"
+#include "MapObjectViewer.h"
 
 class MapViewer : public QMainWindow {
 Q_OBJECT
@@ -23,4 +25,5 @@ public:
 
 private:
   MapGeneral* map_;
+  MapObjectViewer* object_viewer_;
 };

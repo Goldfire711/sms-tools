@@ -36,13 +36,15 @@ QVariant ObjectViewerModel::data(const QModelIndex& index, int role) const
   //if (item->is_attribute_)
   //  return QVariant();
 
-  if (item->parent_item_ != root_item_ && role == Qt::ForegroundRole) {
+  if (role == Qt::ForegroundRole) {
+    if (item->parent_item_ == root_item_)
+      return {};
     const u32 draw_info = memory::read_u32(item->value_.toUInt() + 0xf0);
     if (draw_info & 1)  // isInactive
       return QColor(Qt::gray);
     if (!(draw_info & 4)) // isInCamera
       return QColor(Qt::blue);
-    return QVariant();
+    return {};
   }
 
   switch (index.column()) {
