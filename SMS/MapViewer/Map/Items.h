@@ -2,8 +2,8 @@
 
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
-#include "../../Common/CommonTypes.h"
-#include "../../Memory/Memory.h"
+#include "Common/CommonTypes.h"
+#include "Memory/Memory.h"
 #include <json.hpp>
 #include <sstream>
 #include <QGraphicsEllipseItem>

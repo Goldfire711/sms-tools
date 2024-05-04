@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Common/CommonTypes.h"
+#include "Common/CommonTypes.h"
 #include <QGraphicsView>
 
 class MapPinnaBeach : public QGraphicsView {

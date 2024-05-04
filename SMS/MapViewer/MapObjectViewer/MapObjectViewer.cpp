@@ -1,9 +1,5 @@
 #include "MapObjectViewer.h"
 
-#include <QHBoxLayout>
-
-#include "DolphinProcess/Windows/WindowsDolphinProcess.h"
-
 
 MapObjectViewer::MapObjectViewer(QWidget* parent)
   : QWidget(parent), tree_view_(new QTreeView()) {

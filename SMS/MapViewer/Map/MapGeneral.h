@@ -1,9 +1,9 @@
 #pragma once
 
 #include <QGraphicsView>
-#include "../../Common/CommonTypes.h"
+#include "Common/CommonTypes.h"
 #include "Items.h"
-#include "../../Memory/Memory.h"
+#include "Memory/Memory.h"
 #include <QMouseEvent>
 #include <QDebug>
 #include <QGraphicsRectItem>

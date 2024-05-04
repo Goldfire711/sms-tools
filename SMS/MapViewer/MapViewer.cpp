@@ -1,7 +1,5 @@
 #include "MapViewer.h"
 
-#include <QDockWidget>
-
 json g_class_to_png;
 qreal g_obj_scale = 2;
 

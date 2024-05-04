@@ -1,5 +1,5 @@
 #include "MapPinnaBeach.h"
-#include "../../Memory/Memory.h"
+#include "Memory/Memory.h"
 
 #include <algorithm>
 #include <QGraphicsPixmapItem>

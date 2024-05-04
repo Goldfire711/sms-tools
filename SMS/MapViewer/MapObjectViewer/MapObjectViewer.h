@@ -2,6 +2,7 @@
 #include <QAbstractItemModel>
 #include <QWidget>
 #include <QTreeView>
+#include <QHBoxLayout>
 
 #include <json.hpp>
 #include "Common/CommonTypes.h"
