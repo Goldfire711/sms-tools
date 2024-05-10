@@ -3,6 +3,8 @@
 #include <QWidget>
 #include <QTreeView>
 #include <QHBoxLayout>
+#include <QDebug>
+#include <QScrollBar>
 
 #include <json.hpp>
 #include "Common/CommonTypes.h"
@@ -36,7 +38,7 @@ class MapObjectViewerModel : public QAbstractItemModel {
   Q_OBJECT
 
 public:
-  Q_DISABLE_COPY_MOVE(MapObjectViewerModel);
+  Q_DISABLE_COPY_MOVE(MapObjectViewerModel)
 
   explicit MapObjectViewerModel(QObject* parent = nullptr);
   ~MapObjectViewerModel() override;
@@ -60,6 +62,13 @@ public:
   MapObjectViewer(QWidget* parent = Q_NULLPTR);
   void refresh();
   void set_timer_interval(s32 interval);
+
+public slots:
+  void on_object_viewer_clicked(const QModelIndex& index);
+  void select_item_by_address(u32 address) const;
+
+signals:
+  void item_clicked(u32 address);
 
 protected:
   void timerEvent(QTimerEvent* event) override;

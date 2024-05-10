@@ -91,15 +91,16 @@ void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
   auto* item = pix_item->parentItem();
   if (item != nullptr && item->type() == OBJ) {
     const auto* obj = dynamic_cast<ItemObjBase*>(item);
-    qDebug() << "Clicked on item:" << obj->manager_id_ << "," << obj->id_;
-    qDebug() << obj->pix_->boundingRect() << obj->pix_->pos() - obj->pix_->boundingRect().center();
-    // TODO ItemObjBase‘¤‚ÉˆÚ‚·
-    rect_selected_->setRect(0, 0, obj->pix_->boundingRect().width() * obj->pix_->scale(), obj->pix_->boundingRect().height() * obj->pix_->scale());
-    //rect_selected_->setScale(obj->scale_);
-    rect_selected_->setPos(obj->pix_->pos() - obj->pix_->boundingRect().center() * obj->pix_->scale());
-    rect_selected_->setVisible(true);
-  } else {
-    rect_selected_->setVisible(false);
+    emit map_object_clicked(obj->p_obj_);
+  //  qDebug() << "Clicked on item:" << obj->manager_id_ << "," << obj->id_;
+  //  qDebug() << obj->pix_->boundingRect() << obj->pix_->pos() - obj->pix_->boundingRect().center();
+  //  // TODO ItemObjBase‘¤‚ÉˆÚ‚·
+  //  rect_selected_->setRect(0, 0, obj->pix_->boundingRect().width() * obj->pix_->scale(), obj->pix_->boundingRect().height() * obj->pix_->scale());
+  //  //rect_selected_->setScale(obj->scale_);
+  //  rect_selected_->setPos(obj->pix_->pos() - obj->pix_->boundingRect().center() * obj->pix_->scale());
+  //  rect_selected_->setVisible(true);
+  //} else {
+  //  rect_selected_->setVisible(false);
   }
   QGraphicsView::mouseDoubleClickEvent(event);
 }
@@ -113,4 +114,19 @@ void MapGeneral::set_timer_interval(const s32 interval) {
     return
   killTimer(timer_id_);
   timer_id_ = startTimer(interval);
+}
+
+void MapGeneral::select_item_by_address(const u32 address) {
+  // get item by address
+  if (address == mario_->p_mario_) {
+    // TODO
+    return;
+  }
+  for (const auto* manager : managers_) {
+    for (auto* obj : manager->objs_) {
+      if (address == obj->p_obj_) {
+        // TODO
+      }
+    }
+  }
 }

@@ -42,11 +42,11 @@ s32 MapObjectViewerModel::rowCount(const QModelIndex& parent) const {
 }
 
 s32 MapObjectViewerModel::columnCount(const QModelIndex& parent) const {
-  return 2;
+  return 3;
 }
 
 QVariant MapObjectViewerModel::data(const QModelIndex& index, s32 role) const {
-  if (!index.isValid() || (role != Qt::DisplayRole && role != Qt::ForegroundRole))
+  if (!index.isValid())
     return {};
 
   const auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
@@ -55,7 +55,10 @@ QVariant MapObjectViewerModel::data(const QModelIndex& index, s32 role) const {
     return item->data_color();
   }
 
-  return item->data(index.column());
+  if (role == Qt::DisplayRole)
+    return item->data(index.column());
+
+  return {};
 }
 
 Qt::ItemFlags MapObjectViewerModel::flags(const QModelIndex& index) const {

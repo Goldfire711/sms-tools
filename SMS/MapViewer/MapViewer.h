@@ -14,6 +14,7 @@
 #include <QDockWidget>
 
 #include "Map/MapGeneral.h"
+#include "MapObjectParameters/MapObjectParameters.h"
 #include "MapObjectViewer/MapObjectViewer.h"
 
 class MapViewer : public QMainWindow {
@@ -26,4 +27,5 @@ public:
 private:
   MapGeneral* map_;
   MapObjectViewer* object_viewer_;
+  MapObjectParameters* object_parameters_;
 };

@@ -108,6 +108,14 @@
     <ClCompile Include="SMS\ChuuHana\ChuuHanaViewerS.cpp" />
     <ClCompile Include="SMS\Manta\MapSirena1.cpp" />
     <ClCompile Include="SMS\Manta\MapViewerSirena1.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\MapObjectParameters.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\MapObjectParametersModel.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsBase.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsManagerBase.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsMario.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTBossManta.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTNameKuri.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsObjBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemManagerBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemBossManta.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemObjBase.cpp" />
@@ -204,6 +212,8 @@
     <ClInclude Include="SMS\ChuuHana\RNGFunctions.h" />
     <QtMoc Include="SMS\Manta\MapSirena1.h" />
     <QtMoc Include="SMS\MapViewer\Map\MapGeneral.h" />
+    <QtMoc Include="SMS\MapViewer\MapObjectParameters\MapObjectParameters.h" />
+    <ClInclude Include="SMS\MapViewer\MapObjectParameters\Params.h" />
     <ClInclude Include="SMS\MapViewer\Map\Items.h" />
     <QtMoc Include="SMS\MapViewer\MapObjectViewer\MapObjectViewer.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectParametersItem.h" />

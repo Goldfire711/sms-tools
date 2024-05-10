@@ -6,7 +6,6 @@
 #include "SMS/Spin/Spin.h"
 #include "SMS/ObjectViewer/ObjectViewer.h"
 #include "SMS/MapViewer/MapViewer.h"
-#include "SMS/MapViewer/Map/MapPinnaBeach.h"
 #include "SMS/FluffManipulator/FluffManipulator.h"
 #include "SMS/FluffManipulator/MapPianta8.h"
 #include "SMS/ChuuHana/ChuuHanaMain.h"

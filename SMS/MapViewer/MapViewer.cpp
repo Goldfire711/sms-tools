@@ -43,6 +43,14 @@ MapViewer::MapViewer(QWidget* parent)
   object_viewer_ = new MapObjectViewer(this);
   connect(btn_refresh, &QPushButton::clicked, object_viewer_, &MapObjectViewer::refresh);
 
+  auto* bottom = new QDockWidget(this);
+  object_parameters_ = new MapObjectParameters(bottom);
+  bottom->setWidget(object_parameters_);
+
+  connect(map_, &MapGeneral::map_object_clicked, object_viewer_, &MapObjectViewer::select_item_by_address);
+  connect(map_, &MapGeneral::map_object_clicked, object_parameters_, &MapObjectParameters::show_parameters);
+  connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, &MapObjectParameters::show_parameters);
+
   // set layouts
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on);
@@ -61,6 +69,8 @@ MapViewer::MapViewer(QWidget* parent)
   auto* left = new QDockWidget();
   left->setWidget(object_viewer_);
   addDockWidget(Qt::LeftDockWidgetArea, left);
+
+  addDockWidget(Qt::BottomDockWidgetArea, bottom);
 }
 
 MapViewer::~MapViewer() = default;

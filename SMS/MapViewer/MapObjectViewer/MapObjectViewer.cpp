@@ -1,11 +1,12 @@
 #include "MapObjectViewer.h"
 
-
 MapObjectViewer::MapObjectViewer(QWidget* parent)
   : QWidget(parent), tree_view_(new QTreeView()) {
   auto* lo_main = new QHBoxLayout();
   lo_main->addWidget(tree_view_);
   setLayout(lo_main);
+
+  connect(tree_view_, &QAbstractItemView::clicked, this, &MapObjectViewer::on_object_viewer_clicked);
 
   refresh();
 }
@@ -61,4 +62,33 @@ void MapObjectViewer::set_timer_interval(s32 interval) {
   timer_interval_ = interval;
   killTimer(timer_id_);
   timer_id_ = startTimer(interval);
+}
+
+void MapObjectViewer::on_object_viewer_clicked(const QModelIndex& index) {
+  auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
+  emit item_clicked(item->address_);
+}
+
+void MapObjectViewer::select_item_by_address(const u32 address) const {
+  const QVariant str_address = "0x" + QString::number(address, 16).toUpper();
+  auto matches = model_->match(model_->index(0, 2), Qt::DisplayRole, str_address, 1, Qt::MatchExactly | Qt::MatchRecursive);
+
+  auto* selection_model = tree_view_->selectionModel();
+  selection_model->clearSelection();
+
+  for (const QModelIndex& index : matches) {
+    // Select
+    selection_model->select(index, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+
+    // Expand toggles
+    auto parent = index.parent();
+    while (parent.isValid()) {
+      tree_view_->expand(parent);
+      parent = parent.parent();
+    }
+
+    // Scroll to the selected item
+    tree_view_->scrollTo(index, QAbstractItemView::PositionAtCenter);
+    tree_view_->horizontalScrollBar()->setValue(0);
+  }
 }

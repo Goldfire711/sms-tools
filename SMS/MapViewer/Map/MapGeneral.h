@@ -23,13 +23,18 @@ public:
   bool center_on_mario_ = false;
   s32 timer_id_ = -1;
 
+public slots:
+  void select_item_by_address(u32 address);
+
+signals:
+  void map_object_clicked(u32 address);
+
 protected:
   void timerEvent(QTimerEvent* event) override;
   void wheelEvent(QWheelEvent* event) override;
   void mouseDoubleClickEvent(QMouseEvent* event) override;
 
 private:
-
   QGraphicsScene* scene_;
   ItemMap* map_;
   ItemMario* mario_;
