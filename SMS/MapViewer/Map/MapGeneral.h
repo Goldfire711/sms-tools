@@ -40,5 +40,5 @@ private:
   ItemMap* map_;
   ItemMario* mario_;
   QVector<ItemManagerBase*> managers_;
-  ItemObjBase* selected_obj_ = nullptr;
+  ItemBase* selected_obj_ = nullptr;
 };

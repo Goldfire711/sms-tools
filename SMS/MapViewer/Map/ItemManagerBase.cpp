@@ -13,7 +13,6 @@ ItemManagerBase::ItemManagerBase(const u32 p_manager, const s32 id)
     std::stringstream ss;
     ss << std::hex << vt;
     const std::string obj_class = g_vtable_to_class[ss.str()];
-    // クラス名によっては専用のItemObjクラスを使う予定
     ItemObjBase* obj;
     if (obj_class == "TBossManta") {
       obj = new ItemBossManta(p, this);

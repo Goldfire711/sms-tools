@@ -65,5 +65,8 @@ void MapObjectParameters::append_params(const u32 ptr, const QString &class_name
 }
 
 void MapObjectParameters::timerEvent(QTimerEvent* event) {
+  // TODO ステージ切り替わったらストップする処理
+  // TODO refreshで再開
+  // TODO 選択されたobjを赤線で囲うなりして目立たせる
   emit model_->layoutChanged();
 }

@@ -88,28 +88,39 @@ enum ItemType {
   OBJ = QGraphicsItem::UserType + 2,
 };
 
-class ItemMario : public QGraphicsItemGroup {
+class ItemBase : public QGraphicsItemGroup {
 public:
-  ItemMario();
-  void update();
+  ItemBase(QGraphicsItem* parent = nullptr);
 
-  enum { Type = ItemType::MARIO };
+  enum { Type = ItemType::OBJ };
   int type() const override { return Type; }
 
-  u32 p_mario_ = 0;
+  u32 ptr_ = 0;
+  bool is_selected_ = false;
+
+  QGraphicsPixmapItem* pix_;
+  QGraphicsRectItem* rect_;
+};
+
+class ItemMario : public ItemBase {
+public:
+  ItemMario(QGraphicsItem* parent = nullptr);
+  void update();
+
+  //enum { Type = ItemType::MARIO };
+  //int type() const override { return Type; }
+
   float x_ = 0;
   float y_ = 0;
   float z_ = 0;
   u16 spin_angle_ = 0;
   float atk_radius_ = 80;
 
-  QGraphicsPixmapItem* pix_;
+  //QGraphicsPixmapItem* pix_;
   QGraphicsEllipseItem* circle_;
 };
 
-// TODO QGraphicsItemGroupではなくQGraphics(Pixmap)Itemを継承して、paint関数をoverrideする？
-// TODO やっぱりGroupのままでいいかも。Groupをselectableにして、boundingRectかselectableAreaをoverrideする
-class ItemObjBase : public QGraphicsItemGroup {
+class ItemObjBase : public ItemBase {
 public:
   ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);
   void update();
@@ -117,7 +128,6 @@ public:
   enum { Type = ItemType::OBJ };
   int type() const override { return Type; }
 
-  u32 p_obj_ = 0;
   u32 vt_ = 0;
   float x_ = 0;
   float y_ = 0;
@@ -127,10 +137,6 @@ public:
   u32 draw_info_ = 0;
   s16 id_ = -1;
   s32 manager_id_ = -1;
-  bool is_selected_ = false;
-
-  QGraphicsPixmapItem* pix_;
-  QGraphicsRectItem* rect_;
 
 private:
   virtual void set_scale();

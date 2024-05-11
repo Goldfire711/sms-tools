@@ -172,6 +172,9 @@
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTBossManta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\MapViewer\Map\ItemBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />

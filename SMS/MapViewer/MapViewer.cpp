@@ -52,6 +52,7 @@ MapViewer::MapViewer(QWidget* parent)
   connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, &MapObjectParameters::show_parameters);
 
   // set layouts
+  // TODO メニューにViewタブ追加して、ObjectViewerなどの表示非表示
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on);
   lo_top->addWidget(lbl_update_timer);

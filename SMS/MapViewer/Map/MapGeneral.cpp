@@ -77,6 +77,9 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
     manager->update();
   }
 
+  // TODO Center on機能を普通の敵にも使えるようにする
+  // TODO 右クリックのメニューからセットできるようにする
+  // TODO 右クリックのメニューで、マンタなど特定のobjのLineなどの表示非表示機能追加
   if (center_on_mario_)
     centerOn(mario_);
 
@@ -93,14 +96,11 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
   scale(view_scale, view_scale);
 }
 
-// TODO ItemそのものにmousePressEventを実装して、そこでemitする？
-// TODO QGraphicsItem::ItemIsSelectable
-// TODO QGraphicsScene::setSelectionArea
 void MapGeneral::mousePressEvent(QMouseEvent* event) {
   auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
   auto* item = pix_item->parentItem();
   if (item != nullptr && item->type() == OBJ) {
-    auto* obj = dynamic_cast<ItemObjBase*>(item);
+    auto* obj = dynamic_cast<ItemBase*>(item);
     if (selected_obj_ == nullptr) {
       obj->is_selected_ = true;
       selected_obj_ = obj;
@@ -110,7 +110,7 @@ void MapGeneral::mousePressEvent(QMouseEvent* event) {
       obj->is_selected_ = true;
       selected_obj_ = obj;
     }
-    emit map_object_clicked(obj->p_obj_);
+    emit map_object_clicked(obj->ptr_);
   }
   QGraphicsView::mousePressEvent(event);
 }
@@ -128,13 +128,13 @@ void MapGeneral::set_timer_interval(const s32 interval) {
 
 void MapGeneral::select_item_by_address(const u32 address) {
   // get item by address
-  if (address == mario_->p_mario_) {
+  if (address == mario_->ptr_) {
     // TODO
     return;
   }
   for (const auto* manager : managers_) {
     for (auto* obj : manager->objs_) {
-      if (address == obj->p_obj_) {
+      if (address == obj->ptr_) {
         // TODO
       }
     }

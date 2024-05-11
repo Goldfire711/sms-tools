@@ -1,28 +1,21 @@
 #include "Items.h"
 
 ItemObjBase::ItemObjBase(const u32 p_obj, ItemManagerBase* parent) 
-  : QGraphicsItemGroup(parent), p_obj_(p_obj), manager_id_(parent->id_) {
-  pix_ = new QGraphicsPixmapItem(this);
-
-  rect_ = new QGraphicsRectItem(this);
-  rect_->setPen(QPen(Qt::gray, 20));
-  rect_->setVisible(false);
-
-  addToGroup(pix_);
-  addToGroup(rect_);
+  : ItemBase(parent), manager_id_(parent->id_) {
+  ptr_ = p_obj;
   setVisible(false);
 
   // TODO hitbox‚Ì‘å‚«‚³‚Ì•`‰æ on/off‚Å‚«‚é‚æ‚¤‚É
 }
 
 void ItemObjBase::update() {
-  x_ = read_float(p_obj_ + 0x10);
-  y_ = read_float(p_obj_ + 0x14);
-  z_ = read_float(p_obj_ + 0x18);
-  scale_ = read_float(p_obj_ + 0x24);
-  rot_y_ = read_float(p_obj_ + 0x34);
-  id_ = read_s16(p_obj_ + 0x7c);
-  draw_info_ = read_u32(p_obj_ + 0xf0);
+  x_ = read_float(ptr_ + 0x10);
+  y_ = read_float(ptr_ + 0x14);
+  z_ = read_float(ptr_ + 0x18);
+  scale_ = read_float(ptr_ + 0x24);
+  rot_y_ = read_float(ptr_ + 0x34);
+  id_ = read_s16(ptr_ + 0x7c);
+  draw_info_ = read_u32(ptr_ + 0xf0);
 
   set_appearance();
   set_scale();
