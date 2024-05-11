@@ -2,9 +2,16 @@
 
 ItemObjBase::ItemObjBase(const u32 p_obj, ItemManagerBase* parent) 
   : QGraphicsItemGroup(parent), p_obj_(p_obj), manager_id_(parent->id_) {
-  pix_ = new QGraphicsPixmapItem();
+  pix_ = new QGraphicsPixmapItem(this);
+
+  rect_ = new QGraphicsRectItem(this);
+  rect_->setPen(QPen(Qt::gray, 20));
+  rect_->setVisible(false);
+
   addToGroup(pix_);
-  pix_->setVisible(false);
+  addToGroup(rect_);
+  setVisible(false);
+
   // TODO hitbox‚Ì‘å‚«‚³‚Ì•`‰æ on/off‚Å‚«‚é‚æ‚¤‚É
 }
 
@@ -24,7 +31,17 @@ void ItemObjBase::update() {
   pix_->setTransform(QTransform().translate(-bounds.center().x(), -bounds.center().y()));
   pix_->setPos(x_, z_);
   set_rotation();
-  pix_->setVisible(!(draw_info_ & 1));
+  setVisible(!(draw_info_ & 1));
+
+  if (is_selected_) {
+    rect_->setRect(0, 0,
+      bounds.width() * pix_->scale(),
+      bounds.height() * pix_->scale());
+    rect_->setPos(pix_->pos() - bounds.center() * pix_->scale());
+    rect_->setVisible(true);
+  } else {
+    rect_->setVisible(false);
+  }
 }
 
 void ItemObjBase::set_scale() {

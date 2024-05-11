@@ -7,9 +7,12 @@
 #include <json.hpp>
 #include <sstream>
 #include <QGraphicsEllipseItem>
+#include <QGraphicsRectItem>
 #include <QPen>
 #include <QDebug>
 #include <QtMath>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsItem>
 
 class ItemManagerBase;
 using namespace memory;
@@ -104,6 +107,8 @@ public:
   QGraphicsEllipseItem* circle_;
 };
 
+// TODO QGraphicsItemGroupではなくQGraphics(Pixmap)Itemを継承して、paint関数をoverrideする？
+// TODO やっぱりGroupのままでいいかも。Groupをselectableにして、boundingRectかselectableAreaをoverrideする
 class ItemObjBase : public QGraphicsItemGroup {
 public:
   ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);
@@ -122,8 +127,11 @@ public:
   u32 draw_info_ = 0;
   s16 id_ = -1;
   s32 manager_id_ = -1;
+  bool is_selected_ = false;
 
   QGraphicsPixmapItem* pix_;
+  QGraphicsRectItem* rect_;
+
 private:
   virtual void set_scale();
   virtual void set_rotation();

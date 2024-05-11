@@ -4,7 +4,7 @@ ItemManagerBase::ItemManagerBase(const u32 p_manager, const s32 id)
   : p_manager_(p_manager), id_(id) {
   const u32 p_objs = read_u32(p_manager_ + 0x18);
   const s32 count = read_s32(p_manager_ + 0x14);
-  if (count <= 0 || 200 <= count)
+  if (count <= 0 || 300 <= count)
     return;
 
   for (s32 i = 0; i < count; i++) {

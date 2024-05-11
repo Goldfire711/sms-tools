@@ -32,12 +32,13 @@ signals:
 protected:
   void timerEvent(QTimerEvent* event) override;
   void wheelEvent(QWheelEvent* event) override;
-  void mouseDoubleClickEvent(QMouseEvent* event) override;
+  //void mouseDoubleClickEvent(QMouseEvent* event) override;
+  void mousePressEvent(QMouseEvent* event) override;
 
 private:
   QGraphicsScene* scene_;
   ItemMap* map_;
   ItemMario* mario_;
   QVector<ItemManagerBase*> managers_;
-  QGraphicsRectItem* rect_selected_;
+  ItemObjBase* selected_obj_ = nullptr;
 };

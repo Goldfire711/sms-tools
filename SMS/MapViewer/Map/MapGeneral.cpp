@@ -14,15 +14,22 @@ void MapGeneral::init() {
   map_ = new ItemMap();
   mario_ = new ItemMario();
 
-  rect_selected_ = new QGraphicsRectItem();
-  QPen pen(Qt::red);
-  pen.setWidth(20);
-  rect_selected_->setPen(pen);
-  rect_selected_->setVisible(false);
+  //auto test = new QGraphicsEllipseItem(-100, -100, 200, 200, mario_);
+  //QPen pen(Qt::red);
+  //pen.setWidth(20);
+  //test->setPen(pen);
 
   scene_->addItem(map_);
   scene_->addItem(mario_);
-  scene_->addItem(rect_selected_);
+
+  //auto* test = new CustomPixmapItem();
+  //test->setPixmap(QPixmap(":/sms/manta_purple.png"));
+  //test->setScale(10);
+  //const QRectF bounds = test->boundingRect();
+  //test->setTransformOriginPoint(bounds.center());
+  //test->setTransform(QTransform().translate(-bounds.center().x(), -bounds.center().y()));
+  //test->setPos(1000, 1000);
+  //scene_->addItem(test);
 
   setDragMode(ScrollHandDrag);
 
@@ -71,7 +78,7 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
   }
 
   if (center_on_mario_)
-    centerOn(mario_->pix_);
+    centerOn(mario_);
 
   QGraphicsView::timerEvent(event);
 }
@@ -86,23 +93,26 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
   scale(view_scale, view_scale);
 }
 
-void MapGeneral::mouseDoubleClickEvent(QMouseEvent* event) {
+// TODO Item‚»‚Ì‚à‚Ì‚ÉmousePressEvent‚ðŽÀ‘•‚µ‚ÄA‚»‚±‚Åemit‚·‚éH
+// TODO QGraphicsItem::ItemIsSelectable
+// TODO QGraphicsScene::setSelectionArea
+void MapGeneral::mousePressEvent(QMouseEvent* event) {
   auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
   auto* item = pix_item->parentItem();
   if (item != nullptr && item->type() == OBJ) {
-    const auto* obj = dynamic_cast<ItemObjBase*>(item);
+    auto* obj = dynamic_cast<ItemObjBase*>(item);
+    if (selected_obj_ == nullptr) {
+      obj->is_selected_ = true;
+      selected_obj_ = obj;
+    }
+    if (selected_obj_ != obj) {
+      selected_obj_->is_selected_ = false;
+      obj->is_selected_ = true;
+      selected_obj_ = obj;
+    }
     emit map_object_clicked(obj->p_obj_);
-  //  qDebug() << "Clicked on item:" << obj->manager_id_ << "," << obj->id_;
-  //  qDebug() << obj->pix_->boundingRect() << obj->pix_->pos() - obj->pix_->boundingRect().center();
-  //  // TODO ItemObjBase‘¤‚ÉˆÚ‚·
-  //  rect_selected_->setRect(0, 0, obj->pix_->boundingRect().width() * obj->pix_->scale(), obj->pix_->boundingRect().height() * obj->pix_->scale());
-  //  //rect_selected_->setScale(obj->scale_);
-  //  rect_selected_->setPos(obj->pix_->pos() - obj->pix_->boundingRect().center() * obj->pix_->scale());
-  //  rect_selected_->setVisible(true);
-  //} else {
-  //  rect_selected_->setVisible(false);
   }
-  QGraphicsView::mouseDoubleClickEvent(event);
+  QGraphicsView::mousePressEvent(event);
 }
 
 void MapGeneral::set_center_on_mario(const bool is_center) {
