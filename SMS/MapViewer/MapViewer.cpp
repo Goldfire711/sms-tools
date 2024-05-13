@@ -50,6 +50,7 @@ MapViewer::MapViewer(QWidget* parent)
   connect(map_, &MapGeneral::map_object_clicked, object_viewer_, &MapObjectViewer::select_item_by_address);
   connect(map_, &MapGeneral::map_object_clicked, object_parameters_, &MapObjectParameters::show_parameters);
   connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, &MapObjectParameters::show_parameters);
+  connect(object_viewer_, &MapObjectViewer::item_clicked, map_, &MapGeneral::select_item_by_address);
 
   // set layouts
   // TODO メニューにViewタブ追加して、ObjectViewerなどの表示非表示

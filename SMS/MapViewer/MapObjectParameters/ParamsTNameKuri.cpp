@@ -12,22 +12,22 @@ ParamsTNameKuri::ParamsTNameKuri(const u32 ptr) : ParamsObjBase(ptr) {
   }});
 
   params_.push_back({
-  "Attacking hitbox radius", [this]() {
+  "AttackRadius (50*scale)", [this]() {
     return read_float(ptr_ + 0x50);
   }});
 
   params_.push_back({
-  "Attacking hitbox height", [this]() {
+  "AttackHeight (30*scale)", [this]() {
     return read_float(ptr_ + 0x54);
   }});
 
   params_.push_back({
-  "Receiving hitbox radius", [this]() {
+  "DamageRadius (40*scale)", [this]() {
     return read_float(ptr_ + 0x58);
   }});
 
   params_.push_back({
-  "Receiving hitbox height", [this]() {
+  "DamageHeight (90*scale)", [this]() {
     return read_float(ptr_ + 0x5c);
   }});
 

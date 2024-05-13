@@ -4,15 +4,12 @@ extern nlohmann::json g_vtable_to_class;
 
 MapObjectParameters::MapObjectParameters(QWidget* parent)
   : QWidget(parent) {
-  //const u32 p_mario = read_u32(0x8040a378);
-  //params_list_.push_back(std::make_unique<ParamsBase>(p_mario));
-  //parentWidget()->setWindowTitle("TNameKuri");
-  //params_list_.push_back(std::make_unique<ParamsObjBase>(0x81638a14));
-  //params_list_.push_back(std::make_unique<ParamsObjBase>(0x8163beb8));
   tbl_parameters_ = new QTableView();
   model_ = new MapObjectParametersModel(params_list_);
-
   tbl_parameters_->setModel(model_);
+  auto font = tbl_parameters_->font();
+  font.setPointSize(9);
+  tbl_parameters_->setFont(font);
 
   auto* lo_main = new QHBoxLayout();
   lo_main->addWidget(tbl_parameters_);
@@ -23,14 +20,17 @@ MapObjectParameters::MapObjectParameters(QWidget* parent)
 
 void MapObjectParameters::show_parameters(const u32 address) {
   const u32 vt = read_u32(address);
+  if (vt < 0x80000000 || 0x817fffff < vt)
+    return;
   std::stringstream ss;
   ss << std::hex << vt;
-  //if (!g_vtable_to_class.contains(ss.str()))
-  //  return;
+  if (!g_vtable_to_class.contains(ss.str()))
+    return;
   params_list_.clear();
   const QString class_name = QString::fromStdString(g_vtable_to_class[ss.str()]);
   parentWidget()->setWindowTitle(class_name);
 
+  model_->selected_column_ = -1;
   if (class_name == "TMario") {
     params_list_.push_back(std::make_unique<ParamsMario>(address));
   } else if (class_name == "CPolarSubCamera") {
@@ -40,6 +40,8 @@ void MapObjectParameters::show_parameters(const u32 address) {
   } else {
     const u32 p_manager = read_u32(address + 0x70);
     const s32 count = read_s32(p_manager + 0x14);
+    if (count < 0 || 300 < count)
+      return;
     const u32 p_obj_list = read_u32(p_manager + 0x18);
     for (s32 i = 0; i < count; i++) {
       const u32 p_obj = read_u32(p_obj_list + i * 4);
@@ -53,20 +55,24 @@ void MapObjectParameters::show_parameters(const u32 address) {
           params_list_.push_back(std::make_unique<ParamsTBossManta>(p_obj));
         else
           params_list_.push_back(std::make_unique<ParamsObjBase>(p_obj));
+
+        if (p_obj == address)
+          model_->selected_column_ = static_cast<s32>(params_list_.size()) - 1;
       }
     }
   }
   emit model_->layoutChanged();
   tbl_parameters_->resizeColumnsToContents();
-}
+  tbl_parameters_->resizeRowsToContents();
 
-void MapObjectParameters::append_params(const u32 ptr, const QString &class_name) {
-  
+  // scroll to selected
+  const auto index = model_->index(0, model_->selected_column_);
+  const s32 vertical_scroll = tbl_parameters_->verticalScrollBar()->value();
+  tbl_parameters_->scrollTo(index, QAbstractItemView::PositionAtCenter);
+  tbl_parameters_->verticalScrollBar()->setValue(vertical_scroll);
+
 }
 
 void MapObjectParameters::timerEvent(QTimerEvent* event) {
-  // TODO ステージ切り替わったらストップする処理
-  // TODO refreshで再開
-  // TODO 選択されたobjを赤線で囲うなりして目立たせる
   emit model_->layoutChanged();
 }

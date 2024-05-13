@@ -11,6 +11,8 @@ void MapGeneral::init() {
   scene_ = new QGraphicsScene(this);
   setScene(scene_);
 
+  // TODO 表示するマップによってg_map_height_min, g_map_height_maxを書き換える
+  // TODO これらに合わせてobjの表示を切り替える
   map_ = new ItemMap();
   mario_ = new ItemMario();
 
@@ -98,6 +100,8 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
 
 void MapGeneral::mousePressEvent(QMouseEvent* event) {
   auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
+  if (pix_item == nullptr)
+    return;
   auto* item = pix_item->parentItem();
   if (item != nullptr && item->type() == OBJ) {
     auto* obj = dynamic_cast<ItemBase*>(item);
@@ -127,15 +131,21 @@ void MapGeneral::set_timer_interval(const s32 interval) {
 }
 
 void MapGeneral::select_item_by_address(const u32 address) {
-  // get item by address
   if (address == mario_->ptr_) {
-    // TODO
+    if (selected_obj_ != nullptr)
+      selected_obj_->is_selected_ = false;
+    mario_->is_selected_ = true;
+    selected_obj_ = mario_;
     return;
   }
   for (const auto* manager : managers_) {
     for (auto* obj : manager->objs_) {
       if (address == obj->ptr_) {
-        // TODO
+        if (selected_obj_ != nullptr)
+          selected_obj_->is_selected_ = false;
+        obj->is_selected_ = true;
+        selected_obj_ = obj;
+        return;
       }
     }
   }

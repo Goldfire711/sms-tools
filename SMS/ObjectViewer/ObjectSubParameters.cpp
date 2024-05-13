@@ -27,6 +27,10 @@ ObjectSubParameters::ObjectSubParameters(QWidget* parent)
   model_ = new ObjectParametersModel(&items_, this);
   ui.table_parameters->setModel(model_);
 
+  auto font = ui.table_parameters->font();
+  font.setPointSize(9);
+  ui.table_parameters->setFont(font);
+
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectSubParameters::refresh_items));
   connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectSubParameters::on_table_double_clicked);
   connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectSubParameters::reload_json);
@@ -65,6 +69,7 @@ void ObjectSubParameters::show_parameters(u32 address, const QString& class_name
   ui.label->setText(info + filename);
   refresh_items();
   ui.table_parameters->resizeColumnsToContents();
+  ui.table_parameters->resizeRowsToContents();
 }
 
 void ObjectSubParameters::load_items_from_json(const nlohmann::json& j, const QString& class_name, u32 base_offset, const QString& parent_name) {

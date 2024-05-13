@@ -79,4 +79,3 @@ private:
   void txb_update_timer_changed(QString str) const;
 };
 
-// TODO マップ左側に表示するマンタの情報のリストを作る

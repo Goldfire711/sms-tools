@@ -44,6 +44,10 @@ QVariant MapObjectParametersModel::data(const QModelIndex& index, int role) cons
     return params->data_color();
   }
 
+  if (role == Qt::BackgroundRole && index.column() == selected_column_) {
+    return QBrush(QColor(0xddebf7));
+  }
+
   //if (role == Qt::CheckStateRole) {
   //  return true;
   //}
@@ -56,5 +60,3 @@ Qt::ItemFlags MapObjectParametersModel::flags(const QModelIndex& index) const {
   //flags |= Qt::ItemIsUserCheckable;
   return flags;
 }
-
-// TODO ソート機能

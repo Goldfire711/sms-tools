@@ -6,6 +6,8 @@
 #include <QHBoxLayout>
 #include <QTimer>
 #include <json.hpp>
+#include <QSortFilterProxyModel>
+#include <QScrollBar>
 
 #include "Params.h"
 #include "Common/CommonTypes.h"
@@ -25,6 +27,8 @@ public:
   QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
   Qt::ItemFlags flags(const QModelIndex& index) const override;
 
+  s32 selected_column_ = 0;
+
 private:
   const std::vector<std::unique_ptr<ParamsBase>> &params_list_;
 };
@@ -42,7 +46,6 @@ protected:
   void timerEvent(QTimerEvent* event) override;
 
 private:
-  void append_params(u32 ptr, const QString &class_name);
   QTableView* tbl_parameters_;
   std::vector<std::unique_ptr<ParamsBase>> params_list_;
   MapObjectParametersModel* model_;

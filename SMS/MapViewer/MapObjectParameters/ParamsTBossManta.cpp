@@ -11,7 +11,9 @@ ParamsTBossManta::ParamsTBossManta(const u32 ptr) : ParamsObjBase(ptr) {
       const s32 damage = read_s32(ptr_ + 0x19c);
       const s32 form = read_s32(ptr_ + 0x18c);
       constexpr s32 hps[] = { 16, 8, 4, 2, 1, 1 };
-      const s32 hp = hps[form];
+      s32 hp = -1;
+      if (0 <= form && form < 6)
+        hp = hps[form];
       return QString::number(damage) + "/" + QString::number(hp);
     }});
 
