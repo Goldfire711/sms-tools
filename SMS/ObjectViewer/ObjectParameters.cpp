@@ -14,6 +14,7 @@
 #include <QDesktopServices>
 
 #include "../../Memory/Memory.h"
+#include "Settings/Settings.h"
 
 using namespace memory;
 using json = nlohmann::json;
@@ -37,9 +38,16 @@ ObjectParameters::ObjectParameters(QWidget* parent)
   connect(ui.table_parameters, &QTableView::doubleClicked, this, &ObjectParameters::on_table_double_clicked);
   connect(ui.button_reload_json, &QPushButton::clicked, this, &ObjectParameters::reload_json);
   connect(ui.button_open_folder, &QPushButton::clicked, this, &ObjectParameters::open_json_location);
+
+  auto& settings = Settings::GetQSettings();
+  restoreGeometry(settings.value("object_parameters/geometry").toByteArray());
+  setFloating(settings.value("object_parameters/floating").toBool());
 }
 
 ObjectParameters::~ObjectParameters() {
+  auto& settings = Settings::GetQSettings();
+  settings.setValue("object_parameters/geometry", saveGeometry());
+  settings.setValue("object_parameters/floating", isFloating());
 }
 
 void ObjectParameters::show_parameters(u32 address, s64 index) {

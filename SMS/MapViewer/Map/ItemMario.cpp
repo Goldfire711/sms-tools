@@ -3,6 +3,7 @@
 ItemMario::ItemMario(QGraphicsItem* parent) : ItemBase(parent) {
   const QPixmap pix_mario(":sms/mario.png");
   pix_->setPixmap(pix_mario);
+  setZValue(1);
 
   circle_ = new QGraphicsEllipseItem(-100, -100, 200, 200);
   QPen pen(Qt::red);

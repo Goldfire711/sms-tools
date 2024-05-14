@@ -3,6 +3,7 @@
 #include "../../Common/CommonUtils.h"
 #include "../../Memory/Memory.h"
 #include "ObjectViewerItem.h"
+#include "Settings/Settings.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -60,9 +61,9 @@ ObjectViewer::ObjectViewer(QWidget* parent)
   connect(ui.tree_object, &QAbstractItemView::activated, this, &ObjectViewer::on_tree_object_clicked);
   connect(ui.tree_object, &QAbstractItemView::clicked, this, &ObjectViewer::on_tree_object_clicked);
 
-  QSettings settings("settings.ini", QSettings::IniFormat);
-  restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
+  const QSettings& settings = Settings::GetQSettings();
   restoreState(settings.value("object_viewer/state").toByteArray());
+  restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
 
   refresh();
 }
@@ -72,6 +73,10 @@ ObjectViewer::~ObjectViewer() {
 }
 
 void ObjectViewer::closeEvent(QCloseEvent* event) {
+  QSettings& settings = Settings::GetQSettings();
+  settings.setValue("object_viewer/state", saveState());
+  settings.setValue("object_viewer/geometry", saveGeometry());
+
   disconnect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   if (object_parameters_) {
     object_parameters_->close();
@@ -83,6 +88,12 @@ void ObjectViewer::closeEvent(QCloseEvent* event) {
 void ObjectViewer::showEvent(QShowEvent* event) {
   connect(g_timer_100ms, &QTimer::timeout, model_, QOverload<>::of(&ObjectViewerModel::on_update));
   show_widget_object_parameters();
+
+  const QSettings& settings = Settings::GetQSettings();
+  restoreState(settings.value("object_viewer/state").toByteArray());
+  restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
+  object_parameters_->restoreGeometry(settings.value("object_parameters/geometry").toByteArray());
+  object_parameters_->setFloating(settings.value("object_parameters/floating").toBool());
 
   // TODO auto refresh
   // connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectViewer::on_update));

@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Settings\Settings.cpp" />
     <ClCompile Include="SMS\Amenbo\AmenboManipulator.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.cpp" />
     <ClCompile Include="SMS\ChuuHana\ChuuHanaManipulatorModel.cpp" />
@@ -182,6 +183,7 @@
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h" />
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorDelegate.h" />
     <QtMoc Include="SMS\Amenbo\AmenboManipulator.h" />
+    <QtMoc Include="Settings\Settings.h" />
     <ClInclude Include="SMS\ChuuHana\ChuuHanaRNG.h" />
     <ClInclude Include="Common\CommonTypes.h" />
     <ClInclude Include="Common\CommonUtils.h" />

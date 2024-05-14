@@ -70,7 +70,6 @@ void MapObjectParameters::show_parameters(const u32 address) {
   const s32 vertical_scroll = tbl_parameters_->verticalScrollBar()->value();
   tbl_parameters_->scrollTo(index, QAbstractItemView::PositionAtCenter);
   tbl_parameters_->verticalScrollBar()->setValue(vertical_scroll);
-
 }
 
 void MapObjectParameters::timerEvent(QTimerEvent* event) {

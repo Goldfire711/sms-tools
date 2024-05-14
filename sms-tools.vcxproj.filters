@@ -175,6 +175,9 @@
     <ClCompile Include="SMS\MapViewer\Map\ItemBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Settings\Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -326,6 +329,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="SMS\MapViewer\MapObjectViewer\MapObjectViewer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Settings\Settings.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
