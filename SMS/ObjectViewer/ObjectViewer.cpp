@@ -94,6 +94,7 @@ void ObjectViewer::showEvent(QShowEvent* event) {
   restoreGeometry(settings.value("object_viewer/geometry").toByteArray());
   object_parameters_->restoreGeometry(settings.value("object_parameters/geometry").toByteArray());
   object_parameters_->setFloating(settings.value("object_parameters/floating").toBool());
+  object_parameters_->setVisible(true);
 
   // TODO auto refresh
   // connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&ObjectViewer::on_update));

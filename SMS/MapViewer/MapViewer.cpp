@@ -43,17 +43,14 @@ MapViewer::MapViewer(QWidget* parent)
   object_viewer_ = new MapObjectViewer(this);
   connect(btn_refresh, &QPushButton::clicked, object_viewer_, &MapObjectViewer::refresh);
 
-  auto* bottom = new QDockWidget(this);
-  object_parameters_ = new MapObjectParameters(bottom);
-  bottom->setWidget(object_parameters_);
+  object_parameters_ = new MapObjectParameters(this);
 
   connect(map_, &MapGeneral::map_object_clicked, object_viewer_, &MapObjectViewer::select_item_by_address);
   connect(map_, &MapGeneral::map_object_clicked, object_parameters_, &MapObjectParameters::show_parameters);
   connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, &MapObjectParameters::show_parameters);
   connect(object_viewer_, &MapObjectViewer::item_clicked, map_, &MapGeneral::select_item_by_address);
 
-  // set layouts
-  // TODO メニューにViewタブ追加して、ObjectViewerなどの表示非表示
+  // set menu widget
   auto* lo_top = new QHBoxLayout();
   lo_top->addWidget(chb_center_on);
   lo_top->addWidget(lbl_update_timer);
@@ -62,18 +59,38 @@ MapViewer::MapViewer(QWidget* parent)
   lo_top->addWidget(txb_obj_scale);
   lo_top->addStretch();
   lo_top->addWidget(btn_refresh);
+  lo_top->setContentsMargins(10, 0, 10 ,0);
   auto* top = new QWidget();
   top->setLayout(lo_top);
   setMenuWidget(top);
 
+  // set menu bar
+  auto* menu_bar = new QMenuBar(nullptr);
+  auto* view_menu = menu_bar->addMenu("&View");
+
+  auto* show_object_viewer = view_menu->addAction("Show Object Viewer");
+  show_object_viewer->setCheckable(true);
+  show_object_viewer->setChecked(Settings::instance().IsMapObjectViewerVisible());
+  connect(show_object_viewer, &QAction::toggled, &Settings::instance(), &Settings::SetMapObjectViewerVisible);
+  connect(&Settings::instance(), &Settings::MapObjectViewerVisibilityChanged, show_object_viewer, &QAction::setChecked);
+
+  auto* show_object_parameters = view_menu->addAction("Show Object Parameters");
+  show_object_parameters->setCheckable(true);
+  show_object_parameters->setChecked(Settings::instance().IsMapObjectParametersVisible());
+  connect(show_object_parameters, &QAction::toggled, &Settings::instance(), &Settings::SetMapObjectParametersVisible);
+  connect(&Settings::instance(), &Settings::MapObjectParametersVisibilityChanged, show_object_parameters, &QAction::setChecked);
+
+  lo_top->setMenuBar(menu_bar);
+
   setCentralWidget(map_);
+  addDockWidget(Qt::LeftDockWidgetArea, object_viewer_);
+  addDockWidget(Qt::BottomDockWidgetArea, object_parameters_);
 
-  auto* left = new QDockWidget();
-  left->setWidget(object_viewer_);
-  addDockWidget(Qt::LeftDockWidgetArea, left);
-
-  addDockWidget(Qt::BottomDockWidgetArea, bottom);
+  // TODO ウィンドウ状態の復元が機能しない
+  //const auto& settings = Settings::GetQSettings();
+  //restoreState(settings.value(QStringLiteral("map/state")).toByteArray());
+  //restoreGeometry(settings.value(QStringLiteral("map/geometry")).toByteArray());
+  //Settings::instance().RefreshMapWidgetVisibility();
 }
 
 MapViewer::~MapViewer() = default;
-

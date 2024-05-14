@@ -79,11 +79,11 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
     manager->update();
   }
 
-  // TODO Center on機能を普通の敵にも使えるようにする
-  // TODO 右クリックのメニューからセットできるようにする
+  // TODO Center on機能を普通の敵にも使えるようにする(優先度低)
+  // 右クリックのメニューからセットできるようにする
   // TODO 右クリックのメニューで、マンタなど特定のobjのLineなどの表示非表示機能追加
   if (center_on_mario_)
-    centerOn(mario_);
+    centerOn(mario_->pix_);
 
   QGraphicsView::timerEvent(event);
 }

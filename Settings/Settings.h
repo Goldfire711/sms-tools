@@ -15,9 +15,16 @@ public:
   static Settings& instance();
   static QSettings& GetQSettings();
 
+  // Map Viewer
+  void SetMapObjectViewerVisible(bool enabled);
+  bool IsMapObjectViewerVisible() const;
+  void SetMapObjectParametersVisible(bool enabled);
+  bool IsMapObjectParametersVisible() const;
+  void RefreshMapWidgetVisibility();
 
-
-//signals:
+signals:
+  void MapObjectViewerVisibilityChanged(bool visible);
+  void MapObjectParametersVisibilityChanged(bool visible);
 
 private:
   Settings();

@@ -12,10 +12,12 @@
 #include <fstream>
 #include <QValidator>
 #include <QDockWidget>
+#include <QMenuBar>
 
 #include "Map/MapGeneral.h"
 #include "MapObjectParameters/MapObjectParameters.h"
 #include "MapObjectViewer/MapObjectViewer.h"
+#include "Settings/Settings.h"
 
 class MapViewer : public QMainWindow {
 Q_OBJECT

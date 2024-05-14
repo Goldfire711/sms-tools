@@ -11,6 +11,7 @@
 
 #include "Params.h"
 #include "Common/CommonTypes.h"
+#include "Settings/Settings.h"
 
 class MapObjectParametersModel : public QAbstractTableModel {
   Q_OBJECT
@@ -33,16 +34,18 @@ private:
   const std::vector<std::unique_ptr<ParamsBase>> &params_list_;
 };
 
-class MapObjectParameters : public QWidget {
+class MapObjectParameters : public QDockWidget {
   Q_OBJECT
 
 public:
   MapObjectParameters(QWidget* parent = Q_NULLPTR);
+  ~MapObjectParameters() override;
 
 public slots:
   void show_parameters(u32 address);
 
 protected:
+  void closeEvent(QCloseEvent* event) override;
   void timerEvent(QTimerEvent* event) override;
 
 private:

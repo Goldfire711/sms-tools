@@ -1,14 +1,23 @@
 #include "MapObjectViewer.h"
 
 MapObjectViewer::MapObjectViewer(QWidget* parent)
-  : QWidget(parent), tree_view_(new QTreeView()) {
-  auto* lo_main = new QHBoxLayout();
-  lo_main->addWidget(tree_view_);
-  setLayout(lo_main);
+  : QDockWidget(parent), tree_view_(new QTreeView()) {
+  setWindowTitle("Object Viewer");
 
+  setWidget(tree_view_);
   connect(tree_view_, &QAbstractItemView::clicked, this, &MapObjectViewer::on_object_viewer_clicked);
 
+  setHidden(!Settings::instance().IsMapObjectViewerVisible());
+  connect(&Settings::instance(), &Settings::MapObjectViewerVisibilityChanged, this, 
+    [this](const bool visible) {setHidden(!visible); });
+
   refresh();
+}
+
+MapObjectViewer::~MapObjectViewer() = default;
+
+void MapObjectViewer::closeEvent(QCloseEvent* event) {
+  Settings::instance().SetMapObjectViewerVisible(false);
 }
 
 void MapObjectViewer::refresh() {

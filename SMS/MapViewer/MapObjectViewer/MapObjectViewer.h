@@ -5,10 +5,12 @@
 #include <QHBoxLayout>
 #include <QDebug>
 #include <QScrollBar>
+#include <QDockWidget>
 
 #include <json.hpp>
 #include "Common/CommonTypes.h"
 #include "Memory/Memory.h"
+#include "Settings/Settings.h"
 
 using namespace memory;
 extern nlohmann::json g_vtable_to_class;
@@ -55,11 +57,12 @@ public:
   std::unique_ptr<MapObjectViewerItem> root_item_;
 };
 
-class MapObjectViewer : public QWidget {
+class MapObjectViewer : public QDockWidget {
   Q_OBJECT
 
 public:
   MapObjectViewer(QWidget* parent = Q_NULLPTR);
+  ~MapObjectViewer() override;
   void refresh();
   void set_timer_interval(s32 interval);
 
@@ -71,6 +74,7 @@ signals:
   void item_clicked(u32 address);
 
 protected:
+  void closeEvent(QCloseEvent* event) override;
   void timerEvent(QTimerEvent* event) override;
 
 private:

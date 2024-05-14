@@ -3,7 +3,7 @@
 extern nlohmann::json g_vtable_to_class;
 
 MapObjectParameters::MapObjectParameters(QWidget* parent)
-  : QWidget(parent) {
+  : QDockWidget(parent) {
   tbl_parameters_ = new QTableView();
   model_ = new MapObjectParametersModel(params_list_);
   tbl_parameters_->setModel(model_);
@@ -11,11 +11,19 @@ MapObjectParameters::MapObjectParameters(QWidget* parent)
   font.setPointSize(9);
   tbl_parameters_->setFont(font);
 
-  auto* lo_main = new QHBoxLayout();
-  lo_main->addWidget(tbl_parameters_);
-  setLayout(lo_main);
+  setWidget(tbl_parameters_);
+
+  setHidden(!Settings::instance().IsMapObjectParametersVisible());
+  connect(&Settings::instance(), &Settings::MapObjectParametersVisibilityChanged, this,
+    [this](const bool visible) {setHidden(!visible); });
 
   startTimer(33);
+}
+
+MapObjectParameters::~MapObjectParameters() = default;
+
+void MapObjectParameters::closeEvent(QCloseEvent* event) {
+  Settings::instance().SetMapObjectParametersVisible(false);
 }
 
 void MapObjectParameters::show_parameters(const u32 address) {
@@ -28,7 +36,7 @@ void MapObjectParameters::show_parameters(const u32 address) {
     return;
   params_list_.clear();
   const QString class_name = QString::fromStdString(g_vtable_to_class[ss.str()]);
-  parentWidget()->setWindowTitle(class_name);
+  setWindowTitle(class_name);
 
   model_->selected_column_ = -1;
   if (class_name == "TMario") {
