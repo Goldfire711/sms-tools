@@ -35,8 +35,8 @@ ItemManagerBase::~ItemManagerBase() {
   }
 }
 
-void ItemManagerBase::update() {
+void ItemManagerBase::update(const float map_height_min, const float map_height_max) {
   for (auto* obj : objs_) {
-    obj->update();
+    obj->update(map_height_min, map_height_max);
   }
 }

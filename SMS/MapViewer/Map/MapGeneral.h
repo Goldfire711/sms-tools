@@ -25,9 +25,11 @@ public:
 
 public slots:
   void select_item_by_address(u32 address);
+  void set_map_layer(s32 id) const;
 
 signals:
   void map_object_clicked(u32 address);
+  void map_changed(QVector<ItemMap::map_height> maps);
 
 protected:
   void timerEvent(QTimerEvent* event) override;

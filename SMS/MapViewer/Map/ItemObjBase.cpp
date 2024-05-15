@@ -8,7 +8,8 @@ ItemObjBase::ItemObjBase(const u32 p_obj, ItemManagerBase* parent)
   // TODO hitbox‚Ì‘å‚«‚³‚Ì•`‰æ on/off‚Å‚«‚é‚æ‚¤‚É
 }
 
-void ItemObjBase::update() {
+void ItemObjBase::update(const float map_height_min, const float map_height_max) {
+
   x_ = read_float(ptr_ + 0x10);
   y_ = read_float(ptr_ + 0x14);
   z_ = read_float(ptr_ + 0x18);
@@ -16,6 +17,11 @@ void ItemObjBase::update() {
   rot_y_ = read_float(ptr_ + 0x34);
   id_ = read_s16(ptr_ + 0x7c);
   draw_info_ = read_u32(ptr_ + 0xf0);
+
+  if (y_ <= map_height_min || map_height_max < y_) {
+    setVisible(false);
+    return;
+  }
 
   set_appearance();
   set_scale();

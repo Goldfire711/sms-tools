@@ -11,27 +11,11 @@ void MapGeneral::init() {
   scene_ = new QGraphicsScene(this);
   setScene(scene_);
 
-  // TODO 表示するマップによってg_map_height_min, g_map_height_maxを書き換える
-  // TODO これらに合わせてobjの表示を切り替える
   map_ = new ItemMap();
   mario_ = new ItemMario();
 
-  //auto test = new QGraphicsEllipseItem(-100, -100, 200, 200, mario_);
-  //QPen pen(Qt::red);
-  //pen.setWidth(20);
-  //test->setPen(pen);
-
   scene_->addItem(map_);
   scene_->addItem(mario_);
-
-  //auto* test = new CustomPixmapItem();
-  //test->setPixmap(QPixmap(":/sms/manta_purple.png"));
-  //test->setScale(10);
-  //const QRectF bounds = test->boundingRect();
-  //test->setTransformOriginPoint(bounds.center());
-  //test->setTransform(QTransform().translate(-bounds.center().x(), -bounds.center().y()));
-  //test->setPos(1000, 1000);
-  //scene_->addItem(test);
 
   setDragMode(ScrollHandDrag);
 
@@ -43,6 +27,7 @@ void MapGeneral::refresh() {
     DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
   map_->set_map();
+  emit map_changed(map_->maps_);
 
   for (auto* manager : managers_) {
     scene_->removeItem(manager);
@@ -74,9 +59,9 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
     return;
   
   mario_->update();
-  map_->update(mario_->y_);
+  map_->update();
   for (auto* manager : managers_) {
-    manager->update();
+    manager->update(map_->current_map_height_min_, map_->current_map_height_max_);
   }
 
   // TODO Center on機能を普通の敵にも使えるようにする(優先度低)
@@ -149,4 +134,8 @@ void MapGeneral::select_item_by_address(const u32 address) {
       }
     }
   }
+}
+
+void MapGeneral::set_map_layer(const s32 id) const {
+  map_->selected_map_layer_ = id;
 }

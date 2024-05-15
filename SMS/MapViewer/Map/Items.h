@@ -25,7 +25,8 @@ class ItemMap : public QGraphicsPixmapItem {
 
 public:
   void set_map();
-  void update(float mario_y);
+  void set_map_id(s32 id);
+  void update();
   bool is_changed() const;
 
   s8 stage_ = 0;
@@ -36,6 +37,11 @@ public:
   };
   QVector<map_height> maps_;
   map_height* cur_map_ = nullptr;
+
+  // TODO staticÇè¡Ç∑
+  float current_map_height_min_ = -INFINITY;
+  float current_map_height_max_ = INFINITY;
+  s32 selected_map_layer_ = -1;
 private:
   map_height* former_map_ = nullptr;
 
@@ -123,7 +129,7 @@ public:
 class ItemObjBase : public ItemBase {
 public:
   ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);
-  void update();
+  void update(float map_height_min, float map_height_max);
 
   enum { Type = ItemType::OBJ };
   int type() const override { return Type; }
@@ -148,7 +154,7 @@ class ItemManagerBase : public QGraphicsItemGroup {
 public:
   ItemManagerBase(u32 p_manager, s32 id = -1);
   ~ItemManagerBase() override;
-  virtual void update();
+  virtual void update(float map_height_min, float map_height_max);
 
   u32 p_manager_ = 0;
   s32 id_ = -1;

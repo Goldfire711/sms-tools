@@ -82,6 +82,9 @@ void MapObjectViewer::select_item_by_address(const u32 address) const {
   const QVariant str_address = "0x" + QString::number(address, 16).toUpper();
   auto matches = model_->match(model_->index(0, 2), Qt::DisplayRole, str_address, 1, Qt::MatchExactly | Qt::MatchRecursive);
 
+  if (matches.empty())
+    return;
+
   auto* selection_model = tree_view_->selectionModel();
   selection_model->clearSelection();
 
