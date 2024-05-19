@@ -57,6 +57,7 @@ void MapSirena1::initialize() {
   }
 
   // manta nodes
+  // graphTracer(0x124)->graphWeb(0x0)->graphNodes[i](0x0 + i*0x10)->railNode(0x0)
   manta_nodes_ = { {514, 10726}, {-3144, 10499}, {-6615, 9746}, {-7161, 1339}, {-4783, -4575}, {-2654, -6743},
     {2779, -7322}, {5411, -6814}, {6888, -4280}, {6645, 2001}, {6020, 9348}, {3715, 10467}, {1000, 10734} };
   manta_nodes_poly_ = scene->addPolygon(QPolygon(manta_nodes_));

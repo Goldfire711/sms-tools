@@ -1,6 +1,6 @@
 {
     "TRailNode": {
-        "size": 68,
+        "size": "44",
         "offsets": [
             {
                 "offset": "0",
@@ -25,6 +25,36 @@
                 "type": "s16",
                 "name": "Neighbors count",
                 "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s32",
+                "name": "flags",
+                "notes": "&0x0080: (1) stops on init only? (e.g. SB2 block)\n&0x0100: (1) stops after arriving this node unless Mario is standing on the block (e.g. BH6 block)"
+            },
+            {
+                "offset": "c",
+                "type": "u16",
+                "name": "X rot",
+                "notes": ""
+            },
+            {
+                "offset": "e",
+                "type": "u16",
+                "name": "Y rot",
+                "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "u16",
+                "name": "Z rot",
+                "notes": ""
+            },
+            {
+                "offset": "12",
+                "type": "u16",
+                "name": "100x Moving speed",
+                "notes": "100x Moving speed (until arriving this node);\n0xffff for unset"
             },
             {
                 "offset": "14",
@@ -122,7 +152,6 @@
                 "name": "Neighbor distance 8",
                 "notes": ""
             }
-            
         ]
     }
 }

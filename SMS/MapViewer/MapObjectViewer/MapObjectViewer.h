@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QScrollBar>
 #include <QDockWidget>
+#include <QMouseEvent>
 
 #include <json.hpp>
 #include "Common/CommonTypes.h"
@@ -68,10 +69,12 @@ public:
 
 public slots:
   void on_object_viewer_clicked(const QModelIndex& index);
+  void on_object_viewer_right_clicked(const QPoint &pos);
   void select_item_by_address(u32 address) const;
 
 signals:
   void item_clicked(u32 address);
+  void item_right_clicked(u32 address);
 
 protected:
   void closeEvent(QCloseEvent* event) override;

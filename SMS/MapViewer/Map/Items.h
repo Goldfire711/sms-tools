@@ -13,6 +13,8 @@
 #include <QtMath>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsItem>
+#include <QMenu>
+#include <QObject>
 
 class ItemManagerBase;
 using namespace memory;
@@ -38,7 +40,6 @@ public:
   QVector<map_height> maps_;
   map_height* cur_map_ = nullptr;
 
-  // TODO staticÇè¡Ç∑
   float current_map_height_min_ = -INFINITY;
   float current_map_height_max_ = INFINITY;
   s32 selected_map_layer_ = -1;
@@ -89,16 +90,15 @@ private:
   };
 };
 
-enum ItemType {
-  MARIO = QGraphicsItem::UserType + 1,
-  OBJ = QGraphicsItem::UserType + 2,
-};
-
 class ItemBase : public QGraphicsItemGroup {
 public:
   ItemBase(QGraphicsItem* parent = nullptr);
 
-  enum { Type = ItemType::OBJ };
+  enum ItemType {
+    MARIO = UserType + 1,
+    OBJ = UserType + 2,
+  };
+  enum { Type = OBJ };
   int type() const override { return Type; }
 
   u32 ptr_ = 0;
@@ -106,6 +106,12 @@ public:
 
   QGraphicsPixmapItem* pix_;
   QGraphicsRectItem* rect_;
+
+  struct SubItem {
+    QString name;
+    QGraphicsItem* item;
+  };
+  std::vector<SubItem>* sub_items_;
 };
 
 class ItemMario : public ItemBase {
@@ -113,8 +119,8 @@ public:
   ItemMario(QGraphicsItem* parent = nullptr);
   void update();
 
-  //enum { Type = ItemType::MARIO };
-  //int type() const override { return Type; }
+  enum { Type = MARIO };
+  int type() const override { return Type; }
 
   float x_ = 0;
   float y_ = 0;
@@ -123,13 +129,17 @@ public:
   float atk_radius_ = 80;
 
   //QGraphicsPixmapItem* pix_;
-  QGraphicsEllipseItem* circle_;
+  QGraphicsEllipseItem* attack_radius_;
+  QGraphicsEllipseItem* receive_radius_;
+  QGraphicsEllipseItem* generate_radius_min_;
+  QGraphicsEllipseItem* generate_radius_max_;
 };
 
+// TODO id_Ç»Ç«égÇÌÇ»Ç¢Ç‚Ç¬Çè¡Ç∑
 class ItemObjBase : public ItemBase {
 public:
   ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);
-  void update(float map_height_min, float map_height_max);
+  virtual void update(float map_height_min, float map_height_max);
 
   enum { Type = ItemType::OBJ };
   int type() const override { return Type; }
@@ -148,6 +158,9 @@ private:
   virtual void set_scale();
   virtual void set_rotation();
   virtual void set_appearance();
+
+  QGraphicsEllipseItem* attack_radius_;
+  QGraphicsEllipseItem* receive_radius_;
 };
 
 class ItemManagerBase : public QGraphicsItemGroup {
@@ -165,6 +178,7 @@ public:
 class ItemBossManta : public ItemObjBase {
 public:
   ItemBossManta(u32 p_obj, ItemManagerBase* parent = nullptr);
+  void update(float map_height_min, float map_height_max) override;
 private:
   void set_scale() override;
   void set_rotation() override;
@@ -172,4 +186,6 @@ private:
 
   QPixmap pixmap_normal_;
   QPixmap pixmap_purple_;
+  QGraphicsLineItem* target_line_;
+  QGraphicsLineItem* attractor_line_;
 };

@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QGraphicsRectItem>
+#include <QMenu>
 
 using namespace memory;
 
@@ -24,8 +25,10 @@ public:
   s32 timer_id_ = -1;
 
 public slots:
-  void select_item_by_address(u32 address);
+  ItemBase* select_item_by_address(u32 address);
   void set_map_layer(s32 id) const;
+  void show_context_menu_by_address(u32 address);
+  void show_context_menu(ItemBase* item);
 
 signals:
   void map_object_clicked(u32 address);

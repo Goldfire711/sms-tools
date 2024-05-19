@@ -13,6 +13,7 @@ void MapGeneral::init() {
 
   map_ = new ItemMap();
   mario_ = new ItemMario();
+  // TODO item managerの追加
 
   scene_->addItem(map_);
   scene_->addItem(mario_);
@@ -20,6 +21,8 @@ void MapGeneral::init() {
   setDragMode(ScrollHandDrag);
 
   refresh();
+
+  setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 void MapGeneral::refresh() {
@@ -66,7 +69,6 @@ void MapGeneral::timerEvent(QTimerEvent* event) {
 
   // TODO Center on機能を普通の敵にも使えるようにする(優先度低)
   // 右クリックのメニューからセットできるようにする
-  // TODO 右クリックのメニューで、マンタなど特定のobjのLineなどの表示非表示機能追加
   if (center_on_mario_)
     centerOn(mario_->pix_);
 
@@ -85,10 +87,13 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
 
 void MapGeneral::mousePressEvent(QMouseEvent* event) {
   auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
+  // TODO 全てのitemsをforループで回して、有効なものでreturn
+  //auto test = scene_->items(event->pos());
   if (pix_item == nullptr)
     return;
   auto* item = pix_item->parentItem();
-  if (item != nullptr && item->type() == OBJ) {
+  if (item != nullptr && (item->type() == ItemBase::OBJ 
+    || item->type() == ItemBase::MARIO)) {
     auto* obj = dynamic_cast<ItemBase*>(item);
     if (selected_obj_ == nullptr) {
       obj->is_selected_ = true;
@@ -100,6 +105,10 @@ void MapGeneral::mousePressEvent(QMouseEvent* event) {
       selected_obj_ = obj;
     }
     emit map_object_clicked(obj->ptr_);
+
+    if (event->button() == Qt::RightButton) {
+      show_context_menu(obj);
+    }
   }
   QGraphicsView::mousePressEvent(event);
 }
@@ -115,13 +124,15 @@ void MapGeneral::set_timer_interval(const s32 interval) {
   timer_id_ = startTimer(interval);
 }
 
-void MapGeneral::select_item_by_address(const u32 address) {
+ItemBase* MapGeneral::select_item_by_address(const u32 address) {
+  // TODO managersも取得できるようにする。selectはしない。
+  // そのためにmanagerはItemBaseを継承する必要がある
   if (address == mario_->ptr_) {
     if (selected_obj_ != nullptr)
       selected_obj_->is_selected_ = false;
     mario_->is_selected_ = true;
     selected_obj_ = mario_;
-    return;
+    return mario_;
   }
   for (const auto* manager : managers_) {
     for (auto* obj : manager->objs_) {
@@ -130,12 +141,52 @@ void MapGeneral::select_item_by_address(const u32 address) {
           selected_obj_->is_selected_ = false;
         obj->is_selected_ = true;
         selected_obj_ = obj;
-        return;
+        return obj;
       }
     }
   }
+  return mario_;
 }
 
 void MapGeneral::set_map_layer(const s32 id) const {
   map_->selected_map_layer_ = id;
+}
+
+void MapGeneral::show_context_menu_by_address(const u32 address) {
+  auto* item = select_item_by_address(address);
+  show_context_menu(item);
+}
+
+void MapGeneral::show_context_menu(ItemBase* item) {
+  // TODO moveTo関数の追加
+  // TODO centerOn
+  auto* menu = new QMenu(this);
+  if (item->type() == ItemBase::MARIO) {
+    for (const auto& sub : *item->sub_items_) {
+      auto* action = menu->addAction(QString("Show %1").arg(sub.name));
+      action->setCheckable(true);
+      action->setChecked(sub.item->isVisible());
+      connect(action, &QAction::triggered, [sub](const bool checked) {
+        sub.item->setVisible(checked);
+        });
+    }
+  } else if (item->type() == ItemBase::OBJ) {
+    auto* parent = dynamic_cast<ItemManagerBase*>(item->parentItem());
+    const u32 vt = read_u32(item->ptr_);
+    for (size_t i = 0; i < item->sub_items_->size(); i++) {
+      auto* action = menu->addAction(QString("Show %1").arg(item->sub_items_->at(i).name));
+      action->setCheckable(true);
+      action->setChecked(item->sub_items_->at(i).item->isVisibleTo(item));
+      connect(action, &QAction::triggered, [parent, i, vt](const bool checked) {
+        for (auto* child : parent->objs_) {
+          if (read_u32(child->ptr_) == vt) {
+            child->sub_items_->at(i).item->setVisible(checked);
+          }
+        }
+        });
+    }
+  }
+  // TODO managerにもcontextmenu追加
+  menu->exec(QCursor::pos());
+
 }

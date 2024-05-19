@@ -5,19 +5,19 @@
             {
                 "offset": "0",
                 "type": "TGraphWeb*",
-                "name": "",
+                "name": "Graph",
                 "notes": ""
             },
             {
                 "offset": "4",
                 "type": "s32",
-                "name": "",
+                "name": "Current (target) node index",
                 "notes": ""
             },
             {
                 "offset": "8",
                 "type": "s32",
-                "name": "",
+                "name": "Previous node index",
                 "notes": ""
             },
             {

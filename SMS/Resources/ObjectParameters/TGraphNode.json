@@ -1,0 +1,31 @@
+{
+    "TGraphNode": {
+        "size": "10",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TRailNode*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "s32",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "c",
+                "type": "s16",
+                "name": "0x8001?",
+                "notes": ""
+            }
+        ]
+    }
+}

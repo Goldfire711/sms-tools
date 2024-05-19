@@ -4,14 +4,14 @@
         "offsets": [
             {
                 "offset": "0",
-                "type": "?*",
-                "name": "Nodes",
+                "type": "TGraphNode*",
+                "name": "Graph nodes",
                 "notes": ""
             },
             {
                 "offset": "4",
                 "type": "TRailNode*",
-                "name": "",
+                "name": "Rail nodes",
                 "notes": ""
             },
             {

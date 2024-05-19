@@ -4,8 +4,10 @@ MapObjectViewer::MapObjectViewer(QWidget* parent)
   : QDockWidget(parent), tree_view_(new QTreeView()) {
   setWindowTitle("Object Viewer");
 
+  tree_view_->setContextMenuPolicy(Qt::CustomContextMenu);
   setWidget(tree_view_);
   connect(tree_view_, &QAbstractItemView::clicked, this, &MapObjectViewer::on_object_viewer_clicked);
+  connect(tree_view_, &QAbstractItemView::customContextMenuRequested, this, &MapObjectViewer::on_object_viewer_right_clicked);
 
   setHidden(!Settings::instance().IsMapObjectViewerVisible());
   connect(&Settings::instance(), &Settings::MapObjectViewerVisibilityChanged, this, 
@@ -76,6 +78,13 @@ void MapObjectViewer::set_timer_interval(s32 interval) {
 void MapObjectViewer::on_object_viewer_clicked(const QModelIndex& index) {
   auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
   emit item_clicked(item->address_);
+}
+
+void MapObjectViewer::on_object_viewer_right_clicked(const QPoint& pos) {
+  const auto index = tree_view_->indexAt(pos);
+  const auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
+  emit item_clicked(item->address_);
+  emit item_right_clicked(item->address_);
 }
 
 void MapObjectViewer::select_item_by_address(const u32 address) const {
