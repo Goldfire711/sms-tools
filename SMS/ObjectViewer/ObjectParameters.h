@@ -17,11 +17,15 @@ class ObjectParameters : public QDockWidget {
 public:
   ObjectParameters(QWidget* parent = Q_NULLPTR);
   ~ObjectParameters() override;
+  void closeEvent(QCloseEvent* event) override;
   void show_parameters(u32 address, s64 index);
   void refresh_items();
   void show_edit_parameters_dialog();
   void reload_json();
   void open_json_location();
+
+signals:
+  void closed();
 
 private:
   Ui::ObjectParameters ui;

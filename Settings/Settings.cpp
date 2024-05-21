@@ -27,6 +27,19 @@ bool Settings::IsMapObjectViewerVisible() const {
   return true;
 }
 
+void Settings::SetMapObjectWatcherVisible(const bool enabled) {
+  if (IsMapObjectWatcherVisible() != enabled) {
+    GetQSettings().setValue("map/show_object_watcher", enabled);
+    emit MapObjectWatcherVisibilityChanged(enabled);
+  }
+}
+
+bool Settings::IsMapObjectWatcherVisible() const {
+  if (const auto value = GetQSettings().value("map/show_object_watcher"); value.isValid())
+    return value.toBool();
+  return true;
+}
+
 void Settings::SetMapObjectParametersVisible(const bool enabled) {
   if (IsMapObjectParametersVisible() != enabled) {
     GetQSettings().setValue("map/show_object_parameters", enabled);
@@ -37,10 +50,11 @@ void Settings::SetMapObjectParametersVisible(const bool enabled) {
 bool Settings::IsMapObjectParametersVisible() const {
   if (const auto value = GetQSettings().value("map/show_object_parameters"); value.isValid())
     return value.toBool();
-  return true;
+  return false;
 }
 
 void Settings::RefreshMapWidgetVisibility() {
   emit MapObjectViewerVisibilityChanged(IsMapObjectViewerVisible());
+  emit MapObjectWatcherVisibilityChanged(IsMapObjectWatcherVisible());
   emit MapObjectParametersVisibilityChanged(IsMapObjectParametersVisible());
 }

@@ -18,12 +18,15 @@ public:
   // Map Viewer
   void SetMapObjectViewerVisible(bool enabled);
   bool IsMapObjectViewerVisible() const;
+  void SetMapObjectWatcherVisible(bool enabled);
+  bool IsMapObjectWatcherVisible() const;
   void SetMapObjectParametersVisible(bool enabled);
   bool IsMapObjectParametersVisible() const;
   void RefreshMapWidgetVisibility();
 
 signals:
   void MapObjectViewerVisibilityChanged(bool visible);
+  void MapObjectWatcherVisibilityChanged(bool visible);
   void MapObjectParametersVisibilityChanged(bool visible);
 
 private:

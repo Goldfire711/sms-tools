@@ -1,7 +1,7 @@
 #include "Items.h"
 
 ItemObjBase::ItemObjBase(const u32 p_obj, ItemManagerBase* parent) 
-  : ItemBase(parent), manager_id_(parent->id_) {
+  : ItemBase(parent) {
   ptr_ = p_obj;
   setVisible(false);
 
@@ -32,7 +32,6 @@ void ItemObjBase::update(const float map_height_min, const float map_height_max)
   z_ = read_float(ptr_ + 0x18);
   scale_ = read_float(ptr_ + 0x24);
   rot_y_ = read_float(ptr_ + 0x34);
-  id_ = read_s16(ptr_ + 0x7c);
   draw_info_ = read_u32(ptr_ + 0xf0);
 
   if (y_ <= map_height_min || map_height_max < y_) {

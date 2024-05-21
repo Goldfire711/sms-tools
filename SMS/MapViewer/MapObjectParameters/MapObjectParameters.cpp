@@ -4,6 +4,7 @@ extern nlohmann::json g_vtable_to_class;
 
 MapObjectParameters::MapObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
+  setWindowTitle("Watcher");
   tbl_parameters_ = new QTableView();
   model_ = new MapObjectParametersModel(params_list_);
   tbl_parameters_->setModel(model_);
@@ -13,8 +14,8 @@ MapObjectParameters::MapObjectParameters(QWidget* parent)
 
   setWidget(tbl_parameters_);
 
-  setHidden(!Settings::instance().IsMapObjectParametersVisible());
-  connect(&Settings::instance(), &Settings::MapObjectParametersVisibilityChanged, this,
+  setHidden(!Settings::instance().IsMapObjectWatcherVisible());
+  connect(&Settings::instance(), &Settings::MapObjectWatcherVisibilityChanged, this,
     [this](const bool visible) {setHidden(!visible); });
 
   startTimer(33);
@@ -23,7 +24,7 @@ MapObjectParameters::MapObjectParameters(QWidget* parent)
 MapObjectParameters::~MapObjectParameters() = default;
 
 void MapObjectParameters::closeEvent(QCloseEvent* event) {
-  Settings::instance().SetMapObjectParametersVisible(false);
+  Settings::instance().SetMapObjectWatcherVisible(false);
 }
 
 void MapObjectParameters::show_parameters(const u32 address) {

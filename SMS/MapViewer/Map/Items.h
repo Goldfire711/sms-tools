@@ -151,8 +151,6 @@ public:
   float rot_y_ = 0;
   float scale_ = 1;
   u32 draw_info_ = 0;
-  s16 id_ = -1;
-  s32 manager_id_ = -1;
 
 private:
   virtual void set_scale();

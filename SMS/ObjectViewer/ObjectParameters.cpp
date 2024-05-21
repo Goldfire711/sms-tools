@@ -50,6 +50,10 @@ ObjectParameters::~ObjectParameters() {
   settings.setValue("object_parameters/floating", isFloating());
 }
 
+void ObjectParameters::closeEvent(QCloseEvent* event) {
+  emit closed();
+}
+
 void ObjectParameters::show_parameters(u32 address, s64 index) {
   // read object parameters from ObjectParameters/*.json
   read_parameters();

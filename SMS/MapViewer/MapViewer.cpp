@@ -1,7 +1,5 @@
 #include "MapViewer.h"
 
-#include <QComboBox>
-
 json g_class_to_png;
 qreal g_obj_scale = 2;
 
@@ -65,14 +63,29 @@ MapViewer::MapViewer(QWidget* parent)
   object_viewer_ = new MapObjectViewer(this);
   connect(btn_refresh, &QPushButton::clicked, object_viewer_, &MapObjectViewer::refresh);
 
-  object_parameters_ = new MapObjectParameters(this);
+  object_watcher_ = new MapObjectParameters(this);
 
-  // Left click event
+  object_parameters_ = new ObjectParameters(this);
+  object_parameters_->setWindowTitle("Parameters");
+  connect(object_parameters_, &ObjectParameters::closed, &Settings::instance(), [] {
+    Settings::instance().SetMapObjectParametersVisible(false);
+    });
+  object_parameters_->setHidden(!Settings::instance().IsMapObjectParametersVisible());
+  connect(&Settings::instance(), &Settings::MapObjectParametersVisibilityChanged, object_parameters_,
+    [this](const bool visible) {object_parameters_->setHidden(!visible); });
+
+  // Left/Right click event
   connect(map_, &MapGeneral::map_object_clicked, object_viewer_, &MapObjectViewer::select_item_by_address);
-  connect(map_, &MapGeneral::map_object_clicked, object_parameters_, &MapObjectParameters::show_parameters);
-  connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, &MapObjectParameters::show_parameters);
+  connect(map_, &MapGeneral::map_object_clicked, object_watcher_, &MapObjectParameters::show_parameters);
+  connect(map_, &MapGeneral::map_object_clicked, object_parameters_, [this](const u32 address) {
+    object_parameters_->show_parameters(address, -1);
+  });
+  connect(object_viewer_, &MapObjectViewer::item_clicked, object_watcher_, &MapObjectParameters::show_parameters);
   connect(object_viewer_, &MapObjectViewer::item_clicked, map_, &MapGeneral::select_item_by_address);
   connect(object_viewer_, &MapObjectViewer::item_right_clicked, map_, &MapGeneral::show_context_menu_by_address);
+  connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, [this](const u32 address) {
+    object_parameters_->show_parameters(address, -1);
+  });
 
   // set menu widget
   auto* lo_top = new QHBoxLayout();
@@ -94,23 +107,31 @@ MapViewer::MapViewer(QWidget* parent)
   auto* menu_bar = new QMenuBar(nullptr);
   auto* view_menu = menu_bar->addMenu("&View");
 
-  auto* show_object_viewer = view_menu->addAction("Show Object Viewer");
+  auto* show_object_viewer = view_menu->addAction("Object Viewer");
   show_object_viewer->setCheckable(true);
   show_object_viewer->setChecked(Settings::instance().IsMapObjectViewerVisible());
   connect(show_object_viewer, &QAction::toggled, &Settings::instance(), &Settings::SetMapObjectViewerVisible);
   connect(&Settings::instance(), &Settings::MapObjectViewerVisibilityChanged, show_object_viewer, &QAction::setChecked);
 
-  auto* show_object_parameters = view_menu->addAction("Show Object Parameters");
+  auto* show_object_watcher = view_menu->addAction("Object Watcher");
+  show_object_watcher->setCheckable(true);
+  show_object_watcher->setChecked(Settings::instance().IsMapObjectWatcherVisible());
+  connect(show_object_watcher, &QAction::toggled, &Settings::instance(), &Settings::SetMapObjectWatcherVisible);
+  connect(&Settings::instance(), &Settings::MapObjectWatcherVisibilityChanged, show_object_watcher, &QAction::setChecked);
+
+  auto* show_object_parameters = view_menu->addAction("Object Parameters");
   show_object_parameters->setCheckable(true);
   show_object_parameters->setChecked(Settings::instance().IsMapObjectParametersVisible());
   connect(show_object_parameters, &QAction::toggled, &Settings::instance(), &Settings::SetMapObjectParametersVisible);
   connect(&Settings::instance(), &Settings::MapObjectParametersVisibilityChanged, show_object_parameters, &QAction::setChecked);
-
   lo_top->setMenuBar(menu_bar);
 
   setCentralWidget(map_);
   addDockWidget(Qt::LeftDockWidgetArea, object_viewer_);
+  addDockWidget(Qt::BottomDockWidgetArea, object_watcher_);
   addDockWidget(Qt::BottomDockWidgetArea, object_parameters_);
+  tabifyDockWidget(object_watcher_, object_parameters_);
+  object_watcher_->raise();
 
   // TODO ウィンドウ状態の復元が機能しない
   //const auto& settings = Settings::GetQSettings();
