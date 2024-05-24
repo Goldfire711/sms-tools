@@ -44,8 +44,21 @@ void MapGeneral::refresh() {
   for (s32 i = 0; i < count - 1; i++) {
     next = read_u32(next);
     const u32 p_manager = read_u32(next + 0x8);
-    // クラス名によっては専用のItemManagerクラスを使う？
-    auto* manager = new ItemManagerBase(p_manager, i);
+
+    const u32 vt = read_u32(p_manager);
+    std::stringstream ss;
+    ss << std::hex << vt;
+    if (!g_vtable_to_class.contains(ss.str()))
+      continue;
+    const std::string obj_class = g_vtable_to_class[ss.str()];
+
+    // クラス名によっては専用のItemManagerクラスを使う
+    ItemManagerBase* manager;
+    if (obj_class == "TBossMantaManager")
+      manager = new ItemBossMantaManager(p_manager);
+    else
+      manager = new ItemManagerBase(p_manager);
+
     scene_->addItem(manager);
     managers_.append(manager);
   }
@@ -137,13 +150,12 @@ ItemBase* MapGeneral::select_item_by_address(const u32 address) {
     selected_obj_ = mario_;
     return mario_;
   }
-  for (const auto* manager : managers_) {
-    // TODO managersも取得できるようにする。selectはしない。
-    // そのためにmanagerはItemBaseを継承する必要がある
-    //if (address == manager->ptr_) {
-    //  
-    //}
-    for (auto* obj : manager->objs_) {
+  for (auto* manager : managers_) {
+    // managersを取得した場合、selectはしない。
+    if (address == manager->ptr_) {
+      return manager;
+    }
+    for (auto* obj : manager->obj_list_) {
       if (address == obj->ptr_) {
         if (selected_obj_ != nullptr)
           selected_obj_->is_selected_ = false;
@@ -173,7 +185,7 @@ void MapGeneral::show_context_menu(ItemBase* item) {
   // TODO moveTo関数の追加
   // TODO centerOn
   auto* menu = new QMenu(this);
-  if (item->type() == ItemBase::MARIO) {
+  if (item->type() == ItemBase::MARIO || item->type() == ItemBase::MANAGER) {
     for (const auto& sub : *item->sub_items_) {
       auto* action = menu->addAction(QString("Show %1").arg(sub.name));
       action->setCheckable(true);
@@ -184,13 +196,27 @@ void MapGeneral::show_context_menu(ItemBase* item) {
     }
   } else if (item->type() == ItemBase::OBJ) {
     auto* parent = dynamic_cast<ItemManagerBase*>(item->parentItem());
+
+    // add actions for the manager of item
+    for (const auto& sub : *parent->sub_items_) {
+      auto* action = menu->addAction(QString("Show %1").arg(sub.name));
+      action->setCheckable(true);
+      action->setChecked(sub.item->isVisible());
+      connect(action, &QAction::triggered, [sub](const bool checked) {
+        sub.item->setVisible(checked);
+        });
+    }
+
+    menu->addSeparator();
+
+    // add actions for item
     const u32 vt = read_u32(item->ptr_);
     for (size_t i = 0; i < item->sub_items_->size(); i++) {
       auto* action = menu->addAction(QString("Show %1").arg(item->sub_items_->at(i).name));
       action->setCheckable(true);
       action->setChecked(item->sub_items_->at(i).item->isVisibleTo(item));
       connect(action, &QAction::triggered, [parent, i, vt](const bool checked) {
-        for (auto* child : parent->objs_) {
+        for (auto* child : parent->obj_list_) {
           if (read_u32(child->ptr_) == vt) {
             child->sub_items_->at(i).item->setVisible(checked);
           }
@@ -198,7 +224,6 @@ void MapGeneral::show_context_menu(ItemBase* item) {
         });
     }
   }
-  // TODO managerにもcontextmenu追加
   menu->exec(QCursor::pos());
 
 }

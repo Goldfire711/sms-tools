@@ -49,4 +49,9 @@ ParamsTBossManta::ParamsTBossManta(const u32 ptr) : ParamsObjBase(ptr) {
         QString::number(timer_mod) + "/" +
         QString::number(escape_time);
     }});
+
+  params_.push_back({
+    "sEscapeFromMario", [] {
+      return read_s8(0x8040b120);
+    }});
 }

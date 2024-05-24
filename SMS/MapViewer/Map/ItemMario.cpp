@@ -10,7 +10,7 @@ ItemMario::ItemMario(QGraphicsItem* parent) : ItemBase(parent) {
 
   // Attack Radius
   pen.setColor(Qt::red);
-  attack_radius_ = new QGraphicsEllipseItem;;
+  attack_radius_ = new QGraphicsEllipseItem;
   attack_radius_->setPen(pen);
   attack_radius_->setVisible(false);
   addToGroup(attack_radius_);

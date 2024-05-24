@@ -97,6 +97,7 @@ public:
   enum ItemType {
     MARIO = UserType + 1,
     OBJ = UserType + 2,
+    MANAGER = UserType + 3,
   };
   enum { Type = OBJ };
   int type() const override { return Type; }
@@ -160,16 +161,18 @@ private:
   QGraphicsEllipseItem* receive_radius_;
 };
 
-class ItemManagerBase : public QGraphicsItemGroup {
+class ItemManagerBase : public ItemBase {
 public:
-  ItemManagerBase(u32 p_manager, s32 id = -1);
+  ItemManagerBase(u32 p_manager, QGraphicsItem* parent = nullptr);
   ~ItemManagerBase() override;
+  Q_DISABLE_COPY_MOVE(ItemManagerBase)
+
+  enum { Type = MANAGER };
+  int type() const override { return Type; }
+
   virtual void update(float map_height_min, float map_height_max);
 
-  u32 p_manager_ = 0;
-  s32 id_ = -1;
-  std::string class_name_;
-  QVector<ItemObjBase*> objs_;
+  QVector<ItemObjBase*> obj_list_;
 };
 
 class ItemBossManta : public ItemObjBase {
@@ -185,4 +188,14 @@ private:
   QPixmap pixmap_purple_;
   QGraphicsLineItem* target_line_;
   QGraphicsLineItem* attractor_line_;
+};
+
+class ItemBossMantaManager : public ItemManagerBase {
+public:
+  ItemBossMantaManager(u32 p_manager);
+  void update(float map_height_min, float map_height_max) override;
+
+  QGraphicsEllipseItem* circle_escape_;
+  QPen pen_gray_;
+  QPen pen_red_;
 };
