@@ -27,6 +27,7 @@ public:
   QVariant data(const QModelIndex& index, int role) const override;
   QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
   Qt::ItemFlags flags(const QModelIndex& index) const override;
+  QModelIndex index(int row, int column, const QModelIndex& parent = QModelIndex()) const override;
 
   s32 selected_column_ = 0;
 
@@ -43,6 +44,12 @@ public:
 
 public slots:
   void show_parameters(u32 address);
+  void on_table_clicked(const QModelIndex& index);
+  void on_table_right_clicked(const QPoint& pos);
+
+signals:
+  void item_clicked(u32 address);
+  void item_right_clicked(u32 address);
 
 protected:
   void closeEvent(QCloseEvent* event) override;

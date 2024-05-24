@@ -130,8 +130,6 @@ void MapGeneral::set_timer_interval(const s32 interval) {
 }
 
 ItemBase* MapGeneral::select_item_by_address(const u32 address) {
-  // TODO managersも取得できるようにする。selectはしない。
-  // そのためにmanagerはItemBaseを継承する必要がある
   if (address == mario_->ptr_) {
     if (selected_obj_ != nullptr)
       selected_obj_->is_selected_ = false;
@@ -140,6 +138,11 @@ ItemBase* MapGeneral::select_item_by_address(const u32 address) {
     return mario_;
   }
   for (const auto* manager : managers_) {
+    // TODO managersも取得できるようにする。selectはしない。
+    // そのためにmanagerはItemBaseを継承する必要がある
+    //if (address == manager->ptr_) {
+    //  
+    //}
     for (auto* obj : manager->objs_) {
       if (address == obj->ptr_) {
         if (selected_obj_ != nullptr)

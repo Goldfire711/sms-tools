@@ -86,6 +86,12 @@ MapViewer::MapViewer(QWidget* parent)
   connect(object_viewer_, &MapObjectViewer::item_clicked, object_parameters_, [this](const u32 address) {
     object_parameters_->show_parameters(address, -1);
   });
+  connect(object_watcher_, &MapObjectParameters::item_clicked, object_viewer_, &MapObjectViewer::select_item_by_address);
+  connect(object_watcher_, &MapObjectParameters::item_clicked, map_, &MapGeneral::select_item_by_address);
+  connect(object_watcher_, &MapObjectParameters::item_right_clicked, map_, &MapGeneral::show_context_menu_by_address);
+  connect(object_watcher_, &MapObjectParameters::item_clicked, object_parameters_, [this](const u32 address) {
+    object_parameters_->show_parameters(address, -1);
+  });
 
   // set menu widget
   auto* lo_top = new QHBoxLayout();

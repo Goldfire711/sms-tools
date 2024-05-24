@@ -5,12 +5,19 @@ extern nlohmann::json g_vtable_to_class;
 MapObjectParameters::MapObjectParameters(QWidget* parent)
   : QDockWidget(parent) {
   setWindowTitle("Watcher");
+
   tbl_parameters_ = new QTableView();
+
   model_ = new MapObjectParametersModel(params_list_);
   tbl_parameters_->setModel(model_);
+
   auto font = tbl_parameters_->font();
   font.setPointSize(9);
   tbl_parameters_->setFont(font);
+
+  tbl_parameters_->setContextMenuPolicy(Qt::CustomContextMenu);
+  connect(tbl_parameters_, &QAbstractItemView::clicked, this, &MapObjectParameters::on_table_clicked);
+  connect(tbl_parameters_, &QAbstractItemView::customContextMenuRequested, this, &MapObjectParameters::on_table_right_clicked);
 
   setWidget(tbl_parameters_);
 
@@ -57,10 +64,10 @@ void MapObjectParameters::show_parameters(const u32 address) {
     const u32 p_obj_list = read_u32(p_manager + 0x18);
     for (s32 i = 0; i < count; i++) {
       const u32 p_obj = read_u32(p_obj_list + i * 4);
-      const u32 vt_obj = read_u32(p_obj);
-      std::stringstream ss2;
-      ss2 << std::hex << vt_obj;
-      if (g_vtable_to_class[ss2.str()] == class_name.toStdString()) {
+      //std::stringstream ss2;
+      //ss2 << std::hex << vt_obj;
+      //if (g_vtable_to_class[ss2.str()] == class_name.toStdString()) {
+      if (const u32 vt_obj = read_u32(p_obj); vt_obj == vt) {
         if (class_name == "TNameKuri")
           params_list_.push_back(std::make_unique<ParamsTNameKuri>(p_obj));
         else if (class_name == "TBossManta")
@@ -86,4 +93,29 @@ void MapObjectParameters::show_parameters(const u32 address) {
 
 void MapObjectParameters::timerEvent(QTimerEvent* event) {
   emit model_->layoutChanged();
+}
+
+void MapObjectParameters::on_table_clicked(const QModelIndex& index) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
+  model_->selected_column_ = index.column();
+
+  auto* item = static_cast<ParamsBase*>(index.internalPointer());
+  emit item_clicked(item->ptr_);
+}
+
+void MapObjectParameters::on_table_right_clicked(const QPoint& pos) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
+  const auto index = tbl_parameters_->indexAt(pos);
+
+  model_->selected_column_ = index.column();
+
+  const auto* item = static_cast<ParamsBase*>(index.internalPointer());
+  emit item_clicked(item->ptr_);
+  emit item_right_clicked(item->ptr_);
 }

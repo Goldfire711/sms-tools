@@ -63,3 +63,10 @@ Qt::ItemFlags MapObjectParametersModel::flags(const QModelIndex& index) const {
   //flags |= Qt::ItemIsUserCheckable;
   return flags;
 }
+
+QModelIndex MapObjectParametersModel::index(int row, int column, const QModelIndex& parent) const {
+  if (!hasIndex(row, column, parent))
+    return {};
+
+  return createIndex(row, column, params_list_[column].get());
+}

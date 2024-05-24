@@ -19,13 +19,14 @@ public:
   s32 row() const;
   QString name() const;
 
+  u32 ptr_ = 0;
+
 protected:
   struct Param {
     QString name;
     std::function<QVariant()> calc;
   };
 
-  u32 ptr_ = 0;
   QString name_;
   std::vector<Param> params_;
 };
