@@ -27,6 +27,7 @@ void ItemMap::set_map() {
       break;
     default:
       maps_.append({ QPixmap(), INFINITY });
+      break;
     }
     break;
   default:

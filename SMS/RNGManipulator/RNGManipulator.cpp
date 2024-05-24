@@ -59,7 +59,7 @@ void RNGManipulator::initialize_widgets() {
   connect(txb_rng_index_, &QLineEdit::textEdited, this, &RNGManipulator::on_rng_index_changed);
 
   // ŒŸõƒIƒvƒVƒ‡ƒ“
-  auto* val_float = new QRegExpValidator(QRegExp("-?\\d*(\\.\\d+)?"));
+  auto* val_float = new QRegExpValidator(QRegExp(R"(-?\d*(\.\d+)?)"));
   txb_rng_from_ = new QLineEdit("0");
   txb_rng_to_ = new QLineEdit("1");
   txb_rng_from_->setValidator(val_float);

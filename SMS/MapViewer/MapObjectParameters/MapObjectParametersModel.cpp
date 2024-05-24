@@ -31,6 +31,9 @@ QVariant MapObjectParametersModel::headerData(int section, Qt::Orientation orien
 }
 
 QVariant MapObjectParametersModel::data(const QModelIndex& index, int role) const {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return {};
   if (!index.isValid())
     return {};
 

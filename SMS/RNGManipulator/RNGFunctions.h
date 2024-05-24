@@ -38,7 +38,7 @@ constexpr s64 mod_inv(s64 a, s64 m) {
 
 // [0 .. 2^32-1] -> [0 .. 32767] -> [0, 1)
 inline float seed_to_float(u32 seed) {
-  return static_cast<float>(seed >> 0x10 & 0x7fff) / 32768;
+  return static_cast<float>(seed >> 0x10 & 0x7fff) / 32768.0f;
 }
 
 inline void seed_next(u32* seed) {

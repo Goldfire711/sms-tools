@@ -28,6 +28,9 @@ void MapObjectParameters::closeEvent(QCloseEvent* event) {
 }
 
 void MapObjectParameters::show_parameters(const u32 address) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
   const u32 vt = read_u32(address);
   if (vt < 0x80000000 || 0x817fffff < vt)
     return;

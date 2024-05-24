@@ -1,0 +1,49 @@
+{
+    "TMapObjManager": {
+        "size": "dc",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "void*",
+                "name": "vtable",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "string",
+                "name": "Name",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "s16",
+                "name": "Key code",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "d0",
+                "type": "float",
+                "name": "wind X",
+                "notes": "used in PV8"
+            },
+            {
+                "offset": "d4",
+                "type": "float",
+                "name": "wind Y",
+                "notes": ""
+            },
+            {
+                "offset": "d8",
+                "type": "float",
+                "name": "wind Z",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -135,7 +135,6 @@ public:
   QGraphicsEllipseItem* generate_radius_max_;
 };
 
-// TODO id_‚È‚Çg‚í‚È‚¢‚â‚Â‚ğÁ‚·
 class ItemObjBase : public ItemBase {
 public:
   ItemObjBase(u32 p_obj, ItemManagerBase* parent = nullptr);

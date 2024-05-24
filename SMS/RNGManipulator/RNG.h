@@ -12,6 +12,10 @@ struct RNGResult {
   u32 seed;
 };
 
+// TODO •¡”ŒÂÁ”ï‚·‚é—”‚É‘Î‰‚·‚é
+// void append(float min, float max, QString type, QString name)‚Å’Ç‰Á
+// void set_search_range(u32)
+
 class RNG {
 public:
   RNG();

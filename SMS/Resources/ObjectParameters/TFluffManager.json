@@ -1,0 +1,91 @@
+{
+    "TFluffManager": {
+        "size": "16c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TMapObjBase",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "138",
+                "type": "float",
+                "name": "max(abs(fluff->x))=5000.0",
+                "notes": ""
+            },
+            {
+                "offset": "13c",
+                "type": "float",
+                "name": "max(abs(fluff->y))=5000.0",
+                "notes": ""
+            },
+            {
+                "offset": "140",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "144",
+                "type": "?*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "148",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "14c",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "float",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "154",
+                "type": "float",
+                "name": "0.998",
+                "notes": ""
+            },
+            {
+                "offset": "158",
+                "type": "TFluff*",
+                "name": "fluff appeared in fixed pos",
+                "notes": ""
+            },
+            {
+                "offset": "15c",
+                "type": "TFluff*",
+                "name": "fluff reserved for fixed pos",
+                "notes": ""
+            },
+            {
+                "offset": "160",
+                "type": "s32",
+                "name": "initialized fluff count",
+                "notes": ""
+            },
+            {
+                "offset": "164",
+                "type": "s32",
+                "name": "fluff count",
+                "notes": ""
+            },
+            {
+                "offset": "168",
+                "type": "Tfluff[32]*",
+                "name": "fluff list",
+                "notes": ""
+            }
+        ]
+    }
+}

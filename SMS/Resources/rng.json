@@ -1,0 +1,68 @@
+{
+    "Fluff": {
+        "name": "Fluff",
+        "settings": [
+            {
+                "name": "X",
+                "type": "float",
+                "rng_min": -5425,
+                "rng_max": 5425
+            },
+            {
+                "name": "Y",
+                "type": "float",
+                "rng_min": 0,
+                "rng_max": 9139
+            },
+            {
+                "name": "Z",
+                "type": "float",
+                "rng_min": -5425,
+                "rng_max": 5425
+            }
+        ]
+    },
+    "PuchiPuchi": {
+        "name": "PuchiPuchi",
+        "settings": [
+            {
+                "name": "distance",
+                "type": "float",
+                "rng_min": 600.0,
+                "rng_max": 1000.0
+            },
+            {
+                "name": "angle",
+                "type": "float",
+                "rng_min": 0.0,
+                "rng_max": 360.0
+            },
+            {
+                "name": "generate prop",
+                "type": "float",
+                "rng_min": 0.0,
+                "rng_max": 1.0,
+                "search_min": 0.0,
+                "search_max": 0.2
+            },
+            {
+                "name": "turn speed",
+                "type": "float",
+                "rng_min": 0.2,
+                "rng_max": 0.2
+            },
+            {
+                "name": "body scale",
+                "type": "float",
+                "rng_min": 0.6,
+                "rng_max": 1.0
+            },
+            {
+                "name": "march speed",
+                "type": "float",
+                "rng_min": 1.0,
+                "rng_max": 1.5
+            }
+        ]
+    }
+}

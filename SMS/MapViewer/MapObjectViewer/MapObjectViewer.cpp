@@ -76,11 +76,19 @@ void MapObjectViewer::set_timer_interval(s32 interval) {
 }
 
 void MapObjectViewer::on_object_viewer_clicked(const QModelIndex& index) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
   auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
   emit item_clicked(item->address_);
 }
 
 void MapObjectViewer::on_object_viewer_right_clicked(const QPoint& pos) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
   const auto index = tree_view_->indexAt(pos);
   const auto* item = static_cast<MapObjectViewerItem*>(index.internalPointer());
   emit item_clicked(item->address_);

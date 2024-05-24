@@ -86,30 +86,35 @@ void MapGeneral::wheelEvent(QWheelEvent* event) {
 }
 
 void MapGeneral::mousePressEvent(QMouseEvent* event) {
-  auto* pix_item = scene_->itemAt(mapToScene(event->pos()), QTransform());
-  // TODO 全てのitemsをforループで回して、有効なものでreturn
-  //auto test = scene_->items(event->pos());
-  if (pix_item == nullptr)
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
     return;
-  auto* item = pix_item->parentItem();
-  if (item != nullptr && (item->type() == ItemBase::OBJ 
-    || item->type() == ItemBase::MARIO)) {
-    auto* obj = dynamic_cast<ItemBase*>(item);
-    if (selected_obj_ == nullptr) {
-      obj->is_selected_ = true;
-      selected_obj_ = obj;
-    }
-    if (selected_obj_ != obj) {
-      selected_obj_->is_selected_ = false;
-      obj->is_selected_ = true;
-      selected_obj_ = obj;
-    }
-    emit map_object_clicked(obj->ptr_);
+  auto pix_items = scene_->items(mapToScene(event->pos()));
+  for (auto* pix_item : pix_items) {
+    if (pix_item == nullptr)
+      continue;
+    auto* item = pix_item->parentItem();
+    if (item != nullptr && (item->type() == ItemBase::OBJ
+      || item->type() == ItemBase::MARIO)) {
+      auto* obj = dynamic_cast<ItemBase*>(item);
+      if (selected_obj_ == nullptr) {
+        obj->is_selected_ = true;
+        selected_obj_ = obj;
+      }
+      if (selected_obj_ != obj) {
+        selected_obj_->is_selected_ = false;
+        obj->is_selected_ = true;
+        selected_obj_ = obj;
+      }
+      emit map_object_clicked(obj->ptr_);
 
-    if (event->button() == Qt::RightButton) {
-      show_context_menu(obj);
+      if (event->button() == Qt::RightButton) {
+        show_context_menu(obj);
+      }
+      break;
     }
   }
+
   QGraphicsView::mousePressEvent(event);
 }
 
@@ -158,6 +163,10 @@ void MapGeneral::show_context_menu_by_address(const u32 address) {
 }
 
 void MapGeneral::show_context_menu(ItemBase* item) {
+  if (DolphinComm::DolphinAccessor::getStatus() !=
+    DolphinComm::DolphinAccessor::DolphinStatus::hooked)
+    return;
+
   // TODO moveTo関数の追加
   // TODO centerOn
   auto* menu = new QMenu(this);
