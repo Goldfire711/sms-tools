@@ -181,6 +181,9 @@
     <ClCompile Include="SMS\MapViewer\Map\ItemBossMantaManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\MapViewer\Map\ItemNameKuriManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />

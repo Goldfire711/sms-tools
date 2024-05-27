@@ -36,17 +36,24 @@ void MapObjectViewer::refresh() {
   model_ = new MapObjectViewerModel();
   auto* root_item = model_->root_item_.get();
 
+  // add items
   const u32 p_mario = read_u32(0x8040a378);
   if (p_mario == 0)
     return;
-  const u32 p_camera = read_u32(0x8040b370);
   root_item->append_object(p_mario);
+
+  const u32 p_camera = read_u32(0x8040b370);
   root_item->append_object(p_camera);
+
+  const u32 p_conductor = read_u32(0x8040a6e8);
+  root_item->append_object(p_conductor);
+
+  constexpr u32 p_cutscenes = 0x80907a20;
+  root_item->append_object(p_cutscenes);
 
   const u32 p_items = read_u32(0x8040a4d8);
   root_item->append_manager(p_items);
 
-  const u32 p_conductor = read_u32(0x8040a6e8);
   const s32 count = read_s32(p_conductor + 0x14);
   const u32 head = read_u32(p_conductor + 0x18);
   u32 next = head;

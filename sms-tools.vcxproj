@@ -121,6 +121,7 @@
     <ClCompile Include="SMS\MapViewer\Map\ItemBossMantaManager.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemManagerBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemBossManta.cpp" />
+    <ClCompile Include="SMS\MapViewer\Map\ItemNameKuriManager.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemObjBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\MapGeneral.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemMap.cpp" />

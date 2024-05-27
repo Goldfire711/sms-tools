@@ -129,11 +129,8 @@ public:
   u16 spin_angle_ = 0;
   float atk_radius_ = 80;
 
-  //QGraphicsPixmapItem* pix_;
   QGraphicsEllipseItem* attack_radius_;
   QGraphicsEllipseItem* receive_radius_;
-  QGraphicsEllipseItem* generate_radius_min_;
-  QGraphicsEllipseItem* generate_radius_max_;
 };
 
 class ItemObjBase : public ItemBase {
@@ -175,6 +172,16 @@ public:
   QVector<ItemObjBase*> obj_list_;
 };
 
+class ItemBossMantaManager : public ItemManagerBase {
+public:
+  ItemBossMantaManager(u32 p_manager);
+  void update(float map_height_min, float map_height_max) override;
+
+  QGraphicsEllipseItem* circle_escape_;
+  QPen pen_gray_;
+  QPen pen_red_;
+};
+
 class ItemBossManta : public ItemObjBase {
 public:
   ItemBossManta(u32 p_obj, ItemManagerBase* parent = nullptr);
@@ -190,12 +197,11 @@ private:
   QGraphicsLineItem* attractor_line_;
 };
 
-class ItemBossMantaManager : public ItemManagerBase {
+class ItemNameKuriManager : public ItemManagerBase {
 public:
-  ItemBossMantaManager(u32 p_manager);
+  ItemNameKuriManager(u32 p_manager);
   void update(float map_height_min, float map_height_max) override;
 
-  QGraphicsEllipseItem* circle_escape_;
-  QPen pen_gray_;
-  QPen pen_red_;
+  QGraphicsEllipseItem* generate_radius_min_;
+  QGraphicsEllipseItem* generate_radius_max_;
 };

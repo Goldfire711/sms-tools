@@ -56,6 +56,7 @@ void ItemObjBase::update(const float map_height_min, const float map_height_max)
   const float receive_rad = read_float(ptr_ + 0x58);
   receive_radius_->setRect(x_ - receive_rad, z_ - receive_rad, receive_rad * 2, receive_rad * 2);
 
+  // Rect if is_selected
   if (is_selected_) {
     rect_->setRect(0, 0,
       bounds.width() * pix_->scale(),

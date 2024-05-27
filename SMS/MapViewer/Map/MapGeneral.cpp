@@ -32,6 +32,10 @@ void MapGeneral::refresh() {
   map_->set_map();
   emit map_changed(map_->maps_);
 
+  QTransform map_transform = map_->transform();
+  map_transform *= QTransform().scale(map_->scale(), map_->scale());
+  scene_->setSceneRect(map_transform.mapRect(map_->boundingRect()));
+
   for (auto* manager : managers_) {
     scene_->removeItem(manager);
     delete manager;
@@ -56,6 +60,8 @@ void MapGeneral::refresh() {
     ItemManagerBase* manager;
     if (obj_class == "TBossMantaManager")
       manager = new ItemBossMantaManager(p_manager);
+    else if (obj_class == "TNameKuriManager")
+      manager = new ItemNameKuriManager(p_manager);
     else
       manager = new ItemManagerBase(p_manager);
 

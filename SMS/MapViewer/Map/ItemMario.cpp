@@ -22,21 +22,8 @@ ItemMario::ItemMario(QGraphicsItem* parent) : ItemBase(parent) {
   receive_radius_->setVisible(false);
   addToGroup(receive_radius_);
 
-  // TConductor::mGenerateRadius(Min|Max)
-  pen.setColor(Qt::lightGray);
-  generate_radius_max_ = new QGraphicsEllipseItem();
-  generate_radius_max_->setPen(pen);
-  generate_radius_min_ = new QGraphicsEllipseItem();
-  generate_radius_min_->setPen(pen);
-  auto generate_radius = new QGraphicsItemGroup();
-  generate_radius->addToGroup(generate_radius_max_);
-  generate_radius->addToGroup(generate_radius_min_);
-  generate_radius->setVisible(false);
-  addToGroup(generate_radius);
-
   sub_items_->push_back({ "Attack Radius", attack_radius_ });
   sub_items_->push_back({ "Receive Radius", receive_radius_ });
-  sub_items_->push_back({ "mGenerateRadius(Min|Max)", generate_radius });
 }
 
 void ItemMario::update() {
@@ -61,13 +48,6 @@ void ItemMario::update() {
   // Receive Radius
   const float receive_rad = read_float(ptr_ + 0x58);
   receive_radius_->setRect(x_ - receive_rad, z_ - receive_rad, receive_rad * 2, receive_rad * 2);
-
-  // mGenerateRadius
-  const u32 p_conductor = read_u32(0x8040a6e8);
-  const float gen_rad_max = read_float(p_conductor + 0xb0);
-  const float gen_rad_min = read_float(p_conductor + 0xc4);
-  generate_radius_max_->setRect(x_ - gen_rad_max, z_ - gen_rad_max, gen_rad_max * 2, gen_rad_max * 2);
-  generate_radius_min_->setRect(x_ - gen_rad_min, z_ - gen_rad_min, gen_rad_min * 2, gen_rad_min * 2);
 
   if (is_selected_) {
     rect_->setRect(0, 0,
