@@ -2,6 +2,7 @@
 #include <QSpinBox>
 
 #include "RNGManipulatorModel.h"
+#include "RNGSpinBox7a5b.h"
 
 RNGManipulatorDelegate::RNGManipulatorDelegate(QObject* parent) : QStyledItemDelegate(parent) {
   
@@ -20,14 +21,13 @@ void RNGManipulatorDelegate::setEditorData(QWidget* editor, const QModelIndex& i
   spin_box->setValue7a5b(result->index_7a, result->index_5b);
 }
 
-
 void RNGManipulatorDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const {
   const auto* spin_box = dynamic_cast<RNGSpinBox7a5b*>(editor);
   u32 a, b;
   spin_box->value7a5b(&a, &b);
 
-  auto* model_chuuhana = dynamic_cast<const RNGManipulatorModel*>(model);
-  auto* result = &model_chuuhana->rng_->results_.at(index.row());
+  auto* rng_model = dynamic_cast<const RNGManipulatorModel*>(model);
+  auto* result = &rng_model->rng_->results_.at(index.row());
   result->index_7a = a;
   result->index_5b = b;
 }

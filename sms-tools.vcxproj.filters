@@ -184,6 +184,12 @@
     <ClCompile Include="SMS\MapViewer\Map\ItemNameKuriManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriRNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\RNGManipulator\RNGRadioButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -234,6 +240,12 @@
     </ClInclude>
     <ClInclude Include="SMS\MapViewer\Map\Items.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMS\RNGManipulator\U32RNGSpinBox.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +351,12 @@
     </QtMoc>
     <QtMoc Include="Settings\Settings.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\RNGManipulator\RNGSpinBox7a5b.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SMS\RNGManipulator\RNGRadioButton.h">
+      <Filter>Source Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

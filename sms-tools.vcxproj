@@ -145,10 +145,14 @@
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriRNG.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorDelegate.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorModel.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNG.cpp" />
+    <QtMoc Include="SMS\RNGManipulator\RNGRadioButton.h" />
+    <ClCompile Include="SMS\RNGManipulator\RNGRadioButton.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGViewer.cpp" />
+    <ClInclude Include="SMS\RNGManipulator\U32RNGSpinBox.h" />
     <ClCompile Include="Test\Test\Test.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestItem.cpp" />
     <ClCompile Include="Test\ReadWriteTest\ReadWriteTestModel.cpp" />
@@ -228,9 +232,11 @@
     <QtMoc Include="Test\Test\Test.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorDelegate.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h" />
+    <ClInclude Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.h" />
     <ClInclude Include="SMS\RNGManipulator\RNG.h" />
     <ClInclude Include="SMS\RNGManipulator\RNGFunctions.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGViewer.h" />
+    <QtMoc Include="SMS\RNGManipulator\RNGSpinBox7a5b.h" />
     <ClInclude Include="Test\ReadWriteTest\ReadWriteTestItem.h" />
     <ClInclude Include="SMS\ObjectViewer\ObjectViewerItem.h" />
     <QtMoc Include="SMS\ObjectViewer\ObjectViewerModel.h" />
