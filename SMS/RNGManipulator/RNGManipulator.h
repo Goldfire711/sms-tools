@@ -35,7 +35,7 @@ private:
 
   RNGRadioButton* rdb_rng_;
   QPushButton* btn_search_;
-  RNGManipulatorModel* model_tbl_rng_;;
+  RNGManipulatorModel* model_tbl_rng_;
   QTableView* tbl_rng_;
   QLineEdit* txb_rng_from_;
   QLineEdit* txb_rng_to_;
@@ -49,8 +49,6 @@ private:
   RNG* rng_;
 
   RNGViewer* rng_viewer_ = nullptr;
-
-  s32 select_search_ = 0;
 
   RNGManipulatorDelegate* delegate_;
 };

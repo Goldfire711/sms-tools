@@ -12,6 +12,7 @@
 #include "SMS/ChuuHana/ChuuHanaManipulator.h"
 #include "SMS/RNGManipulator/RNGManipulator.h"
 #include "SMS/Manta/MapSirena1.h"
+#include "SMS/RNGManipulator/NameKuriManipulator/NameKuriManipulator.h"
 
 #include "Test/TestMainWindow.h"
 
@@ -30,6 +31,7 @@ public:
 	void show_widget_chuuhana();
 	void show_widget_rng_manipulator();
 	void show_widget_map_viewer_sirena1();
+	void show_widget_namekuri();
 	void on_update();
 
 private:
@@ -44,6 +46,7 @@ private:
 	ChuuHanaManipulator* sms_chuuhana_manip_ = nullptr;
 	RNGManipulator* sms_rng_manip_ = nullptr;
 	MapViewerSirena1* sms_map_viewer_sirena1_ = nullptr;
+	NameKuriManipulator* sms_namekuri_ = nullptr;
 
 	TestMainWindow* test_main_window_ = nullptr;
 

@@ -27,16 +27,16 @@ void NameKuriRNG::search() {
   u32 seed = seed_;
   std::deque<float> rng_values = { INFINITY };
   for (u32 i = 0; i < 5; i++) {
-    rng_values.push_back(rng::seed_to_float(seed));
     rng::seed_next(&seed);
+    rng_values.push_back(rng::seed_to_float(seed));
   }
 
   const bool angle_wrap = settings_.angle.min > settings_.angle.max;
 
   for (u32 i = 0; i < search_range_; i++) {
+    rng::seed_next(&seed);
     rng_values.pop_front();
     rng_values.push_back(rng::seed_to_float(seed));
-    rng::seed_next(&seed);
 
     const float distance = 600.0f + rng_values[0] * 400.0f;
     if (distance < settings_.distance.min || settings_.distance.max < distance)
@@ -51,7 +51,7 @@ void NameKuriRNG::search() {
         continue;
     }
 
-    if (2.f < rng_values[2])
+    if (0.2f < rng_values[2])
       continue;
 
     // const float turn_speed = 0.2 + rng_values[3] * 0; (skip)
@@ -66,9 +66,20 @@ void NameKuriRNG::search() {
 
     u32 _7a, _5b;
     const bool has_7a5b = rng::index_to_7a5b(i, &_7a, &_5b);
-    results_.push_back({ rng::seed_prev(seed), i, has_7a5b, _7a, _5b, distance, angle, body_scale, march_speed });
+    u32 seed_at_0 = seed;
+    for (s64 j = 0; j < 6; j++) {
+      seed_at_0 = rng::seed_prev(seed_at_0);
+    }
+    results_.push_back({ seed_at_0, i, has_7a5b, _7a, _5b, distance, angle, body_scale, march_speed });
   }
   results_.shrink_to_fit();
+
+  probability_inv_ = 400.0 / (settings_.distance.max - settings_.distance.min);
+  probability_inv_ *= 360.0 / (settings_.angle.max - settings_.angle.min);
+  probability_inv_ *= angle_wrap ? -1.0 : 1.0;
+  probability_inv_ *= 1.0 / 0.2;
+  probability_inv_ *= 0.4 / (settings_.body_scale.max - settings_.body_scale.min);
+  probability_inv_ *= 0.5 / (settings_.march_speed.max - settings_.march_speed.min);
 }
 
 QVariant NameKuriRNG::header_data(const s32 column) {
@@ -110,7 +121,7 @@ QVariant NameKuriRNG::data(const s32 row, const s32 column) const {
   case 5:
     return result.march_speed;
   case 6:
-    return result.seed;
+    return QString::number(result.seed, 16).toUpper();
   default:
     return {};
   }

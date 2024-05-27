@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget* parent)
   connect(ui.button_widget_chuuhana, &QPushButton::clicked, this, &MainWindow::show_widget_chuuhana);
   connect(ui.button_widget_rng_manipulator, &QPushButton::clicked, this, &MainWindow::show_widget_rng_manipulator);
   connect(ui.button_widget_manta, &QPushButton::clicked, this, &MainWindow::show_widget_map_viewer_sirena1);
+  connect(ui.button_widget_namekuri, &QPushButton::clicked, this, &MainWindow::show_widget_namekuri);
   g_timer_100ms = new QTimer(this);
   g_timer_16ms = new QTimer(this);
   connect(g_timer_100ms, &QTimer::timeout, this, QOverload<>::of(&MainWindow::on_update));
@@ -169,6 +170,16 @@ void MainWindow::show_widget_map_viewer_sirena1() {
   sms_map_viewer_sirena1_->activateWindow();
 }
 
+void MainWindow::show_widget_namekuri() {
+  if (!sms_namekuri_) {
+    sms_namekuri_ = new NameKuriManipulator();
+  }
+  sms_namekuri_->show();
+  sms_namekuri_->raise();
+  sms_namekuri_->activateWindow();
+}
+
+
 void MainWindow::closeEvent(QCloseEvent* event) {
   if (sms_spin_)
     sms_spin_->close();
@@ -186,6 +197,8 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     sms_rng_manip_->close();
   if (sms_map_viewer_sirena1_)
     sms_map_viewer_sirena1_->close();
+  if (sms_namekuri_)
+    sms_namekuri_->close();
 
 
   if (test_main_window_)

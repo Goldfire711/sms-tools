@@ -145,6 +145,9 @@
     <ClCompile Include="SMS\FluffManipulator\FluffRNGFunctions.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulatorModel.cpp" />
     <ClCompile Include="SMS\FluffManipulator\FluffManipulator.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulatorDelegate.cpp" />
+    <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulatorModel.cpp" />
     <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriRNG.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorDelegate.cpp" />
     <ClCompile Include="SMS\RNGManipulator\RNGManipulatorModel.cpp" />
@@ -232,7 +235,7 @@
     <QtMoc Include="Test\Test\Test.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorDelegate.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGManipulatorModel.h" />
-    <ClInclude Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.h" />
+    <QtMoc Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.h" />
     <ClInclude Include="SMS\RNGManipulator\RNG.h" />
     <ClInclude Include="SMS\RNGManipulator\RNGFunctions.h" />
     <QtMoc Include="SMS\RNGManipulator\RNGViewer.h" />

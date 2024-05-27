@@ -168,7 +168,6 @@ void RNGManipulator::search() const {
 void RNGManipulator::on_context_menu_requested(const QPoint& pos) {
   QModelIndex index = tbl_rng_->indexAt(pos);
   QModelIndexList selection = tbl_rng_->selectionModel()->selectedIndexes();
-  copy_selection();
   auto* menu = new QMenu(this);
   auto* copy = new QAction("Copy", this);
   connect(copy, &QAction::triggered, this, &RNGManipulator::copy_selection);
