@@ -204,4 +204,9 @@ public:
 
   QGraphicsEllipseItem* generate_radius_min_;
   QGraphicsEllipseItem* generate_radius_max_;
+  //QGraphicsEllipseItem* rng_radius_min_;
+  //QGraphicsEllipseItem* rng_radius_max_;
+  //QGraphicsLineItem* rng_line_min_;
+  //QGraphicsLineItem* rng_line_max_;
+  QGraphicsPathItem* rng_path_;
 };

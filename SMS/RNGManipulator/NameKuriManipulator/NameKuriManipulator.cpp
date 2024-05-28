@@ -221,7 +221,6 @@ void NameKuriManipulator::search() const {
 void NameKuriManipulator::on_context_menu_requested(const QPoint& pos) {
   QModelIndex index = tbl_->indexAt(pos);
   QModelIndexList selection = tbl_->selectionModel()->selectedIndexes();
-  //copy_selection();
   auto* menu = new QMenu(this);
   auto* copy = new QAction("Copy", this);
   connect(copy, &QAction::triggered, this, &NameKuriManipulator::copy_selection);
