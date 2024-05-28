@@ -205,7 +205,4 @@ public:
   QGraphicsEllipseItem* generate_radius_min_;
   QGraphicsEllipseItem* generate_radius_max_;
   QGraphicsPathItem* rng_path_;
-  QGraphicsPolygonItem* poly_view_frustum_;
-  QGraphicsTextItem* poly_combination_[15];
-  QGraphicsLineItem* poly_line_[6];
 };

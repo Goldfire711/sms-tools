@@ -33,7 +33,7 @@ void MapGeneral::refresh() {
   emit map_changed(map_->maps_);
 
   QTransform map_transform = map_->transform();
-  map_transform *= QTransform().scale(map_->scale() * 10, map_->scale() * 10); // TODO * 10‚ðÁ‚·
+  map_transform *= QTransform().scale(map_->scale(), map_->scale());
   scene_->setSceneRect(map_transform.mapRect(map_->boundingRect()));
 
   for (auto* manager : managers_) {
