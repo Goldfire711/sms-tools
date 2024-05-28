@@ -50,7 +50,7 @@ void Settings::SetMapObjectParametersVisible(const bool enabled) {
 bool Settings::IsMapObjectParametersVisible() const {
   if (const auto value = GetQSettings().value("map/show_object_parameters"); value.isValid())
     return value.toBool();
-  return false;
+  return true;
 }
 
 void Settings::RefreshMapWidgetVisibility() {
