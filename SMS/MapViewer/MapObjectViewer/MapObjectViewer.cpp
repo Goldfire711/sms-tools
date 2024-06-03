@@ -46,7 +46,18 @@ void MapObjectViewer::refresh() {
   root_item->append_object(p_camera);
 
   const u32 p_conductor = read_u32(0x8040a6e8);
-  root_item->append_object(p_conductor);
+  auto* conductor_item = root_item->append_object(p_conductor);
+  if (const u32 p_cylinder_manager = read_u32(p_conductor + 0xf8); p_cylinder_manager != 0) {
+    auto* cylinder_item = conductor_item->append_object(p_cylinder_manager);
+    const s32 count = read_s32(p_cylinder_manager + 0x14);
+    const u32 head = read_u32(p_cylinder_manager + 0x18);
+    u32 next = head;
+    for (s32 i = 0; i < count; i++) {
+      const u32 p = read_u32(next + 0x8);
+      cylinder_item->append_object(p);
+      next = read_u32(next);
+    }
+  }
 
   constexpr u32 p_cutscenes = 0x80907a20;
   root_item->append_object(p_cutscenes);

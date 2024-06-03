@@ -1,0 +1,37 @@
+{
+    "TAreaCylinder": {
+        "size": "28",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "name": "Inherited",
+                "notes": ""
+            } ,
+            {
+                "offset": "10",
+                "type": "JGeometry::TVec3<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1c",
+                "type": "float",
+                "name": "raduis",
+                "notes": ""
+            },
+            {
+                "offset": "20",
+                "type": "float",
+                "name": "height",
+                "notes": ""
+            },
+            {
+                "offset": "24",
+                "type": "float",
+                "name": "mGenerateProp",
+                "notes": ""
+            }
+        ]
+    }
+}

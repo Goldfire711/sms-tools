@@ -1,0 +1,25 @@
+{
+    "TAreaCylinderManager": {
+        "size": -1,
+        "offsets": [
+            {
+                "offset": "8",
+                "type": "TAreaCylinder*",
+                "name": "head",
+                "notes": ""
+            },
+            {
+                "offset": "14",
+                "type": "s32",
+                "name": "count",
+                "notes": ""
+            },
+            {
+                "offset": "18",
+                "type": "TList<TAreaCylinder*>*",
+                "name": "cylinder_list",
+                "notes": ""
+            }
+        ]
+    }
+}

@@ -27,33 +27,45 @@
                 "notes": ""
             },
             {
+                "offset": "4c",
+                "type": "u32*",
+                "name": "class identifier?",
+                "notes": "0x80000001=TMario"
+            },
+            {
                 "offset": "50",
                 "type": "float",
-                "name": "Attacking hitbox radius",
+                "name": "Attack radius",
                 "notes": ""
             },
             {
                 "offset": "54",
                 "type": "float",
-                "name": "Attacking hitbox height",
+                "name": "Attack height",
                 "notes": ""
             },
             {
                 "offset": "58",
                 "type": "float",
-                "name": "Receiving hitbox radius",
+                "name": "Damage radius",
                 "notes": ""
             },
             {
                 "offset": "5c",
                 "type": "float",
-                "name": "Receiving hitbox height",
+                "name": "Damage height",
                 "notes": ""
             },
             {
                 "offset": "60",
                 "type": "float",
                 "name": "Collision range?",
+                "notes": ""
+            },
+            {
+                "offset": "64",
+                "type": "u32*",
+                "name": "",
                 "notes": ""
             }
         ]

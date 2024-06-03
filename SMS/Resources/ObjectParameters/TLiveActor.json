@@ -23,7 +23,7 @@
             {
                 "offset": "7c",
                 "type": "s16",
-                "name": "No.",
+                "name": "id",
                 "notes": ""
             },
             {

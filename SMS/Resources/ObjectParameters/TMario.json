@@ -10,13 +10,13 @@
             },
             {
                 "offset": "7c",
-                "type": "u32",
+                "type": "u32*",
                 "name": "Current state",
                 "notes": ""
             },
             {
                 "offset": "80",
-                "type": "u32",
+                "type": "u32*",
                 "name": "Previous state",
                 "notes": ""
             },
@@ -99,6 +99,12 @@
                 "notes": "Y position if none"
             },
             {
+                "offset": "fa",
+                "type": "u32*",
+                "name": "",
+                "notes": ""
+            },
+            {
                 "offset": "118",
                 "type": "u32",
                 "name": "Mario flags",
@@ -138,6 +144,18 @@
                 "offset": "384",
                 "type": "TTakeActor*",
                 "name": "Grab target",
+                "notes": ""
+            },
+            {
+                "offset": "3A8",
+                "type": "?*",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "3B0",
+                "type": "?*",
+                "name": "",
                 "notes": ""
             },
             {

@@ -21,5 +21,28 @@
                 "notes": ""
             }
         ]
+    },
+    "TList<TAreaCylinder*>": {
+        "size": "c",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TList<TAreaCylinder*>*",
+                "name": "next",
+                "notes": ""
+            },
+            {
+                "offset": "4",
+                "type": "TList<TAreaCylinder*>*",
+                "name": "prev",
+                "notes": ""
+            },
+            {
+                "offset": "8",
+                "type": "TAreaCylinder*",
+                "name": "cylinder",
+                "notes": ""
+            }
+        ]
     }
 }

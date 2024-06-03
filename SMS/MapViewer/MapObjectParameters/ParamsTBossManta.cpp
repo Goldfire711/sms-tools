@@ -23,22 +23,6 @@ ParamsTBossManta::ParamsTBossManta(const u32 ptr) : ParamsObjBase(ptr) {
     }});
 
   params_.push_back({
-    "Anm Frame", [this]() {
-      const u32 p_anm = read_u32(ptr_ + 0x74, {0xc});
-      const float cur_anm_frame = read_float(p_anm + 0x14);
-      const float anm_end_frame = read_s16(p_anm + 0xc);
-      return QString::number(cur_anm_frame, 'f', 1) + "/" +
-        QString::number(anm_end_frame, 'f', 1);
-    }});
-
-  params_.push_back({
-    "Anm Speed", [this]() {
-      const u32 p_anm = read_u32(ptr_ + 0x74, {0xc});
-      const float anm_speed = read_float(p_anm + 0x10);
-      return QString::number(anm_speed, 'f', 1) + "/f";
-    }});
-
-  params_.push_back({
     "isTargetingMario", [this]() {
       const s32 is_targeting_mario = read_s32(ptr_ + 0x1a4);
       const u32 p_ai = read_u32(ptr_ + 0x8c);
