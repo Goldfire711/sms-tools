@@ -156,6 +156,8 @@ private:
 
   QGraphicsEllipseItem* attack_radius_;
   QGraphicsEllipseItem* receive_radius_;
+  QGraphicsEllipseItem* attack_radius_mario_;
+  QGraphicsEllipseItem* receive_radius_mario_;
 };
 
 class ItemManagerBase : public ItemBase {
