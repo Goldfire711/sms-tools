@@ -12,15 +12,13 @@ ParamsTNameKuri::ParamsTNameKuri(const u32 ptr) : ParamsObjBase(ptr) {
   }});
 
   params_.push_back({
-  "AtkR(50*scale)+mario->DmgR", [this]() {
-    const u32 p_mario = read_u32(0x8040a378);
-    return read_float(ptr_ + 0x50) + read_float(p_mario + 0x58);
+  "AtkR(50*scale)", [this]() {
+    return read_float(ptr_ + 0x50);
   }});
 
   params_.push_back({
-"DmgR(40*scale)+mario->AtkR", [this]() {
-    const u32 p_mario = read_u32(0x8040a378);
-    return read_float(ptr_ + 0x58) + read_float(p_mario + 0x50);
+"DmgR(40*scale)", [this]() {
+    return read_float(ptr_ + 0x58);
   }});
 
   params_.push_back({
@@ -31,6 +29,18 @@ ParamsTNameKuri::ParamsTNameKuri(const u32 ptr) : ParamsObjBase(ptr) {
   params_.push_back({
   "DmgH(90*scale)", [this]() {
     return read_float(ptr_ + 0x5c);
+  }});
+
+  params_.push_back({
+"AtkR + mario->DmgR", [this]() {
+    const u32 p_mario = read_u32(0x8040a378);
+    return read_float(ptr_ + 0x50) + read_float(p_mario + 0x58);
+  }});
+
+  params_.push_back({
+"DmgR + mario->AtkR", [this]() {
+    const u32 p_mario = read_u32(0x8040a378);
+    return read_float(ptr_ + 0x58) + read_float(p_mario + 0x50);
   }});
 
   params_.push_back({
