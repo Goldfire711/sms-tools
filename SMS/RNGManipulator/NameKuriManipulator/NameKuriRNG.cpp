@@ -51,7 +51,7 @@ void NameKuriRNG::search() {
         continue;
     }
 
-    if (0.2f < rng_values[2])
+    if (settings_.generate_prop < rng_values[2])
       continue;
 
     // const float turn_speed = 0.2 + rng_values[3] * 0; (skip)
@@ -77,7 +77,10 @@ void NameKuriRNG::search() {
   probability_inv_ = 400.0 / (settings_.distance.max - settings_.distance.min);
   probability_inv_ *= 360.0 / (settings_.angle.max - settings_.angle.min);
   probability_inv_ *= angle_wrap ? -1.0 : 1.0;
-  probability_inv_ *= 1.0 / 0.2;
+  if (const float prop = settings_.generate_prop; prop == 0.0f)
+    probability_inv_ *= 32768.0;
+  else if (prop <= 1.0f)
+    probability_inv_ *= 1.0 / prop;
   probability_inv_ *= 0.4 / (settings_.body_scale.max - settings_.body_scale.min);
   probability_inv_ *= 0.5 / (settings_.march_speed.max - settings_.march_speed.min);
 }

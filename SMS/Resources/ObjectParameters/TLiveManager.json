@@ -1,0 +1,13 @@
+{
+    "TLiveManager": {
+        "size": "38",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TObjManager",
+                "name": "inherited",
+                "notes": ""
+            }
+        ]
+    }
+}

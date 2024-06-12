@@ -1,0 +1,37 @@
+{
+    "TBGBeakHit": {
+        "size": "b0",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "THitActor",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "68",
+                "type": "THitActor*",
+                "name": "held by",
+                "notes": ""
+            },
+            {
+                "offset": "70",
+                "type": "TBossGesso*",
+                "name": "TBossGesso",
+                "notes": ""
+            },
+            {
+                "offset": "74",
+                "type": "JGeometry::TMatrix34<>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "a4",
+                "type": "JGeometry::TVec3<float>",
+                "name": "held_pos? *",
+                "notes": ""
+            }
+        ]
+    }
+}

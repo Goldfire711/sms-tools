@@ -1,0 +1,49 @@
+{
+    "TBossGesso": {
+        "size": "1b0",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemy",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "150",
+                "type": "TBGTentacle*",
+                "name": "tentacle0",
+                "notes": "TBGTentacle*[4]にしたい"
+            },
+            {
+                "offset": "154",
+                "type": "TBGTentacle*",
+                "name": "tentacle1",
+                "notes": ""
+            },
+            {
+                "offset": "158",
+                "type": "TBGTentacle*",
+                "name": "tentacle2",
+                "notes": ""
+            },
+            {
+                "offset": "15c",
+                "type": "TBGTentacle*",
+                "name": "tentacle3",
+                "notes": ""
+            },
+            {
+                "offset": "160",
+                "type": "TBGBeakHit*",
+                "name": "beak",
+                "notes": ""
+            },
+            {
+                "offset": "193",
+                "type": "u8",
+                "name": "facial pollution",
+                "notes": ""
+            }
+        ]
+    }
+}

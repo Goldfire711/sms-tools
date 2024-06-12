@@ -30,50 +30,56 @@ NameKuriManipulator::NameKuriManipulator(QWidget* parent) : QWidget(parent) {
   // Settings
   const auto* val_float = new QRegExpValidator(QRegExp(R"(-?\d*(\.\d+)?)"));
   txb_distance_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.distance.min));
-  txb_distance_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.distance.max));
-  txb_angle_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.angle.min));
-  txb_angle_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.angle.max));
-  txb_body_scale_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.body_scale.min));
-  txb_body_scale_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.body_scale.max));
-  txb_march_speed_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.march_speed.min));
-  txb_march_speed_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.march_speed.max));
   txb_distance_from_->setValidator(val_float);
-  txb_distance_to_->setValidator(val_float);
-  txb_angle_from_->setValidator(val_float);
-  txb_angle_to_->setValidator(val_float);
-  txb_body_scale_from_->setValidator(val_float);
-  txb_body_scale_to_->setValidator(val_float);
-  txb_march_speed_from_->setValidator(val_float);
-  txb_march_speed_to_->setValidator(val_float);
   txb_distance_from_->setFixedWidth(60);
-  txb_distance_to_->setFixedWidth(60);
-  txb_angle_from_->setFixedWidth(60);
-  txb_angle_to_->setFixedWidth(60);
-  txb_body_scale_from_->setFixedWidth(60);
-  txb_body_scale_to_->setFixedWidth(60);
-  txb_march_speed_from_->setFixedWidth(60);
-  txb_march_speed_to_->setFixedWidth(60);
   connect(txb_distance_from_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.distance.min = str.toFloat();
     });
+  txb_distance_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.distance.max));
+  txb_distance_to_->setValidator(val_float);
+  txb_distance_to_->setFixedWidth(60);
   connect(txb_distance_to_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.distance.max = str.toFloat();
     });
+  txb_angle_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.angle.min));
+  txb_angle_from_->setValidator(val_float);
+  txb_angle_from_->setFixedWidth(60);
   connect(txb_angle_from_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.angle.min = str.toFloat();
     });
+  txb_angle_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.angle.max));
+  txb_angle_to_->setValidator(val_float);
+  txb_angle_to_->setFixedWidth(60);
   connect(txb_angle_to_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.angle.max = str.toFloat();
     });
+  txb_generate_prop_ = new QLineEdit(QString::number(NameKuriRNG::settings_.generate_prop));
+  txb_generate_prop_->setValidator(val_float);
+  txb_generate_prop_->setFixedWidth(60);
+  connect(txb_generate_prop_, &QLineEdit::textChanged, this, [this](const QString& str) {
+    NameKuriRNG::settings_.generate_prop = str.toFloat();
+    });
+  txb_body_scale_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.body_scale.min));
+  txb_body_scale_from_->setValidator(val_float);
+  txb_body_scale_from_->setFixedWidth(60);
   connect(txb_body_scale_from_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.body_scale.min = str.toFloat();
     });
+  txb_body_scale_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.body_scale.max));
+  txb_body_scale_to_->setValidator(val_float);
+  txb_body_scale_to_->setFixedWidth(60);
   connect(txb_body_scale_to_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.body_scale.max = str.toFloat();
     });
+  txb_march_speed_from_ = new QLineEdit(QString::number(NameKuriRNG::settings_.march_speed.min));
+  txb_march_speed_from_->setValidator(val_float);
+  txb_march_speed_from_->setFixedWidth(60);
   connect(txb_march_speed_from_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.march_speed.min = str.toFloat();
     });
+  txb_march_speed_to_ = new QLineEdit(QString::number(NameKuriRNG::settings_.march_speed.max));
+  txb_march_speed_to_->setValidator(val_float);
+  txb_march_speed_to_->setFixedWidth(60);
   connect(txb_march_speed_to_, &QLineEdit::textChanged, this, [this](const QString& str) {
     NameKuriRNG::settings_.march_speed.max = str.toFloat();
     });
@@ -152,6 +158,12 @@ NameKuriManipulator::NameKuriManipulator(QWidget* parent) : QWidget(parent) {
   lo_angle->addWidget(new QLabel("-"));
   lo_angle->addWidget(txb_angle_to_);
 
+  auto* lbl_generate_prop = new QLabel("mGenerateProp [0, 1): ");
+  auto* lo_generate_prop = new QHBoxLayout;
+  lo_generate_prop->addWidget(lbl_generate_prop);
+  lo_generate_prop->addStretch();
+  lo_generate_prop->addWidget(txb_generate_prop_);
+
   auto* lbl_body_scale = new QLabel("Body scale [0.6, 1): ");
   auto* lo_body_scale = new QHBoxLayout;
   lo_body_scale->addWidget(lbl_body_scale);
@@ -171,6 +183,7 @@ NameKuriManipulator::NameKuriManipulator(QWidget* parent) : QWidget(parent) {
   auto* lo_setting = new QVBoxLayout();
   lo_setting->addLayout(lo_distance);
   lo_setting->addLayout(lo_angle);
+  lo_setting->addLayout(lo_generate_prop);
   lo_setting->addLayout(lo_body_scale);
   lo_setting->addLayout(lo_march_speed);
 

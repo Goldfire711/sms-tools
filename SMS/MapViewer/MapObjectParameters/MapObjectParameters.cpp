@@ -116,6 +116,8 @@ void MapObjectParameters::on_table_right_clicked(const QPoint& pos) {
   model_->selected_column_ = index.column();
 
   const auto* item = static_cast<ParamsBase*>(index.internalPointer());
-  emit item_clicked(item->ptr_);
-  emit item_right_clicked(item->ptr_);
+  if (item != nullptr) {
+    emit item_clicked(item->ptr_);
+    emit item_right_clicked(item->ptr_);
+  }
 }

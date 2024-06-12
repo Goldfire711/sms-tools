@@ -1,0 +1,199 @@
+{
+    "TBossGessoParams": {
+        "size": "314",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TSpineEnemyParams",
+                "name": "Inherited fields",
+                "notes": ""
+            },
+            {
+                "offset": "a8",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "bc",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "d0",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "e4",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "f8",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "10c",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "120",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "134",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "148",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "15c",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "170",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "184",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "198",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1ac",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1c0",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1d4",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1e8",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "1fc",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "210",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "224",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "238",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "24c",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "260",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "274",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "288",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "29c",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "2b0",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "2c4",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "2d8",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "2ec",
+                "type": "TParamT<float>",
+                "name": "*",
+                "notes": ""
+            },
+            {
+                "offset": "300",
+                "type": "TParamT<long>",
+                "name": "*",
+                "notes": ""
+            }
+        ]
+    }
+}

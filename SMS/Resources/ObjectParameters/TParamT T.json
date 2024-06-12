@@ -10,7 +10,7 @@
             }
         ]
     },
-    "TParamT<JGeometry::TVec3<float>": {
+    "TParamT<JGeometry::TVec3<float>>": {
         "size": 20,
         "offsets": [
             {

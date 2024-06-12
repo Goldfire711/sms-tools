@@ -39,6 +39,12 @@
                 "notes": ""
             },
             {
+                "offset": "13c",
+                "type": "s8",
+                "name": "hp?",
+                "notes": ""
+            },
+            {
                 "offset": "140",
                 "type": "float",
                 "name": "MarchSpeed",

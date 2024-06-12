@@ -1,0 +1,13 @@
+{
+    "TObjManager": {
+        "size": "34",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "name": "inherited",
+                "notes": ""
+            }
+        ]
+    }
+}

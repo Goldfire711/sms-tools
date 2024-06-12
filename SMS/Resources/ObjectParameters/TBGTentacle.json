@@ -1,0 +1,13 @@
+{
+    "TBGTentacle": {
+        "size": "a4",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "JDrama::TViewObj",
+                "name": "",
+                "notes": ""
+            }
+        ]
+    }
+}

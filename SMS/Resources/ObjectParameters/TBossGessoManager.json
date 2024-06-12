@@ -1,0 +1,19 @@
+{
+    "TBossGessoManager": {
+        "size": "54",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "TLiveManager",
+                "name": "inherited",
+                "notes": ""
+            },
+            {
+                "offset": "38",
+                "type": "TBossGessoParams*",
+                "name": "Params",
+                "notes": ""
+            }
+        ]
+    }
+}

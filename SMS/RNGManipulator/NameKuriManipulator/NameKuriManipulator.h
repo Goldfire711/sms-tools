@@ -29,6 +29,7 @@ public:
       angle = { 0.f, 360.f },
       body_scale = { 0.6f, 1.0f },
       march_speed = { 1.0f, 1.5f };
+    float generate_prop = 0.2f;
   } settings_;
 
   struct Result {
@@ -96,6 +97,7 @@ private:
   QLineEdit* txb_distance_to_;
   QLineEdit* txb_angle_from_;
   QLineEdit* txb_angle_to_;
+  QLineEdit* txb_generate_prop_;
   QLineEdit* txb_body_scale_from_;
   QLineEdit* txb_body_scale_to_;
   QLineEdit* txb_march_speed_from_;
