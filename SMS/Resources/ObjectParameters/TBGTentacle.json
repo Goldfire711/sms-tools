@@ -7,6 +7,24 @@
                 "type": "JDrama::TViewObj",
                 "name": "",
                 "notes": ""
+            },
+            {
+                "offset": "10",
+                "type": "u32*",
+                "name": "state",
+                "notes": ""
+            },
+            {
+                "offset": "34",
+                "type": "TBossGesso*",
+                "name": "bossGesso",
+                "notes": ""
+            },
+            {
+                "offset": "3c",
+                "type": "TBGTakeHit*",
+                "name": "bgTakeHit",
+                "notes": ""
             }
         ]
     }

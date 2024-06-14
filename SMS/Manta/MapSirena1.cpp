@@ -23,15 +23,15 @@ void MapSirena1::initialize() {
   auto* scene = new QGraphicsScene(this);
   setScene(scene);
 
-  const QPixmap pix_sirena_beach(":stages/SirenaBeach_x10.png");
+  const QPixmap pix_sirena_beach("SMS/Resources/Images/Stages/SirenaBeach_x10.png");
   auto* item_sirena_beach = scene->addPixmap(pix_sirena_beach);
   item_sirena_beach->setTransformOriginPoint(pix_sirena_beach.width() / 2.0, pix_sirena_beach.height() / 2.0);
   item_sirena_beach->setTransform(QTransform().translate(-pix_sirena_beach.width() / 2.0, -pix_sirena_beach.height() / 2.0));
   item_sirena_beach->setScale(10.0);
 
   // マンタ
-  pix_manta_ = QPixmap(":sms/manta_red.png");
-  pix_manta_purple_ = QPixmap(":sms/manta_purple.png");
+  pix_manta_ = QPixmap("SMS/Resources/Images/manta_red.png");
+  pix_manta_purple_ = QPixmap("SMS/Resources/Images/manta_purple.png");
   for (s64 i = 0; i < 128; i++) {
     manta_[i] = scene->addPixmap(pix_manta_);
     manta_[i]->setTransformOriginPoint(pix_manta_.width() / 2.0, pix_manta_.height() / 2.0);
@@ -94,7 +94,7 @@ void MapSirena1::initialize() {
   pen_red_.setWidth(20);
 
   // マリオ
-  QPixmap pix_mario(":sms/mario.png");
+  QPixmap pix_mario("SMS/Resources/Images/mario.png");
   mario_ = scene->addPixmap(pix_mario);
   mario_->setTransformOriginPoint(pix_mario.width() / 2.0, pix_mario.height() / 2.0);
   mario_->setTransform(QTransform().translate(-pix_mario.width() / 2.0, -pix_mario.height() / 2.0));

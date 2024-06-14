@@ -114,10 +114,12 @@
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsBase.cpp" />
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsManagerBase.cpp" />
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsMario.cpp" />
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTBossGesso.cpp" />
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTBossManta.cpp" />
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTNameKuri.cpp" />
     <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsObjBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemBase.cpp" />
+    <ClCompile Include="SMS\MapViewer\Map\ItemBossGesso.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemBossMantaManager.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemManagerBase.cpp" />
     <ClCompile Include="SMS\MapViewer\Map\ItemBossManta.cpp" />
@@ -184,9 +186,6 @@
     <QtUic Include="Test\ReadWriteTest\ReadWriteTest.ui" />
     <QtUic Include="SMS\Spin\Spin.ui" />
     <QtUic Include="Test\TestMainWindow.ui" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SMS\ChuuHana\ChuuHanaManipulatorModel.h" />

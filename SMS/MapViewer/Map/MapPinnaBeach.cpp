@@ -30,17 +30,17 @@ void MapPinnaBeach::initialize() {
 
   // マップ画像表示(ピンナビーチ)
   // (155, 768) -> (-5846.752, 5083.398) 青コイン4, (313, 1211) -> (-5007.95, 7431.883) 青コイン5
-  const QPixmap pinna_beach_pix(":/sms/PinnaBeach.png");
+  const QPixmap pinna_beach_pix("SMS/Resources/Images/PinnaBeach.png");
   QGraphicsPixmapItem* pinna_beach_item = set_map_image(pinna_beach_pix, 155, 768, 313, -5846.752, 5083.398, -5007.95);
 
   // 水ヒットコイン
-  coin_pix_ = QPixmap(":sms/coin.png");
-  coin_blue_pix_ = QPixmap(":sms/coin_blue.png");
-  fruit_banana_pix_ = QPixmap(":sms/fruit_banana.png");
-  fruit_coconut_pix_ = QPixmap(":sms/fruit_coconut.png");
-  fruit_durian_pix_ = QPixmap(":sms/fruit_durian.png");
-  fruit_papaya_pix_ = QPixmap(":sms/fruit_papaya.png");
-  fruit_pine_pix_ = QPixmap(":/sms/fruit_pine.png");
+  coin_pix_ = QPixmap("SMS/Resources/Images/coin.png");
+  coin_blue_pix_ = QPixmap("SMS/Resources/Images/coin_blue.png");
+  fruit_banana_pix_ = QPixmap("SMS/Resources/Images/fruit_banana.png");
+  fruit_coconut_pix_ = QPixmap("SMS/Resources/Images/fruit_coconut.png");
+  fruit_durian_pix_ = QPixmap("SMS/Resources/Images/fruit_durian.png");
+  fruit_papaya_pix_ = QPixmap("SMS/Resources/Images/fruit_papaya.png");
+  fruit_pine_pix_ = QPixmap("SMS/Resources/Images/fruit_pine.png");
   for (s64 i = 0; i < 200; i++) {
     QPen pen(Qt::black);
     pen.setWidth(50);
@@ -54,8 +54,8 @@ void MapPinnaBeach::initialize() {
     water_hit_obj_items_[i]->setVisible(false);
   }
 
-  //hidden_star_pix_ = QPixmap(":sms/hidden_star.png");
-  QPixmap blue_star_pix = QPixmap(":sms/hidden_star.png");
+  //hidden_star_pix_ = QPixmap("SMS/Resources/Images/hidden_star.png");
+  QPixmap blue_star_pix = QPixmap("SMS/Resources/Images/hidden_star.png");
   hidden_star_pix_ = QPixmap(blue_star_pix.size());
   hidden_star_pix_.fill(QColor(0, 0, 255));
   hidden_star_pix_.setMask(blue_star_pix.createMaskFromColor(Qt::transparent));
@@ -69,7 +69,7 @@ void MapPinnaBeach::initialize() {
   }
 
   // マリオの画像
-  QPixmap mario_pix(":sms/mario.png");
+  QPixmap mario_pix("SMS/Resources/Images/mario.png");
   mario_pix_item_ = scene_->addPixmap(mario_pix);
   mario_pix_item_->setScale(200.0 / mario_pix.width());
   mario_pix_item_->setPos(0, 5000);

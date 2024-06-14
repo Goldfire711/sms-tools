@@ -1,7 +1,7 @@
 #include "Items.h"
 
 ItemMario::ItemMario(QGraphicsItem* parent) : ItemBase(parent) {
-  const QPixmap pix_mario(":sms/mario.png");
+  const QPixmap pix_mario("SMS/Resources/Images/mario.png");
   pix_->setPixmap(pix_mario);
   setZValue(1);
 

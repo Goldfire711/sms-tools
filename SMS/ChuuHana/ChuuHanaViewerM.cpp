@@ -242,7 +242,7 @@ void ChuuHanaViewerM::paintEvent(QPaintEvent* event) {
     else if (bound.right() < mario_x)
       mario_x = bound.right();
   }
-  QImage img_mario(":sms/mario.png");
+  QImage img_mario("SMS/Resources/Images/mario.png");
   painter.translate(mario_x, mario_z);
   painter.rotate(-mario_spin_angle / 65536.0 * 360.0 - 180.0);
   painter.translate(-mario_x, -mario_z);

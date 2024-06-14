@@ -28,6 +28,14 @@ void MapObjectViewerItem::append_manager(const u32 p_manager) {
   for (s32 i = 0; i < count; i++) {
     const u32 p_obj = read_u32(p_objects + 4 * i);
     auto* obj = manager->append_object(p_obj);
+    if (obj->class_name_ == "TBossGesso") {
+      for (s32 i = 0; i < 4; i++) {
+        const u32 p_leg = read_u32(p_obj + 0x150 + i * 4, { 0x3c });
+        obj->append_object(p_leg);
+      }
+      const u32 p_beak = read_u32(p_obj + 0x160);
+      obj->append_object(p_beak);
+    }
     obj->name_ = QString::number(i) + ": " + obj->name_;
   }
 }

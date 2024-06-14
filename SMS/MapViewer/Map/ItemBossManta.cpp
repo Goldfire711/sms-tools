@@ -2,8 +2,8 @@
 
 ItemBossManta::ItemBossManta(const u32 p_obj, ItemManagerBase* parent)
   : ItemObjBase(p_obj, parent){
-  pixmap_normal_ = QPixmap(":/sms/manta_red.png");
-  pixmap_purple_ = QPixmap(":/sms/manta_purple.png");
+  pixmap_normal_ = QPixmap("SMS/Resources/Images/manta_red.png");
+  pixmap_purple_ = QPixmap("SMS/Resources/Images/manta_purple.png");
 
   // Target
   QPen pen(Qt::blue);

@@ -50,7 +50,7 @@ private:
     AIRPORT1 = 0,
     DOLPIC = 1,
     BIANCO = 2,
-    RICO = 3,
+    RICCO = 3,
     MAMMA = 4,
     PINNA_BEACH = 5,
     SIRENA = 6,
@@ -67,7 +67,7 @@ private:
     DOLPIC_EX_GRASS = 23,
     DOLPIC_EX_LILYPAD = 24,
     DOLPIC_EX_TURBO = 29,
-    RICO_EX_EP2 = 30,
+    RICCO_EX_EP2 = 30,
     MARE_EX_EP6 = 31,
     MAMMA_EX_EP1 = 32,
     MAMMA_EX_EP4 = 33,
@@ -77,7 +77,7 @@ private:
     MARE_EX_EP3 = 44,
     BIANCO_EX_EP6 = 46,
     BIANCO_EX_EP3 = 47,
-    RICO_EX_EP4 = 48,
+    RICCO_EX_EP4 = 48,
     PINNA_EX_EP2 = 50,
     SIRENA_EX_EP2 = 51,
     CORONA = 52,
@@ -85,7 +85,7 @@ private:
     SIRENA_BOSS_EP5 = 56,
     MARE_BOSS_EP4 = 57,
     PINNA_BOSS = 58,
-    RICO_BOSS_EP1 = 59,
+    RICCO_BOSS_EP1 = 59,
     CORONA_BOSS = 60,
   };
 };
@@ -207,4 +207,14 @@ public:
   QGraphicsEllipseItem* generate_radius_min_;
   QGraphicsEllipseItem* generate_radius_max_;
   QGraphicsPathItem* rng_path_;
+};
+
+class ItemBossGesso : public ItemObjBase {
+public:
+  ItemBossGesso(u32 p_obj, ItemManagerBase* parent = nullptr);
+  void update(float map_height_min, float map_height_max) override;
+
+  QGraphicsEllipseItem* tentacle_[4];
+  QGraphicsEllipseItem* beak_;
+  QGraphicsEllipseItem* beak_length_damage_;
 };

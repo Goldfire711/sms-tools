@@ -199,6 +199,12 @@
     <ClCompile Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulatorModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SMS\MapViewer\Map\ItemBossGesso.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMS\MapViewer\MapObjectParameters\ParamsTBossGesso.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\CommonTypes.h" />
@@ -367,9 +373,6 @@
     <QtMoc Include="SMS\RNGManipulator\NameKuriManipulator\NameKuriManipulator.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="MainWindow.ui" />

@@ -57,3 +57,8 @@ class ParamsTBossManta : public ParamsObjBase {
 public:
   explicit ParamsTBossManta(u32 ptr);
 };
+
+class ParamsTBossGesso : public ParamsObjBase {
+public:
+  explicit ParamsTBossGesso(u32 ptr);
+};

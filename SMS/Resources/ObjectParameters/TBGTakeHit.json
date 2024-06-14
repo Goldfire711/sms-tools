@@ -1,0 +1,25 @@
+{
+    "TBGTakeHit": {
+        "size": "b0",
+        "offsets": [
+            {
+                "offset": "0",
+                "type": "THitActor",
+                "name": "",
+                "notes": ""
+            },
+            {
+                "offset": "70",
+                "type": "TBGTentacle*",
+                "name": "parent",
+                "notes": ""
+            },
+            {
+                "offset": "80",
+                "type": "JGeometry::TMatrix34<>",
+                "name": "*",
+                "notes": ""
+            }
+        ]
+    }
+}

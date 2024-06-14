@@ -37,7 +37,7 @@ void MapPianta8::initialize() {
   red_pen.setWidth(50);
 
   // PV4(PV8)のマップを表示
-  QPixmap PV4_pix(":/sms/PiantaVillageDay.png");
+  QPixmap PV4_pix("SMS/Resources/Images/PiantaVillageDay.png");
   QGraphicsPixmapItem* PV4_item = scene_->addPixmap(PV4_pix);
   const double PV4_item_scale = (19968.0 * 2.0) / PV4_pix.width();
   PV4_item->setScale(PV4_item_scale);
@@ -90,7 +90,7 @@ void MapPianta8::initialize() {
   scene_->addPolygon(blue_bird_rail, white_pen);
 
   // 青鳥本体
-  const QPixmap blue_bird_pix(":/sms/blue_bird.png");
+  const QPixmap blue_bird_pix("SMS/Resources/Images/blue_bird.png");
   blue_bird_item_ = scene_->addPixmap(blue_bird_pix);
   blue_bird_item_->setScale(500.0 / 110.0);
   blue_bird_item_->setTransformOriginPoint(blue_bird_pix.width() / 2, blue_bird_pix.height() / 2);
@@ -101,8 +101,8 @@ void MapPianta8::initialize() {
     scene_->addEllipse(-150, -150, 300, 300, QPen(Qt::black), QBrush(Qt::NoBrush));
 
   // 赤コイン・青コインの画像 (gpItemManager)
-  coin_red_pix_ = QPixmap(":/sms/coin_red.png");
-  coin_blue_pix_ = QPixmap(":/sms/coin_blue.png");
+  coin_red_pix_ = QPixmap("SMS/Resources/Images/coin_red.png");
+  coin_blue_pix_ = QPixmap("SMS/Resources/Images/coin_blue.png");
   for (s64 i = 0; i < 85; ++i) {
     coins_pix_item_[i] = scene_->addPixmap(coin_red_pix_);
     coins_pix_item_[i]->setScale(200.0 * 2 / 35.0);
@@ -112,14 +112,14 @@ void MapPianta8::initialize() {
   }
 
   // シャインの画像
-  QPixmap shine_pix(":/sms/shine.png");
+  QPixmap shine_pix("SMS/Resources/Images/shine.png");
   shine_pix_item_ = scene_->addPixmap(shine_pix);
   shine_pix_item_->setScale(200.0 * 2 / 35.0);
   shine_pix_item_->setTransformOriginPoint(shine_pix.width() / 2, shine_pix.height() / 2);
   shine_pix_item_->setVisible(false);
 
   // マリオの画像
-  QPixmap mario_pix(":/sms/mario.png");
+  QPixmap mario_pix("SMS/Resources/Images/mario.png");
   mario_pix_item_ = scene_->addPixmap(mario_pix);
   mario_pix_item_->setScale(200.0 * 2 / 35.0);
   mario_pix_item_->setTransformOriginPoint(mario_pix.width() / 2, mario_pix.height() / 2);

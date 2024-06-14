@@ -11,7 +11,7 @@ void ItemMap::set_map() {
   // TODO
   switch (stage_) {
   case SIRENA:
-    maps_.append({ QPixmap(":stages/SirenaBeach_x10.png") , INFINITY });
+    maps_.append({ QPixmap("SMS/Resources/Images/Stages/SirenaBeach_x10.png") , INFINITY });
     setScale(10);
     break;
   case MONTE:
@@ -20,15 +20,20 @@ void ItemMap::set_map() {
     case 2:
     case 4:
     case 6:
-      maps_.append({ QPixmap(":stages/PiantaVillageNight_x20.png"), INFINITY });
-      maps_.append({ QPixmap(":stages/PiantaVillageNight_x20_h7100.png"), 7100.0 });
-      maps_.append({ QPixmap(":stages/PiantaVillageNight_x20_h-800.png"), -800.0 });
+      maps_.append({ QPixmap("SMS/Resources/Images/Stages/PiantaVillageNight_x20.png"), INFINITY });
+      maps_.append({ QPixmap("SMS/Resources/Images/Stages/PiantaVillageNight_x20_h7100.png"), 7100.0 });
+      maps_.append({ QPixmap("SMS/Resources/Images/Stages/PiantaVillageNight_x20_h-800.png"), -800.0 });
       setScale(20);
       break;
     default:
       maps_.append({ QPixmap(), INFINITY });
       break;
     }
+    break;
+  case RICCO:
+  case RICCO_BOSS_EP1:
+    maps_.append({ QPixmap("SMS/Resources/Images/Stages/RiccoHarbor_x20.png"), INFINITY });
+    setScale(20);
     break;
   default:
     maps_.append({ QPixmap(), INFINITY });

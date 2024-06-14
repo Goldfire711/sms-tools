@@ -1,4 +1,5 @@
 {
-    "TNameKuri": ":/sms/puchipuchi_blue_x1.png",
-    "TBossManta": ":/sms/manta_red.png"
+    "TNameKuri": "SMS/Resources/Images/puchipuchi_blue_x1.png",
+    "TBossManta": "SMS/Resources/Images/manta_red.png",
+    "TBossGesso": "SMS/Resources/Images/bgeso_x1.png"
 }

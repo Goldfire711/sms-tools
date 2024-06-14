@@ -17,6 +17,8 @@ ItemManagerBase::ItemManagerBase(const u32 p_manager, QGraphicsItem* parent)
     ItemObjBase* obj;
     if (obj_class == "TBossManta") {
       obj = new ItemBossManta(p, this);
+    } else if (obj_class == "TBossGesso") {
+      obj = new ItemBossGesso(p, this);
     } else {
       obj = new ItemObjBase(p, this);
       if (g_class_to_png.contains(obj_class)) {

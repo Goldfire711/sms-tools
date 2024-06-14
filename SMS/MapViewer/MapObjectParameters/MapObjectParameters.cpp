@@ -56,6 +56,14 @@ void MapObjectParameters::show_parameters(const u32 address) {
     params_list_.push_back(std::make_unique<ParamsBase>(address));
   } else if (class_name.contains("Manager")) {
     params_list_.push_back(std::make_unique<ParamsManagerBase>(address));
+  } else if (class_name == "TBGTakeHit") {
+    const u32 p_bg = read_u32(address + 0x70, { 0x34 });
+    for (s32 i = 0; i < 4; i++) {
+      const u32 p_leg = read_u32(p_bg + 0x150 + i * 4, { 0x3c });
+      params_list_.push_back(std::make_unique<ParamsObjBase>(p_leg));
+    }
+  } else if (class_name == "TBGBeakHit") {
+    params_list_.push_back(std::make_unique<ParamsObjBase>(address));
   } else {
     const u32 p_manager = read_u32(address + 0x70);
     const s32 count = read_s32(p_manager + 0x14);
@@ -72,6 +80,8 @@ void MapObjectParameters::show_parameters(const u32 address) {
           params_list_.push_back(std::make_unique<ParamsTNameKuri>(p_obj));
         else if (class_name == "TBossManta")
           params_list_.push_back(std::make_unique<ParamsTBossManta>(p_obj));
+        else if (class_name == "TBossGesso")
+          params_list_.push_back(std::make_unique<ParamsTBossGesso>(p_obj));
         else
           params_list_.push_back(std::make_unique<ParamsObjBase>(p_obj));
 
